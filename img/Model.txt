@@ -1,0 +1,6 @@
+# Plant UML
+
+@startuml
+Laboratory -right-> "*" Computer
+Computer -right-> "*" Element
+@enduml

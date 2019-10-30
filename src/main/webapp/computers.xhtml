@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>ECI Labs - Computers</title>
+    </h:head>
+    <h:body>
+        <h1>Computers in: Laboratory #{computerBean.laboratory}</h1>
+        <p:button outcome="laboratories" value="Back to Laboratories" />
+        <p:dataTable id="computer_table" var="computer" value="#{computerBean.computers}">
+            <p:column headerText="Id">
+                <h:outputText value="#{computer.id}" />
+            </p:column>
+            <p:column headerText="Name">
+                <h:outputText value="#{computer.name}" />
+            </p:column>
+            <p:column headerText="Active">
+                <h:outputText value="#{computer.active}" />
+            </p:column>
+            <p:column headerText="Elements">
+                <p:button outcome="elements?computer=#{computer.id}" value="View Elements" />
+            </p:column>
+
+        </p:dataTable>
+    </h:body>
+</html>
+

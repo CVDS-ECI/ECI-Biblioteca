@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.ComputerMapper">
+
+    <resultMap type='Computer' id='ComputerResult'>
+        <id property='id' column='id' />
+        <result property='name' column='nombre' />
+        <result property='active' column='activo' />
+    </resultMap>
+
+    <select id="findByLaboratory" resultMap="ComputerResult" parameterType="string">
+        SELECT
+        c.id,
+        c.nombre,
+        c.activo
+        FROM
+        COMPUTER as c
+        <if test="id != null">
+            WHERE c.laboratory_fk = #{id}
+        </if>
+    </select>
+        
+    <select id="searchIncompleteComputers" resultMap="ComputerResult" parameterType="map">
+        SELECT DISTINCT
+        c.id,
+        c.nombre,
+        c.activo
+        FROM
+        COMPUTER as c, `ELEMENT`
+        <if test="id != null">
+            WHERE c.id = `ELEMENT`.computer_fk and `ELEMENT`.activo=1
+            GROUP BY `ELEMENT`.computer_fk
+            HAVING COUNT(`ELEMENT`.computer_fk) = 4
+        </if>
+    </select>
+        
+
+        
+    <delete id="deleteAll">
+        delete from COMPUTER
+    </delete>
+</mapper>
