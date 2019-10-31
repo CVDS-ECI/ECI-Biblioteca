@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html >
+
+<head>
+	<title>ECI Labs - Laboratories</title>
+</head>
+<body>
+	<h1>Laboratories</h1>
+        <button outcome="incompletecomputer" value="View Incomplete Computers" />
+	<dataTable id="laboratory_table" var="laboratory" value="#{laboratoryBean.laboratories}">
+		<column headerText="Id">
+			<outputText value="#{laboratory.id}" />
+		</column>
+		<column headerText="Name">
+			<outputText value="#{laboratory.name}" />
+		</column>
+		<column headerText="Active">
+			<outputText value="#{laboratory.active}" />
+		</column>
+		<column headerText="Computers">
+			<button outcome="computers?laboratory=#{laboratory.id}" value="View Computers" />
+		</column>
+            
+	</dataTable>
+</body>
+</html>
+

@@ -36,4 +36,4 @@ CREATE TABLE if not exists Recurso (
  franja_ini int references Horario(id),
  duracion int not null
  );
-  
+
