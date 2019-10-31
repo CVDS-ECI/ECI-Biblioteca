@@ -1,5 +1,7 @@
 package edu.eci.cvds.persistence;
 
-public interface RecursoDAO  {
+import edu.eci.cvds.entities.Element;
 
+public interface RecursoDAO  {
+	public void addRecurso(int computerId, Element element) throws PersistenceException;
 }
