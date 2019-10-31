@@ -5,18 +5,18 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <h:head>
+    <head>
         <title>ECI Labs </title>
-    </h:head>
-    <h:body>
+    </head>
+    <body>
         <h1>Incomplete computers </h1>
-        <p:button outcome="laboratories" value="Back to Laboratories" />
-        <p:dataTable id="inc_computer_table" var="inpc" value="#{computerBean.incompleteComputers}">
-            <p:column headerText="Serial">
-                <h:outputText value="#{inpc.name}" />
-            </p:column>
+        <button outcome="laboratories" value="Back to Laboratories" />
+        <dataTable id="inc_computer_table" var="inpc" value="#{computerBean.incompleteComputers}">
+            <column headerText="Serial">
+                <outputText value="#{inpc.name}" />
+            <column>
 
 
-        </p:dataTable>
-    </h:body>
+        <dataTable>
+    </body>
 </html>
