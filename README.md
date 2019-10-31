@@ -17,6 +17,8 @@
 ## Arquitectura y diseño detallado
 
 ### Modelo E-R (Entidad-Relación)
+![1](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/aplicacion/img/EntidadRelacion.png)
+
 ### Diagrama de clases
 ![Diagrama de clases sprint 1 y 2](https://i.ibb.co/JmK6fCD/ppppp.png)
 
