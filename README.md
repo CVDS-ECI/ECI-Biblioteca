@@ -18,6 +18,8 @@
 
 ### Modelo E-R (Entidad-Relación)
 ### Diagrama de clases
+![Diagrama de clases sprint 1 y 2](https://i.ibb.co/JmK6fCD/ppppp.png)
+
 ### Descripción de la arquitectura y tecnologías utilizadas
 ### Enlace de la aplicación en Heroku
 ### Integración continua
@@ -25,6 +27,5 @@
 
 ## Descripción del proceso
 
-## Diagrama de clases
-![Diagrama de clases sprint 1 y 2](https://i.ibb.co/JmK6fCD/ppppp.png)
 
+[![CircleCI](https://circleci.com/gh/CVDS-ECI/ECI-Biblioteca.svg?style=svg)](https://circleci.com/gh/CVDS-ECI/ECI-Biblioteca)
