@@ -23,9 +23,10 @@
 ### Descripción de la arquitectura y tecnologías utilizadas
 ### Enlace de la aplicación en Heroku
 ### Integración continua
+[![CircleCI](https://circleci.com/gh/CVDS-ECI/ECI-Biblioteca.svg?style=svg)](https://circleci.com/gh/CVDS-ECI/ECI-Biblioteca)
+
 ### Calidad del código
 
 ## Descripción del proceso
 
 
-[![CircleCI](https://circleci.com/gh/CVDS-ECI/ECI-Biblioteca.svg?style=svg)](https://circleci.com/gh/CVDS-ECI/ECI-Biblioteca)
