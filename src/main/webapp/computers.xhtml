@@ -5,27 +5,27 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <h:head>
+    <head>
         <title>ECI Labs - Computers</title>
-    </h:head>
-    <h:body>
+    </head>
+    <body>
         <h1>Computers in: Laboratory #{computerBean.laboratory}</h1>
-        <p:button outcome="laboratories" value="Back to Laboratories" />
-        <p:dataTable id="computer_table" var="computer" value="#{computerBean.computers}">
-            <p:column headerText="Id">
-                <h:outputText value="#{computer.id}" />
-            </p:column>
-            <p:column headerText="Name">
-                <h:outputText value="#{computer.name}" />
-            </p:column>
-            <p:column headerText="Active">
-                <h:outputText value="#{computer.active}" />
-            </p:column>
-            <p:column headerText="Elements">
-                <p:button outcome="elements?computer=#{computer.id}" value="View Elements" />
-            </p:column>
+        <button outcome="laboratories" value="Back to Laboratories" />
+        <dataTable id="computer_table" var="computer" value="#{computerBean.computers}">
+            <column headerText="Id">
+                <outputText value="#{computer.id}" />
+            <column>
+            <column headerText="Name">
+                <outputText value="#{computer.name}" />
+            <column>
+            <column headerText="Active">
+                <outputText value="#{computer.active}" />
+            <column>
+            <column headerText="Elements">
+                <button outcome="elements?computer=#{computer.id}" value="View Elements" />
+            <column>
 
-        </p:dataTable>
-    </h:body>
+        <dataTable>
+    </body>
 </html>
 

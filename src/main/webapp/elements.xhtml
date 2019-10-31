@@ -5,28 +5,28 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <h:head>
+    <head>
         <title>ECI Labs </title>
-    </h:head>
-    <h:body>
+    </head>
+    <body>
         <h1>Elements of the computer #{elementBean.computer} </h1>
-        <p:button outcome="laboratories" value="Back to Laboratories" />
-        <p:dataTable id="Element_table" var="element" value="#{elementBean.elements}">
-            <p:column headerText="Serial">
-                <h:outputText value="#{element.serialNo}" />
-            </p:column>
+        <button outcome="laboratories" value="Back to Laboratories" />
+        <dataTable id="Element_table" var="element" value="#{elementBean.elements}">
+            <column headerText="Serial">
+                <outputText value="#{element.serialNo}" />
+            <column>
                         
-            <p:column headerText="Brand">
-                <h:outputText value="#{element.brand}" />
-            </p:column>
-            <p:column headerText="Type">
-                <h:outputText value="#{element.type}" />
-            </p:column>
-            <p:column headerText="Activo">
-                <h:outputText value="#{element.active}" />
-            </p:column>
+            <column headerText="Brand">
+                <outputText value="#{element.brand}" />
+            <column>
+            <column headerText="Type">
+                <outputText value="#{element.type}" />
+            <column>
+            <column headerText="Activo">
+                <outputText value="#{element.active}" />
+            <column>
 
 
-        </p:dataTable>
-    </h:body>
+        <dataTable>
+    </body>
 </html>
