@@ -14,7 +14,7 @@ import edu.eci.cvds.persistence.ComputerDAO;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.LaboratoryDAO;
 import edu.eci.cvds.services.LaboratoryServices;
-import edu.eci.cvds.services.ServicesException;
+import edu.eci.cvds.services.BibliotecaException;
 
 import java.util.List;
 
@@ -27,57 +27,57 @@ public class LaboratoryServicesImpl implements LaboratoryServices {
     private ComputerDAO computerDAO;
 
     @Override
-    public void createLaboratory(Laboratory laboratory) throws ServicesException {
+    public void createLaboratory(Laboratory laboratory) throws BibliotecaException {
         try {
             laboratoryDAO.save(laboratory);
         } catch (PersistenceException ex) {
-            throw new ServicesException("Create laboratory error:" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Create laboratory error:" + ex.getLocalizedMessage(), ex);
         }
     }
 
     @Override
-    public List<Laboratory> listLaboratories() throws ServicesException {
+    public List<Laboratory> listLaboratories() throws BibliotecaException {
         try {
             return laboratoryDAO.loadAll();
         } catch (PersistenceException ex) {
-            throw new ServicesException("Load laboratories error:" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Load laboratories error:" + ex.getLocalizedMessage(), ex);
         }
     }
 
     @Override
-    public List<Computer> listComputers() throws ServicesException {
+    public List<Computer> listComputers() throws BibliotecaException {
       throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public List<Computer> searchByLaboratory(String laboratory) throws ServicesException {
+    public List<Computer> searchByLaboratory(String laboratory) throws BibliotecaException {
         try {
             return computerDAO.loadByLaboratory(laboratory);
         } catch (PersistenceException ex) {
-            throw new ServicesException("Search computer error:" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Search computer error:" + ex.getLocalizedMessage(), ex);
         }
     }
 
     @Override
-    public List<Element> searchElementsByComputerReference(String reference) throws ServicesException {
+    public List<Element> searchElementsByComputerReference(String reference) throws BibliotecaException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public List<Element> buscarElementosAsociadosAUnComputador(int cId) throws ServicesException {
+    public List<Element> buscarElementosAsociadosAUnComputador(int cId) throws BibliotecaException {
         try {
             return computerDAO.loadAssociatedElements(cId);
         } catch (PersistenceException ex) {
-            throw new ServicesException("Error al consultar los elementos de un equipo:" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Error al consultar los elementos de un equipo:" + ex.getLocalizedMessage(), ex);
         }
     }
 
     @Override
-    public List<Computer> searchIncompleteComputers() throws ServicesException {
+    public List<Computer> searchIncompleteComputers() throws BibliotecaException {
                 try {
             return computerDAO.searchIncompleteComputers();
         } catch (PersistenceException ex) {
-            throw new ServicesException("Error al consultar los elementos de un equipo:" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Error al consultar los elementos de un equipo:" + ex.getLocalizedMessage(), ex);
         }
     }
 

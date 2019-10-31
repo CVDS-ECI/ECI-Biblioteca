@@ -24,7 +24,7 @@ import javax.inject.Inject;
 
 import edu.eci.cvds.entities.Laboratory;
 import edu.eci.cvds.services.LaboratoryServices;
-import edu.eci.cvds.services.ServicesException;
+import edu.eci.cvds.services.BibliotecaException;
 
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "laboratoryBean")
@@ -42,7 +42,7 @@ public class LaboratoryBean extends BasePageBean {
     public List<Laboratory> getLaboratories() throws Exception{
         try {
             return laboratoryServices.listLaboratories();
-        } catch (ServicesException ex) {
+        } catch (BibliotecaException ex) {
             
             throw ex;
         }
