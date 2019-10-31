@@ -28,6 +28,8 @@
 		<mapper resource="mappers/LaboratoryMapper.xml"></mapper>
 		<mapper resource="mappers/ComputerMapper.xml"></mapper>
                 <mapper resource="mappers/ElementMapper.xml"></mapper>
+                <mapper resource="mappers/UsuarioMapper.xml"></mapper>
+                <mapper resource="mappers/RecursoMapper.xml"></mapper>
 	</mappers>
 
 </configuration>

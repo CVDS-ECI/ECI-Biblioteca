@@ -14,7 +14,7 @@ public interface LaboratoryServices {
 	 * @param laboratory the laboratory to create
 	 * @throws ServicesException
 	 */
-	public void createLaboratory(Laboratory laboratory) throws ServicesException;
+	public void createLaboratory(Laboratory laboratory) throws BibliotecaException;
 
 	/**
 	 * List all available laboratories
@@ -22,7 +22,7 @@ public interface LaboratoryServices {
 	 * @return a list of laboratories found
 	 * @throws ServicesException
 	 */
-	public List<Laboratory> listLaboratories() throws ServicesException;
+	public List<Laboratory> listLaboratories() throws BibliotecaException;
 
 	/**
 	 * List all available computers
@@ -30,7 +30,7 @@ public interface LaboratoryServices {
 	 * @return a list of computers found
 	 * @throws ServicesException
 	 */
-	public List<Computer> listComputers() throws ServicesException;
+	public List<Computer> listComputers() throws BibliotecaException;
 
 	/**
 	 * List all computers based on a laboratory's name
@@ -39,7 +39,7 @@ public interface LaboratoryServices {
 	 * @return a list of computers found
 	 * @throws ServicesException
 	 */
-	public List<Computer> searchByLaboratory(String laboratory) throws ServicesException;
+	public List<Computer> searchByLaboratory(String laboratory) throws BibliotecaException;
 
 	/**
 	 * Find all elements based on a computer's reference
@@ -48,7 +48,7 @@ public interface LaboratoryServices {
 	 * @return a list of elements found
 	 * @throws ServicesException
 	 */
-	public List<Element> searchElementsByComputerReference(String reference) throws ServicesException;
+	public List<Element> searchElementsByComputerReference(String reference) throws BibliotecaException;
 
 	/**
 	 * Find all computers that are incomplete
@@ -56,8 +56,8 @@ public interface LaboratoryServices {
 	 * @return a list of incomplete computers
 	 * @throws ServicesException
 	 */
-	public List<Computer> searchIncompleteComputers() throws ServicesException;
+	public List<Computer> searchIncompleteComputers() throws BibliotecaException;
         
-        public List<Element> buscarElementosAsociadosAUnComputador(int cId) throws ServicesException;
+        public List<Element> buscarElementosAsociadosAUnComputador(int cId) throws BibliotecaException;
 
 }

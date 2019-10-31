@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import edu.eci.cvds.entities.Computer;
 import edu.eci.cvds.entities.Element;
 import edu.eci.cvds.services.LaboratoryServices;
-import edu.eci.cvds.services.ServicesException;
+import edu.eci.cvds.services.BibliotecaException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -38,7 +38,7 @@ public class ComputerBean extends BasePageBean {
             } else {
                 return laboratoryServices.searchByLaboratory(laboratory);
             }
-        } catch (ServicesException ex) {
+        } catch (BibliotecaException ex) {
 
             throw ex;
         }
@@ -49,7 +49,7 @@ public class ComputerBean extends BasePageBean {
         try {
             return laboratoryServices.searchIncompleteComputers();
 
-        } catch (ServicesException ex) {
+        } catch (BibliotecaException ex) {
 
             throw ex;
         }
