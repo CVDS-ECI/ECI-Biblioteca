@@ -1,86 +1,72 @@
 package edu.eci.cvds.entities;
 
-
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class Usuario implements Serializable{
-    
-    private String nombre;
-	private String apellido;
-    private int carnet;
-    private String clave;
-    private String tipo;
-    private String correo;
+public class Usuario implements Serializable {
 
+    private String nombre;
+    private String correo;
+    private String password;
+    private int rol;
+    private String programaU;
 
     public Usuario() {
     }
 
-    public Usuario(String nombre, String apellido,int carnet, String clave, String tipo, String correo) {   
+    public Usuario(String nombre, String correo, String password, int rol, String programaU) {
         this.nombre = nombre;
-        this.apellido = apellido;
-        this.carnet = carnet;
-        this.clave = clave;
-        this.tipo = tipo;
+        this.password = password;
+        this.rol = rol;
+        this.programaU = programaU;
         this.correo = correo;
     }
 
     public String getNombre() {
-		return nombre;
-	}
+        return nombre;
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public String getApellido() {
-		return apellido;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public int getCarnet() {
-		return carnet;
-	}
+    public int getRol() {
+        return rol;
+    }
 
-	public void setCarnet(int carnet) {
-		this.carnet = carnet;
-	}
+    public void setRol(int rol) {
+        this.rol = rol;
+    }
 
-	public String getClave() {
-		return clave;
-	}
+    public String getProgramaU() {
+        return programaU;
+    }
 
-	public void setClave(String clave) {
-		this.clave = clave;
-	}
+    public void setProgramaU(String programaU) {
+        this.programaU = programaU;
+    }
 
-	public String getTipo() {
-		return tipo;
-	}
+    public String getCorreo() {
+        return correo;
+    }
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
 
-	public String getCorreo() {
-		return correo;
-	}
+    @Override
+    public String toString() {
+        return "Usuario { correo : " + correo + ", nombre: " + nombre + ", rol: " + rol
+                + ", programa : " + programaU + "}";
+    }
 
-	public void setCorreo(String correo) {
-		this.correo = correo;
-	}        
-    //@Override
-    //public String toString() {
-        //return "Cliente{" + "nombre=" + nombre + ", documento=" + documento + ", rentados=\n\t" + rentados + '}';
-    //}
-
-   
-    
-    
 }

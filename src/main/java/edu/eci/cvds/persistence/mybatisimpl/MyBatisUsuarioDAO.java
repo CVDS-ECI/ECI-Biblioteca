@@ -25,45 +25,15 @@ public class MyBatisUsuarioDAO implements UsuarioDAO {
     @Inject
     private UsuarioMapper usuarioMapper;
 
-    /*
     @Override
-    public void save(Usuario cl) throws PersistenceException {
-        try {
-        	usuarioMapper.agregarCliente(cl);
-        } catch (org.apache.ibatis.exceptions.PersistenceException e) {
-            throw new PersistenceException("Error al agregar el cliente en MyBatisClienteDAO " + cl.toString(), e);
-        }
-
-    }
-   
-    @Override
-    public List<Usuario> consultarClientes() throws PersistenceException {
-        try {
-            return usuarioMapper.consultarClientes();
-        } catch (org.apache.ibatis.exceptions.PersistenceException e) {
-            throw new PersistenceException("Error al consultar los clientes ", e);
-        }
-
-    }
-    
-    @Override
-    public List<ItemRentado> loadItemsRentados(long id) throws PersistenceException {
-        try {
-            return usuarioMapper.consultarItemsRentados(id);
-        } catch (org.apache.ibatis.exceptions.PersistenceException e) {
-            throw new PersistenceException("Error al consultar los items Rentados del cliente " + id, e);
-        }
+    public void addUsuario(Usuario cl) throws PersistenceException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void addItemRentado(long id, int iditem, Date fechainicio, Date fechafin) throws PersistenceException {
-        try {
-        	usuarioMapper.agregarItemRentadoACliente(id,iditem,fechainicio,fechafin);
-        } catch (org.apache.ibatis.exceptions.PersistenceException e) {
-            throw new PersistenceException("Error al consultar los items Rentados del cliente " + id, e);
-        }
+    public List<Usuario> loadUsuarios() throws PersistenceException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-	*/
 
 	
 }

@@ -7,9 +7,8 @@
 	</properties>
 
 	<typeAliases>
-		<typeAlias type='edu.eci.cvds.entities.Laboratory' alias='Laboratory' />
-		<typeAlias type='edu.eci.cvds.entities.Computer' alias='Computer' />
-		<typeAlias type='edu.eci.cvds.entities.Element' alias='Element' />
+                <typeAlias type='edu.eci.cvds.entities.Recurso' alias='Recurso' />
+                <typeAlias type='edu.eci.cvds.entities.Usuario' alias='Usuario' />
 	</typeAliases>
 
 	<environments default="development">
@@ -25,9 +24,6 @@
 	</environments>
 
 	<mappers>
-		<mapper resource="mappers/LaboratoryMapper.xml"></mapper>
-		<mapper resource="mappers/ComputerMapper.xml"></mapper>
-                <mapper resource="mappers/ElementMapper.xml"></mapper>
                 <mapper resource="mappers/UsuarioMapper.xml"></mapper>
                 <mapper resource="mappers/RecursoMapper.xml"></mapper>
 	</mappers>

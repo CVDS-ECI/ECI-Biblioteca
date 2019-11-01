@@ -15,11 +15,6 @@ import java.util.List;
  */
 public interface UsuarioDAO {
 
-    //public void save(Usuario cl) throws PersistenceException;
-    
-    //public List<Usuario> consultarClientes() throws PersistenceException;
-
-    //public List<ItemRentado> loadItemsRentados(long id) throws PersistenceException;
-
-    //public void addItemRentado(long id, int iditem, Date fechainicio, Date fechafin) throws PersistenceException;
+    public void addUsuario(Usuario cl) throws PersistenceException;
+    public List<Usuario> loadUsuarios() throws PersistenceException;
 }
