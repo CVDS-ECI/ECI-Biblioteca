@@ -11,7 +11,7 @@ import javax.faces.event.PhaseId;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.validator.ValidatorException;
 
-import edu.eci.cvds.services.LaboratoryServicesFactory;
+import edu.eci.cvds.services.BibliotecaServicesFactory;
 //@ManagedBean
 //@RequestScoped
 
