@@ -6,6 +6,7 @@
 package edu.eci.cvds.services.impl;
 
 import com.google.inject.Inject;
+import edu.eci.cvds.entities.Recurso;
 
 
 import edu.eci.cvds.persistence.PersistenceException;
@@ -23,6 +24,33 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
 
     @Inject
     RecursoDAO recursoDAO;
+
+    @Override
+    public void registrarRecurso(Recurso rec)throws BibliotecaException {
+        try {
+            recursoDAO.addRecurso(rec);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al insertar el Recurso:" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Recurso> consultarRecursos() throws BibliotecaException{
+        try {
+            return recursoDAO.loadRecursos();
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar los Recursos:" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public Recurso consultarRecurso(int id) throws BibliotecaException {
+         try {
+            return recursoDAO.loadRecurso(id);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar Este Recurso:" + ex.getLocalizedMessage(), ex);
+        }
+    }
 
     
 }

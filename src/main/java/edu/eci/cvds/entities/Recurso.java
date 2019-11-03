@@ -11,11 +11,11 @@ public class Recurso {
     private String ubicacion;
     private String tipo;
     private int capacidad;
-    private boolean estado;
+    private String estado;
 
 
 
-    public Recurso(String nombre, String ubicacion, String tipo, int capacidad, boolean estado) {
+    public Recurso(String nombre, String ubicacion, String tipo, int capacidad, String estado) {
         this.id = id;
         this.nombre = nombre;
         this.ubicacion = ubicacion;
@@ -65,11 +65,11 @@ public class Recurso {
         this.id = id;
     }
 
-    public boolean isEstado() {
+    public String isEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
