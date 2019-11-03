@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import java.io.IOException;
@@ -22,7 +22,7 @@ import javax.faces.bean.ManagedBean;
 
 @Named
 @Stateless
-@ViewScoped
+@SessionScoped
 @ManagedBean(name="shiroBean",eager =true)
 public class ShiroBean implements Serializable {
     private static final Logger log = LoggerFactory.getLogger(ShiroBean.class);
@@ -46,7 +46,7 @@ public class ShiroBean implements Serializable {
             subject.login(token);
 
             if (subject.hasRole("Administrador")) {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("prueba.xhtml");
+                FacesContext.getCurrentInstance().getExternalContext().redirect("newxhtml.xhtml");
             }
             else {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("laboratories.xhtml");
@@ -67,6 +67,9 @@ public class ShiroBean implements Serializable {
         catch (AuthenticationException | IOException ex) {
             facesError("Unknown error: " + ex.getMessage());
             log.error(ex.getMessage(), ex);
+        }
+        catch (NullPointerException e){
+            System.err.println("AAAAAAAAAAAA");
         }
         finally {
             token.clear();
