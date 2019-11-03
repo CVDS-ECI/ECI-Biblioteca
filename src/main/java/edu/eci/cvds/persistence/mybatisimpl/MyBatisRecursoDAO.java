@@ -13,14 +13,30 @@ public class MyBatisRecursoDAO implements RecursoDAO{
     @Inject
     private RecursoMapper recursoMapper;
 
-	@Override
-	public void addRecurso(int computerId) throws PersistenceException {
+    @Override
+    public void addRecurso(int computerId) throws PersistenceException {
 		// TODO Auto-generated method stub
 		
-	}
+    }
 
     @Override
     public List<Recurso> loadRecursos() throws PersistenceException {
+        
+        
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Recurso loadRecurso(int id) throws PersistenceException {
+         Recurso recurso=null;
+         try{
+             recurso = recursoMapper.consultarRecurso(id);
+         }
+         catch(org.apache.ibatis.exceptions.PersistenceException e){
+             throw new PersistenceException("Error al consultar el recurso con el id;", e);
+             
+         }
+         return recurso;
+        
     }
 }

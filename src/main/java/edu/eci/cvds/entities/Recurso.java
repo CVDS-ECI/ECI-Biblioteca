@@ -13,10 +13,9 @@ public class Recurso {
     private int capacidad;
     private boolean estado;
 
-    public Recurso() {
-    }
 
-    public Recurso(int id, String nombre, String ubicacion, String tipo, int capacidad, boolean estado) {
+
+    public Recurso(String nombre, String ubicacion, String tipo, int capacidad, boolean estado) {
         this.id = id;
         this.nombre = nombre;
         this.ubicacion = ubicacion;
