@@ -27,5 +27,7 @@ public class ApacheShiroLogin implements Sesion {
     public boolean estaLogeado() {
         return SecurityUtils.getSubject().isAuthenticated();
     }
+	
+
 }
 

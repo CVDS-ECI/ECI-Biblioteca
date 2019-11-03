@@ -45,9 +45,9 @@ public class ShiroBean implements Serializable {
         try {
             subject.login(token);
             if (subject.hasRole("Administrador")) {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("newxhtml.xhtml");
+                FacesContext.getCurrentInstance().getExternalContext().redirect("admin/paginas/recursos.html");
             } else {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("laboratories.xhtml");
+                FacesContext.getCurrentInstance().getExternalContext().redirect("newxhtml.xhtml");
             }
         } catch (UnknownAccountException ex) {
             facesError("Unknown account");
