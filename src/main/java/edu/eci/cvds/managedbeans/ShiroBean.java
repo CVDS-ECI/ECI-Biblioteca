@@ -23,13 +23,14 @@ import javax.faces.bean.ManagedBean;
 @Named
 @Stateless
 @SessionScoped
-@ManagedBean(name="shiroBean",eager =true)
+@ManagedBean(name = "shiroBean", eager = true)
 public class ShiroBean implements Serializable {
+
     private static final Logger log = LoggerFactory.getLogger(ShiroBean.class);
 
     private String username;
     private String password;
-    private Boolean rememberMe;
+    private Boolean rememberMe = false;
 
     public ShiroBean() {
     }
@@ -38,46 +39,43 @@ public class ShiroBean implements Serializable {
      * Try and authenticate the user
      */
     public void doLogin() {
+        System.out.println("aaaaaaaaasdsadasdad");
         Subject subject = SecurityUtils.getSubject();
-
-        UsernamePasswordToken token = new UsernamePasswordToken(getUsername(), getPassword(), getRememberMe());
-
+        System.out.println("bbbbbbbbbbbbbbbbbbbbbb");
+        UsernamePasswordToken token = new UsernamePasswordToken(getUsername(), getPassword());
+        System.out.println("cccccccccccccccccccccccc");
         try {
+            System.out.println("dddddddddddddddddddddddd");
             subject.login(token);
-
+            System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
             if (subject.hasRole("Administrador")) {
+                System.out.println("ffffffffffffffffffffffffffffffffffffff");
                 FacesContext.getCurrentInstance().getExternalContext().redirect("newxhtml.xhtml");
-            }
-            else {
+            } else {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("laboratories.xhtml");
             }
-        }
-        catch (UnknownAccountException ex) {
+        } catch (UnknownAccountException ex) {
             facesError("Unknown account");
             log.error(ex.getMessage(), ex);
-        }
-        catch (IncorrectCredentialsException ex) {
+        } catch (IncorrectCredentialsException ex) {
             facesError("Wrong password");
             log.error(ex.getMessage(), ex);
-        }
-        catch (LockedAccountException ex) {
+        } catch (LockedAccountException ex) {
             facesError("Locked account");
             log.error(ex.getMessage(), ex);
-        }
-        catch (AuthenticationException | IOException ex) {
+        } catch (AuthenticationException | IOException ex) {
             facesError("Unknown error: " + ex.getMessage());
             log.error(ex.getMessage(), ex);
-        }
-        catch (NullPointerException e){
+        } catch (NullPointerException e) {
             System.err.println("AAAAAAAAAAAA");
-        }
-        finally {
+        } finally {
             token.clear();
         }
     }
 
     /**
      * Adds a new SEVERITY_ERROR FacesMessage for the ui
+     *
      * @param message Error Message
      */
     private void facesError(String message) {
