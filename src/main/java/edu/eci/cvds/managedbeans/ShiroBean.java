@@ -39,17 +39,12 @@ public class ShiroBean implements Serializable {
      * Try and authenticate the user
      */
     public void doLogin() {
-        System.out.println("aaaaaaaaasdsadasdad");
+
         Subject subject = SecurityUtils.getSubject();
-        System.out.println("bbbbbbbbbbbbbbbbbbbbbb");
         UsernamePasswordToken token = new UsernamePasswordToken(getUsername(), getPassword());
-        System.out.println("cccccccccccccccccccccccc");
         try {
-            System.out.println("dddddddddddddddddddddddd");
             subject.login(token);
-            System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
             if (subject.hasRole("Administrador")) {
-                System.out.println("ffffffffffffffffffffffffffffffffffffff");
                 FacesContext.getCurrentInstance().getExternalContext().redirect("newxhtml.xhtml");
             } else {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("laboratories.xhtml");
