@@ -15,14 +15,20 @@ public class Recurso {
 
 
 
-    public Recurso(String nombre, String ubicacion, String tipo, int capacidad, String estado) {
+    public Recurso(int id,String nombre, String ubicacion, String tipo, int capacidad, String estado) {
         this.id = id;
         this.nombre = nombre;
         this.ubicacion = ubicacion;
         this.tipo = tipo;
         this.capacidad = capacidad;
         this.estado = estado;
-
+    }
+   public Recurso(String nombre, String ubicacion, String tipo, int capacidad, String estado) {
+        this.nombre = nombre;
+        this.ubicacion = ubicacion;
+        this.tipo = tipo;
+        this.capacidad = capacidad;
+        this.estado = estado;
     }
 
     public String getNombre() {
@@ -65,7 +71,7 @@ public class Recurso {
         this.id = id;
     }
 
-    public String isEstado() {
+    public String getEstado() {
         return estado;
     }
 

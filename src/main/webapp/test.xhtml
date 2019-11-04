@@ -19,13 +19,17 @@ and open the template in the editor.
 
     <h:form id="tabla_clientes">
 
-        <!--<p:dataTable id="singleDT" var="recurso" value="#{AdminBean.consultarRecursos()}"
+        <p:dataTable id="singleDT" var="recurso" value="#{AdminBean.consultarRecursos()}"
                      paginator="true"
                      paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                      rows="10">
             <f:facet name="header">
                 Recursos registrados:
             </f:facet>
+            
+            <p:column headerText="Identificador">
+                <h:outputText value="#{recurso.id}"/>
+            </p:column> 
             <p:column headerText="Nombre">
                 <h:outputText value="#{recurso.nombre}"/>
             </p:column>
@@ -46,7 +50,7 @@ and open the template in the editor.
                 <h:outputText value="#{recurso.estado}"/>
             </p:column>
 
-        </p:dataTable>-->
+        </p:dataTable>
         <!-- Esto es un comentario -->
 
         <br/>
