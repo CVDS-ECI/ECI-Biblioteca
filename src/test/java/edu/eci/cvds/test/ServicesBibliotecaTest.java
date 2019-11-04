@@ -32,4 +32,10 @@ public class ServicesBibliotecaTest {
 		Recurso recurso = bibliotecaServices.consultarRecurso(29);
 		assertTrue(recurso.getId()==29);
     }
+    
+    @Test
+    public void deberiaConsultarRecurso() throws BibliotecaException {
+		Recurso recurso = bibliotecaServices.consultarRecurso(21);
+		assertTrue(recurso.getNombre().equals("Sala de estudio 7") && recurso.getUbicacion().equals("Biblioteca G") && recurso.getTipo().equals("Sala") && recurso.getCapacidad()== 6 && recurso.getEstado().equals("Disponible"));
+    }
 }
