@@ -28,9 +28,8 @@ public class ServicesBibliotecaTest {
     
     @Test
     public void deberiaRegistrarRecurso() throws BibliotecaException {
-		bibliotecaServices.registrarRecurso(new Recurso("fisica 2", "seccion B", "libro", 1,"D"));
+		bibliotecaServices.registrarRecurso(new Recurso("sala de estudio 3", "biblioteca A", "sala", 5,"Disponible"));
 		Recurso recurso = bibliotecaServices.consultarRecurso(29);
-                System.out.println(recurso);
-		//assertTrue(recurso!=null && recurso.getId()==29);
+		assertTrue(recurso.getId()==29);
     }
 }
