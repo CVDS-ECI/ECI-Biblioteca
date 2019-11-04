@@ -4,5 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.UsuarioMapper">
-
+        <resultMap type='Usuario' id='UsuarioResult'>
+        <id property='correo' column='correo' />
+        <result property='password' column='passwd' />
+        <result property='nombre' column='nombre' />
+        <result property='rol' column='passwd' />
+        <result property='programaU' column='programa' />
+    </resultMap>
 </mapper>

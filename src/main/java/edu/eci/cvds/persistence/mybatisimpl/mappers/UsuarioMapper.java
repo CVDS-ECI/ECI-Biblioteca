@@ -13,35 +13,7 @@ import edu.eci.cvds.entities.Usuario;
  */
 public interface UsuarioMapper {
     
-	
-    //public Usuario consultarCliente(@Param("idcli") long id); 
+    public List<Usuario> consultarUsuarios();
     
-    /**
-     * Registrar un nuevo item rentado asociado al cliente identificado
-     * con 'idc' y relacionado con el item identificado con 'idi'
-     * @param id
-     * @param idit
-     * @param fechainicio
-     * @param fechafin 
-     */
-	/*
-    public void agregarItemRentadoACliente(@Param("idcli") long id, 
-            @Param("idit")int idit, 
-            @Param("fechai") Date fechainicio,
-            @Param("fechaf") Date fechafin);
-	*/
-    /**
-     * Consultar todos los clientes
-     * @return 
-     */
-	/*
-    public List<Usuario> consultarClientes();
-    
-    public void agregarCliente(@Param("cli") Usuario cliente);
-    
-    public List<ItemRentado> consultarItemsRentados(@Param("idcli") long documiento);
-	*/
-	public boolean iniciar_sesion(@Param("correo") String correo, @Param("clave") String clave);
-		   
 }
 
