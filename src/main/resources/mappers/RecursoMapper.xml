@@ -4,5 +4,43 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.RecursoMapper">
+    <resultMap type='Recurso' id='RecursoResult'>
+        <id property='id' column='id' />
+        <result property='nombre' column='nombre' />
+        <result property='ubicacion' column='ubicacion' />
+        <result property='tipo' column='tipo' />
+        <result property='capacidad' column='capacidad' />
+        <result property='estado' column='estado' />
+    </resultMap>
+
+    <select id="consultarRecursos" resultMap="RecursoResult">
+        SELECT
+        r.id,
+        r.nombre,
+        r.ubicacion,
+        r.tipo,
+        r.capacidad,
+        r.estado
+        FROM
+        Recurso as r
+    </select>
+
+    <select id="consultarRecurso" parameterType="map" resultMap="RecursoResult">
+        SELECT
+        r.id,
+        r.nombre,
+        r.ubicacion,
+        r.tipo,
+        r.capacidad,
+        r.estado
+        FROM
+        Recurso as r
+        where r.id = #{id}
+    </select>
+
+    <insert id="addRecurso" parameterType="edu.eci.cvds.entities.Recurso">
+        insert into Recurso (nombre,ubicacion,tipo,capacidad,estado)
+        values (#{recurso.nombre},#{recurso.ubicacion},#{recurso.tipo},#{recurso.capacidad},#{recurso.estado})
+    </insert>
 
 </mapper>
