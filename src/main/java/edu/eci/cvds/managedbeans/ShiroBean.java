@@ -55,6 +55,7 @@ public class ShiroBean implements Serializable {
             facesError("Unknown account");
             log.error(ex.getMessage(), ex);
         } catch (IncorrectCredentialsException ex) {
+            System.err.println("wrong password");
             facesError("Wrong password");
             log.error(ex.getMessage(), ex);
         } catch (LockedAccountException ex) {
@@ -72,11 +73,11 @@ public class ShiroBean implements Serializable {
     public void doLogOut(){
         System.err.println("1111111111111");
 //        subject=null;
-        if (subject == null) {
-            System.err.println("ayyyyyyyyyyyyyy");
-        }
+//        if (subject == null) {
+//            System.err.println("ayyyyyyyyyyyyyy");
+//        }
         System.err.println("222222222222");
-        subject.logout();
+        SecurityUtils.getSubject().logout();
         System.err.println("333333333333333333333");
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect(redirectUrl);
