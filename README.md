@@ -24,10 +24,13 @@
 
 ### Descripción de la arquitectura y tecnologías utilizadas
 ### Enlace de la aplicación en Heroku
+http://ecibrary.herokuapp.com/
+
 ### Integración continua
 [![CircleCI](https://circleci.com/gh/CVDS-ECI/ECI-Biblioteca.svg?style=svg)](https://circleci.com/gh/CVDS-ECI/ECI-Biblioteca)
 
 ### Calidad del código
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/64ad0e4484824d6ab2794f5535063e6f)](https://www.codacy.com/manual/sebastianfrasic/ECI-Biblioteca?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CVDS-ECI/ECI-Biblioteca&amp;utm_campaign=Badge_Grade)
 
 ## Descripción del proceso
 
