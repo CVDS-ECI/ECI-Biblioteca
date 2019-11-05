@@ -38,7 +38,7 @@ public class MyBatisRecursoDAO implements RecursoDAO{
     }
 
     @Override
-    public void updateRecurso(Long recurso, String nuevoEstado) throws PersistenceException {
+    public void updateRecurso(int recurso, String nuevoEstado) throws PersistenceException {
         try{
              recursoMapper.updateRecurso(recurso,nuevoEstado);
          }

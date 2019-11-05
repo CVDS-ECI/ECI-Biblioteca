@@ -102,4 +102,9 @@ public class ServicesBibliotecaTest {
         Recurso recurso = bibliotecaServices.consultarRecurso(-154);
         assertTrue(recurso==null);
     }
+    
+    @Test
+    public void deberiaModificarRecurso() throws BibliotecaException {
+        bibliotecaServices.updateRecurso(1, null);
+    }
 }

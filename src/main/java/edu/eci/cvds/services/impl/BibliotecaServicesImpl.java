@@ -53,7 +53,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
     }
 
     @Override
-    public void updateRecurso(Long id, String nuevoEstado) throws BibliotecaException {
+    public void updateRecurso(int id, String nuevoEstado) throws BibliotecaException {
         try {
             recursoDAO.updateRecurso(id,nuevoEstado);
         } catch (PersistenceException ex) {
