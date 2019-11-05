@@ -31,11 +31,11 @@ public class ServicesBibliotecaTest {
     
     @Test
     public void deberiaRegistrarRecurso() throws BibliotecaException {
-                List<Recurso> lista_antes_de_insertar = bibliotecaServices.consultarRecursos();
-                int longitud_lista1=lista_antes_de_insertar.size();
+                List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
+                int longitud_lista1=listaAntesDeInsertar.size();
 		bibliotecaServices.registrarRecurso(new Recurso("Video Bean", "Biblioteca JAL Bloque B", "Sala", 5,"Disponible"));
-                List<Recurso> lista_antes_de_insertar2 = bibliotecaServices.consultarRecursos();
-                int longitud_lista2=lista_antes_de_insertar2.size();
+                List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
+                int longitud_lista2=listaDespuesDeInsertar.size();
 		assertTrue(longitud_lista2>longitud_lista1);
     }
     
