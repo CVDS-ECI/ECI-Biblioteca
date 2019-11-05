@@ -42,5 +42,12 @@
         insert into Recurso (nombre,ubicacion,tipo,capacidad,estado)
         values (#{recurso.nombre},#{recurso.ubicacion},#{recurso.tipo},#{recurso.capacidad},#{recurso.estado})
     </insert>
+    
+    <insert id="modificarEstadoRecurso" parameterType="edu.eci.cvds.entities.Recurso">
+        UPDATE Recurso
+        SET estado = #{estadoNuevo}
+        WHERE
+        Recurso.id = #{id}
+    </insert>
 
 </mapper>
