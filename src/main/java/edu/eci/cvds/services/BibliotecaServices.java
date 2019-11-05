@@ -12,6 +12,8 @@ public interface BibliotecaServices {
         
         public Recurso consultarRecurso(int id) throws BibliotecaException;
         
+        public void updateRecurso(Long id, String nuevoEstado) throws BibliotecaException;
+        
         
 
 }
