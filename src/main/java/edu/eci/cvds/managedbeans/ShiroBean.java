@@ -70,23 +70,16 @@ public class ShiroBean implements Serializable {
             token.clear();
         }
     }
-    public void doLogOut(){
-        System.err.println("1111111111111");
-//        subject=null;
-//        if (subject == null) {
-//            System.err.println("ayyyyyyyyyyyyyy");
-//        }
-        System.err.println("222222222222");
+
+    public void doLogOut() {
+
         SecurityUtils.getSubject().logout();
-        System.err.println("333333333333333333333");
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect(redirectUrl);
-            System.err.println("444444444444444444");
         } catch (IOException ex) {
             java.util.logging.Logger.getLogger(ShiroBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-            
 
     /**
      * Adds a new SEVERITY_ERROR FacesMessage for the ui
