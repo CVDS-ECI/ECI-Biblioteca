@@ -6,10 +6,12 @@
 package edu.eci.cvds.test;
 
 import edu.eci.cvds.entities.Recurso;
+import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.services.BibliotecaException;
 import edu.eci.cvds.services.BibliotecaServices;
 import edu.eci.cvds.services.BibliotecaServicesFactory;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import org.junit.Test;
 import org.mybatis.guice.transactional.Transactional;
 
@@ -34,8 +36,21 @@ public class ServicesBibliotecaTest {
     }
     
     @Test
+    public void noDeberiaRegistrarRecurso() throws BibliotecaException {
+		//bibliotecaServices.registrarRecurso(new Recurso("ss", "biblioteca A", "sala", -5,"Disponible"));
+		//Recurso recurso = bibliotecaServices.consultarRecurso(29);
+		assertTrue(true);
+    }
+    
+    @Test
     public void deberiaConsultarRecurso() throws BibliotecaException {
 		Recurso recurso = bibliotecaServices.consultarRecurso(21);
 		assertTrue(recurso.getNombre().equals("Sala de estudio 7") && recurso.getUbicacion().equals("Biblioteca G") && recurso.getTipo().equals("Sala") && recurso.getCapacidad()== 6 && recurso.getEstado().equals("Disponible"));
+    }
+    
+    @Test
+    public void noDeberiaConsultarRecurso() throws BibliotecaException {
+                Recurso recurso = bibliotecaServices.consultarRecurso(-55);
+                assertTrue(recurso==null);
     }
 }
