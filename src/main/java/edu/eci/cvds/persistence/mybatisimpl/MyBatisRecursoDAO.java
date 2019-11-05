@@ -50,4 +50,16 @@ public class MyBatisRecursoDAO implements RecursoDAO{
          return recurso;
         
     }
+    
+    @Override
+    public void modificarEstadoRecurso(int id, String estadoNuevo) throws PersistenceException {
+        try {
+            int idRecurso = recursoMapper.modificarEstadoRecurso(id, estadoNuevo);
+            if (idRecurso == 0) {
+                throw new PersistenceException("El recurso ingresado no existe");
+            }
+        } catch (PersistenceException e) {
+            throw new PersistenceException("Error al consultar el recurso con el id: "+id+" para ser modificado su estado", e);
+        }
+    }
 }
