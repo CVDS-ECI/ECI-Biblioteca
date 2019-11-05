@@ -7,6 +7,8 @@ public class BibliotecaException extends Exception {
     public static final String CONTRASENA_INCORRECTA = "La contraseña ingresada es incorrecta";
     
     public static final String RECURSO_NO_EXISTE = "El recurso no existe";
+    
+    public static final String RECURSO_INSERTAR = "No cumple requisitos para insertar un recurso";
 
     public BibliotecaException() {
     }
