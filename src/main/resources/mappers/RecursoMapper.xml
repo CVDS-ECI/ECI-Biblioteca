@@ -43,12 +43,11 @@
         values (#{recurso.nombre},#{recurso.ubicacion},#{recurso.tipo},#{recurso.capacidad},#{recurso.estado})
     </insert>
     
-
-    <insert id="updateRecurso" parameterType="map">
+    <update id="modificarEstadoRecurso" parameterType="edu.eci.cvds.entities.Recurso">
         UPDATE Recurso
-        SET estado = #{nuevoEstado}
+        SET estado = #{estadoNuevo}
         WHERE
-        Recurso.id = #{recursoId}
-    </insert>
-
+        Recurso.id = #{id}
+    </update>
+    
 </mapper>
