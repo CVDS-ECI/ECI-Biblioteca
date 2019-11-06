@@ -104,7 +104,22 @@ public class ServicesBibliotecaTest {
     }
     
     @Test
+    public void noDeberiaModificarRecurso() throws BibliotecaException {
+        try {
+            bibliotecaServices.updateRecurso(302, "No Disponibl");
+        }
+        catch(BibliotecaException e){
+            System.out.println(BibliotecaException.RECURSO_NO_EXISTE);
+        }
+    }
+    
+    @Test
     public void deberiaModificarRecurso() throws BibliotecaException {
-        bibliotecaServices.updateRecurso(1, null);
+        try {
+            bibliotecaServices.updateRecurso(302, "No Disponible");
+        }
+        catch(BibliotecaException e){
+            System.out.println(BibliotecaException.RECURSO_NO_EXISTE);
+        }
     }
 }
