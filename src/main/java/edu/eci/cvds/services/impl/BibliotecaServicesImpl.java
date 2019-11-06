@@ -52,5 +52,14 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         }
     }
 
+    @Override
+    public void updateRecurso(int id, String nuevoEstado) throws BibliotecaException {
+        try {
+            recursoDAO.updateRecurso(id,nuevoEstado);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al Actualizar el estado de Este Recurso :" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
     
 }
