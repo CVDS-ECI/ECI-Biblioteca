@@ -6,6 +6,6 @@ import java.util.List;
 public interface RecursoDAO  {
 	public void addRecurso(Recurso recurso) throws PersistenceException;
         public List<Recurso> loadRecursos() throws PersistenceException;
+        public void updateRecurso(int recurso, String nuevoEstado) throws PersistenceException;
         public Recurso loadRecurso(int id) throws PersistenceException;
-        public void modificarEstadoRecurso(int id, String estadoNuevo) throws PersistenceException;
 }
