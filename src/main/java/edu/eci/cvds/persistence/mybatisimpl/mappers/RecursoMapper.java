@@ -11,6 +11,7 @@ public interface RecursoMapper {
     
     public void addRecurso(@Param("recurso") Recurso recurso);
     
-    public int modificarEstadoRecurso(@Param("id") long id, @Param("nuevoEstado") String estado);
-    
+
+    public void updateRecurso(@Param("recursoId") int recursoId, @Param("nuevoEstado") String nuevoEstado);
+
 }

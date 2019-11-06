@@ -87,7 +87,8 @@ public class ServicesBibliotecaTest {
     
     @Test
     public void deberiaConsultarRecurso() throws BibliotecaException {
-        //Recurso recurso = bibliotecaServices.consultarRecurso(313);
+
+        //Recurso recurso = bibliotecaServices.consultarRecurso(154);
         //assertTrue(recurso.getNombre().equals("Video Bean") && recurso.getUbicacion().equals("Biblioteca JAL Bloque B") && recurso.getTipo().equals("Sala") && recurso.getCapacidad() == 5 && recurso.getEstado().equals("Disponible"));
     }
     
@@ -101,5 +102,25 @@ public class ServicesBibliotecaTest {
     public void noDeberiaConsultarRecurso() throws BibliotecaException {
         Recurso recurso = bibliotecaServices.consultarRecurso(-154);
         assertTrue(recurso==null);
+    }
+    
+    @Test
+    public void noDeberiaModificarRecurso() throws BibliotecaException {
+        try {
+            bibliotecaServices.updateRecurso(302, "No Disponibl");
+        }
+        catch(BibliotecaException e){
+            System.out.println(BibliotecaException.RECURSO_NO_EXISTE);
+        }
+    }
+    
+    @Test
+    public void deberiaModificarRecurso() throws BibliotecaException {
+        try {
+            bibliotecaServices.updateRecurso(302, "No Disponible");
+        }
+        catch(BibliotecaException e){
+            System.out.println(BibliotecaException.RECURSO_NO_EXISTE);
+        }
     }
 }
