@@ -38,6 +38,17 @@ public class MyBatisRecursoDAO implements RecursoDAO{
     }
 
     @Override
+    public void updateRecurso(int recurso, String nuevoEstado) throws PersistenceException {
+        try{
+             recursoMapper.updateRecurso(recurso,nuevoEstado);
+         }
+         catch(org.apache.ibatis.exceptions.PersistenceException e){
+             throw new PersistenceException("Error al Actualizar el estado del recurso", e);
+             
+         }
+    }
+    
+    @Override
     public Recurso loadRecurso(int id) throws PersistenceException {
          Recurso recurso=null;
          try{
@@ -50,4 +61,7 @@ public class MyBatisRecursoDAO implements RecursoDAO{
          return recurso;
         
     }
+
 }
+
+    

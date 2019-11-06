@@ -42,5 +42,12 @@
         insert into Recurso (nombre,ubicacion,tipo,capacidad,estado)
         values (#{recurso.nombre},#{recurso.ubicacion},#{recurso.tipo},#{recurso.capacidad},#{recurso.estado})
     </insert>
+    
+    <insert id="updateRecurso" parameterType="map">
+        UPDATE Recurso
+        SET estado = #{nuevoEstado}
+        WHERE
+        Recurso.id = #{recursoId}
+    </insert>
 
 </mapper>
