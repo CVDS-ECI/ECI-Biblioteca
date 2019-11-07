@@ -41,7 +41,7 @@ Aquí se usaron tecnologías:
 Se usó un motor de bases de datos **PostgreSQL** y la herramienta **myBatis**, la cual se encarga de la persistencia (mappea sentencias SQL y procedimientos almacenados con objetos a partir de ficheros XML o anotaciones).
 
 ### Enlace de la aplicación en Heroku
-![Aplicación desplegada en Heroku](http://ecibrary.herokuapp.com/faces/login.xhtml)
+http://ecibrary.herokuapp.com/faces/login.xhtml
 
 ### Integración continua
 [![CircleCI](https://circleci.com/gh/CVDS-ECI/ECI-Biblioteca.svg?style=svg)](https://circleci.com/gh/CVDS-ECI/ECI-Biblioteca)
