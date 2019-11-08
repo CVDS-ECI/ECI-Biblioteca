@@ -20,7 +20,7 @@
 ![ER](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/EntidadRelacion.png)
 
 ### Diagrama de clases
-![Diagrama de clases sprint 1 y 2](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/Shiro/img/Diagrama_de_clases.png)
+![Diagrama de clases sprint 1 y 2](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Diagrama_de_clases.png)
 
 ### Descripción de la arquitectura y tecnologías utilizadas
 La aplicación está construida en 3 capas:
