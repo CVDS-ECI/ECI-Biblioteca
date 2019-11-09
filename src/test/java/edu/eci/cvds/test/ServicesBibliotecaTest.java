@@ -362,8 +362,8 @@ public class ServicesBibliotecaTest {
     */
     @Test
     public void deberiaConsultarRecurso() throws BibliotecaException {
-        //Recurso recurso = bibliotecaServices.consultarRecurso(2);
-        //assertTrue(recurso.getNombre().equals("Video Bean") && recurso.getUbicacion().equals("Biblioteca JAL Bloque B") && recurso.getTipo().equals("Sala") && recurso.getCapacidad() == 5 && recurso.getEstado().equals("Disponible"));
+        Recurso recurso = bibliotecaServices.consultarRecurso(898);
+        assertTrue(recurso.getNombre().equals("fisica 4") && recurso.getUbicacion().equals("Biblioteca JAL Bloque B") && recurso.getTipo().equals("Sala") && recurso.getCapacidad() == 6 && recurso.getEstado().equals("Disponible"));
     }
     /*
     Cuando se quiere consultar las listas de recursos puede tener cero recursos
