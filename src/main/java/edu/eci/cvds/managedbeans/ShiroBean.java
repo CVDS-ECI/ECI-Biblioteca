@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.logging.Level;
 import javax.faces.bean.ManagedBean;
+import org.apache.shiro.crypto.hash.Sha256Hash;
 
 @Named
 @Stateless
@@ -43,7 +44,7 @@ public class ShiroBean implements Serializable {
      */
     public void doLogin() {
         subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(getUsername(), getPassword());
+        UsernamePasswordToken token = new UsernamePasswordToken(getUsername(), new Sha256Hash(getPassword()).toHex());
         try {
             subject.login(token);
             if (subject.hasRole("Administrador")) {

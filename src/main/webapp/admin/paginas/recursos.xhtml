@@ -152,7 +152,14 @@
                                                     </p:column>
 
                                                     <p:column headerText="Estado" class=" texto-columna">
-                                                        <h:outputText value="#{recurso.estado}" class=" text-dark" />
+                                                        <h:selectOneMenu value="#{AdminBean.tipoDeEstadoSeleccionado2}" class="form-control"  >
+                                                            <f:selectItems value="#{AdminBean.getTiposDeEstados()}"  />
+                                                        </h:selectOneMenu>
+                                                    </p:column>
+                                                    <p:column>
+                                                        <p:commandButton class="btn pull-right" value="Registrar">
+                                                            <f:actionListener binding="#{AdminBean.cambiarEstadoRecurso(recurso.id)}" update="tabla_clientes"/>
+                                                        </p:commandButton>
                                                     </p:column>
 
                                                 </p:dataTable>
@@ -242,28 +249,28 @@
                 integrity="sha384-bNOdVeWbABef8Lh4uZ8c3lJXVlHdf8W5hh1OpJ4dGyqIEhMmcnJrosjQ36Kniaqm"
         crossorigin="anonymous"></script>
         <script type="text/javascript">
-            $(document).ready(function () {
-                $('#datatables').DataTable({
-                    "pagingType": "full_numbers",
-                    "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-                    responsive: true,
-                    language: {
-                        search: "_INPUT_",
-                        searchPlaceholder: "Search records",
-                    }
+        $(document).ready(function () {
+            $('#datatables').DataTable({
+                "pagingType": "full_numbers",
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                responsive: true,
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Search records",
+                }
 
-                });
-
-                var table = $('#datatables').DataTable();
-
-                table.on('click', '.remove', function (e) {
-                    $tr = $(this).closest('tr');
-                    table.row($tr).remove().draw();
-                    e.preventDefault();
-                });
-
-                $('.card .material-datatables label').addClass('form-group');
             });
+
+            var table = $('#datatables').DataTable();
+
+            table.on('click', '.remove', function (e) {
+                $tr = $(this).closest('tr');
+                table.row($tr).remove().draw();
+                e.preventDefault();
+            });
+
+            $('.card .material-datatables label').addClass('form-group');
+        });
         </script>
     </body>
 
