@@ -116,7 +116,7 @@
                                         <h4 class="card-title">Registra un nuevo recurso:</h4>
                                     </div>
                                     <div class="card-body">
-                                        <h:form id="frm">
+                                        <h:form id="recurso_form">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -127,19 +127,37 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="bmd-label-floating">Ubicacion</label>
-                                                        <p:inputText class="form-control" id="Ubicacion" type="String"
-                                                                     binding="#{ubicacion}"/>
+                                                        <label class="bmd-label-floating">Capacidad</label>
+                                                        <p:inputText type="number" class="form-control" id="Capacidad"
+                                                                     binding="#{capacidad}"/>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="row">
-                                                <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="bmd-label-floating">Ubicacion</label>
+                                                        <h:selectOneMenu value="#{AdminBean.tipoDeUbicacionSeleccionada}" class="form-control" >
+                                                            <f:selectItems value="#{AdminBean.getTiposDeUbicacion()}"  />
+                                                        </h:selectOneMenu>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">Tipo</label>
-                                                        <p:inputText class="form-control" id="Tipo" type="String"
-                                                                     binding="#{tipo}"/>
+
+                                                        <h:selectOneMenu value="#{AdminBean.tipoDeRecursoSeleccionado}" class="form-control" >
+                                                            <f:selectItems value="#{AdminBean.getTiposDeRecursos()}"  />
+                                                        </h:selectOneMenu>
+
+                                                        <!-- ESTE SIRVEEEE
+                                                        <h:selectOneRadio value="#{AdminBean.tipoDeRecursoSeleccionado}" layout="responsive" columns="4">
+                                                            <f:selectItems value="#{AdminBean.getTiposDeRecursos()}"  />
+                                                        </h:selectOneRadio> -->
+
                                                     </div>
+
                                                 </div>
                                             </div>
                                             <!-- 
@@ -176,26 +194,26 @@
                                             </div>
                                             -->
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="bmd-label-floating">Capacidad</label>
-                                                        <p:inputText class="form-control" id="Capacidad" type="int"
-                                                                     binding="#{capacidad}"/>
-                                                    </div>
-                                                </div>
+
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">Estado</label>
-                                                        <p:inputText class="form-control" id="Estado" type="String"
-                                                                     binding="#{estado}"/>
+
+                                                        <h:selectOneMenu value="#{AdminBean.tipoDeEstadoSeleccionado}" class="form-control" >
+                                                            <f:selectItems value="#{AdminBean.getTiposDeEstados()}"  />
+                                                        </h:selectOneMenu>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <p:commandButton class="btn pull-right" value="Registrar" actionListener="#{AdminBean.registrarRecurso(nombre.value, ubicacion.value, tipo.value, capacidad.value, estado.value)}" update="frm"/>                                   
+                                            <p:commandButton class="btn pull-right" value="Registrar">
+                                                <f:actionListener binding="#{AdminBean.registrarRecurso(nombre.value, capacidad.value)}" update="recurso_form"/>
+                                            </p:commandButton>
+
                                             <div class="clearfix"></div>
 
 
                                         </h:form>
+
 
 
                                     </div>
