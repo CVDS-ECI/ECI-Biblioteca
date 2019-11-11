@@ -51,3 +51,7 @@ http://ecibrary.herokuapp.com/faces/login.xhtml
 
 ## Descripción del proceso
 Se trabajó mediante la metodología ágil Scrum. Durante todo el proceso se hicieron 3 sprints. Cada uno con una duración de 2 semanas.
+
+### Descripción sprint 1
+
+
