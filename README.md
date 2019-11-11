@@ -52,12 +52,12 @@ http://ecibrary.herokuapp.com/faces/login.xhtml
 ## Descripción del proceso
 Se trabajó mediante la metodología ágil Scrum. Durante todo el proceso se hicieron 3 sprints. Cada uno con una duración de 2 semanas.
 
-### Descripción sprint 1
+## Descripción sprint 1
 
 Burndown chart and backlog
 
 * https://tree.taiga.io/project/sebastianfrasic-gestion-de-recursos-biblioteca/taskboard/sprint-1-15837
 
-![Burndown chart and backlog sprint 1](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/BURNDOWN%20CHART%20AND%20BACKLOG%20SPRINT%201.png)
+*![Burndown chart and backlog sprint 1](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/BURNDOWN%20CHART%20AND%20BACKLOG%20SPRINT%201.png)
 
 
