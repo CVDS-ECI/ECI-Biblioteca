@@ -54,4 +54,10 @@ Se trabajó mediante la metodología ágil Scrum. Durante todo el proceso se hic
 
 ### Descripción sprint 1
 
+Burndown chart and backlog
+
+* https://tree.taiga.io/project/sebastianfrasic-gestion-de-recursos-biblioteca/taskboard/sprint-1-15837
+
+![Burndown chart and backlog sprint 1](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/BURNDOWN%20CHART%20AND%20BACKLOG%20SPRINT%201.png)
+
 
