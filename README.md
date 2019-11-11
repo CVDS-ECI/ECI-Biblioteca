@@ -3,10 +3,10 @@
 ## Escuela Colombiana de Ingeniería Julio Garavito
 
 ### Integrantes
-* Juan Sebastián Frásica G
-* Andrés Felipe Marcelo
-* Santiago Rubiano
-* David Vargas
+*. Juan Sebastián Frásica G
+*. Andrés Felipe Marcelo
+*. Santiago Rubiano
+*. David Vargas
 
 ### Profesor:
 * Julián Velasco
