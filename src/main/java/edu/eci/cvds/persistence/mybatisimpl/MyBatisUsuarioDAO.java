@@ -12,8 +12,6 @@ import edu.eci.cvds.entities.Usuario;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.UsuarioDAO;
 import edu.eci.cvds.persistence.mybatisimpl.mappers.UsuarioMapper;
-
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,9 +19,6 @@ import java.util.List;
  * @author 2145120
  */
 public class MyBatisUsuarioDAO implements UsuarioDAO {
-
-    @Inject
-    private UsuarioMapper usuarioMapper;
 
     @Override
     public void addUsuario(Usuario cl) throws PersistenceException {
