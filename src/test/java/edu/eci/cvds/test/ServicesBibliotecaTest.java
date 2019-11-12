@@ -6,13 +6,11 @@
 package edu.eci.cvds.test;
 
 import edu.eci.cvds.entities.Recurso;
-import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.services.BibliotecaException;
 import edu.eci.cvds.services.BibliotecaServices;
 import edu.eci.cvds.services.BibliotecaServicesFactory;
 import java.util.List;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 import org.junit.Test;
 import org.mybatis.guice.transactional.Transactional;
 
@@ -24,6 +22,8 @@ import org.mybatis.guice.transactional.Transactional;
 public class ServicesBibliotecaTest {
     
     private BibliotecaServices bibliotecaServices;
+    private int longitudListaAntesDeInsertar;
+    private int numeroDespuesModificar;
     
     public ServicesBibliotecaTest() {
         bibliotecaServices = BibliotecaServicesFactory.getInstance().getBlogServices();
@@ -64,8 +64,13 @@ public class ServicesBibliotecaTest {
     @Test
     public void noDeberiaRegistrarRecurso() throws BibliotecaException {
         try {
+            List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
+            longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
             bibliotecaServices.registrarRecurso(new Recurso("Video Bean", "Biblioteca JAL Bloque B", "Sala", -1, "Disponible"));
         } catch (BibliotecaException e) {
+            List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
+            int longitud_lista2 = listaDespuesDeInsertar.size();
+            assertTrue(longitud_lista2 == longitudListaAntesDeInsertar);
             System.out.println(BibliotecaException.RECURSO_INSERTAR);
         }
     }
@@ -77,8 +82,13 @@ public class ServicesBibliotecaTest {
     @Test
     public void noDeberiaRegistrarRecurso2() throws BibliotecaException {
         try {
+            List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
+            longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
             bibliotecaServices.registrarRecurso(new Recurso("Video Bean", "Biblioteca JAL Bloque B", "Sala", 0, "Disponible"));
         } catch (BibliotecaException e) {
+            List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
+            int longitud_lista2 = listaDespuesDeInsertar.size();
+            assertTrue(longitud_lista2 == longitudListaAntesDeInsertar);
             System.out.println(BibliotecaException.RECURSO_INSERTAR);
         }
     }
@@ -90,8 +100,13 @@ public class ServicesBibliotecaTest {
     @Test
     public void noDeberiaRegistrarRecurso4() throws BibliotecaException {
         try {
+            List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
+            longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
             bibliotecaServices.registrarRecurso(new Recurso("Video Bean", "Biblioteca JAL Bloque B", "Sala", -2, "Disponible"));
         } catch (BibliotecaException e) {
+            List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
+            int longitud_lista2 = listaDespuesDeInsertar.size();
+            assertTrue(longitud_lista2 == longitudListaAntesDeInsertar);
             System.out.println(BibliotecaException.RECURSO_INSERTAR);
         }
     }
@@ -105,8 +120,13 @@ public class ServicesBibliotecaTest {
     @Test
     public void noDeberiaRegistrarRecurso5() throws BibliotecaException {
         try {
+            List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
+            longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
             bibliotecaServices.registrarRecurso(new Recurso("Video Bean", "Biblioteca JAL Bloque B", "iPhone", 2, "Disponible"));
         } catch (BibliotecaException e) {
+            List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
+            int longitud_lista2 = listaDespuesDeInsertar.size();
+            assertTrue(longitud_lista2 == longitudListaAntesDeInsertar);
             System.out.println(BibliotecaException.RECURSO_INSERTAR);
         }
     }
@@ -120,8 +140,13 @@ public class ServicesBibliotecaTest {
     @Test
     public void noDeberiaRegistrarRecurso6() throws BibliotecaException {
         try {
+            List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
+            longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
             bibliotecaServices.registrarRecurso(new Recurso("Video Bean", "Biblioteca JAL Bloque B", " ", 2, "Disponible"));
         } catch (BibliotecaException e) {
+            List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
+            int longitud_lista2 = listaDespuesDeInsertar.size();
+            assertTrue(longitud_lista2 == longitudListaAntesDeInsertar);
             System.out.println(BibliotecaException.RECURSO_INSERTAR);
         }
     }
@@ -135,8 +160,13 @@ public class ServicesBibliotecaTest {
     @Test
     public void deberiaRegistrarRecurso7() throws BibliotecaException {
         try {
+            List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
+            longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
             bibliotecaServices.registrarRecurso(new Recurso("Video Bean", "Biblioteca JAL Bloque B", "Sala", 2, "Disponible"));
         } catch (BibliotecaException e) {
+            List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
+            int longitud_lista2 = listaDespuesDeInsertar.size();
+            assertTrue(longitud_lista2 == longitudListaAntesDeInsertar);
             System.out.println(BibliotecaException.RECURSO_INSERTAR);
         }
     }
@@ -150,8 +180,13 @@ public class ServicesBibliotecaTest {
     @Test
     public void deberiaRegistrarRecurso8() throws BibliotecaException {
         try {
+            List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
+            longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
             bibliotecaServices.registrarRecurso(new Recurso("Video Bean", "Biblioteca JAL Bloque B", "Equipo de computo", 2, "Disponible"));
         } catch (BibliotecaException e) {
+            List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
+            int longitud_lista2 = listaDespuesDeInsertar.size();
+            assertTrue(longitud_lista2 == longitudListaAntesDeInsertar);
             System.out.println(BibliotecaException.RECURSO_INSERTAR);
         }
     }
@@ -165,8 +200,13 @@ public class ServicesBibliotecaTest {
     @Test
     public void deberiaRegistrarRecurso9() throws BibliotecaException {
         try {
+            List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
+            longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
             bibliotecaServices.registrarRecurso(new Recurso("Video Bean", "Biblioteca JAL Bloque B", "Equipo de multimedia", 2, "Disponible"));
         } catch (BibliotecaException e) {
+            List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
+            int longitud_lista2 = listaDespuesDeInsertar.size();
+            assertTrue(longitud_lista2 == longitudListaAntesDeInsertar);
             System.out.println(BibliotecaException.RECURSO_INSERTAR);
         }
     }
@@ -180,8 +220,13 @@ public class ServicesBibliotecaTest {
     @Test
     public void deberiaRegistrarRecurso10() throws BibliotecaException {
         try {
+            List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
+            longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
             bibliotecaServices.registrarRecurso(new Recurso("Video Bean", "Biblioteca JAL Bloque B", "Libro", 2, "Disponible"));
         } catch (BibliotecaException e) {
+            List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
+            int longitud_lista2 = listaDespuesDeInsertar.size();
+            assertTrue(longitud_lista2 == longitudListaAntesDeInsertar);
             System.out.println(BibliotecaException.RECURSO_INSERTAR);
         }
     }
@@ -194,8 +239,13 @@ public class ServicesBibliotecaTest {
     @Test
     public void noDeberiaRegistrarRecurso11() throws BibliotecaException {
         try {
+            List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
+            longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
             bibliotecaServices.registrarRecurso(new Recurso("fisica 4", "Biblioteca JAL Bloque B", "Sala", 6, "D"));
         } catch (BibliotecaException e) {
+            List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
+            int longitud_lista2 = listaDespuesDeInsertar.size();
+            assertTrue(longitud_lista2 == longitudListaAntesDeInsertar);
             System.out.println(BibliotecaException.RECURSO_INSERTAR);
         }
     }
@@ -208,8 +258,13 @@ public class ServicesBibliotecaTest {
     @Test
     public void noDeberiaRegistrarRecurso12() throws BibliotecaException {
         try {
+            List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
+            longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
             bibliotecaServices.registrarRecurso(new Recurso("fisica 4", "Biblioteca JAL Bloque B", "Sala", 6, " "));
         } catch (BibliotecaException e) {
+            List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
+            int longitud_lista2 = listaDespuesDeInsertar.size();
+            assertTrue(longitud_lista2 == longitudListaAntesDeInsertar);
             System.out.println(BibliotecaException.RECURSO_INSERTAR);
         }
     }
@@ -222,8 +277,13 @@ public class ServicesBibliotecaTest {
     @Test
     public void deberiaRegistrarRecurso13() throws BibliotecaException {
         try {
+            List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
+            longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
             bibliotecaServices.registrarRecurso(new Recurso("fisica 4", "Biblioteca JAL Bloque B", "Sala", 6, "Disponible"));
         } catch (BibliotecaException e) {
+            List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
+            int longitud_lista2 = listaDespuesDeInsertar.size();
+            assertTrue(longitud_lista2 == longitudListaAntesDeInsertar);
             System.out.println(BibliotecaException.RECURSO_INSERTAR);
         }
     }
@@ -236,8 +296,13 @@ public class ServicesBibliotecaTest {
     @Test
     public void deberiaRegistrarRecurso14() throws BibliotecaException {
         try {
+            List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
+            longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
             bibliotecaServices.registrarRecurso(new Recurso("fisica 4", "Biblioteca JAL Bloque B", "Sala", 6, "En Mantenimiento"));
         } catch (BibliotecaException e) {
+            List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
+            int longitud_lista2 = listaDespuesDeInsertar.size();
+            assertTrue(longitud_lista2 == longitudListaAntesDeInsertar);
             System.out.println(BibliotecaException.RECURSO_INSERTAR);
         }
     }
@@ -250,8 +315,13 @@ public class ServicesBibliotecaTest {
     @Test
     public void deberiaRegistrarRecurso15() throws BibliotecaException {
         try {
+            List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
+            longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
             bibliotecaServices.registrarRecurso(new Recurso("fisica 4", "Biblioteca JAL Bloque B", "Sala", 6, "No Disponible"));
         } catch (BibliotecaException e) {
+            List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
+            int longitud_lista2 = listaDespuesDeInsertar.size();
+            assertTrue(longitud_lista2 == longitudListaAntesDeInsertar);
             System.out.println(BibliotecaException.RECURSO_INSERTAR);
         }
     }
@@ -265,8 +335,13 @@ public class ServicesBibliotecaTest {
     @Test
     public void noDeberiaRegistrarRecurso16() throws BibliotecaException {
         try {
+            List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
+            longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
             bibliotecaServices.registrarRecurso(new Recurso("fisica 4", "sala antigua", "Sala", 6, "Disponible"));
         } catch (BibliotecaException e) {
+            List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
+            int longitud_lista2 = listaDespuesDeInsertar.size();
+            assertTrue(longitud_lista2 == longitudListaAntesDeInsertar);
             System.out.println(BibliotecaException.RECURSO_INSERTAR);
         }
     }
@@ -280,8 +355,13 @@ public class ServicesBibliotecaTest {
     @Test
     public void noDeberiaRegistrarRecurso17() throws BibliotecaException {
         try {
+            List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
+            longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
             bibliotecaServices.registrarRecurso(new Recurso("fisica 4", " ", "Sala", 6, "Disponible"));
         } catch (BibliotecaException e) {
+            List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
+            int longitud_lista2 = listaDespuesDeInsertar.size();
+            assertTrue(longitud_lista2 == longitudListaAntesDeInsertar);
             System.out.println(BibliotecaException.RECURSO_INSERTAR);
         }
     }
@@ -295,8 +375,13 @@ public class ServicesBibliotecaTest {
     @Test
     public void deberiaRegistrarRecurso18() throws BibliotecaException {
         try {
+            List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
+            longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
             bibliotecaServices.registrarRecurso(new Recurso("fisica 4", "Biblioteca JAL Bloque B", "Sala", 6, "Disponible"));
         } catch (BibliotecaException e) {
+            List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
+            int longitud_lista2 = listaDespuesDeInsertar.size();
+            assertTrue(longitud_lista2 == longitudListaAntesDeInsertar);
             System.out.println(BibliotecaException.RECURSO_INSERTAR);
         }
     }
@@ -310,8 +395,13 @@ public class ServicesBibliotecaTest {
     @Test
     public void deberiaRegistrarRecurso19() throws BibliotecaException {
         try {
+            List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
+            longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
             bibliotecaServices.registrarRecurso(new Recurso("fisica 4", "Biblioteca JAL Bloque G", "Sala", 6, "Disponible"));
         } catch (BibliotecaException e) {
+            List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
+            int longitud_lista2 = listaDespuesDeInsertar.size();
+            assertTrue(longitud_lista2 == longitudListaAntesDeInsertar);
             System.out.println(BibliotecaException.RECURSO_INSERTAR);
         }
     }
@@ -323,8 +413,13 @@ public class ServicesBibliotecaTest {
     @Test
     public void noDeberiaRegistrarRecurso20() throws BibliotecaException {
         try {
+            List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
+            longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
             bibliotecaServices.registrarRecurso(new Recurso("", "Biblioteca JAL Bloque G", "Sala", 6, "Disponible"));
         } catch (BibliotecaException e) {
+            List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
+            int longitud_lista2 = listaDespuesDeInsertar.size();
+            assertTrue(longitud_lista2 == longitudListaAntesDeInsertar);
             System.out.println(BibliotecaException.RECURSO_INSERTAR);
         }
     }
@@ -336,8 +431,13 @@ public class ServicesBibliotecaTest {
     @Test
     public void noDeberiaRegistrarRecurso21() throws BibliotecaException {
         try {
+            List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
+            longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
             bibliotecaServices.registrarRecurso(new Recurso(" ", "Biblioteca JAL Bloque G", "Sala", 6, "Disponible"));
         } catch (BibliotecaException e) {
+            List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
+            int longitud_lista2 = listaDespuesDeInsertar.size();
+            assertTrue(longitud_lista2 == longitudListaAntesDeInsertar);
             System.out.println(BibliotecaException.RECURSO_INSERTAR);
         }
     }
@@ -349,8 +449,13 @@ public class ServicesBibliotecaTest {
     @Test
     public void deberiaRegistrarRecurso22() throws BibliotecaException {
         try {
+            List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
+            longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
             bibliotecaServices.registrarRecurso(new Recurso("fisica 8", "Biblioteca JAL Bloque G", "Sala", 6, "Disponible"));
         } catch (BibliotecaException e) {
+            List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
+            int longitud_lista2 = listaDespuesDeInsertar.size();
+            assertTrue(longitud_lista2 == longitudListaAntesDeInsertar);
             System.out.println(BibliotecaException.RECURSO_INSERTAR);
         }
     }
@@ -395,8 +500,10 @@ public class ServicesBibliotecaTest {
     public void noDeberiaModificarRecurso() throws BibliotecaException {
         try {
             bibliotecaServices.updateRecurso(-1, "D");
+            numeroDespuesModificar=-1;
         }
         catch(BibliotecaException e){
+            assertTrue(numeroDespuesModificar!=-1);
             System.out.println(BibliotecaException.RECURSO_NO_EXISTE);
         }
     }
@@ -411,8 +518,10 @@ public class ServicesBibliotecaTest {
     public void noDeberiaModificarRecurso2() throws BibliotecaException {
         try {
             bibliotecaServices.updateRecurso(302, "");
+            numeroDespuesModificar=-1;
         }
         catch(BibliotecaException e){
+            assertTrue(numeroDespuesModificar!=-1);
             System.out.println(BibliotecaException.RECURSO_NO_EXISTE);
         }
     }
@@ -427,8 +536,10 @@ public class ServicesBibliotecaTest {
     public void deberiaModificarRecurso() throws BibliotecaException {
         try {
             bibliotecaServices.updateRecurso(302, "Disponible");
+            numeroDespuesModificar=-1;
         }
         catch(BibliotecaException e){
+            assertTrue(numeroDespuesModificar==-1);
             System.out.println(BibliotecaException.RECURSO_NO_EXISTE);
         }
     }
@@ -443,8 +554,10 @@ public class ServicesBibliotecaTest {
     public void deberiaModificarRecurso2() throws BibliotecaException {
         try {
             bibliotecaServices.updateRecurso(302, "En Mantenimiento");
+            numeroDespuesModificar=-1;
         }
         catch(BibliotecaException e){
+            assertTrue(numeroDespuesModificar==-1);
             System.out.println(BibliotecaException.RECURSO_NO_EXISTE);
         }
     }
@@ -459,8 +572,10 @@ public class ServicesBibliotecaTest {
     public void deberiaModificarRecurso3() throws BibliotecaException {
         try {
             bibliotecaServices.updateRecurso(302, "No Disponible");
+            numeroDespuesModificar=-1;
         }
         catch(BibliotecaException e){
+            assertTrue(numeroDespuesModificar==-1);
             System.out.println(BibliotecaException.RECURSO_NO_EXISTE);
         }
     }
