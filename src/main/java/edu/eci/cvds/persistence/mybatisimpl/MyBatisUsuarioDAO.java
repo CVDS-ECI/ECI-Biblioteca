@@ -6,12 +6,10 @@
  */
 package edu.eci.cvds.persistence.mybatisimpl;
 
-import com.google.inject.Inject;
 
 import edu.eci.cvds.entities.Usuario;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.UsuarioDAO;
-import edu.eci.cvds.persistence.mybatisimpl.mappers.UsuarioMapper;
 import java.util.List;
 
 /**
