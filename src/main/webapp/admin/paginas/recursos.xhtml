@@ -2,7 +2,8 @@
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <script type="text/javascript">
         window.history.forward();
         function noBack() {
@@ -14,9 +15,9 @@
     <h:head>
         <meta charset="utf-8">
         </meta>
-        <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/admin.png" />
-        <link rel="icon" type="image/png" href="../assets/img/admin.png" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/admin.png"/>
+        <link rel="icon" type="image/png" href="../assets/img/admin.png"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
         <title>
             Administrador
         </title>
@@ -30,8 +31,28 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
         </link>
         <!-- CSS Files -->
-        <link href="../assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet">
-        </link>
+        <link href="../assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet"></link>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width,initial-scale=1"/>
+        <title>Administrador</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <link rel="stylesheet" type="text/css" href="css/login.css"/>
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Arvo" />
+        <link rel="stylesheet" type="text/css" href="css/Administrador.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"/>
+        <link rel='stylesheet' href='https://cdn.datatables.net/s/ju/dt-1.10.10,b-1.1.0,fc-3.2.0,r-2.0.0,sc-1.4.0/datatables.min.css'/>
+        <link rel="stylesheet" href="css/style.css"/>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+        <link rel="stylesheet" href="https://cdn.datatables.net/s/ju/dt-1.10.10,b-1.1.0,fc-3.2.0,r-2.0.0,sc-1.4.0/datatables.min.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css" />
+
 
     </h:head>
 
@@ -40,7 +61,7 @@
             <div class="sidebar" data-color="azure" data-background-color="white" data-image="../assets/img/img.jpg">
                 <!--
             Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-    
+            
             Tip 2: you can also add an image using data-image tag
                 -->
                 <div class="logo">
@@ -103,7 +124,7 @@
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                                         <h:form id="frmm">
                                             <p:commandButton value="Cerrar sesión" class="dropdown-item"
-                                                             action="#{shiroBean.doLogOut()}" />
+                                                             action="#{shiroBean.doLogOut()}"/>
                                         </h:form>
                                     </div>
                                 </li>
@@ -122,49 +143,43 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
-                                            <h:form id="tabla_clientes">
+                                            <table class="table">
+                                                <thead class=" text-primary">
+                                                    <th></th>
+                                                    <th>
+                                                        ID
+                                                    </th>
+                                                    <th>
+                                                        Name
+                                                    </th>
+                                                    <th>
+                                                        Country
+                                                    </th>
+                                                    <th>
+                                                        City
+                                                    </th>
+                                                    <th>
+                                                        Salary
+                                                    </th>
+                                                    <th>
+                                                        Salary
+                                                    </th>
+                                                </thead>
+                                                <tbody>
+                                                    <ui:repeat var="recurso" value="#{AdminBean.consultarRecursos()}">
+                                                        <tr>           
+                                                            <!--<tr colspan="7" data-toggle="collapse" data-target="#demo1" class="accordion-toggle">-->
 
-                                                <p:dataTable id="singleDT" var="recurso"
-                                                             value="#{AdminBean.consultarRecursos()}" paginator="true"
-                                                             paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-                                                             rows="10" class="table">
-                                                    <f:facet name="header" class=" text-primary">
-                                                        Recursos registrados:
-                                                    </f:facet>
-
-                                                    <p:column headerText="Identificador" class=" texto-columna"> 
-                                                        <h:outputText value="#{recurso.id}" class=" text-dark" />
-                                                    </p:column>
-                                                    <p:column headerText="Nombre" class=" texto-columna">
-                                                        <h:outputText value="#{recurso.nombre}" class=" text-dark" />
-                                                    </p:column>
-
-                                                    <p:column headerText="Ubicacion" class=" texto-columna">
-                                                        <h:outputText value="#{recurso.ubicacion}" class=" text-dark" />
-                                                    </p:column>
-
-                                                    <p:column headerText="Tipo" class=" texto-columna">
-                                                        <h:outputText value="#{recurso.tipo}" class=" text-dark" />
-                                                    </p:column>
-
-                                                    <p:column headerText="Capacidad" class=" texto-columna">
-                                                        <h:outputText value="#{recurso.capacidad}" class=" text-dark" />
-                                                    </p:column>
-
-                                                    <p:column headerText="Estado" class=" texto-columna">
-                                                        <h:selectOneMenu value="#{AdminBean.tipoDeEstadoSeleccionado2}" class="form-control"  >
-                                                            <f:selectItems value="#{AdminBean.getTiposDeEstados()}"  />
-                                                        </h:selectOneMenu>
-                                                    </p:column>
-                                                    <p:column>
-                                                        <p:commandButton class="btn pull-right" value="Registrar">
-                                                            <f:actionListener binding="#{AdminBean.cambiarEstadoRecurso(recurso.id)}" update="tabla_clientes"/>
-                                                        </p:commandButton>
-                                                    </p:column>
-
-                                                </p:dataTable>
-
-                                            </h:form>
+                                                            <td>#{recurso.id}</td>
+                                                            <td>#{recurso.nombre}</td>
+                                                            <td>#{recurso.ubicacion}</td>
+                                                            <td>#{recurso.tipo}</td>
+                                                            <td>#{recurso.capacidad}</td>
+                                                            <td>#{recurso.estado}</td>
+                                                        </tr>
+                                                    </ui:repeat>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
@@ -248,6 +263,13 @@
         <script src="https://use.fontawesome.com/releases/v5.5.0/js/fontawesome.js"
                 integrity="sha384-bNOdVeWbABef8Lh4uZ8c3lJXVlHdf8W5hh1OpJ4dGyqIEhMmcnJrosjQ36Kniaqm"
         crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdjsn.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="js/my-login.js"></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        <script src='https://cdn.datatables.net/s/ju/dt-1.10.10,b-1.1.0,fc-3.2.0,fh-3.1.0,r-2.0.0,sc-1.4.0/datatables.min.js'></script>
+        <script  src="js/script.js"></script>
         <script type="text/javascript">
         $(document).ready(function () {
             $('#datatables').DataTable({
@@ -271,6 +293,16 @@
 
             $('.card .material-datatables label').addClass('form-group');
         });
+
+
+
+
+
+
+
+
+
+
         </script>
     </body>
 
