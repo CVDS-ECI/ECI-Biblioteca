@@ -6,7 +6,6 @@
 package edu.eci.cvds.persistence;
 
 import edu.eci.cvds.entities.Usuario;
-import java.util.Date;
 import java.util.List;
 
 /**
