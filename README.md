@@ -4,13 +4,13 @@
 
 ### Integrantes
 
-+ Juan-sebastián-Frásica-G
-+ Andrés-Felipe-Marcelo
-+ Santiago-Rubiano
-+ David-Vargas
++  Juan-sebastián-Frásica-G
++  Andrés-Felipe-Marcelo
++  Santiago-Rubiano
++  David-Vargas
 
 ### Profesor
-+ *Julián-Velasco*
++ Julián-Velasco
 
 ## Descripción del producto
 
@@ -27,15 +27,15 @@ La aplicación está construida en 3 capas:
 
 #### Capa de presentación
 En esta capa se hizo uso de tecnologías como:
-+ JSF (Java Server Faces)
-+ Primefaces
++  JSF-(Java-Server-Faces)
++  Primefaces
 
 #### Capa de aplicación
 Aquí se usaron tecnologías:
-+ Java
-+ Google Guice (Un framework para inyección de dependencias)
-+ Maven (Herramienta para gestión de dependencias)
-+ Apache Shiro (Framework para autentiticación)
++  Java
++  Google Guice (Un framework para inyección de dependencias)
++  Maven (Herramienta para gestión de dependencias)
++  Apache Shiro (Framework para autentiticación)
 
 #### Capa de persistencia de datos
 Se usó un motor de bases de datos **PostgreSQL** y la herramienta **myBatis**, la cual se encarga de la persistencia (mappea sentencias SQL y procedimientos almacenados con objetos a partir de ficheros XML o anotaciones).
@@ -56,8 +56,8 @@ Se trabajó mediante la metodología ágil Scrum. Durante todo el proceso se hic
 
 Burndown chart and backlog
 
-+ Backlog: https://tree.taiga.io/project/sebastianfrasic-gestion-de-recursos-biblioteca/backlog
-+ Burndown chart: https://tree.taiga.io/project/sebastianfrasic-gestion-de-recursos-biblioteca/taskboard/sprint-1-15837
++  Backlog: https://tree.taiga.io/project/sebastianfrasic-gestion-de-recursos-biblioteca/backlog
++  Burndown chart: https://tree.taiga.io/project/sebastianfrasic-gestion-de-recursos-biblioteca/taskboard/sprint-1-15837
 
 ![Burndown chart and backlog sprint 1](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/BURNDOWN%20CHART%20AND%20BACKLOG%20SPRINT%201.png)
 
