@@ -28,15 +28,15 @@ La aplicación está construida en 3 capas:
 
 #### Capa de presentación
 En esta capa se hizo uso de tecnologías como:
-* JSF (Java Server Faces)
-* Primefaces
++ JSF (Java Server Faces)
++ Primefaces
 
 #### Capa de aplicación
 Aquí se usaron tecnologías:
-* Java
-* Google Guice (Un framework para inyección de dependencias)
-* Maven (Herramienta para gestión de dependencias)
-* Apache Shiro (Framework para autentiticación)
++ Java
++ Google Guice (Un framework para inyección de dependencias)
++ Maven (Herramienta para gestión de dependencias)
++ Apache Shiro (Framework para autentiticación)
 
 #### Capa de persistencia de datos
 Se usó un motor de bases de datos **PostgreSQL** y la herramienta **myBatis**, la cual se encarga de la persistencia (mappea sentencias SQL y procedimientos almacenados con objetos a partir de ficheros XML o anotaciones).
