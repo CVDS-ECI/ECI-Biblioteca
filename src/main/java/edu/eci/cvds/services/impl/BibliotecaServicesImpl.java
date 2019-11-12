@@ -21,8 +21,6 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
 
     @Inject
     UsuarioDAO usuarioDAO;
-
-    @Inject
     RecursoDAO recursoDAO;
 
     @Override
