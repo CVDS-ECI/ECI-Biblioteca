@@ -1,6 +1,5 @@
 package edu.eci.cvds.entities;
 
-import java.sql.Date;
 
 public class Recurso {
 

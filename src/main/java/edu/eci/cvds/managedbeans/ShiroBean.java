@@ -6,11 +6,9 @@
 package edu.eci.cvds.managedbeans;
 
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.SessionScoped;
@@ -20,6 +18,12 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.logging.Level;
 import javax.faces.bean.ManagedBean;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.LockedAccountException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.crypto.hash.Sha256Hash;
 
 @Named
 @Stateless
@@ -35,15 +39,12 @@ public class ShiroBean implements Serializable {
     private String redirectUrl = "/faces/login.xhtml";
     Subject subject;
 
-    public ShiroBean() {
-    }
-
     /**
      * Try and authenticate the user
      */
     public void doLogin() {
         subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(getUsername(), getPassword());
+        UsernamePasswordToken token = new UsernamePasswordToken(getUsername(), new Sha256Hash(getPassword()).toHex());
         try {
             subject.login(token);
             if (subject.hasRole("Administrador")) {

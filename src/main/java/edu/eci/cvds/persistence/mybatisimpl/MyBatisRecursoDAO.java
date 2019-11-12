@@ -6,7 +6,6 @@ import edu.eci.cvds.entities.Recurso;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.RecursoDAO;
 import edu.eci.cvds.persistence.mybatisimpl.mappers.RecursoMapper;
-import edu.eci.cvds.persistence.mybatisimpl.mappers.UsuarioMapper;
 import java.util.List;
 
 public class MyBatisRecursoDAO implements RecursoDAO{

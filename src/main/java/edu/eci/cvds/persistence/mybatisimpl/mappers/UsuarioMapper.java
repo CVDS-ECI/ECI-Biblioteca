@@ -1,9 +1,7 @@
 package edu.eci.cvds.persistence.mybatisimpl.mappers;
 
-import java.util.Date;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
 import edu.eci.cvds.entities.Usuario;
 
 
