@@ -4,13 +4,13 @@
 
 ### Integrantes
 
-+  *Juan sebastián Frásica G*
-+  *Andrés Felipe Marcelo*
-+  *Santiago Rubiano*
-+  *David Vargas*
++ *Juan sebastián Frásica G*
++ *Andrés Felipe Marcelo*
++ *Santiago Rubiano*
++ *David Vargas*
 
 ### Profesor:
-* Julián Velasco
++ *Julián Velasco*
 
 
 ## Descripción del producto
@@ -25,11 +25,11 @@
 
 ### Descripción de la arquitectura y tecnologías utilizadas
 La aplicación está construida en 3 capas:
+
 #### Capa de presentación
 En esta capa se hizo uso de tecnologías como:
 * JSF (Java Server Faces)
 * Primefaces
-
 
 #### Capa de aplicación
 Aquí se usaron tecnologías:
