@@ -9,9 +9,8 @@
 + *Santiago Rubiano*
 + *David Vargas*
 
-### Profesor:
+### Profesor
 + *Julián Velasco*
-
 
 ## Descripción del producto
 
