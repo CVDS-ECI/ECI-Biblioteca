@@ -3,7 +3,7 @@
 ## Escuela Colombiana de Ingeniería Julio Garavito
 
 ### Integrantes
-*  'Juan sebastián Frásica G'
+*  Juan sebastián Frásica G
 *  Andrés Felipe Marcelo
 *  Santiago Rubiano
 *  David Vargas
