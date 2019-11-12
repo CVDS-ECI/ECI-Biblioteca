@@ -145,24 +145,27 @@
                                         <div class="table-responsive">
                                             <table class="table">
                                                 <thead class=" text-primary">
-                                                    <th></th>
+
                                                     <th>
                                                         ID
                                                     </th>
                                                     <th>
-                                                        Name
+                                                        Nombre
                                                     </th>
                                                     <th>
-                                                        Country
+                                                        Ubicacion
                                                     </th>
                                                     <th>
-                                                        City
+                                                        Tipo de recurso
                                                     </th>
                                                     <th>
-                                                        Salary
+                                                        Capacidad
                                                     </th>
                                                     <th>
-                                                        Salary
+                                                        Estado
+                                                    </th>
+                                                    <th>
+                                                        Cambiar estado del recurso
                                                     </th>
                                                 </thead>
                                                 <tbody>
@@ -176,6 +179,7 @@
                                                             <td>#{recurso.tipo}</td>
                                                             <td>#{recurso.capacidad}</td>
                                                             <td>#{recurso.estado}</td>
+                                                            <td></td>
                                                         </tr>
                                                     </ui:repeat>
                                                 </tbody>
