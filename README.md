@@ -59,6 +59,8 @@ Burndown chart and backlog
 +  Backlog: https://tree.taiga.io/project/sebastianfrasic-gestion-de-recursos-biblioteca/backlog
 +  Burndown chart: https://tree.taiga.io/project/sebastianfrasic-gestion-de-recursos-biblioteca/taskboard/sprint-1-15837
 
+Este sprint se completaron casi todos los objetivos por realizar. Cada integrante del equipo cumplio con sus deberes en el tiempo adecuado y con la mejor calidad posible. La pagina de incio de sesión sirve correctamente y se puede hacer ciertas funciones dependiendo si es de la comunidad o administrador tales como: cambiar el estado de un recurso o registrar un recurso. Falta arreglar detalles como cambiar las vistas cuando se logea la comunidad y consultar un recurso. 
+
 ![Burndown chart and backlog sprint 1](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/BURNDOWN%20CHART%20AND%20BACKLOG%20SPRINT%201.png)
 
 
