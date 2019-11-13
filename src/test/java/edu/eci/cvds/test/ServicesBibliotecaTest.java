@@ -14,6 +14,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.mybatis.guice.transactional.Transactional;
 import java.sql.Time;
+
+
 /**
  *
  * @author davidleon
@@ -707,5 +709,18 @@ public class ServicesBibliotecaTest {
             assertTrue(numeroDespuesModificar==-1);
             System.out.println(BibliotecaException.RECURSO_NO_EXISTE);
         }
+    }
+    
+    /*
+    Cuando se quiere consultar las listas de recursos puede tener cero recursos
+    */
+    @Test
+    public void deberiaConsultarRecursosDisponibles() throws BibliotecaException {
+        List<Recurso> recursos = bibliotecaServices.consultarRecursosDisponibles();
+        if(recursos.size()>0){
+            Recurso recurso=recursos.get(0);
+            assertTrue(recurso.getEstado().equals("Disponible"));
+        }
+        assertTrue(recursos.size()>=0);
     }
 }
