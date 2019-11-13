@@ -507,6 +507,86 @@ public class ServicesBibliotecaTest {
     }
     
     /*
+    Cuando se quiere registrar un recurso se debe tener en cuenta que
+    que el inicio reserva < fin reserva. Se coloca Inicioreserva=’12:00:00’, finreserva=’13:00:00’ que es correcto:
+    */
+    @Test
+    public void deberiaRegistrarRecurso23() throws BibliotecaException {
+        try {
+            Time horaInicio = Time.valueOf("12:00:00");
+            Time horaFin = Time.valueOf("13:00:00");
+            List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
+            longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
+            bibliotecaServices.registrarRecurso(new Recurso("fisica 8", "Biblioteca JAL Bloque G", "Sala", 6, "Disponible",horaInicio,horaFin));
+        } catch (BibliotecaException e) {
+            List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
+            int longitud_lista2 = listaDespuesDeInsertar.size();
+            assertTrue(longitud_lista2 == longitudListaAntesDeInsertar);
+            System.out.println(BibliotecaException.RECURSO_INSERTAR);
+        }
+    }
+      
+    /*
+    Cuando se quiere registrar un recurso se debe tener en cuenta que
+    que el inicio reserva < fin reserva. Se coloca Inicioreserva=’13:00:00’, finreserva=’13:00:00’ que es incorrecto:
+    */
+    @Test
+    public void noDeberiaRegistrarRecurso24() throws BibliotecaException {
+        try {
+            Time horaInicio = Time.valueOf("13:00:00");
+            Time horaFin = Time.valueOf("13:00:00");
+            List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
+            longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
+            bibliotecaServices.registrarRecurso(new Recurso("fisica 8", "Biblioteca JAL Bloque G", "Sala", 6, "Disponible",horaInicio,horaFin));
+        } catch (BibliotecaException e) {
+            List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
+            int longitud_lista2 = listaDespuesDeInsertar.size();
+            assertTrue(longitud_lista2 == longitudListaAntesDeInsertar);
+            System.out.println("horaInicio>=horaFin");
+        }
+    }
+    
+    /*
+    Cuando se quiere registrar un recurso se debe tener en cuenta que
+    que el inicio reserva < fin reserva. Se coloca Inicioreserva=’14:00:00’, finreserva=’13:00:00’ que es incorrecto:
+    */
+    @Test
+    public void noDeberiaRegistrarRecurso25() throws BibliotecaException {
+        try {
+            Time horaInicio = Time.valueOf("14:00:00");
+            Time horaFin = Time.valueOf("13:00:00");
+            List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
+            longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
+            bibliotecaServices.registrarRecurso(new Recurso("fisica 8", "Biblioteca JAL Bloque G", "Sala", 6, "Disponible",horaInicio,horaFin));
+        } catch (BibliotecaException e) {
+            List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
+            int longitud_lista2 = listaDespuesDeInsertar.size();
+            assertTrue(longitud_lista2 == longitudListaAntesDeInsertar);
+            System.out.println("horaInicio>=horaFin");
+        }
+    }
+    
+    /*
+    Cuando se quiere registrar un recurso se debe tener en cuenta que
+    que el inicio reserva < fin reserva. Se coloca Inicioreserva=’14:00:00’, finreserva=’13:00:00’ que es incorrecto:
+    */
+    @Test
+    public void noDeberiaRegistrarRecurso26() throws BibliotecaException {
+        try {
+            Time horaInicio = Time.valueOf("15:00:00");
+            Time horaFin = Time.valueOf("12:00:00");
+            List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
+            longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
+            bibliotecaServices.registrarRecurso(new Recurso("fisica 8", "Biblioteca JAL Bloque G", "Sala", 6, "Disponible",horaInicio,horaFin));
+        } catch (BibliotecaException e) {
+            List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
+            int longitud_lista2 = listaDespuesDeInsertar.size();
+            assertTrue(longitud_lista2 == longitudListaAntesDeInsertar);
+            System.out.println("horaInicio>=horaFin");
+        }
+    }
+    
+    /*
     Cuando se quiere consultar un recurso, se debe tener en cuenta que el id exista
     en este caso se coloca un id=2 que es correcto para que me de un 
     recurso no nulo
