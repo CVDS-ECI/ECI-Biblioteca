@@ -1,0 +1,8 @@
+.table-striped>tbody>tr:nth-of-type(odd){
+background-color: #F2E5E4 !important;
+}
+
+td i{
+	color: #B00000;
+    cursor: pointer;
+}

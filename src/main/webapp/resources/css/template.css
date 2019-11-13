@@ -1,0 +1,90 @@
+.banner {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#headRow{
+	background-color: #900;
+	color: white;
+	border: 0px solid transparent !important;
+	margin-bottom: 0px;
+}
+
+#user-link{
+	color: white !important;
+}
+
+#user-link:hover{
+	background-color: #730000;
+}
+
+.navbar-right{
+	margin-right: 0px;
+}
+
+.btn-primary{
+	background-color: #B00000;
+	border-color: #870000;
+}
+
+.btn-primary[disabled]:hover{
+	background-color: #990000;
+	border-color: #730000;
+}
+
+
+.btn[disabled] {
+	pointer-events: none;
+}
+
+.btn-primary:hover{
+	background-color: #990000;
+	border-color: #730000;
+}
+
+.btn-primary:focus{
+	background-color: #990000;
+	border-color: #730000;
+}
+
+.btn-primary:active:focus{
+	background-color: #990000;
+	border-color: #730000;
+}
+
+.label-info {
+	background-color: #B00000;
+}
+
+.label{
+	font-size: inherit;
+	font-weight: inherit;
+}
+
+.bootstrap-tagsinput{
+	padding: 8px 6px !important;
+}
+
+a{
+	color:white !important;
+}
+
+li >a {
+	color:black !important;
+}
+
+body{
+	font-family: inherit;
+	font-size:16px;
+}
+
+#notFound span {
+	font-size: 16px;
+}
+
+#notFound i{
+	color: #900;
+}
+
+
