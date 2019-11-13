@@ -165,6 +165,12 @@
                                                         Estado
                                                     </th>
                                                     <th>
+                                                        hI
+                                                    </th>
+                                                    <th>
+                                                        hF
+                                                    </th>
+                                                    <th>
                                                         Cambiar estado del recurso
                                                     </th>
                                                 </thead>
@@ -172,13 +178,14 @@
                                                     <ui:repeat var="recurso" value="#{AdminBean.consultarRecursos()}">
                                                         <tr>           
                                                             <!--<tr colspan="7" data-toggle="collapse" data-target="#demo1" class="accordion-toggle">-->
-
                                                             <td>#{recurso.id}</td>
                                                             <td>#{recurso.nombre}</td>
                                                             <td>#{recurso.ubicacion}</td>
                                                             <td>#{recurso.tipo}</td>
                                                             <td>#{recurso.capacidad}</td>
                                                             <td>#{recurso.estado}</td>
+                                                            <td>#{recurso.horaInicio}</td>
+                                                            <td>#{recurso.horaFin}</td>
                                                             <td></td>
                                                         </tr>
                                                     </ui:repeat>
