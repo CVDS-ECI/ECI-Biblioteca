@@ -36,9 +36,12 @@ public class AdminBean extends BasePageBean {
      * @param capacidad Capacidad del recurso
      * @param estado Estado del recurso (Disponible/Ocupado/En mantenimiento)
      */
-    public void registrarRecurso(String nombre, int capacidad) {
+    public void registrarRecurso(String nombre, int capacidad, String horaInicio, String horaFin) {
         try {
-            serviciosBiblioteca.registrarRecurso(new Recurso(nombre, tipoDeUbicacionSeleccionada, tipoDeRecursoSeleccionado, capacidad, tipoDeEstadoSeleccionado));
+            java.sql.Time ini = java.sql.Time.valueOf(horaInicio);
+            java.sql.Time fin = java.sql.Time.valueOf(horaFin);
+            
+            serviciosBiblioteca.registrarRecurso(new Recurso(nombre, tipoDeUbicacionSeleccionada, tipoDeRecursoSeleccionado, capacidad, tipoDeEstadoSeleccionado, ini, fin));
         } catch (Exception e) {
             e.printStackTrace();
         }

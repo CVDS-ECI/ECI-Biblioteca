@@ -150,6 +150,11 @@
                                                     <p:column headerText="Capacidad" class=" texto-columna">
                                                         <h:outputText value="#{recurso.capacidad}" class=" text-dark" />
                                                     </p:column>
+                                                    <p:column headerText="Disponibilidad" class=" texto-columna">
+                                                        <h:outputText value="#{recurso.horaInicio}" class=" text-dark" />
+                                                        <br/>
+                                                        <h:outputText value="#{recurso.horaFin}" class=" text-dark" />
+                                                    </p:column>
 
                                                     <p:column headerText="Estado" class=" texto-columna">
                                                         <h:selectOneMenu value="#{AdminBean.tipoDeEstadoSeleccionado2}" class="form-control"  >
