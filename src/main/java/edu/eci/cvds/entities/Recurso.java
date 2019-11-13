@@ -1,7 +1,5 @@
 package edu.eci.cvds.entities;
 
-import java.util.Date;
-import java.sql.Timestamp;
 
 public class Recurso {
 
@@ -13,28 +11,23 @@ public class Recurso {
     private String tipo;
     private int capacidad;
     private String estado;
-    private Timestamp inicioReserva;
-    private Timestamp finReserva;
 
 
-    public Recurso(int id,String nombre, String ubicacion, String tipo, int capacidad, String estado,Timestamp inicioReserva, Timestamp finReserva) {
+
+    public Recurso(int id,String nombre, String ubicacion, String tipo, int capacidad, String estado) {
         this.id = id;
         this.nombre = nombre;
         this.ubicacion = ubicacion;
         this.tipo = tipo;
         this.capacidad = capacidad;
         this.estado = estado;
-        this.inicioReserva = inicioReserva;
-        this.finReserva = finReserva;
     }
-   public Recurso(String nombre, String ubicacion, String tipo, int capacidad, String estado,Timestamp inicioReserva, Timestamp finReserva) {
+   public Recurso(String nombre, String ubicacion, String tipo, int capacidad, String estado) {
         this.nombre = nombre;
         this.ubicacion = ubicacion;
         this.tipo = tipo;
         this.capacidad = capacidad;
         this.estado = estado;
-        this.inicioReserva = inicioReserva;
-        this.finReserva = finReserva;
     }
 
     public String getNombre() {
@@ -85,30 +78,9 @@ public class Recurso {
         this.estado = estado;
     }
 
-    public Timestamp getInicioReserva() {
-        return inicioReserva;
-    }
-
-    public void setInicioReserva(Timestamp inicioReserva) {
-        this.inicioReserva = inicioReserva;
-    }
-
-    public Timestamp getFinReserva() {
-        return finReserva;
-    }
-
-    public void setFinReserva(Timestamp finReserva) {
-        this.finReserva = finReserva;
-    }
-
-    
-    
-    
-
     @Override
     public String toString() {
         return "Element { id: " + id + ", nombre: " + nombre + ", ubicacion: " + ubicacion
-                + ", tipo: " + tipo + ", capacidad: " + capacidad + ", estado: " + estado +
-                ", finReserva: " + finReserva + ", inicioReserva: " + inicioReserva +"}";
+                + ", tipo: " + tipo + ", capacidad: " + capacidad + ", estado: " + estado + "}";
     }
 }
