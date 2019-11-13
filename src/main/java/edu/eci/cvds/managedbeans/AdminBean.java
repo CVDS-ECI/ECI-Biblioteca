@@ -4,10 +4,11 @@ import com.google.inject.Inject;
 import edu.eci.cvds.entities.Recurso;
 import edu.eci.cvds.services.BibliotecaException;
 import edu.eci.cvds.services.BibliotecaServices;
-
+import java.sql.Timestamp;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,6 +26,8 @@ public class AdminBean extends BasePageBean {
     private String tipoDeEstadoSeleccionado;
     private String tipoDeEstadoSeleccionado2;
     private String tipoDeUbicacionSeleccionada;
+    private Timestamp inicioReserva;
+    private Timestamp finReserva;
 
     /**
      * Registra un nuevo recurso a la base de datos. (Hecho para el
@@ -38,7 +41,7 @@ public class AdminBean extends BasePageBean {
      */
     public void registrarRecurso(String nombre, int capacidad) {
         try {
-            serviciosBiblioteca.registrarRecurso(new Recurso(nombre, tipoDeUbicacionSeleccionada, tipoDeRecursoSeleccionado, capacidad, tipoDeEstadoSeleccionado));
+            serviciosBiblioteca.registrarRecurso(new Recurso(nombre, tipoDeUbicacionSeleccionada, tipoDeRecursoSeleccionado, capacidad, tipoDeEstadoSeleccionado,inicioReserva,finReserva));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -137,6 +140,22 @@ public class AdminBean extends BasePageBean {
 
     public void setTipoDeEstadoSeleccionado2(String tipoDeEstadoSeleccionado2) {
         this.tipoDeEstadoSeleccionado2 = tipoDeEstadoSeleccionado2;
+    }
+    
+    public Date getInicioReserva() {
+        return inicioReserva;
+    }
+
+    public Date getFinReserva() {
+        return finReserva;
+    }
+
+    public void setInicioReserva(Timestamp inicioReserva) {
+        this.inicioReserva = inicioReserva;
+    }
+
+    public void setFinReserva(Timestamp finReserva) {
+        this.finReserva = finReserva;
     }
 
 }

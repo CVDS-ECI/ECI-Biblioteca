@@ -19,7 +19,9 @@ CREATE TABLE if not exists Recurso (
   tipo varchar(50) not null,
   capacidad int not null,
   estado varchar(45) not null,
-  PRIMARY KEY (id));
+  PRIMARY KEY (id),
+  inicio_reserva Timestamp not null,
+  fin_reserva Timestamp not null );
  
  create table if not exists Horario(
  id SERIAL,
