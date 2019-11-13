@@ -10,6 +10,8 @@ public interface BibliotecaServices {
         
         public List<Recurso> consultarRecursos()throws BibliotecaException;
         
+        public List<Recurso> consultarRecursosDisponibles()throws BibliotecaException;
+        
         public Recurso consultarRecurso(int id) throws BibliotecaException;
         
         public void updateRecurso(int id, String nuevoEstado) throws BibliotecaException;

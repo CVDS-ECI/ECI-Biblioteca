@@ -59,5 +59,14 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         }
     }
 
+    @Override
+    public List<Recurso> consultarRecursosDisponibles() throws BibliotecaException {
+        try {
+            return recursoDAO.loadRecursosDisponibles();
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar los Recursos Disponibles:" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
     
 }
