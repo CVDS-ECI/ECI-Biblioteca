@@ -1,0 +1,20 @@
+.carousel-control.left, .carousel-control.right{
+	background: white;
+}
+
+.carousel-control .glyphicon{
+	color: lightgray;
+}
+
+.small-cont{
+	background-color:#900;
+	color: white;
+	border-radius: 20px;
+	margin-top: 2%;
+}
+
+.pic{
+	background-color:#900;
+	padding: 10px;
+	color:white;
+}

@@ -13,6 +13,8 @@ import java.util.List;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.mybatis.guice.transactional.Transactional;
+import java.sql.Time;
+
 
 /**
  *
@@ -28,30 +30,34 @@ public class ServicesBibliotecaTest {
     public ServicesBibliotecaTest() {
         bibliotecaServices = BibliotecaServicesFactory.getInstance().getBlogServices();
     }
-    
+     
     /*
     Cuando se quiere registrar un recurso se debe tener en cuenta que la capacidad
     tiene que ser mayor a cero. Este caso funciona porque la cantidad es 1
     */
     @Test
-    public void deberiaRegistrarRecurso() throws BibliotecaException {
-        List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
-        int longitud_lista1 = listaAntesDeInsertar.size();
-        bibliotecaServices.registrarRecurso(new Recurso("Video Bean", "Biblioteca JAL Bloque B", "Sala", 1, "Disponible"));
-        List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
-        int longitud_lista2 = listaDespuesDeInsertar.size();
-        assertTrue(longitud_lista2 > longitud_lista1);
+    public void deberiaRegistrarRecurso() throws BibliotecaException {   
+            Time horaInicio = Time.valueOf("10:59:59");
+            Time horaFin = Time.valueOf("12:59:59");
+            List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
+            int longitud_lista1 = listaAntesDeInsertar.size();
+            bibliotecaServices.registrarRecurso(new Recurso("Video Bean", "Biblioteca JAL Bloque B", "Sala", 1, "Disponible",horaInicio,horaFin));
+            List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
+            int longitud_lista2 = listaDespuesDeInsertar.size();
+            assertTrue(longitud_lista2 > longitud_lista1);
     }
-    
+     
     /*
     Cuando se quiere registrar un recurso se debe tener en cuenta que la capacidad
     tiene que ser mayor a cero. Este caso funciona porque la cantidad es 2
     */
     @Test
     public void deberiaRegistrarRecurso2() throws BibliotecaException {
+        Time horaInicio = Time.valueOf("11:59:59");
+        Time horaFin = Time.valueOf("13:59:59");
         List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
         int longitud_lista1 = listaAntesDeInsertar.size();
-        bibliotecaServices.registrarRecurso(new Recurso("Video Bean", "Biblioteca JAL Bloque B", "Sala", 2, "Disponible"));
+        bibliotecaServices.registrarRecurso(new Recurso("Video Bean", "Biblioteca JAL Bloque B", "Sala", 2, "Disponible",horaInicio,horaFin));
         List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
         int longitud_lista2 = listaDespuesDeInsertar.size();
         assertTrue(longitud_lista2 > longitud_lista1);
@@ -64,9 +70,11 @@ public class ServicesBibliotecaTest {
     @Test
     public void noDeberiaRegistrarRecurso() throws BibliotecaException {
         try {
+            Time horaInicio = Time.valueOf("11:59:59");
+            Time horaFin = Time.valueOf("13:59:59");
             List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
             longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
-            bibliotecaServices.registrarRecurso(new Recurso("Video Bean", "Biblioteca JAL Bloque B", "Sala", -1, "Disponible"));
+            bibliotecaServices.registrarRecurso(new Recurso("aljebra2", "Biblioteca JAL Bloque B", "Sala", -1, "Disponible",horaInicio,horaFin));
         } catch (BibliotecaException e) {
             List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
             int longitud_lista2 = listaDespuesDeInsertar.size();
@@ -82,9 +90,11 @@ public class ServicesBibliotecaTest {
     @Test
     public void noDeberiaRegistrarRecurso2() throws BibliotecaException {
         try {
+            Time horaInicio = Time.valueOf("11:59:59");
+            Time horaFin = Time.valueOf("13:59:59");
             List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
             longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
-            bibliotecaServices.registrarRecurso(new Recurso("Video Bean", "Biblioteca JAL Bloque B", "Sala", 0, "Disponible"));
+            bibliotecaServices.registrarRecurso(new Recurso("Video Bean", "Biblioteca JAL Bloque B", "Sala", 0, "Disponible",horaInicio,horaFin));
         } catch (BibliotecaException e) {
             List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
             int longitud_lista2 = listaDespuesDeInsertar.size();
@@ -100,9 +110,11 @@ public class ServicesBibliotecaTest {
     @Test
     public void noDeberiaRegistrarRecurso4() throws BibliotecaException {
         try {
+            Time horaInicio = Time.valueOf("11:59:59");
+            Time horaFin = Time.valueOf("13:59:59");
             List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
             longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
-            bibliotecaServices.registrarRecurso(new Recurso("Video Bean", "Biblioteca JAL Bloque B", "Sala", -2, "Disponible"));
+            bibliotecaServices.registrarRecurso(new Recurso("aljebra", "Biblioteca JAL Bloque B", "Sala", -2, "Disponible",horaInicio,horaFin));
         } catch (BibliotecaException e) {
             List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
             int longitud_lista2 = listaDespuesDeInsertar.size();
@@ -120,9 +132,11 @@ public class ServicesBibliotecaTest {
     @Test
     public void noDeberiaRegistrarRecurso5() throws BibliotecaException {
         try {
+            Time horaInicio = Time.valueOf("11:59:59");
+            Time horaFin = Time.valueOf("13:59:59");
             List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
             longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
-            bibliotecaServices.registrarRecurso(new Recurso("Video Bean", "Biblioteca JAL Bloque B", "iPhone", 2, "Disponible"));
+            bibliotecaServices.registrarRecurso(new Recurso("Video Bean", "Biblioteca JAL Bloque B", "iPhone", 2, "Disponible",horaInicio,horaFin));
         } catch (BibliotecaException e) {
             List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
             int longitud_lista2 = listaDespuesDeInsertar.size();
@@ -140,9 +154,11 @@ public class ServicesBibliotecaTest {
     @Test
     public void noDeberiaRegistrarRecurso6() throws BibliotecaException {
         try {
+            Time horaInicio = Time.valueOf("11:59:59");
+            Time horaFin = Time.valueOf("13:59:59");
             List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
             longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
-            bibliotecaServices.registrarRecurso(new Recurso("Video Bean", "Biblioteca JAL Bloque B", " ", 2, "Disponible"));
+            bibliotecaServices.registrarRecurso(new Recurso("Video Bean", "Biblioteca JAL Bloque B", " ", 2, "Disponible",horaInicio,horaFin));
         } catch (BibliotecaException e) {
             List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
             int longitud_lista2 = listaDespuesDeInsertar.size();
@@ -160,9 +176,11 @@ public class ServicesBibliotecaTest {
     @Test
     public void deberiaRegistrarRecurso7() throws BibliotecaException {
         try {
+            Time horaInicio = Time.valueOf("11:59:59");
+            Time horaFin = Time.valueOf("13:59:59");
             List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
             longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
-            bibliotecaServices.registrarRecurso(new Recurso("Video Bean", "Biblioteca JAL Bloque B", "Sala", 2, "Disponible"));
+            bibliotecaServices.registrarRecurso(new Recurso("Video Bean", "Biblioteca JAL Bloque B", "Sala", 2, "Disponible",horaInicio,horaFin));
         } catch (BibliotecaException e) {
             List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
             int longitud_lista2 = listaDespuesDeInsertar.size();
@@ -180,9 +198,11 @@ public class ServicesBibliotecaTest {
     @Test
     public void deberiaRegistrarRecurso8() throws BibliotecaException {
         try {
+            Time horaInicio = Time.valueOf("11:59:59");
+            Time horaFin = Time.valueOf("13:59:59");
             List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
             longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
-            bibliotecaServices.registrarRecurso(new Recurso("Video Bean", "Biblioteca JAL Bloque B", "Equipo de computo", 2, "Disponible"));
+            bibliotecaServices.registrarRecurso(new Recurso("Video Bean", "Biblioteca JAL Bloque B", "Equipo de computo", 2, "Disponible",horaInicio,horaFin));
         } catch (BibliotecaException e) {
             List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
             int longitud_lista2 = listaDespuesDeInsertar.size();
@@ -200,9 +220,11 @@ public class ServicesBibliotecaTest {
     @Test
     public void deberiaRegistrarRecurso9() throws BibliotecaException {
         try {
+            Time horaInicio = Time.valueOf("11:59:59");
+            Time horaFin = Time.valueOf("13:59:59");
             List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
             longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
-            bibliotecaServices.registrarRecurso(new Recurso("Video Bean", "Biblioteca JAL Bloque B", "Equipo de multimedia", 2, "Disponible"));
+            bibliotecaServices.registrarRecurso(new Recurso("Video Bean", "Biblioteca JAL Bloque B", "Equipo de multimedia", 2, "Disponible",horaInicio,horaFin));
         } catch (BibliotecaException e) {
             List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
             int longitud_lista2 = listaDespuesDeInsertar.size();
@@ -220,9 +242,11 @@ public class ServicesBibliotecaTest {
     @Test
     public void deberiaRegistrarRecurso10() throws BibliotecaException {
         try {
+            Time horaInicio = Time.valueOf("11:59:59");
+            Time horaFin = Time.valueOf("13:59:59");
             List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
             longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
-            bibliotecaServices.registrarRecurso(new Recurso("Video Bean", "Biblioteca JAL Bloque B", "Libro", 2, "Disponible"));
+            bibliotecaServices.registrarRecurso(new Recurso("Video Bean", "Biblioteca JAL Bloque B", "Libro", 2, "Disponible",horaInicio,horaFin));
         } catch (BibliotecaException e) {
             List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
             int longitud_lista2 = listaDespuesDeInsertar.size();
@@ -239,9 +263,11 @@ public class ServicesBibliotecaTest {
     @Test
     public void noDeberiaRegistrarRecurso11() throws BibliotecaException {
         try {
+            Time horaInicio = Time.valueOf("11:59:59");
+            Time horaFin = Time.valueOf("13:59:59");
             List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
             longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
-            bibliotecaServices.registrarRecurso(new Recurso("fisica 4", "Biblioteca JAL Bloque B", "Sala", 6, "D"));
+            bibliotecaServices.registrarRecurso(new Recurso("fisica 4", "Biblioteca JAL Bloque B", "Sala", 6, "D",horaInicio,horaFin));
         } catch (BibliotecaException e) {
             List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
             int longitud_lista2 = listaDespuesDeInsertar.size();
@@ -258,9 +284,11 @@ public class ServicesBibliotecaTest {
     @Test
     public void noDeberiaRegistrarRecurso12() throws BibliotecaException {
         try {
+            Time horaInicio = Time.valueOf("11:59:59");
+            Time horaFin = Time.valueOf("13:59:59");
             List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
             longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
-            bibliotecaServices.registrarRecurso(new Recurso("fisica 4", "Biblioteca JAL Bloque B", "Sala", 6, " "));
+            bibliotecaServices.registrarRecurso(new Recurso("fisica 4", "Biblioteca JAL Bloque B", "Sala", 6, " ",horaInicio,horaFin));
         } catch (BibliotecaException e) {
             List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
             int longitud_lista2 = listaDespuesDeInsertar.size();
@@ -277,9 +305,11 @@ public class ServicesBibliotecaTest {
     @Test
     public void deberiaRegistrarRecurso13() throws BibliotecaException {
         try {
+            Time horaInicio = Time.valueOf("11:59:59");
+            Time horaFin = Time.valueOf("13:59:59");
             List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
             longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
-            bibliotecaServices.registrarRecurso(new Recurso("fisica 4", "Biblioteca JAL Bloque B", "Sala", 6, "Disponible"));
+            bibliotecaServices.registrarRecurso(new Recurso("fisica 4", "Biblioteca JAL Bloque B", "Sala", 6, "Disponible",horaInicio,horaFin));
         } catch (BibliotecaException e) {
             List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
             int longitud_lista2 = listaDespuesDeInsertar.size();
@@ -296,9 +326,11 @@ public class ServicesBibliotecaTest {
     @Test
     public void deberiaRegistrarRecurso14() throws BibliotecaException {
         try {
+            Time horaInicio = Time.valueOf("11:59:59");
+            Time horaFin = Time.valueOf("13:59:59");
             List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
             longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
-            bibliotecaServices.registrarRecurso(new Recurso("fisica 4", "Biblioteca JAL Bloque B", "Sala", 6, "En Mantenimiento"));
+            bibliotecaServices.registrarRecurso(new Recurso("fisica 4", "Biblioteca JAL Bloque B", "Sala", 6, "En Mantenimiento",horaInicio,horaFin));
         } catch (BibliotecaException e) {
             List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
             int longitud_lista2 = listaDespuesDeInsertar.size();
@@ -315,9 +347,11 @@ public class ServicesBibliotecaTest {
     @Test
     public void deberiaRegistrarRecurso15() throws BibliotecaException {
         try {
+            Time horaInicio = Time.valueOf("11:59:59");
+            Time horaFin = Time.valueOf("13:59:59");
             List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
             longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
-            bibliotecaServices.registrarRecurso(new Recurso("fisica 4", "Biblioteca JAL Bloque B", "Sala", 6, "No Disponible"));
+            bibliotecaServices.registrarRecurso(new Recurso("fisica 4", "Biblioteca JAL Bloque B", "Sala", 6, "No Disponible",horaInicio,horaFin));
         } catch (BibliotecaException e) {
             List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
             int longitud_lista2 = listaDespuesDeInsertar.size();
@@ -335,9 +369,11 @@ public class ServicesBibliotecaTest {
     @Test
     public void noDeberiaRegistrarRecurso16() throws BibliotecaException {
         try {
+            Time horaInicio = Time.valueOf("11:59:59");
+            Time horaFin = Time.valueOf("13:59:59");
             List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
             longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
-            bibliotecaServices.registrarRecurso(new Recurso("fisica 4", "sala antigua", "Sala", 6, "Disponible"));
+            bibliotecaServices.registrarRecurso(new Recurso("fisica 4", "sala antigua", "Sala", 6, "Disponible",horaInicio,horaFin));
         } catch (BibliotecaException e) {
             List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
             int longitud_lista2 = listaDespuesDeInsertar.size();
@@ -355,9 +391,11 @@ public class ServicesBibliotecaTest {
     @Test
     public void noDeberiaRegistrarRecurso17() throws BibliotecaException {
         try {
+            Time horaInicio = Time.valueOf("11:59:59");
+            Time horaFin = Time.valueOf("13:59:59");
             List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
             longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
-            bibliotecaServices.registrarRecurso(new Recurso("fisica 4", " ", "Sala", 6, "Disponible"));
+            bibliotecaServices.registrarRecurso(new Recurso("fisica 4", " ", "Sala", 6, "Disponible",horaInicio,horaFin));
         } catch (BibliotecaException e) {
             List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
             int longitud_lista2 = listaDespuesDeInsertar.size();
@@ -375,9 +413,11 @@ public class ServicesBibliotecaTest {
     @Test
     public void deberiaRegistrarRecurso18() throws BibliotecaException {
         try {
+            Time horaInicio = Time.valueOf("11:59:59");
+            Time horaFin = Time.valueOf("13:59:59");
             List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
             longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
-            bibliotecaServices.registrarRecurso(new Recurso("fisica 4", "Biblioteca JAL Bloque B", "Sala", 6, "Disponible"));
+            bibliotecaServices.registrarRecurso(new Recurso("fisica 4", "Biblioteca JAL Bloque B", "Sala", 6, "Disponible",horaInicio,horaFin));
         } catch (BibliotecaException e) {
             List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
             int longitud_lista2 = listaDespuesDeInsertar.size();
@@ -395,9 +435,11 @@ public class ServicesBibliotecaTest {
     @Test
     public void deberiaRegistrarRecurso19() throws BibliotecaException {
         try {
+            Time horaInicio = Time.valueOf("11:59:59");
+            Time horaFin = Time.valueOf("13:59:59");
             List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
             longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
-            bibliotecaServices.registrarRecurso(new Recurso("fisica 4", "Biblioteca JAL Bloque G", "Sala", 6, "Disponible"));
+            bibliotecaServices.registrarRecurso(new Recurso("fisica 4", "Biblioteca JAL Bloque G", "Sala", 6, "Disponible",horaInicio,horaFin));
         } catch (BibliotecaException e) {
             List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
             int longitud_lista2 = listaDespuesDeInsertar.size();
@@ -413,9 +455,11 @@ public class ServicesBibliotecaTest {
     @Test
     public void noDeberiaRegistrarRecurso20() throws BibliotecaException {
         try {
+            Time horaInicio = Time.valueOf("11:59:59");
+            Time horaFin = Time.valueOf("13:59:59");
             List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
             longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
-            bibliotecaServices.registrarRecurso(new Recurso("", "Biblioteca JAL Bloque G", "Sala", 6, "Disponible"));
+            bibliotecaServices.registrarRecurso(new Recurso("", "Biblioteca JAL Bloque G", "Sala", 6, "Disponible",horaInicio,horaFin));
         } catch (BibliotecaException e) {
             List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
             int longitud_lista2 = listaDespuesDeInsertar.size();
@@ -431,9 +475,11 @@ public class ServicesBibliotecaTest {
     @Test
     public void noDeberiaRegistrarRecurso21() throws BibliotecaException {
         try {
+            Time horaInicio = Time.valueOf("11:59:59");
+            Time horaFin = Time.valueOf("13:59:59");
             List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
             longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
-            bibliotecaServices.registrarRecurso(new Recurso(" ", "Biblioteca JAL Bloque G", "Sala", 6, "Disponible"));
+            bibliotecaServices.registrarRecurso(new Recurso(" ", "Biblioteca JAL Bloque G", "Sala", 6, "Disponible",horaInicio,horaFin));
         } catch (BibliotecaException e) {
             List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
             int longitud_lista2 = listaDespuesDeInsertar.size();
@@ -449,14 +495,96 @@ public class ServicesBibliotecaTest {
     @Test
     public void deberiaRegistrarRecurso22() throws BibliotecaException {
         try {
+            Time horaInicio = Time.valueOf("11:59:59");
+            Time horaFin = Time.valueOf("13:59:59");
             List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
             longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
-            bibliotecaServices.registrarRecurso(new Recurso("fisica 8", "Biblioteca JAL Bloque G", "Sala", 6, "Disponible"));
+            bibliotecaServices.registrarRecurso(new Recurso("fisica 8", "Biblioteca JAL Bloque G", "Sala", 6, "Disponible",horaInicio,horaFin));
         } catch (BibliotecaException e) {
             List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
             int longitud_lista2 = listaDespuesDeInsertar.size();
             assertTrue(longitud_lista2 == longitudListaAntesDeInsertar);
             System.out.println(BibliotecaException.RECURSO_INSERTAR);
+        }
+    }
+    
+    /*
+    Cuando se quiere registrar un recurso se debe tener en cuenta que
+    que el inicio reserva < fin reserva. Se coloca Inicioreserva=’12:00:00’, finreserva=’13:00:00’ que es correcto:
+    */
+    @Test
+    public void deberiaRegistrarRecurso23() throws BibliotecaException {
+        try {
+            Time horaInicio = Time.valueOf("12:00:00");
+            Time horaFin = Time.valueOf("13:00:00");
+            List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
+            longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
+            bibliotecaServices.registrarRecurso(new Recurso("fisica 8", "Biblioteca JAL Bloque G", "Sala", 6, "Disponible",horaInicio,horaFin));
+        } catch (BibliotecaException e) {
+            List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
+            int longitud_lista2 = listaDespuesDeInsertar.size();
+            assertTrue(longitud_lista2 == longitudListaAntesDeInsertar);
+            System.out.println(BibliotecaException.RECURSO_INSERTAR);
+        }
+    }
+      
+    /*
+    Cuando se quiere registrar un recurso se debe tener en cuenta que
+    que el inicio reserva < fin reserva. Se coloca Inicioreserva=’13:00:00’, finreserva=’13:00:00’ que es incorrecto:
+    */
+    @Test
+    public void noDeberiaRegistrarRecurso24() throws BibliotecaException {
+        try {
+            Time horaInicio = Time.valueOf("13:00:00");
+            Time horaFin = Time.valueOf("13:00:00");
+            List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
+            longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
+            bibliotecaServices.registrarRecurso(new Recurso("fisica 8", "Biblioteca JAL Bloque G", "Sala", 6, "Disponible",horaInicio,horaFin));
+        } catch (BibliotecaException e) {
+            List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
+            int longitud_lista2 = listaDespuesDeInsertar.size();
+            assertTrue(longitud_lista2 == longitudListaAntesDeInsertar);
+            System.out.println("horaInicio>=horaFin");
+        }
+    }
+    
+    /*
+    Cuando se quiere registrar un recurso se debe tener en cuenta que
+    que el inicio reserva < fin reserva. Se coloca Inicioreserva=’14:00:00’, finreserva=’13:00:00’ que es incorrecto:
+    */
+    @Test
+    public void noDeberiaRegistrarRecurso25() throws BibliotecaException {
+        try {
+            Time horaInicio = Time.valueOf("14:00:00");
+            Time horaFin = Time.valueOf("13:00:00");
+            List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
+            longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
+            bibliotecaServices.registrarRecurso(new Recurso("fisica 8", "Biblioteca JAL Bloque G", "Sala", 6, "Disponible",horaInicio,horaFin));
+        } catch (BibliotecaException e) {
+            List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
+            int longitud_lista2 = listaDespuesDeInsertar.size();
+            assertTrue(longitud_lista2 == longitudListaAntesDeInsertar);
+            System.out.println("horaInicio>=horaFin");
+        }
+    }
+    
+    /*
+    Cuando se quiere registrar un recurso se debe tener en cuenta que
+    que el inicio reserva < fin reserva. Se coloca Inicioreserva=’14:00:00’, finreserva=’13:00:00’ que es incorrecto:
+    */
+    @Test
+    public void noDeberiaRegistrarRecurso26() throws BibliotecaException {
+        try {
+            Time horaInicio = Time.valueOf("15:00:00");
+            Time horaFin = Time.valueOf("12:00:00");
+            List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
+            longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
+            bibliotecaServices.registrarRecurso(new Recurso("fisica 8", "Biblioteca JAL Bloque G", "Sala", 6, "Disponible",horaInicio,horaFin));
+        } catch (BibliotecaException e) {
+            List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
+            int longitud_lista2 = listaDespuesDeInsertar.size();
+            assertTrue(longitud_lista2 == longitudListaAntesDeInsertar);
+            System.out.println("horaInicio>=horaFin");
         }
     }
     
@@ -467,16 +595,19 @@ public class ServicesBibliotecaTest {
     */
     @Test
     public void deberiaConsultarRecurso() throws BibliotecaException {
-        Recurso recurso = bibliotecaServices.consultarRecurso(898);
-        assertTrue(recurso.getNombre().equals("fisica 4") && recurso.getUbicacion().equals("Biblioteca JAL Bloque B") && recurso.getTipo().equals("Sala") && recurso.getCapacidad() == 6 && recurso.getEstado().equals("Disponible"));
+        Recurso recurso = bibliotecaServices.consultarRecurso(283);
+        Time horaInicio = Time.valueOf("11:59:59");
+        Time horaFin = Time.valueOf("13:59:59");
+        assertTrue(recurso.getNombre().equals("fisica 8") && recurso.getUbicacion().equals("Biblioteca JAL Bloque G") && recurso.getTipo().equals("Sala") && recurso.getCapacidad() == 6 && recurso.getEstado().equals("Disponible") && recurso.getHoraInicio().equals(horaInicio) && recurso.getHoraFin().equals(horaFin) );
     }
+    
     /*
     Cuando se quiere consultar las listas de recursos puede tener cero recursos
     */
     @Test
     public void deberiaConsultarRecursos() throws BibliotecaException {
         List<Recurso> recursos = bibliotecaServices.consultarRecursos();
-        assertTrue(recursos.size()>0);
+        assertTrue(recursos.size()>=0);
     }
     
     /*
@@ -578,5 +709,18 @@ public class ServicesBibliotecaTest {
             assertTrue(numeroDespuesModificar==-1);
             System.out.println(BibliotecaException.RECURSO_NO_EXISTE);
         }
+    }
+    
+    /*
+    Cuando se quiere consultar las listas de recursos puede tener cero recursos
+    */
+    @Test
+    public void deberiaConsultarRecursosDisponibles() throws BibliotecaException {
+        List<Recurso> recursos = bibliotecaServices.consultarRecursosDisponibles();
+        if(recursos.size()>0){
+            Recurso recurso=recursos.get(0);
+            assertTrue(recurso.getEstado().equals("Disponible"));
+        }
+        assertTrue(recursos.size()>=0);
     }
 }

@@ -11,6 +11,8 @@
         <result property='tipo' column='tipo' />
         <result property='capacidad' column='capacidad' />
         <result property='estado' column='estado' />
+        <result property='horaInicio' column='inicioreserva' />
+        <result property='horaFin' column='finreserva' />
     </resultMap>
 
     <select id="consultarRecursos" resultMap="RecursoResult">
@@ -20,7 +22,9 @@
         r.ubicacion,
         r.tipo,
         r.capacidad,
-        r.estado
+        r.estado,
+        r.inicioreserva,
+        r.finreserva
         FROM
         Recurso as r
     </select>
@@ -32,15 +36,17 @@
         r.ubicacion,
         r.tipo,
         r.capacidad,
-        r.estado
+        r.estado,
+        r.inicioreserva,
+        r.finreserva
         FROM
         Recurso as r
         where r.id = #{id}
     </select>
 
     <insert id="addRecurso" parameterType="edu.eci.cvds.entities.Recurso">
-        insert into Recurso (nombre,ubicacion,tipo,capacidad,estado)
-        values (#{recurso.nombre},#{recurso.ubicacion},#{recurso.tipo},#{recurso.capacidad},#{recurso.estado})
+        insert into Recurso (nombre,ubicacion,tipo,capacidad,estado,inicioreserva,finreserva)
+        values (#{recurso.nombre},#{recurso.ubicacion},#{recurso.tipo},#{recurso.capacidad},#{recurso.estado},#{recurso.horaInicio},#{recurso.horaFin})
     </insert>
     
     <insert id="updateRecurso" parameterType="map">
@@ -49,5 +55,21 @@
         WHERE
         Recurso.id = #{recursoId}
     </insert>
-
+    
+    <select id="consultarRecursosDisponibles" resultMap="RecursoResult">
+        SELECT
+        r.id,
+        r.nombre,
+        r.ubicacion,
+        r.tipo,
+        r.capacidad,
+        r.estado,
+        r.inicioreserva,
+        r.finreserva
+        FROM
+        Recurso as r
+        WHERE
+        r.ESTADO = 'Disponible';
+    </select>
+   
 </mapper>

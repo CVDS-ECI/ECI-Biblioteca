@@ -1,5 +1,7 @@
 package edu.eci.cvds.entities;
 
+import java.sql.Time;
+
 
 public class Recurso {
 
@@ -11,23 +13,31 @@ public class Recurso {
     private String tipo;
     private int capacidad;
     private String estado;
+    private java.sql.Time horaInicio;
+    private java.sql.Time horaFin;
+    
+    
 
 
-
-    public Recurso(int id,String nombre, String ubicacion, String tipo, int capacidad, String estado) {
+    public Recurso(int id,String nombre, String ubicacion, String tipo, int capacidad, String estado, java.sql.Time horaInicio, java.sql.Time horaFin) {
         this.id = id;
         this.nombre = nombre;
         this.ubicacion = ubicacion;
         this.tipo = tipo;
         this.capacidad = capacidad;
         this.estado = estado;
+        this.horaInicio= horaInicio;
+        this.horaFin= horaFin;
+        
     }
-   public Recurso(String nombre, String ubicacion, String tipo, int capacidad, String estado) {
+   public Recurso(String nombre, String ubicacion, String tipo, int capacidad, String estado, java.sql.Time horaInicio, java.sql.Time horaFin) {
         this.nombre = nombre;
         this.ubicacion = ubicacion;
         this.tipo = tipo;
         this.capacidad = capacidad;
         this.estado = estado;
+        this.horaInicio= horaInicio;
+        this.horaFin= horaFin;
     }
 
     public String getNombre() {
@@ -37,6 +47,7 @@ public class Recurso {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    
 
     public String getUbicacion() {
         return ubicacion;
@@ -78,9 +89,25 @@ public class Recurso {
         this.estado = estado;
     }
 
+    public Time getHoraInicio() {
+        return horaInicio;
+    }
+
+    public void setHoraInicio(Time horaInicio) {
+        this.horaInicio = horaInicio;
+    }
+
+    public Time getHoraFin() {
+        return horaFin;
+    }
+
+    public void setHoraFin(Time horaFin) {
+        this.horaFin = horaFin;
+    }
+    
     @Override
     public String toString() {
         return "Element { id: " + id + ", nombre: " + nombre + ", ubicacion: " + ubicacion
-                + ", tipo: " + tipo + ", capacidad: " + capacidad + ", estado: " + estado + "}";
+                + ", tipo: " + tipo + ", capacidad: " + capacidad + ", estado: " + estado + ", horaInicio: " + horaInicio + ", horaFin: " + horaFin +"}";
     }
 }

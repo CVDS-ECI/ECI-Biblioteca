@@ -3,4 +3,4 @@ ALTER TABLE recurso ADD constraint CK_RECURSO_TIPO CHECK (tipo in ('Sala', 'Equi
 ALTER TABLE recurso ADD constraint CK_RECURSO_ESTADO CHECK (estado in ('Disponible', 'En Mantenimiento','No Disponible'));
 ALTER TABLE recurso ADD constraint CK_RECURSO_UBICACION CHECK (ubicacion in ('Biblioteca JAL Bloque B', 'Biblioteca JAL Bloque G'));
 ALTER TABLE recurso ADD constraint CK_RECURSO_NOMBRE CHECK (nombre not in (' ', ''));
-
+ALTER TABLE recurso ADD constraint CK_HORA CHECK (inicioreserva>finreserva);
