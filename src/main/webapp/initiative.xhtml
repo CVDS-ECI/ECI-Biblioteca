@@ -1,0 +1,200 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+<ui:composition template="/WEB-INF/include/template.xhtml">
+<ui:define name ="head">
+	<h:outputStylesheet name = "css/bootstrap-tagsinput.css" />
+	<h:outputStylesheet name = "css/initiative.css" />
+	<h:outputStylesheet name = "dataTable/css/dataTables.bootstrap.min.css" />
+</ui:define>
+<ui:define name = "body">
+	<br></br>
+	<f:metadata>
+	    <f:viewParam name="initiative" value="#{dInitiativeBean.initiative}" />
+	</f:metadata>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-9">
+				<h1>Iniciativa "#{dInitiativeBean.searchInitiativeById(dInitiativeBean.initiative).name}"</h1>
+				<br></br>
+				<p> La iniciativa fue propuesta por <em>#{dInitiativeBean.searchInitiativeById(dInitiativeBean.initiative).user.name} #{dInitiativeBean.searchInitiativeById(dInitiativeBean.initiative).user.lastName}</em> el #{dInitiativeBean.searchInitiativeById(dInitiativeBean.initiative).dateS}, teniendo en cuenta la información de esta:
+				<br></br>
+				<b><em>"#{dInitiativeBean.searchInitiativeById(dInitiativeBean.initiative).description}"</em></b>
+				<br></br>	
+	 			Se revisara y estudiará de forma tal que se pueda solucionar lo que se esta presentado o se vera la posiblidad de poder añadir lo que se solicita si esto es lo que se desea.
+	 			<br></br>
+				Última fecha de modificación: #{dInitiativeBean.searchInitiativeById(dInitiativeBean.initiative).dateModify}.
+				</p>
+
+			</div>
+
+			<div class="col-xs-3">
+				<br></br><br></br>
+				<div class="panel panel-info">
+				  <div class="panel-heading">
+					<h3 class="panel-title">Deja tu comentario</h3>
+				  </div>
+				  <div class="panel-body">
+					<p class="text-justify">Los comentarios son muy importantes para nosotros, nos permiten mejorar y seguir consturyendo proyectos increibles, si tienes algo que decir no dudes en hacerlo</p>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addComment">Comentar</button>
+				  </div>
+				</div>
+			</div>
+			<div class="col-xs-9"><h2>Iniciativas que tambien te puede interesar</h2></div>
+			<div class="col-xs-9">		
+				<table id="relatedTable" class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th>Nombre</th>
+							<th>Proponente</th>
+							<th>Estado</th>
+							<th>Votos</th>
+						</tr>
+					</thead>
+					<tbody>
+						<ui:repeat var="initiative" value="#{dInitiativeBean.getRelated()}">
+						<tr>
+							<td>#{initiative.name}</td>
+							<td>#{initiative.user.name} #{initiative.user.lastName}</td>
+							<td>#{initiative.status.status}</td>
+							<td>
+								<h:outputText var="votes" value="#{dInitiativeBean.loadVotes(initiative.id)}">
+									<b><em>"#{votes}"</em></b>
+								</h:outputText>
+							</td>
+						</tr>
+						</ui:repeat>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-xs-3">
+
+				<div class="panel panel-info">
+				  <div class="panel-heading">
+					<h3 class="panel-title">¿Te gusta?</h3>
+				  </div>
+				  <div class="panel-body">
+					<p class="text-justify">Si te gusta esta iniciativa y estas dispuesto a trabajar por el informanos, nos gustaria que hicieras parte de el para hacerlo realidad</p>
+					<h:form id="voteForm">
+
+						<p:commandButton value = "Like"
+							actionListener="#{dInitiativeBean.addVote()}" id="botonVoto" styleClass="btn btn-primary" rendered="#{not dInitiativeBean.hasVoted()}" update="voteForm">
+							<f:param name="initiative" value="#{dInitiativeBean.initiative}" />
+						</p:commandButton>
+						<p:commandButton value = "DisLike"  
+							actionListener="#{dInitiativeBean.deleteVote()}" id="botonDejarVotar" styleClass="btn btn-default" rendered="#{dInitiativeBean.hasVoted()}" update="voteForm">
+							<f:param name="initiative" value="#{dInitiativeBean.initiative}"/>
+						</p:commandButton>
+						<h:outputScript name = "js/buttons.js" />
+					</h:form>
+				  </div>
+				</div>
+
+				<div class="panel panel-info">
+				  <div class="panel-heading">
+					<h3 class="panel-title">¿Te interesa?</h3>
+				  </div>
+				  <div class="panel-body">
+					<p class="text-justify">Si te interesa este proyecto y estas dispuesto a trabajar por el informanos, nos gustaria que hicieras parte de el para hacerlo realidad</p>
+					<h:form id="interesForm">
+						<button type="button" class="btn btn-primary" style="margin-right: 2%" data-toggle="modal" data-target="#Interest">
+							Otros interesados
+						</button>
+						<p:commandButton value = "Interesado"  
+							actionListener="#{dInitiativeBean.insertInterested()}" update=":userInterested interesForm" id="botonInteres" styleClass="btn btn-primary" rendered="#{not dInitiativeBean.isInterested()}">
+							<f:param name="initiative" value="#{dInitiativeBean.initiative}" />
+						</p:commandButton>
+						<p:commandButton value = "Dejar Interes"  
+							actionListener="#{dInitiativeBean.deleteInterested()}" update=":userInterested interesForm" id="botonDejarInteres" styleClass="btn btn-default" rendered="#{dInitiativeBean.isInterested()}">
+							<f:param name="initiative" value="#{dInitiativeBean.initiative}" />
+						</p:commandButton>
+					</h:form>
+				  </div>
+				</div>
+			</div>	
+		</div>
+	</div>
+	
+	
+	<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="addComment">
+	  <div class="modal-dialog modal-lg" role="document">
+	    <div class="modal-content">
+	     <div class= "modal-header">
+	     	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	     	<h4>Agregue Su comentario</h4>
+	     </div>
+	     <div class= "modal-body">
+		 				
+	     	<h:form id="comment_form">
+			  <p:messages autoUpdate="true" />
+			  <div class="form-group">
+			  	<label for="Comment1">Comentario</label>
+			   	<p:inputTextarea id="comment" binding="#{comment}" styleClass="form-control"/>
+			  </div>
+			  <p:commandButton value = "Comentar"
+				actionListener="#{dInitiativeBean.insertComment(comment.value)}" id="boton"  update=":comment_table" styleClass="btn btn-success">
+				<f:param name="initiative" value="#{dInitiativeBean.initiative}" />
+			  </p:commandButton>
+			</h:form>
+			<br></br>
+		 	<h:panelGroup id="comment_table">
+				<ui:repeat var="comment" value="#{dInitiativeBean.getComments()}">
+					<div class="panel panel-info">
+					  <div class="panel-heading">
+						<h4 class="panel-title">#{comment.user.name} #{comment.user.lastName}, #{comment.dateS}</h4>
+					  </div>
+					  <div class="panel-body">
+						<p class="text-justyfy">#{comment.comment}</p>
+					  </div>
+					</div>
+				</ui:repeat>
+			</h:panelGroup>
+	     </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="Interest">
+	  <div class="modal-dialog modal-lg" role="document">
+	    <div class="modal-content">
+	     <div class= "modal-header">
+	     	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	     	<h4>usuarios Interesados</h4>
+	     </div>
+	     <div class= "modal-body">
+			<h:panelGroup id="userInterested">
+				<table id="interestedTable" class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th>Nombre</th>
+							<th>Email</th>
+						</tr>
+					</thead>
+					<tbody>
+						<ui:repeat var="user" value="#{dInitiativeBean.getInterested()}">
+						<tr>
+							<td>#{user.name} #{user.lastName}</td>
+							<td>#{user.email}</td>
+						</tr>
+						</ui:repeat>
+					</tbody>
+				</table>
+			</h:panelGroup>
+	     </div>
+	    </div>
+	  </div>
+	</div>
+
+ 	
+	<h:outputScript name = "js/bootstrap-tagsinput.js" />
+	<h:outputScript name = "dataTable/js/jquery.dataTables.min.js" />
+	<h:outputScript name = "dataTable/js/dataTables.bootstrap.min.js" />
+	<h:outputScript name = "js/initiative.js" />
+</ui:define>
+</ui:composition>
+</html>

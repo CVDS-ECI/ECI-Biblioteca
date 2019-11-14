@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+<ui:composition template="/WEB-INF/include/template.xhtml">
+<ui:define name ="head">
+	<h:outputStylesheet name = "css/bootstrap-tagsinput.css" />
+	<h:outputStylesheet name = "css/initiative.css" />
+	<h:outputStylesheet name = "dataTable/css/dataTables.bootstrap.min.css" />
+</ui:define>
+<ui:define name = "body">
+	<div class="col-xs-12">
+		<h1>Gráficas de las iniciativas según areas a las que pertenecen</h1>
+		<br></br><br></br>
+		<div class="col-xs-6"> <p:chart type="bar" model="#{chartBean.barModel}"  /></div>
+		<div class="col-xs-1"></div>
+		<div class="col-xs-5">
+			<table id="areaTable" class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th>Area</th>
+						<th>Cantidad</th>
+					</tr>
+				</thead>
+				<tbody>
+					<ui:repeat var="area" value="#{chartBean.area()}">
+					<tr>
+						<td>#{area.area}</td>
+						<td>#{area.cantidad}</td>
+					</tr>
+					</ui:repeat>
+				</tbody>
+			</table>
+		</div>
+		
+	</div>
+	
+	<div class="col-xs-12">
+		<h1>Gráficas de las iniciativas según estado en el que se encuentra</h1>
+		<br></br><br></br>
+		<div class="col-xs-6"> <p:chart type="bar" model="#{chartBean.barStatus}"/></div>
+		<div class="col-xs-1"></div>
+		<div class="col-xs-5">
+			<table id="statusTable" class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th>Estado</th>
+						<th>Cantidad</th>
+					</tr>
+				</thead>
+				<tbody>
+					<ui:repeat var="status" value="#{chartBean.status()}">
+					<tr>
+						<td>#{status.status}</td>
+						<td>#{status.cantStatus}</td>
+					</tr>
+					</ui:repeat>
+				</tbody>
+			</table>
+		</div>
+		
+	</div>
+	<!--https://www.primefaces.org/showcase/ui/chart/bar.xhtml-->
+ 	
+	<h:outputScript name = "js/bootstrap-tagsinput.js" />
+
+	<h:outputScript name = "dataTable/js/jquery.dataTables.min.js" />
+	<h:outputScript name = "dataTable/js/dataTables.bootstrap.min.js" />
+</ui:define>
+</ui:composition>
+</html>

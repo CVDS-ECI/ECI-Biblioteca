@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+<ui:composition template="/WEB-INF/include/template.xhtml">
+<ui:define name ="head">
+	<h:outputStylesheet name = "css/bootstrap-tagsinput.css" />
+	<h:outputStylesheet name = "css/initiative.css" />
+	<h:outputStylesheet name = "dataTable/css/dataTables.bootstrap.min.css" />
+</ui:define>
+<ui:define name = "body">
+	<h:panelGroup layout="block" rendered="#{not userBean.isPublic()}">
+		<div class="col-xs-12">
+			<h1>Mis iniciativas
+				<h:panelGroup layout="block" rendered="#{userBean.islogged()}">
+				 	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#initiativeModal">Agregar</button>
+					 <br/><br/>
+				</h:panelGroup>
+			</h1>
+			<h:panelGroup id="myIni">
+				<table id="myInitiativeTable" class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th>Nombre</th>
+							<th>Area</th>
+							<th>Estado</th>
+							<th>Descripción</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<ui:repeat var="item" value="#{initiativeBean.myInitiatives()}">
+						<tr>
+							<td>#{item.name}</td>
+							<td>#{item.area}</td>
+							<td>#{item.status.status}</td>
+							<td>#{item.description}</td>
+							<td>
+								<h:panelGroup layout="block" rendered="#{item.status.status.equals('En espera revision')}">
+									<button type="button" data-id="#{item.id}" class="modify-Initiative btn btn-primary" data-toggle="modal" data-target="#modifyInitiative">Modificar</button>
+								</h:panelGroup>
+								<h:panelGroup layout="block" rendered="#{not item.status.status.equals('En espera revision')}">
+									<div data-toggle="tooltip" title="La inciativa esta en otro proceso y ya no se puede modificar" style="cursor: not-allowed;">
+										<button type="button" data-id="#{item.id}" class="modify-Initiative btn btn-primary"  disabled="">Modificar</button>
+									</div>
+								</h:panelGroup>							
+
+							</td>
+						</tr>
+						</ui:repeat>
+					</tbody>
+				</table>	
+				<h:outputScript name = "dataTable/js/jquery.dataTables.min.js" />
+				<h:outputScript name = "dataTable/js/dataTables.bootstrap.min.js" />
+				<h:outputScript name = "js/refresh.js" />
+			</h:panelGroup>
+		</div>
+
+			<div id="modifyInitiative" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" >
+			  <div class="modal-dialog modal-lg" role="document">
+			    <div class="modal-content">
+			     <div class= "modal-header">
+			     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			     	<h4>Modificando Iniciativa</h4>
+			     </div>
+			     <div class= "modal-body">
+			     	<h:form id= "InitiativeStatus">
+			     	 <p:messages autoUpdate="true" />
+		     		  <input type="text" name="inStatus" id="inStatus" value="" style="display: none;"/>	  
+					  <p:inputText id="inStatus" binding="#{inStatus}" type="hidden"/>
+					  <div class="form-group">
+					  	<label for="nombreN">Nuevo Nombre</label>
+					   	<p:inputText id="nombre" binding="#{nombre}" styleClass="form-control" required="true"/>
+					  </div>
+					  <div class="form-group">
+					  	<label for="area">Area</label>
+					   	<p:inputText id="areaIn" binding="#{areaIn}" styleClass="form-control" required="true"/>
+					  </div>
+					  <div class="form-group">
+					  	<label for="Comment1">Descripción</label>
+					   	<p:inputTextarea id="description" binding="#{description}" styleClass="form-control" required="true"/>
+					  </div>
+					  <p:commandButton value = "Modificar"  
+						actionListener="#{initiativeBean.modifyAll(inStatus.value, areaIn.value, description.value,nombre.value)}" id="boton" styleClass="btn btn-success" update=":myIni">
+					  </p:commandButton>
+					</h:form>
+			     </div>
+			    </div>
+			  </div>
+			</div>
+		
+		<div id="initiativeModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" >
+		  <div class="modal-dialog modal-lg" role="document">
+		    <div class="modal-content">
+		     <div class= "modal-header">
+		     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		     	<h4>Agregando iniciativa</h4>
+		     </div>
+		     <div class= "modal-body">
+		     	<h:form id="addInitiative">
+		     	  <p:messages autoUpdate="true" />
+		     	  <div class="form-group">
+				    <label for="Nombre">Nombre</label>
+				    <p:inputText id="nam1" binding="#{nameIni}" styleClass="form-control" required="true"/>
+				  </div>
+				  <div class="form-group">
+				    <label for="Email1">Descripcion</label>
+				    <p:inputTextarea id="desc2" binding="#{descripcion}" styleClass="form-control" required="true" />
+				  </div>
+				  <div class="form-group">
+				    <label for="NuevoRol">Area</label>
+				    <p:inputText id="desc" binding="#{area}" styleClass="form-control" required="true"/>
+				  </div>
+				  <div class="form-group" id="cont">
+				  	<input id="keywordInsert" type="text" value="Construccion" data-role="tagsinput" />
+					<p:inputText id="keywordIn" binding="#{keywordIn}" type="hidden" required="true"/>
+					<br></br>
+					<br></br>
+					<p:commandButton value = "Agregar"  
+						actionListener="#{initiativeBean.addInitiative(descripcion.value,area.value, keywordIn.value, nameIni.value)}" id="boton" styleClass="btn btn-primary" update=":myIni">
+				  	</p:commandButton>
+				  </div>
+				</h:form>
+		     </div>
+		    </div>
+		  </div>
+		</div>
+
+		<h:outputScript name = "js/bootstrap-tagsinput.js" />
+		<h:outputScript name = "js/myInitiative.js" />
+		<h:outputScript name = "dataTable/js/jquery.dataTables.min.js" />
+		<h:outputScript name = "dataTable/js/dataTables.bootstrap.min.js" />
+	</h:panelGroup>	
+	<h:panelGroup layout="block" rendered="#{userBean.isPublic()}">
+		<br></br>
+		<div class="col-xs-12 text-center" id="notFound">
+			<div style="font-size:24px;">
+				<i class="far fa-grin-beam-sweat fa-10x"></i>	
+			</div>
+			<div class="col-xs-12"> <h2>Aquí no hay nada de nada.</h2> </div>
+			<div class="col-xs-4 col-xs-offset-4"> <span>No sabemos qué estabas buscando, pero ya no se encuentra en esta dirección, a menos que se tratara de esta página de error. En ese caso, ¡felicidades! No cabe duda de que la has encontrado.</span> </div>
+		</div>
+	</h:panelGroup>		
+</ui:define>
+</ui:composition>
+</html>
