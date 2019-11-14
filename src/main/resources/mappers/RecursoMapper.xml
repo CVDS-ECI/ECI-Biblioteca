@@ -55,5 +55,21 @@
         WHERE
         Recurso.id = #{recursoId}
     </insert>
-
+    
+    <select id="consultarRecursosDisponibles" resultMap="RecursoResult">
+        SELECT
+        r.id,
+        r.nombre,
+        r.ubicacion,
+        r.tipo,
+        r.capacidad,
+        r.estado,
+        r.inicioreserva,
+        r.finreserva
+        FROM
+        Recurso as r
+        WHERE
+        r.ESTADO = 'Disponible';
+    </select>
+   
 </mapper>

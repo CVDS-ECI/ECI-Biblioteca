@@ -9,6 +9,8 @@ public interface RecursoMapper {
     
     public List<Recurso> consultarRecursos();
     
+    public List<Recurso> consultarRecursosDisponibles();
+    
     public void addRecurso(@Param("recurso") Recurso recurso);
     
     public void updateRecurso(@Param("recursoId") int recursoId, @Param("nuevoEstado") String nuevoEstado);

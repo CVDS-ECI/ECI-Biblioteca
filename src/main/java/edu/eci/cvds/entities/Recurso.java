@@ -108,6 +108,6 @@ public class Recurso {
     @Override
     public String toString() {
         return "Element { id: " + id + ", nombre: " + nombre + ", ubicacion: " + ubicacion
-                + ", tipo: " + tipo + ", capacidad: " + capacidad + ", estado: " + estado + "}";
+                + ", tipo: " + tipo + ", capacidad: " + capacidad + ", estado: " + estado + ", horaInicio: " + horaInicio + ", horaFin: " + horaFin +"}";
     }
 }
