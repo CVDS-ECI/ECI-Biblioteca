@@ -10,5 +10,5 @@ package edu.eci.cvds.entities;
  * @author 2139687
  */
 public enum EstadoRecurso {
-    Seleccione,Disponible,Mantenimiento,NoDisponible
+    Seleccione, Disponible, En_Mantenimiento, No_Disponible
 }
