@@ -4,7 +4,7 @@
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
-	<listener>
+    <listener>
         <listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
     </listener>
 
@@ -16,6 +16,10 @@
         <filter-name>securityFilter</filter-name>
         <filter-class>org.apache.shiro.web.servlet.IniShiroFilter</filter-class>
     </filter>
+    <mime-mapping>  
+        <extension>woff2</extension>  
+        <mime-type>application/x-font-woff2</mime-type>  
+    </mime-mapping>
     <filter-mapping>
         <filter-name>ShiroFilter</filter-name>
         <url-pattern>/*</url-pattern>
@@ -32,10 +36,10 @@
         <dispatcher>INCLUDE</dispatcher>
         <dispatcher>ERROR</dispatcher>
     </filter-mapping>
-	<context-param>
-		<param-name>primefaces.THEME</param-name>
-		<param-value>none</param-value>
-	</context-param>
+    <context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>none</param-value>
+    </context-param>
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -44,7 +48,7 @@
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
-		<url-pattern>/javax.faces.resource/*</url-pattern>
+        <url-pattern>/javax.faces.resource/*</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -52,9 +56,9 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/index.xhtml</welcome-file>
+        <welcome-file>faces/login.xhtml</welcome-file>
     </welcome-file-list>
-	<listener>
-		<listener-class>edu.eci.cvds.guice.GuiceContextListener</listener-class>
-	</listener>
+    <listener>
+        <listener-class>edu.eci.cvds.guice.GuiceContextListener</listener-class>
+    </listener>
 </web-app>

@@ -48,9 +48,10 @@ public class ShiroBean implements Serializable {
         try {
             subject.login(token);
             if (subject.hasRole("Administrador")) {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/admin/paginas/recursos.xhtml");
-            } else {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("newxhtml.xhtml");
+                FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/adminInicio.xhtml");
+            } else if (subject.hasRole("Comunidad")) {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/recursosDisponibles.xhtml");
+
             }
         } catch (UnknownAccountException ex) {
             facesError("Unknown account");
