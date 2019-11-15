@@ -54,7 +54,7 @@
 
                                         <button type="button" data-id="#{recurso.id}"
                                             class="modify-Initiative btn btn-primary" data-toggle="modal"
-                                            data-target="#cambiarEstado">Reservar recurso</button>
+                                            data-target="#reservarRecurso">Reservar recurso</button>
                                         <br></br>
 
                                     </center>
@@ -76,6 +76,64 @@
                 <h:outputScript name="js/refresh.js" />
             </h:panelGroup>
             <br /><br />
+
+            <div class="modal fade" id="reservarRecurso" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <h:form>
+
+                            <div class="modal-header">
+                                <br />
+                                <br />
+                                <br />
+                                <h1 class="modal-title" id="exampleModalLongTitle">Realiza una reserva:</h1>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <div class="modal-body">
+
+                                <label class="bmd-label-floating">Fecha inicio</label>
+                                <div class="input-group date">
+                                    <p:inputText class="form-control" id="FechaInicio" type="String"
+                                        binding="#{fechaInicio}" placeholder="DD/MM/AAAA" />
+                                </div>
+
+                                <br />
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Duración</label>
+                                    <h:selectOneMenu value="#{comunidadBean.duracionSeleccionada}" class="form-control">
+                                        <f:selectItem itemLabel="Seleccione la duración:" itemValue="" />
+                                        <f:selectItem itemLabel="1 hora" itemValue="1 hora" />
+                                        <f:selectItem itemLabel="2 horas" itemValue="2 horas" />
+                                    </h:selectOneMenu>
+                                </div>
+
+                                <br />
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Recurrencia</label>
+                                    <h:selectOneMenu value="#{comunidadBean.recurrenciaSeleccionada}" class="form-control">
+                                        <f:selectItem itemLabel="Seleccione la recurrencia:" itemValue="" />
+                                        <f:selectItem itemLabel="Diaria" itemValue="Diaria" />
+                                        <f:selectItem itemLabel="Semanal" itemValue="Semanal" />
+                                        <f:selectItem itemLabel="Mensual" itemValue="Mensual" />
+                                    </h:selectOneMenu>
+                                </div>
+
+                            </div>
+
+                            <div class="modal-footer">
+                                <p:commandButton value="Reservar" id="boton" styleClass="btn btn-success">
+                                </p:commandButton>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            </div>
+
+                        </h:form>
+                    </div>
+                </div>
+            </div>
 
             <div class="modal fade" id="cambiarEstadoo" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
