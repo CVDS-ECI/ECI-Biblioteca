@@ -291,17 +291,13 @@
                     search: "_INPUT_",
                     searchPlaceholder: "Search records",
                 }
-
             });
-
             var table = $('#datatables').DataTable();
-
             table.on('click', '.remove', function (e) {
                 $tr = $(this).closest('tr');
                 table.row($tr).remove().draw();
                 e.preventDefault();
             });
-
             $('.card .material-datatables label').addClass('form-group');
         });
 

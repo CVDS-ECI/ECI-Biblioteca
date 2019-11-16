@@ -25,7 +25,12 @@ import javax.faces.bean.SessionScoped;
 public class ComunidadBean extends BasePageBean{
     @Inject
     private BibliotecaServices serviciosBiblioteca;
-    
+
+    private String duracionSeleccionada;
+    private String recurrenciaSeleccionada;
+
+
+
     /**
      * Consulta todos los recursos. (Hecho para el administador)
      *
@@ -41,5 +46,31 @@ public class ComunidadBean extends BasePageBean{
         return recursos;
     }
 
+    private void realizarReserva() {
+
+    }
+    public void realizarReserva(String fechaInicio){
+        try{
+            //serviciosBiblioteca.realizarReserva();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public String getDuracionSeleccionada() {
+        return duracionSeleccionada;
+    }
+
+    public void setDuracionSeleccionada(String duracionSeleccionada) {
+        this.duracionSeleccionada = duracionSeleccionada;
+    }
+
+    public String getRecurrenciaSeleccionada() {
+        return recurrenciaSeleccionada;
+    }
+
+    public void setRecurrenciaSeleccionada(String recurrenciaSeleccionada) {
+        this.recurrenciaSeleccionada = recurrenciaSeleccionada;
+    }
 }
 

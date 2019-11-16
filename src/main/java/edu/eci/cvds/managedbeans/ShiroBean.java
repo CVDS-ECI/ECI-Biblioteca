@@ -36,7 +36,7 @@ public class ShiroBean implements Serializable {
     private String username;
     private String password;
     private Boolean rememberMe = false;
-    private String redirectUrl = "/faces/login.xhtml";
+    private String redirectUrl = "/faces/index.html";
     Subject subject;
 
     /**
@@ -48,9 +48,10 @@ public class ShiroBean implements Serializable {
         try {
             subject.login(token);
             if (subject.hasRole("Administrador")) {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/admin/paginas/recursos.xhtml");
-            } else {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("newxhtml.xhtml");
+                FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/adminInicio.xhtml");
+            } else if (subject.hasRole("Usuario")) {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/comunidadInicio.xhtml");
+
             }
         } catch (UnknownAccountException ex) {
             facesError("Unknown account");

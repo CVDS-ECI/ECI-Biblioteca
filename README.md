@@ -4,13 +4,13 @@
 
 ### Integrantes
 
-*  Juan Sebastián Frásica G
-*  Andrés Felipe Marcelo
-*  Santiago Rubiano
-*  David Vargas
++  Juan-sebastián-Frásica-G
++  Andrés-Felipe-Marcelo
++  Santiago-Rubiano
++  David-Vargas
 
 ### Profesor
-* Julián Velasco
++ Julián-Velasco
 
 ## Descripción del producto
 
@@ -19,7 +19,7 @@
 ### Modelo E-R (Entidad-Relación)
 ![ER](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/EntidadRelacion.png)
 
-### Diagrama de paquetes
+### Diagrama de clases
 ![Diagrama-de-clases-sprint-1-y-2](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Diagrama_de_clases.png)
 
 ### Descripción de la arquitectura y tecnologías utilizadas
@@ -41,7 +41,7 @@ Aquí se usaron tecnologías:
 Se usó un motor de bases de datos **PostgreSQL** y la herramienta **myBatis**, la cual se encarga de la persistencia (mappea sentencias SQL y procedimientos almacenados con objetos a partir de ficheros XML o anotaciones).
 
 ### Enlace de la aplicación en Heroku
-http://ecibrary.herokuapp.com/faces/login.xhtml
+http://ecibrary.herokuapp.com/
 
 ### Integración continua
 [![CircleCI](https://circleci.com/gh/CVDS-ECI/ECI-Biblioteca.svg?style=svg)](https://circleci.com/gh/CVDS-ECI/ECI-Biblioteca)

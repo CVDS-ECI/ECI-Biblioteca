@@ -1,0 +1,49 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+	<nav class="aw-menu">
+		<ul>
+			<li>
+				<h:link><i class="fa  fa-fw  fa-home"></i>Menú principal</h:link>
+			</li>
+
+			<li>
+				<h:link styleClass="aw-item-link"><i class="fa  fa-fw  fa-user"></i>Perfil<i
+						class="fa fa-fw  fa-angle-left pull-right"></i></h:link>
+				<ul class="aw-menu-tree">
+
+					<li class="subitem">
+						<a value="login yas" href="comunidadInicio.xhtml" styleClass="aw-item-link">
+							<i class="fa fa-archive"></i>
+							Consultar recursos disponibles
+						</a>
+					</li>
+
+					<li class="subitem">
+						<a value="login yas" href="comunidadInicio.xhtml" styleClass="aw-item-link">
+							<i class="fa  fa-fw  fa-users"></i>
+							Mis reservas
+						</a>
+					</li>
+
+				</ul>
+			</li>
+
+			<li>
+				<h:link styleClass="aw-item-link"><i class="fa  fa-fw  fa-cog"></i>Ajustes <i
+						class="fa fa-fw  fa-angle-left pull-right"></i></h:link>
+				<ul class="aw-menu-tree">
+					<li class="subitem">
+						<h:form id="frmm">
+							<h:commandLink id="logoutButton" action="#{shiroBean.doLogOut()}" styleClass="aw-item-link">
+								<span class="glyphicon glyphicon-log-out" style="color: black"></span><span
+									style="color: black"> Cerrar sesión</span>
+							</h:commandLink>
+						</h:form>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+
+</ui:composition>
