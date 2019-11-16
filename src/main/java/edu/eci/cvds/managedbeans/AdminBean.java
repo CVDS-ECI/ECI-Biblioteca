@@ -34,7 +34,10 @@ public class AdminBean extends BasePageBean {
      * administador)
      *
      * @param nombre Nombre del recurso
+     * @param ubicacion Ubicación del recurso
+     * @param tipo Tipo del recurso
      * @param capacidad Capacidad del recurso
+     * @param estado Estado del recurso (Disponible/Ocupado/En mantenimiento)
      */
     public void registrarRecurso(String nombre, int capacidad, String horaInicio, String horaFin) {
         try {
@@ -82,6 +85,10 @@ public class AdminBean extends BasePageBean {
         return recurso;
     }
 
+    public void hola() {
+        System.out.println("HOLALLALALLALALLALALLA");
+        System.out.println(tipoDeUbicacionSeleccionada);
+    }
 
     public void cambiarEstadoRecurso(int id, String estado) {
         try {
@@ -89,7 +96,7 @@ public class AdminBean extends BasePageBean {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "SELECCIONE UNO ESTADO!!!", null));
                 
             } else {
-                System.out.println("El nuevo estado ingresado es: " + estado);
+                System.err.println(estado);
                 serviciosBiblioteca.updateRecurso(id, estado);
             }
 
