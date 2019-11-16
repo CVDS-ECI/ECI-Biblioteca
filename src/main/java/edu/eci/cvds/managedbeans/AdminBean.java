@@ -1,6 +1,7 @@
 package edu.eci.cvds.managedbeans;
 
 import com.google.inject.Inject;
+import edu.eci.cvds.entities.EstadoRecurso;
 import edu.eci.cvds.entities.Recurso;
 import edu.eci.cvds.services.BibliotecaException;
 import edu.eci.cvds.services.BibliotecaServices;
@@ -11,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 @ManagedBean(name = "AdminBean", eager = true)
 @SessionScoped
@@ -40,11 +43,15 @@ public class AdminBean extends BasePageBean {
         try {
             java.sql.Time ini = java.sql.Time.valueOf(horaInicio);
             java.sql.Time fin = java.sql.Time.valueOf(horaFin);
-            
             serviciosBiblioteca.registrarRecurso(new Recurso(nombre, tipoDeUbicacionSeleccionada, tipoDeRecursoSeleccionado, capacidad, tipoDeEstadoSeleccionado, ini, fin));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO , "Recurso fue registrado satisfactoriamente", null));
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public EstadoRecurso[] getEstados() {
+        return EstadoRecurso.values();
     }
 
     /**
@@ -77,11 +84,23 @@ public class AdminBean extends BasePageBean {
         }
         return recurso;
     }
-    
-    public void cambiarEstadoRecurso(int id){
+
+    public void hola() {
+        System.out.println("HOLALLALALLALALLALALLA");
+        System.out.println(tipoDeUbicacionSeleccionada);
+    }
+
+    public void cambiarEstadoRecurso(int id, String estado) {
         try {
-            System.err.println(tipoDeEstadoSeleccionado2);
-            serviciosBiblioteca.updateRecurso(id, tipoDeEstadoSeleccionado2);
+            if (estado== "Seleccione" || estado == null) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "SELECCIONE UNO ESTADO!!!", null));
+                
+            } else {
+                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "nao funciona!!!", null));
+                System.err.println(estado);
+                serviciosBiblioteca.updateRecurso(id, estado);
+            }
+
         } catch (BibliotecaException ex) {
             Logger.getLogger(AdminBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -134,6 +153,7 @@ public class AdminBean extends BasePageBean {
     public void setTipoDeUbicacionSeleccionada(String tipoDeUbicacionSeleccionada) {
         this.tipoDeUbicacionSeleccionada = tipoDeUbicacionSeleccionada;
     }
+
     public String getTipoDeEstadoSeleccionado2() {
         return tipoDeEstadoSeleccionado2;
     }

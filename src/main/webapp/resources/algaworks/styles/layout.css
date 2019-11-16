@@ -7,7 +7,7 @@
     left: 0;
     min-height: 100px;
     z-index: 9999;
-    background-color: #a5182e;
+    background-color: #06AB40;
 }
 
 .aw-topbar>img {
@@ -50,7 +50,7 @@
 
 .aw-content {
     padding: 0 15px;
-    margin-top: 50px;
+    margin-top: 100px;
     transition: margin-left 0.5s;
 }
 
