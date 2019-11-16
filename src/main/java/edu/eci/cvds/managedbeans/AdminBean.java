@@ -43,8 +43,8 @@ public class AdminBean extends BasePageBean {
         try {
             java.sql.Time ini = java.sql.Time.valueOf(horaInicio);
             java.sql.Time fin = java.sql.Time.valueOf(horaFin);
-
             serviciosBiblioteca.registrarRecurso(new Recurso(nombre, tipoDeUbicacionSeleccionada, tipoDeRecursoSeleccionado, capacidad, tipoDeEstadoSeleccionado, ini, fin));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO , "Recurso fue registrado satisfactoriamente", null));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -96,6 +96,7 @@ public class AdminBean extends BasePageBean {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "SELECCIONE UNO ESTADO!!!", null));
                 
             } else {
+                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "nao funciona!!!", null));
                 System.err.println(estado);
                 serviciosBiblioteca.updateRecurso(id, estado);
             }
