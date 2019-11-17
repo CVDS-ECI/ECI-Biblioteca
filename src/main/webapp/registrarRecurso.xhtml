@@ -2,161 +2,154 @@
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf">
+    xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf">
 
-    <ui:composition template="/WEB-INF/include/templateAdmin.xhtml">
-        <ui:define name="head">
-            <h:outputStylesheet name="css/bootstrap-tagsinput.css" />
-            <h:outputStylesheet name="css/initiative.css" />
-            <h:outputStylesheet name="dataTable/css/dataTables.bootstrap.min.css" />
-            <script type="text/javascript">
-                function conf()
-                {
-                    var con = confirm("Do you want to submit for sure?");
-                    location.reload();
-                }
-            </script>
-        </ui:define>
-        <ui:define name="content">
-            <h:form id="recurso_form">
-                <br/>
-                <h1>Registar un recurso:</h1>
-                <br/>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="bmd-label-floating">Nombre</label>
-                            <p:inputText class="form-control" id="Nombre" type="String" binding="#{nombre}" />
-                        </div>
+<ui:composition template="/WEB-INF/include/templateAdmin.xhtml">
+    <ui:define name="head">
+        <h:outputStylesheet name="css/bootstrap-tagsinput.css" />
+        <h:outputStylesheet name="css/initiative.css" />
+        <h:outputStylesheet name="dataTable/css/dataTables.bootstrap.min.css" />
+    </ui:define>
+    <ui:define name="content">
+        <h:form id="recurso_form">
+            <br/>
+            <h1>Registar un recurso:</h1>
+            <br/>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Nombre</label>
+                        <p:inputText class="form-control" id="Nombre" type="String" binding="#{nombre}" />
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="bmd-label-floating">Capacidad</label>
-                            <p:inputText type="number" class="form-control" id="Capacidad" binding="#{capacidad}" />
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Capacidad</label>
+                        <p:inputText type="number" class="form-control" id="Capacidad" binding="#{capacidad}" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Ubicacion</label>
+                        <h:selectOneMenu value="#{AdminBean.tipoDeUbicacionSeleccionada}" class="form-control">
+                            <f:selectItems value="#{AdminBean.getTiposDeUbicacion()}" />
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Tipo</label>
+
+                        <h:selectOneMenu value="#{AdminBean.tipoDeRecursoSeleccionado}" class="form-control">
+                            <f:selectItems value="#{AdminBean.getTiposDeRecursos()}" />
+                        </h:selectOneMenu>
+
+                        <!-- ESTE SIRVEEEE
+                                        <h:selectOneRadio value="#{AdminBean.tipoDeRecursoSeleccionado}" layout="responsive" columns="4">
+                                            <f:selectItems value="#{AdminBean.getTiposDeRecursos()}"  />
+                                        </h:selectOneRadio> -->
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Estado</label>
+
+                        <h:selectOneMenu value="#{AdminBean.tipoDeEstadoSeleccionado}" class="form-control">
+                            <f:selectItems value="#{AdminBean.getEstados()}" />
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Fecha inicio</label>
+                        <div class="input-group date">
+                            <p:inputText class="form-control" id="FechaInicio" type="String" binding="#{fechaInicio}"
+                                value="0:00:00" placeholder="0:00:00" />
                         </div>
+
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="bmd-label-floating">Ubicacion</label>
-                            <h:selectOneMenu value="#{AdminBean.tipoDeUbicacionSeleccionada}" class="form-control">
-                                <f:selectItems value="#{AdminBean.getTiposDeUbicacion()}" />
-                            </h:selectOneMenu>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="bmd-label-floating">Tipo</label>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Fecha fin</label>
+                        <div class="input-group date">
+                            <p:inputText class="form-control" id="FechaFin" type="String" binding="#{fechaFin}"
+                                value="24:00:00" placeholder="24:00:00" />
 
-                            <h:selectOneMenu value="#{AdminBean.tipoDeRecursoSeleccionado}" class="form-control">
-                                <f:selectItems value="#{AdminBean.getTiposDeRecursos()}" />
-                            </h:selectOneMenu>
-
-                            <!-- ESTE SIRVEEEE
-                                            <h:selectOneRadio value="#{AdminBean.tipoDeRecursoSeleccionado}" layout="responsive" columns="4">
-                                                <f:selectItems value="#{AdminBean.getTiposDeRecursos()}"  />
-                                            </h:selectOneRadio> -->
-
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="row">
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="bmd-label-floating">Estado</label>
-
-                            <h:selectOneMenu value="#{AdminBean.tipoDeEstadoSeleccionado}" class="form-control">
-                                <f:selectItems value="#{AdminBean.getEstados()}" />
-                            </h:selectOneMenu>
-                        </div>
-                    </div>
-                </div>
-                <br />
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label class="bmd-label-floating">Fecha inicio</label>
-                            <div class="input-group date">
-                                <p:inputText class="form-control" id="FechaInicio" type="String" binding="#{fechaInicio}"
-                                             value="0:00:00" placeholder="0:00:00" />
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label class="bmd-label-floating">Fecha fin</label>
-                            <div class="input-group date">
-                                <p:inputText class="form-control" id="FechaFin" type="String" binding="#{fechaFin}"
-                                             value="24:00:00" placeholder="24:00:00" />
-
-                            </div>
                         </div>
                     </div>
                 </div>
-                <p:commandButton class="btn pull-left" value="Registrar">
-                    <f:actionListener
-                        binding="#{AdminBean.registrarRecurso(nombre.value, capacidad.value, fechaInicio.value, fechaFin.value)}"
-                        update="recurso_form" />
-                </p:commandButton>
+            </div>
+            <p:commandButton class="btn pull-left" value="Registrar">
+                <f:actionListener
+                    binding="#{AdminBean.registrarRecurso(nombre.value, capacidad.value, fechaInicio.value, fechaFin.value)}"
+                    update="recurso_form" />
+            </p:commandButton>
 
-                <div class="clearfix"></div>
+            <div class="clearfix"></div>
 
 
-            </h:form>
+        </h:form>
 
-            <!--
-            <form>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="inputEmail4">Email</label>
-                        <input type="email" class="form-control" id="inputEmail4" placeholder="Email" />
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="inputPassword4">Password</label>
-                        <input type="password" class="form-control" id="inputPassword4" placeholder="Password" />
-                    </div>
+        <!--
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Email</label>
+                    <input type="email" class="form-control" id="inputEmail4" placeholder="Email" />
                 </div>
-                <div class="form-group">
-                    <label for="inputAddress">Address</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" />
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">Password</label>
+                    <input type="password" class="form-control" id="inputPassword4" placeholder="Password" />
                 </div>
-                <div class="form-group">
-                    <label for="inputAddress2">Address 2</label>
-                    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" />
+            </div>
+            <div class="form-group">
+                <label for="inputAddress">Address</label>
+                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" />
+            </div>
+            <div class="form-group">
+                <label for="inputAddress2">Address 2</label>
+                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" />
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputCity">City</label>
+                    <input type="text" class="form-control" id="inputCity" />
                 </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="inputCity">City</label>
-                        <input type="text" class="form-control" id="inputCity" />
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="inputState">State</label>
-                    </div>
-                    <div class="form-group col-md-2">
-                        <label for="inputZip">Zip</label>
-                        <input type="text" class="form-control" id="inputZip" />
-                    </div>
+                <div class="form-group col-md-4">
+                    <label for="inputState">State</label>
                 </div>
-                <div class="form-group">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="gridCheck" />
-                        <label class="form-check-label" for="gridCheck">
-                            Check me out
-                        </label>
-                    </div>
+                <div class="form-group col-md-2">
+                    <label for="inputZip">Zip</label>
+                    <input type="text" class="form-control" id="inputZip" />
                 </div>
-                <button type="submit" class="btn btn-primary">Sign in</button>
-            </form>
-            -->
-        </ui:define>
-    </ui:composition>
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck" />
+                    <label class="form-check-label" for="gridCheck">
+                        Check me out
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Sign in</button>
+        </form>
+        -->
+    </ui:define>
+</ui:composition>
 
 </html>

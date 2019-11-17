@@ -44,7 +44,7 @@ public class AdminBean extends BasePageBean {
             java.sql.Time ini = java.sql.Time.valueOf(horaInicio);
             java.sql.Time fin = java.sql.Time.valueOf(horaFin);
             serviciosBiblioteca.registrarRecurso(new Recurso(nombre, tipoDeUbicacionSeleccionada, tipoDeRecursoSeleccionado, capacidad, tipoDeEstadoSeleccionado, ini, fin));
-            
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO , "Recurso fue registrado satisfactoriamente", null));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -92,16 +92,13 @@ public class AdminBean extends BasePageBean {
 
     public void cambiarEstadoRecurso(int id, String estado) {
         try {
-            if (estado == "Seleccione" || estado == null) {
-                facesError("Seleccione un Estado", null);
-
+            if (estado== "Seleccione" || estado == null) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "SELECCIONE UNO ESTADO!!!", null));
+                
             } else {
-                facesError("Registo Exitoso", "El recurso fue registrado satisfactoriamente");
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Registo Exitoso", "El recurso fue registrado satisfactoriamente"));
+                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "nao funciona!!!", null));
                 System.err.println(estado);
                 serviciosBiblioteca.updateRecurso(id, estado);
-                facesError("Registo Exitoso", "El recurso fue registrado satisfactoriamente");
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Registo Exitoso", "El recurso fue registrado satisfactoriamente"));
             }
 
         } catch (BibliotecaException ex) {
@@ -164,7 +161,5 @@ public class AdminBean extends BasePageBean {
     public void setTipoDeEstadoSeleccionado2(String tipoDeEstadoSeleccionado2) {
         this.tipoDeEstadoSeleccionado2 = tipoDeEstadoSeleccionado2;
     }
-    private void facesError(String a,String b) {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, a, b));
-    }
+
 }
