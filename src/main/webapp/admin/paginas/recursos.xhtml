@@ -300,17 +300,16 @@
             });
             $('.card .material-datatables label').addClass('form-group');
         });
-
-
-
-
-
-
-
-
-
-
         </script>
+        <script>
+            $('.modal').modal({keyboard: false,
+                show: true
+            });
+            // Jquery draggable
+            $('.modal-dialog').draggable({
+                handle: ".modal-header"
+            });
+        </script>  
     </body>
 
 </html>

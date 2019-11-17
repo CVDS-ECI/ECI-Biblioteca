@@ -77,6 +77,7 @@ public class ShiroBean implements Serializable {
 
         SecurityUtils.getSubject().logout();
         try {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "PrimeFaces Rocks."));
             FacesContext.getCurrentInstance().getExternalContext().redirect(redirectUrl);
         } catch (IOException ex) {
             java.util.logging.Logger.getLogger(ShiroBean.class.getName()).log(Level.SEVERE, null, ex);

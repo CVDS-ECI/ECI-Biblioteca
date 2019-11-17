@@ -62,43 +62,6 @@
             </h:panelGroup>
             <br /><br />
 
-            <div class="modal fade" id="cambiarEstadoo" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <h:form>
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-
-                                <input type="number" name="inStatus" id="inStatus" value="" style="display:none" />
-                                <p:inputText id="inStatus" binding="#{inStatus}" type="hidden" />
-                                <div class="form-group">
-                                    <label for="new_status">Nuevo estado</label>
-                                    <select class="form-control" id="select">
-                                        <label for="new_status">Nuevo estado</label>
-                                        <ui:repeat var="newStatus" value="#{AdminBean.getEstados()}">
-                                            <option value="#{newStatus}">#{newStatus}</option>
-                                        </ui:repeat>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <p:commandButton value="Modificar"
-                                    actionListener="#{AdminBean.cambiarEstadoRecurso(inStatus.value,newStatus1.value)}"
-                                    id="boton" styleClass="btn btn-success">
-                                </p:commandButton>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            </div>
-                        </h:form>
-                    </div>
-                </div>
-            </div>
-
             <div id="cambiarEstado" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
                 aria-labelledby="mySmallModalLabel">
                 <div class="modal-dialog modal-dialog-centered" role="document">

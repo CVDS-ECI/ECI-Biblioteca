@@ -14,6 +14,13 @@
             <h:outputStylesheet name="css/bootstrap-tagsinput.css"/>
             <h:outputStylesheet name="css/initiative.css"/>
             <h:outputStylesheet name="dataTable/css/dataTables.bootstrap.min.css"/>
+            <script type="text/javascript">
+                function conf()
+                {
+                    var con = confirm("Do you want to submit for sure?");
+                    location.reload();
+                }
+            </script>
         </ui:define>
         <ui:define name="content">
 
@@ -51,7 +58,7 @@
                                 </td>
                                 <td>#{recurso.estado}</td>
                                 <td class="details">
-                                    <center><i class="far fa-folder-open fa-2x "></i></center>
+                                    <center><i class="fa fa-cog fa-spin fa-2x fa-fw "></i></center>
                                     <span style="display:none;">
                                         <center>
                                             <p style="margin-left: 25%;margin-right: 25%">
@@ -60,7 +67,8 @@
 
                                             <h4>Cambiar estado del recurso: </h4>
                                             <br></br>
-                                            <button type="button" data-id="#{recurso.id}" class="modify-Initiative btn btn-primary" data-toggle="modal" data-target="#modifyInitiative">Modificar</button>
+                                            <button type="button" data-id="#{recurso.id}" class="btn btn-success" data-toggle="modal" data-target="#modifyInitiative" >Modificar</button>
+
                                             <br></br>
 
 
@@ -87,36 +95,36 @@
                 <br/><br/>
 
                 <div id="modifyInitiative" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" >
-		  <div class="modal-dialog modal-dialog-centered" role="document">
-		    <div class="modal-content">
-		     <div class= "modal-header">
-		     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		     	<h4>Modificando Iniciativa</h4>
-		     </div>
-		     <div class= "modal-body">
-		     <p:messages autoUpdate="true" />
-		     	<h:form id= "InitiativeStatus">
-	     		  <input type="number" name="inStatus" id="inStatus" value="" style="display:none"/>	  
-				  <p:inputText id="inStatus" binding="#{inStatus}" type="hidden"/>
-				  <div class="form-group">
-				    <label for="new_status">Nuevo estado</label>
-				    <select class="form-control" id="select">
-				    	<label for="new_status">Nuevo estado</label>
-                                        <ui:repeat var="newStatus" value="#{AdminBean.getEstados()}">
-							<option value="#{newStatus}">#{newStatus}</option>
-						</ui:repeat> 
-					  </select>
-					  <p:inputText styleClass="status" binding="#{newStatus1}" type="hidden"  />
-				  </div>
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class= "modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4>Modificando Iniciativa</h4>
+                            </div>
+                            <div class= "modal-body">
+                                <p:messages autoUpdate="true" />
+                                <h:form id= "InitiativeStatus">
+                                    <input type="number" name="inStatus" id="inStatus" value="" style="display:none"/>	  
+                                    <p:inputText id="inStatus" binding="#{inStatus}" type="hidden"/>
+                                    <div class="form-group">
+                                        <label for="new_status">Nuevo estado</label>
+                                        <select class="form-control" id="select">
+                                            <label for="new_status">Nuevo estado</label>
+                                            <ui:repeat var="newStatus" value="#{AdminBean.getEstados()}">
+                                                <option value="#{newStatus}">#{newStatus}</option>
+                                            </ui:repeat> 
+                                        </select>
+                                        <p:inputText styleClass="status" binding="#{newStatus1}" type="hidden"  />
+                                    </div>
 
-				  <p:commandButton value = "Modificar"  
-                                                   actionListener="#{AdminBean.cambiarEstadoRecurso(inStatus.value,newStatus1.value)}" id="boton" styleClass="btn btn-success">
-				  </p:commandButton>
-				</h:form>
-		     </div>
-		    </div>
-		  </div>
-		</div>
+                                    <p:commandButton value = "Modificar"  
+                                                     actionListener="#{AdminBean.cambiarEstadoRecurso(inStatus.value,newStatus1.value)}" id="boton" styleClass="btn btn-success" onclick="conf()">
+                                    </p:commandButton>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <h:outputScript name="js/bootstrap-tagsinput.js"/>
