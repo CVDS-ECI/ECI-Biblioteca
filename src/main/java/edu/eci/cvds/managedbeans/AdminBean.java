@@ -96,7 +96,7 @@ public class AdminBean extends BasePageBean {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "SELECCIONE UNO ESTADO!!!", null));
                 
             } else {
-                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "nao funciona!!!", null));
+                
                 System.err.println(estado);
                 serviciosBiblioteca.updateRecurso(id, estado);
             }
