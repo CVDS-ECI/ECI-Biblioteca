@@ -114,13 +114,51 @@
                                 <br />
                                 <div class="form-group">
                                     <label class="bmd-label-floating">Recurrencia</label>
+                                    <div>
+                                        <div class="col-xs-6">
+                                            <select class="form-control" name="select1" id="select1">
+                                                <option value="">N/A </option>
+                                                <option value="1">Diaria</option>
+                                                <option value="2">Semanal</option>
+                                                <option value="3">Mensual</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <select class="form-control" name="select2" id="select2">
+
+                                                <option value="1">1 día</option>
+                                                <option value="1">2 días</option>
+                                                <option value="1">3 días</option>
+                                                <option value="1">4 días</option>
+                                                <option value="1">5 días</option>
+                                                <option value="1">6 días</option>
+
+
+
+                                                <option value="2">1 semana</option>
+                                                <option value="2">2 semanas</option>
+                                                <option value="2">3 semanas</option>
+
+
+                                                <option value="3">1 mes</option>
+                                                <option value="3">2 meses</option>
+                                                <option value="3">3 meses</option>
+                                                <option value="3">4 meses</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!--
                                     <h:selectOneMenu value="#{comunidadBean.recurrenciaSeleccionada}" class="form-control">
                                         <f:selectItem itemLabel="Seleccione la recurrencia:" itemValue="" />
                                         <f:selectItem itemLabel="Diaria" itemValue="Diaria" />
                                         <f:selectItem itemLabel="Semanal" itemValue="Semanal" />
                                         <f:selectItem itemLabel="Mensual" itemValue="Mensual" />
-                                    </h:selectOneMenu>
+                                    </h:selectOneMenu>-->
                                 </div>
+                                <br/>
+                                <br/>
 
                             </div>
 
@@ -214,6 +252,7 @@
         <h:outputScript name="js/initiative.js" />
         <h:outputScript name="dataTable/js/jquery.dataTables.min.js" />
         <h:outputScript name="dataTable/js/dataTables.bootstrap.min.js" />
+
 
     </ui:define>
 </ui:composition>
