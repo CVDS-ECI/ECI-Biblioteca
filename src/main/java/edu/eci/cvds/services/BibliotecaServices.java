@@ -1,6 +1,7 @@
 package edu.eci.cvds.services;
 
 import edu.eci.cvds.entities.Recurso;
+import edu.eci.cvds.entities.Reserva;
 import java.util.List;
 
 
@@ -15,6 +16,16 @@ public interface BibliotecaServices {
         public Recurso consultarRecurso(int id) throws BibliotecaException;
         
         public void updateRecurso(int id, String nuevoEstado) throws BibliotecaException;
+        
+        public void registrarReserva(Reserva re) throws BibliotecaException;
+        
+        public void eliminarReserva(Reserva re) throws BibliotecaException;
+        
+        public List<Reserva> consultarReservas() throws BibliotecaException;
+        
+
+        
+        
         
         
 
