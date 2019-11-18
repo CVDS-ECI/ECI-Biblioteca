@@ -2,7 +2,7 @@ package edu.eci.cvds.entities;
 import java.util.Date;
 import java.util.Map;
 import org.primefaces.model.ScheduleEvent;
-import org.primefaces.model.ScheduleRenderingMode;
+//import org.primefaces.model.ScheduleRenderingMode;
 
 public  class CustomScheduleEvent implements ScheduleEvent {
 
@@ -127,7 +127,7 @@ public  class CustomScheduleEvent implements ScheduleEvent {
     public void setEditable(boolean editable) {
         this.editable = editable;
     }
-
+/*
     @Override
     public ScheduleRenderingMode getRenderingMode() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -137,4 +137,5 @@ public  class CustomScheduleEvent implements ScheduleEvent {
     public Map<String, Object> getDynamicProperties() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    */
 }
