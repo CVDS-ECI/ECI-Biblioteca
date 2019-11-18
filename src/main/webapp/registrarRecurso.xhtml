@@ -10,6 +10,14 @@
         <h:outputStylesheet name="css/bootstrap-tagsinput.css" />
         <h:outputStylesheet name="css/initiative.css" />
         <h:outputStylesheet name="dataTable/css/dataTables.bootstrap.min.css" />
+        <script type="text/javascript">
+                function conf2()
+                {
+                    var con = confirm("Do you want to submit for sure?");
+                    var url = "faces/adminInicio.xhtml";
+                    window.location(url);
+                }
+            </script>
     </ui:define>
     <ui:define name="content">
         <h:form id="recurso_form">
@@ -94,7 +102,7 @@
                     </div>
                 </div>
             </div>
-            <p:commandButton class="btn pull-left" value="Registrar">
+            <p:commandButton class="btn pull-left" value="Registrar" onclick="conf2()">
                 <f:actionListener
                     binding="#{AdminBean.registrarRecurso(nombre.value, capacidad.value, fechaInicio.value, fechaFin.value)}"
                     update="recurso_form" />
