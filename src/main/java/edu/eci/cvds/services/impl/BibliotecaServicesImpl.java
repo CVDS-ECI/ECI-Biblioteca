@@ -7,8 +7,10 @@ package edu.eci.cvds.services.impl;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Recurso;
+import edu.eci.cvds.entities.Reserva;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.RecursoDAO;
+import edu.eci.cvds.persistence.ReservaDAO;
 import edu.eci.cvds.persistence.UsuarioDAO;
 import edu.eci.cvds.services.BibliotecaServices;
 import edu.eci.cvds.services.BibliotecaException;
@@ -22,6 +24,9 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
     
     @Inject
     RecursoDAO recursoDAO;
+    
+    @Inject
+    ReservaDAO reservaDAO;
 
     @Override
     public void registrarRecurso(Recurso rec)throws BibliotecaException {
@@ -65,6 +70,33 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
             return recursoDAO.loadRecursosDisponibles();
         } catch (PersistenceException ex) {
             throw new BibliotecaException("Error al consultar los Recursos Disponibles:" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public void registrarReserva(Reserva re) throws BibliotecaException {
+        try {
+            reservaDAO.salvar(re);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al insertar el Recurso:" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarReservas() throws BibliotecaException {
+        try {
+            return reservaDAO.listarTodos();
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar las reservas Disponibles:" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public void eliminarReserva(Reserva re) throws BibliotecaException {
+         try {
+            reservaDAO.remover(re);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar las reservas Disponibles:" + ex.getLocalizedMessage(), ex);
         }
     }
 

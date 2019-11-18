@@ -6,6 +6,8 @@
 package edu.eci.cvds.test;
 
 import edu.eci.cvds.entities.Recurso;
+import edu.eci.cvds.entities.Reserva;
+import edu.eci.cvds.entities.TipoReserva;
 import edu.eci.cvds.services.BibliotecaException;
 import edu.eci.cvds.services.BibliotecaServices;
 import edu.eci.cvds.services.BibliotecaServicesFactory;
@@ -14,6 +16,10 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.mybatis.guice.transactional.Transactional;
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import static org.junit.Assert.assertTrue;
 
 
 /**
@@ -232,6 +238,8 @@ public class ServicesBibliotecaTest {
             System.out.println(BibliotecaException.RECURSO_INSERTAR);
         }
     }
+    
+    
     
     /*
     Cuando se quiere registrar un recurso se debe tener en cuenta los tipos
@@ -508,24 +516,19 @@ public class ServicesBibliotecaTest {
         }
     }
     
+   
+    
     /*
     Cuando se quiere registrar un recurso se debe tener en cuenta que
     que el inicio reserva < fin reserva. Se coloca Inicioreserva=’12:00:00’, finreserva=’13:00:00’ que es correcto:
     */
     @Test
-    public void deberiaRegistrarRecurso23() throws BibliotecaException {
-        try {
-            Time horaInicio = Time.valueOf("12:00:00");
-            Time horaFin = Time.valueOf("13:00:00");
-            List<Recurso> listaAntesDeInsertar = bibliotecaServices.consultarRecursos();
-            longitudListaAntesDeInsertar = listaAntesDeInsertar.size();
-            bibliotecaServices.registrarRecurso(new Recurso("La vida del humano", "Biblioteca JAL Bloque G", "Sala", 6, "Disponible",horaInicio,horaFin));
-        } catch (BibliotecaException e) {
-            List<Recurso> listaDespuesDeInsertar = bibliotecaServices.consultarRecursos();
-            int longitud_lista2 = listaDespuesDeInsertar.size();
-            assertTrue(longitud_lista2 == longitudListaAntesDeInsertar);
-            System.out.println(BibliotecaException.RECURSO_INSERTAR);
-        }
+    public void deberiaRegistrarReservayEliminarla() throws BibliotecaException, ParseException {
+            Date date1=new SimpleDateFormat("yyyy/MM/dd").parse("1998/12/10");  
+           
+            bibliotecaServices.registrarReserva(new Reserva("rubiano",2024,"SUPUTAMADRE",date1, date1,true,TipoReserva.URGENTE));
+            //FALTA HACER EL DE ELIMINAR
+            
     }
       
     /*
@@ -607,8 +610,17 @@ public class ServicesBibliotecaTest {
     @Test
     public void deberiaConsultarRecursos() throws BibliotecaException {
         List<Recurso> recursos = bibliotecaServices.consultarRecursos();
+        
         assertTrue(recursos.size()>=0);
     }
+    
+    @Test
+    public void deberiaConsultarReservas() throws BibliotecaException {
+        List<Reserva> recursos = bibliotecaServices.consultarReservas();
+        System.out.println(recursos);
+        assertTrue(recursos.size()>0);
+    }
+    
     
     /*
     Cuando se quiere consultar un recurso, se debe tener en cuenta que el id exista
