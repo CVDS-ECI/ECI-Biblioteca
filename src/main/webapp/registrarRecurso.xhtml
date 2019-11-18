@@ -27,13 +27,13 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="bmd-label-floating">Nombre</label>
+                        <label class="bmd-label-floating">Nombre:</label>
                         <p:inputText class="form-control" id="Nombre" type="String" binding="#{nombre}" />
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="bmd-label-floating">Capacidad</label>
+                        <label class="bmd-label-floating">Capacidad:</label>
                         <p:inputText type="number" class="form-control" id="Capacidad" binding="#{capacidad}" />
                     </div>
                 </div>
@@ -42,7 +42,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="bmd-label-floating">Ubicacion</label>
+                        <label class="bmd-label-floating">Ubicación:</label>
                         <h:selectOneMenu value="#{AdminBean.tipoDeUbicacionSeleccionada}" class="form-control">
                             <f:selectItems value="#{AdminBean.getTiposDeUbicacion()}" />
                         </h:selectOneMenu>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="bmd-label-floating">Tipo</label>
+                        <label class="bmd-label-floating">Tipo:</label>
 
                         <h:selectOneMenu value="#{AdminBean.tipoDeRecursoSeleccionado}" class="form-control">
                             <f:selectItems value="#{AdminBean.getTiposDeRecursos()}" />
@@ -70,7 +70,7 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="bmd-label-floating">Estado</label>
+                        <label class="bmd-label-floating">Estado:</label>
 
                         <h:selectOneMenu value="#{AdminBean.tipoDeEstadoSeleccionado}" class="form-control">
                             <f:selectItems value="#{AdminBean.getEstados()}" />
@@ -82,10 +82,12 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label class="bmd-label-floating">Fecha inicio</label>
+                        <label class="bmd-label-floating">Hora inicio:</label>
+
+
                         <div class="input-group date">
                             <p:inputText class="form-control" id="FechaInicio" type="String" binding="#{fechaInicio}"
-                                value="0:00:00" placeholder="0:00:00" />
+                                value="00:00:00" placeholder="00:00:00" />
                         </div>
 
                     </div>
@@ -93,10 +95,10 @@
 
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label class="bmd-label-floating">Fecha fin</label>
+                        <label class="bmd-label-floating">Hora fin:</label>
                         <div class="input-group date">
                             <p:inputText class="form-control" id="FechaFin" type="String" binding="#{fechaFin}"
-                                value="24:00:00" placeholder="24:00:00" />
+                                value="23:59:59" placeholder="23:59:59" />
 
                         </div>
                     </div>
