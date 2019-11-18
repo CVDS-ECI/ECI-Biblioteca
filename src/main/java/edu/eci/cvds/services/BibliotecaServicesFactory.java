@@ -11,6 +11,8 @@ import com.google.inject.Injector;
 
 import edu.eci.cvds.persistence.RecursoDAO;
 import edu.eci.cvds.persistence.UsuarioDAO;
+import edu.eci.cvds.persistence.ReservaDAO;
+import edu.eci.cvds.persistence.mybatisimpl.MyBatisReservaDAO;
 import edu.eci.cvds.persistence.mybatisimpl.MyBatisRecursoDAO;
 import edu.eci.cvds.persistence.mybatisimpl.MyBatisUsuarioDAO;
 import edu.eci.cvds.services.impl.BibliotecaServicesImpl;
@@ -34,6 +36,8 @@ public class BibliotecaServicesFactory {
 				bind(BibliotecaServices.class).to(BibliotecaServicesImpl.class);
 				bind(RecursoDAO.class).to(MyBatisRecursoDAO.class);
 				bind(UsuarioDAO.class).to(MyBatisUsuarioDAO.class);
+				bind(ReservaDAO.class).to(MyBatisReservaDAO.class);
+                                
 				
 			}
 		});
