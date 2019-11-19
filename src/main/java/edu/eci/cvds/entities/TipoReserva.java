@@ -10,24 +10,6 @@ package edu.eci.cvds.entities;
  * @author Ing Pipe
  */
 public enum TipoReserva {
-    /* TIPO DE EVENTO - CSS */
-    PADRAO("Padrão", ""),
-    URGENTE("Urgente", "urgente"),
-    CANCELADO("Cancelado", "cancelado");
+    Ninguno,Diario,Semanal,Mensual;
 
-    private final String descripcion;
-    private final String css;
-
-    private TipoReserva(String descricao, String css) {
-        this.css = css;
-        this.descripcion = descricao;
-    }
-
-    public String getCss() {
-        return css;
-    }
-
-    public String getDescricao() {
-        return descripcion;
-    }
 }

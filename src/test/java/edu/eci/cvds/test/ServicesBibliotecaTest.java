@@ -525,9 +525,9 @@ public class ServicesBibliotecaTest {
     @Test
     public void deberiaRegistrarReservayEliminarla() throws BibliotecaException, ParseException {
             Date date1=new SimpleDateFormat("yyyy/MM/dd").parse("1998/12/10");  
-           
 
-            bibliotecaServices.registrarReserva(new Reserva("rubiano",2954,"SUPUTAMADRE",date1, date1,true,TipoReserva.Ninguno));
+            bibliotecaServices.registrarReserva(new Reserva("rubiano",2024,"SUPUTAMADRE",date1, date1,true,TipoReserva.Ninguno));
+
             //FALTA HACER EL DE ELIMINAR
             
     }
