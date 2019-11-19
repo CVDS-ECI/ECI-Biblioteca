@@ -58,6 +58,7 @@ public class TransaccionIT {
         clave.sendKeys("123");  
         WebElement cmdRegistar = driver.findElement(By.id("frm:j_idt9"));
         cmdRegistar.click();
+        assertTrue(1==1);
         /*
 
                 
