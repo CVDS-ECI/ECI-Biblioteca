@@ -52,10 +52,16 @@ public class TransaccionIT {
     @Test
     public void comprobarFlujoCorrectoTransferencia() {
         driver.get("http://localhost:8080/faces/login.xhtml");
-        
+        WebElement correo = driver.findElement(By.id("frm:email"));
+        correo.sendKeys("cvds@cvds.com");  
+        WebElement clave = driver.findElement(By.id("frm:j_idt7"));
+        clave.sendKeys("123");  
+        WebElement cmdRegistar = driver.findElement(By.id("frm:j_idt9"));
+        cmdRegistar.click();
         /*
-        WebElement nombre = driver.findElement(By.id("recurso_form:Nombre"));
-        nombre.sendKeys("fisica electrostatica");  
+
+                
+                
         WebElement capacidad = driver.findElement(By.id("recurso_form:Capacidad"));
         capacidad.sendKeys("5");
         WebElement ubicacion = driver.findElement(By.name("recurso_form:j_idt34"));
