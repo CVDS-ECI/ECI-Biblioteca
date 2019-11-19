@@ -34,7 +34,7 @@
     <delete id="remover" parameterType="edu.eci.cvds.entities.Reserva">
         DELETE FROM  reserva
         WHERE
-        reserva.id = #{reserva.id}
+        reserva.id = #{reservaId}
     </delete>
     
    

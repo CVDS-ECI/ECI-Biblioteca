@@ -17,6 +17,6 @@ public interface ReservaDAO {
     
     public void salvar(Reserva rv) throws PersistenceException;
     
-    public void remover(Reserva rv) throws PersistenceException;
+    public void remover(int rv) throws PersistenceException;
     
 }

@@ -30,12 +30,12 @@
                 <p:growl id="messages" showDetail="true" />
 
                 <h:panelGrid columnClasses="value" class="panelHorario">
-                    <p:schedule id="schedule" value="#{comunidadBean.eventModel}" widgetVar="myschedule" >
+                    <p:schedule id="schedule" value="#{reservaBean.eventModel}" widgetVar="myschedule" >
 
-                        <p:ajax event="dateSelect" listener="#{comunidadBean.onDateSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
-                        <p:ajax event="eventSelect" listener="#{comunidadBean.onEventSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
-                        <p:ajax event="eventMove" listener="#{comunidadBean.onEventMove}" update="messages" />
-                        <p:ajax event="eventResize" listener="#{comunidadBean.onEventResize}" update="messages" />
+                        <p:ajax event="dateSelect" listener="#{reservaBean.onDateSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
+                        <p:ajax event="eventSelect" listener="#{reservaBean.onEventSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
+                        <p:ajax event="eventMove" listener="#{reservaBean.onEventMove}" update="messages" />
+                        <p:ajax event="eventResize" listener="#{reservaBean.onEventResize}" update="messages" />
 
                     </p:schedule>
                 </h:panelGrid>
@@ -43,20 +43,20 @@
                 <p:dialog widgetVar="eventDialog" header="Horario de reserva" showEffect="clip" hideEffect="clip" modal="true">
                     <h:panelGrid id="eventDetails" columns="2">
                         <p:outputLabel for="title" value="Recurso:" />
-                        <p:inputText id="title" value="#{comunidadBean.event.title}" required="true" />
+                        <p:inputText id="title" value="#{reservaBean.event.title}" required="true" />
 
                         <p:outputLabel for="from" value="Fecha Inicio:" />
-                        <p:calendar id="from" value="#{comunidadBean.event.startDate}" pattern="dd/MM/yyyy HH:mm" />
+                        <p:calendar id="from" value="#{reservaBean.event.startDate}" pattern="dd/MM/yyyy HH:mm" />
 
                         <p:outputLabel for="to" value="Fecha Fin:" />
-                        <p:calendar id="to" value="#{comunidadBean.event.endDate}" pattern="dd/MM/yyyy HH:mm" />
+                        <p:calendar id="to" value="#{reservaBean.event.endDate}" pattern="dd/MM/yyyy HH:mm" />
 
                         <p:outputLabel for="allDay" value="All Day:" />
-                        <h:selectBooleanCheckbox id="allDay" value="#{comunidadBean.event.allDay}" />
+                        <h:selectBooleanCheckbox id="allDay" value="#{reservaBean.event.allDay}" />
 
                         <p:commandButton type="reset" value="Reset" />
-                        <p:commandButton id="addButton" value="Save" action="#{comunidadBean.addEvent()}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
-                        <p:commandButton id="deleteButton" value="Delete" action="#{comunidadBean.deleteEvent()}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
+                        <p:commandButton id="addButton" value="Save" action="#{reservaBean.addEvent()}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
+                        <p:commandButton id="deleteButton" value="Delete" action="#{reservaBean.deleteEvent()}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
                     </h:panelGrid>
                 </p:dialog>    
             </h:form>

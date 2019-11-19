@@ -92,7 +92,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
     }
 
     @Override
-    public void eliminarReserva(Reserva re) throws BibliotecaException {
+    public void eliminarReserva(int re) throws BibliotecaException {
          try {
             reservaDAO.remover(re);
         } catch (PersistenceException ex) {

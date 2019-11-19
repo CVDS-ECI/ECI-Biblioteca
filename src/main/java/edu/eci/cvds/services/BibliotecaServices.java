@@ -19,7 +19,7 @@ public interface BibliotecaServices {
         
         public void registrarReserva(Reserva re) throws BibliotecaException;
         
-        public void eliminarReserva(Reserva re) throws BibliotecaException;
+        public void eliminarReserva(int re) throws BibliotecaException;
         
         public List<Reserva> consultarReservas() throws BibliotecaException;
         

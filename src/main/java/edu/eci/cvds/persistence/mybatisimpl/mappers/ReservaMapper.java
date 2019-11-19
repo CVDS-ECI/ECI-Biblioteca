@@ -19,6 +19,6 @@ public interface ReservaMapper {
 
     public void salvar(@Param("reserva") Reserva rev);
 
-    public void remover(@Param("reserva") Reserva rev);
+    public void remover(@Param("reservaId") int rev);
 
 }

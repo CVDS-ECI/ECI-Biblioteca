@@ -45,7 +45,7 @@ public class MyBatisReservaDAO implements ReservaDAO{
     }
 
     @Override
-    public void remover(Reserva rv) throws PersistenceException {
+    public void remover(int rv) throws PersistenceException {
         try{
              reservaMapper.remover(rv);
          }
