@@ -38,7 +38,7 @@ public class TransaccionIT {
         
         //System.setProperty("webdriver.gecko.driver", "./libs/geckodriver.exe");
         //WebDriver driver = new FirefoxDriver();
-        System.setProperty("webdriver.chrome.driver", "/path/to/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "C:/Users/2150244/Downloads/ECI-Biblioteca/geckodriver/geckodriver.exe");
         WebDriver driver = new ChromeDriver();
         //driver = new FirefoxDriver();
     }
@@ -52,6 +52,8 @@ public class TransaccionIT {
     @Test
     public void comprobarFlujoCorrectoTransferencia() {
         driver.get("http://localhost:8080/faces/login.xhtml");
+         /*
+        driver.get("http://localhost:8080/faces/login.xhtml");
         WebElement correo = driver.findElement(By.id("frm:email"));
         correo.sendKeys("cvds@cvds.com");  
         WebElement clave = driver.findElement(By.id("frm:j_idt7"));
@@ -59,7 +61,7 @@ public class TransaccionIT {
         WebElement cmdRegistar = driver.findElement(By.id("frm:j_idt9"));
         cmdRegistar.click();
         assertTrue(1==1);
-        /*
+       
 
                 
                 
