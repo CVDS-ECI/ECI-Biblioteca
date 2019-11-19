@@ -7,9 +7,13 @@ package edu.eci.cvds.managedbeans;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Recurso;
+import edu.eci.cvds.entities.TipoReserva;
 import edu.eci.cvds.services.BibliotecaException;
 import edu.eci.cvds.services.BibliotecaServices;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -38,6 +42,7 @@ public class ComunidadBean extends BasePageBean {
     private String recurrenciaSeleccionada;
     private ScheduleModel eventModel = new DefaultScheduleModel();
     private ScheduleEvent event = new DefaultScheduleEvent();
+    private static final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
     /**
      * Consulta todos los recursos. (Hecho para el administador)
@@ -128,11 +133,51 @@ public class ComunidadBean extends BasePageBean {
 
     public void addEvent() {
         if (event.getId() == null) {
-            eventModel.addEvent(event);
+            /* En esta linea se deben llamar al metodo recursion,con los parametros especificados
+            es decir addEvent tambien deberia tener tipoReserva y Duracion todo depende de los campos 
+            que los de vista deben hacer :V
+            
+            recursion();
+            */
         } else {
             eventModel.updateEvent(event);
         }
 
         event = new DefaultScheduleEvent();
     }
+
+    public void recursion(TipoReserva res,int duracion) {
+        eventModel.addEvent(event);
+            for (int i = 1; i < duracion; i++) {
+                
+                event = new DefaultScheduleEvent(event.getTitle(), sumaFecha(event.getStartDate(),res), sumaFecha(event.getEndDate(), res));
+                System.out.println(event.getStartDate());
+                eventModel.addEvent(event);
+            }
+      
+       
+
+    }
+
+    private Date sumaFecha(Date fecha, TipoReserva res) {
+        dateFormat.format(fecha);
+        Calendar c = Calendar.getInstance();
+        c.setTime(fecha);
+
+        switch (res) {
+            case Diario:
+                c.add(Calendar.DATE, 1);
+                break;
+            case Semanal:
+                c.add(Calendar.DATE, 7);
+                break;
+            case Mensual:
+                c.add(Calendar.MONTH, 1);
+                break;
+        }
+        Date result = c.getTime();
+        dateFormat.format(result);
+        return result;
+    }
+
 }
