@@ -34,7 +34,7 @@ import org.primefaces.model.ScheduleModel;
  */
 @ManagedBean(name = "reservaBean", eager = true)
 @SessionScoped
-public class ReservaBean implements Serializable {
+public class ReservaBean extends BasePageBean implements Serializable {
 
     @Inject
     private BibliotecaServices serviciosBiblioteca;
