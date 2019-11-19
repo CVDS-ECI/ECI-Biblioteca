@@ -32,12 +32,15 @@ public class TransaccionIT {
     public TransaccionIT() {
     }
     
+    
     @BeforeClass
     public static void inicializarDriver() {
         
         //System.setProperty("webdriver.gecko.driver", "./libs/geckodriver.exe");
         //WebDriver driver = new FirefoxDriver();
-        driver = new FirefoxDriver();
+        System.setProperty("webdriver.chrome.driver", "/path/to/chromedriver");
+        WebDriver driver = new ChromeDriver();
+        //driver = new FirefoxDriver();
     }
     
     @AfterClass
@@ -48,7 +51,7 @@ public class TransaccionIT {
     
     @Test
     public void comprobarFlujoCorrectoTransferencia() {
-        //driver.get("http://localhost:8080/faces/registrarRecurso.xhtml");
+        driver.get("http://localhost:8080/faces/login.xhtml");
         
         /*
         WebElement nombre = driver.findElement(By.id("recurso_form:Nombre"));
@@ -82,7 +85,7 @@ public class TransaccionIT {
         //Assert.assertTrue("Saldo es positivo", 
                 //alorSaldo.compareTo(BigDecimal.ZERO) >= 0);
                 */
-        assertTrue(1==1);
+        //assertTrue(1==1);
     }
     
 }
