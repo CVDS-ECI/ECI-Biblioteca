@@ -107,12 +107,16 @@ public class ReservaBean extends BasePageBean implements Serializable {
 
     public void recursion(String usuario, int idRecurso, TipoReserva res, int duracion) throws BibliotecaException {
         //Primera Reserva Sin Importar la Recursion
-        eventModel.addEvent(event);
-        System.err.println(event.getTitle());
-        System.err.println(event.getStartDate());
-        System.err.println(event.getEndDate());
-        Reserva nueva = new Reserva(usuario, idRecurso, event.getTitle(), event.getStartDate(), event.getEndDate(), false, res);
-        serviciosBiblioteca.registrarReserva(nueva);
+        // for 
+
+        if (validarInsercion(event)) {
+            eventModel.addEvent(event);
+            serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, event.getTitle(), event.getStartDate(), event.getEndDate(), false, res));
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "PAILAASSSS KRAKKK", null));
+            return;
+            
+        }
         if (res != TipoReserva.Ninguno) {
             Date startDate;
             Date endDate;
@@ -120,12 +124,26 @@ public class ReservaBean extends BasePageBean implements Serializable {
             for (int i = 1; i < duracion; i++) {
                 startDate = sumaFecha(event.getStartDate(), res);
                 endDate = sumaFecha(event.getEndDate(), res);
-                event = new DefaultScheduleEvent(event.getTitle(), startDate, endDate);
-                serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, event.getTitle(), startDate, endDate, false, res));
-                System.out.println(event.getStartDate());
-                eventModel.addEvent(event);
+
+                event = new DefaultScheduleEvent(event.getTitle() + " -> " + i, startDate, endDate);
+                if (validarInsercion(event)) {
+                    serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, event.getTitle(), startDate, endDate, false, res));
+                    System.out.println(event.getStartDate());
+                    eventModel.addEvent(event);
+                } else {
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "PAILAASSSS KRAKKK", null));
+                    return;
+                }
             }
         }
+    }
+
+    private boolean validarInsercion(ScheduleEvent evento) throws BibliotecaException {
+        List<Reserva> reservas = serviciosBiblioteca.listarReservasRecurso(3111);
+        return reservas.stream().map((res) -> {
+            System.err.println("vOY A ENTRAR SUUUUUU");
+            return res;
+        }).noneMatch((res) -> (evento.getStartDate().compareTo(res.getDataInicio())==0 && evento.getEndDate().compareTo(res.getDataFim())==0));
     }
 
     private Date sumaFecha(Date fecha, TipoReserva res) {
@@ -151,11 +169,13 @@ public class ReservaBean extends BasePageBean implements Serializable {
     public void loadEvents() throws BibliotecaException {
         eventModel = new DefaultScheduleModel();
         List<Reserva> reservas = serviciosBiblioteca.listarReservasRecurso(3111);
-        for (Reserva reserva : reservas) {
+        //Mouseky herramienta misteriosa 
+        reservas.stream().map((reserva) -> {
             event = new DefaultScheduleEvent(reserva.getTitulo(), reserva.getDataInicio(), reserva.getDataFim());
+            return reserva;
+        }).forEachOrdered((_item) -> {
             eventModel.addEvent(event);
-
-        }
+        });
 
     }
 }
