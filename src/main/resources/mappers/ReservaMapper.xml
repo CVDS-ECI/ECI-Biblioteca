@@ -13,7 +13,7 @@
         <result property='tipoReserva' column='tipoReserva' />
     </resultMap>
 
-    <select id="consultarReservas" resultMap="ReservaResult">
+    <select id="listarReservasRecurso" resultMap="ReservaResult">
         SELECT
         r.id,
         r.titulo,
@@ -23,6 +23,7 @@
         r.tipoReserva
         FROM
         Reserva as r
+        WHERE r.recurso = #{recursoId}
     </select>
 
 

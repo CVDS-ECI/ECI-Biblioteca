@@ -27,6 +27,7 @@
         </ui:define>
         <ui:define name="content">
             <h:form>
+                #{reservaBean.loadEvents()}
                 <p:growl id="messages" showDetail="true" />
 
                 <h:panelGrid columnClasses="value" class="panelHorario">

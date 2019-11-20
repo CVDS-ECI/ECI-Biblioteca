@@ -15,6 +15,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -94,8 +95,8 @@ public class ReservaBean extends BasePageBean implements Serializable {
             es decir addEvent tambien deberia tener tipoReserva y Duracion todo depende de los campos 
             que los de vista deben hacer :V
              */
-         
-            recursion("marcelo",3111, TipoReserva.Diario, 3);
+
+            recursion("marcelo", 3111, TipoReserva.Diario, 3);
 
         } else {
             eventModel.updateEvent(event);
@@ -110,7 +111,7 @@ public class ReservaBean extends BasePageBean implements Serializable {
         System.err.println(event.getTitle());
         System.err.println(event.getStartDate());
         System.err.println(event.getEndDate());
-        Reserva nueva = new Reserva(usuario, idRecurso, event.getTitle(), event.getStartDate(), event.getEndDate(),false, res);
+        Reserva nueva = new Reserva(usuario, idRecurso, event.getTitle(), event.getStartDate(), event.getEndDate(), false, res);
         serviciosBiblioteca.registrarReserva(nueva);
         if (res != TipoReserva.Ninguno) {
             Date startDate;
@@ -120,7 +121,7 @@ public class ReservaBean extends BasePageBean implements Serializable {
                 startDate = sumaFecha(event.getStartDate(), res);
                 endDate = sumaFecha(event.getEndDate(), res);
                 event = new DefaultScheduleEvent(event.getTitle(), startDate, endDate);
-                serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, event.getTitle(), startDate,endDate,false, res));
+                serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, event.getTitle(), startDate, endDate, false, res));
                 System.out.println(event.getStartDate());
                 eventModel.addEvent(event);
             }
@@ -145,5 +146,16 @@ public class ReservaBean extends BasePageBean implements Serializable {
         Date result = c.getTime();
         dateFormat.format(result);
         return result;
+    }
+
+    public void loadEvents() throws BibliotecaException {
+        eventModel = new DefaultScheduleModel();
+        List<Reserva> reservas = serviciosBiblioteca.listarReservasRecurso(3111);
+        for (Reserva reserva : reservas) {
+            event = new DefaultScheduleEvent(reserva.getTitulo(), reserva.getDataInicio(), reserva.getDataFim());
+            eventModel.addEvent(event);
+
+        }
+
     }
 }

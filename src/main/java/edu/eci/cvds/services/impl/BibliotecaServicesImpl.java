@@ -83,9 +83,9 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
     }
 
     @Override
-    public List<Reserva> consultarReservas() throws BibliotecaException {
+    public List<Reserva> listarReservasRecurso(int ru) throws BibliotecaException {
         try {
-            return reservaDAO.listarTodos();
+            return reservaDAO.listarReservasRecurso(ru);
         } catch (PersistenceException ex) {
             throw new BibliotecaException("Error al consultar las reservas Disponibles:" + ex.getLocalizedMessage(), ex);
         }

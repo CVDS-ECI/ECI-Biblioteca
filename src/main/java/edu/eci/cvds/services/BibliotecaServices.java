@@ -21,7 +21,7 @@ public interface BibliotecaServices {
         
         public void eliminarReserva(int re) throws BibliotecaException;
         
-        public List<Reserva> consultarReservas() throws BibliotecaException;
+        public List<Reserva> listarReservasRecurso(int ru) throws BibliotecaException;
         
 
         

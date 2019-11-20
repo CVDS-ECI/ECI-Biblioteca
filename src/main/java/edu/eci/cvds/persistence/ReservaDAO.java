@@ -13,7 +13,7 @@ import java.util.List;
  * @author Ing Pipe
  */
 public interface ReservaDAO {
-    public List<Reserva> listarTodos() throws PersistenceException;
+    public List<Reserva> listarReservasRecurso(int ru) throws PersistenceException;
     
     public void salvar(Reserva rv) throws PersistenceException;
     

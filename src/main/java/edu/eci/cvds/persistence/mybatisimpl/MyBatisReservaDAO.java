@@ -21,9 +21,9 @@ public class MyBatisReservaDAO implements ReservaDAO{
     private ReservaMapper reservaMapper;
 
     @Override
-    public List<Reserva> listarTodos() throws PersistenceException {
+    public List<Reserva> listarReservasRecurso(int ru) throws PersistenceException {
         try{
-             return reservaMapper.consultarReservas();
+             return reservaMapper.listarReservasRecurso(ru);
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              
