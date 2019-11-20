@@ -49,7 +49,7 @@ public class ReservaBean extends BasePageBean implements Serializable {
     }
 
     public void onDateSelect(SelectEvent selectEvent) {
-        event = new DefaultScheduleEvent("", (Date) selectEvent.getObject(), (Date) selectEvent.getObject());
+        event = new DefaultScheduleEvent("", sumaFecha((Date) selectEvent.getObject(),TipoReserva.Diario), sumaFecha((Date) selectEvent.getObject(),TipoReserva.Diario));
     }
 
     public void onEventMove(ScheduleEntryMoveEvent event) {
@@ -108,31 +108,32 @@ public class ReservaBean extends BasePageBean implements Serializable {
     public void recursion(String usuario, int idRecurso, TipoReserva res, int duracion) throws BibliotecaException {
         //Primera Reserva Sin Importar la Recursion
         // for 
+        if (event.isAllDay()) {
+            if (validarInsercion(event)) {
+                eventModel.addEvent(event);
+                serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, event.getTitle(), event.getStartDate(), event.getEndDate(), false, res));
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "PAILAASSSS KRAKKK", null));
+                return;
 
-        if (validarInsercion(event)) {
-            eventModel.addEvent(event);
-            serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, event.getTitle(), event.getStartDate(), event.getEndDate(), false, res));
-        } else {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "PAILAASSSS KRAKKK", null));
-            return;
-            
-        }
-        if (res != TipoReserva.Ninguno) {
-            Date startDate;
-            Date endDate;
-            // Reserva Recursiva que es la Anterios + todas las reservas que faltan acorde a la duracion
-            for (int i = 1; i < duracion; i++) {
-                startDate = sumaFecha(event.getStartDate(), res);
-                endDate = sumaFecha(event.getEndDate(), res);
+            }
+            if (res != TipoReserva.Ninguno) {
+                Date startDate;
+                Date endDate;
+                // Reserva Recursiva que es la Anterios + todas las reservas que faltan acorde a la duracion
+                for (int i = 1; i < duracion; i++) {
+                    startDate = sumaFecha(event.getStartDate(), res);
+                    endDate = sumaFecha(event.getEndDate(), res);
 
-                event = new DefaultScheduleEvent(event.getTitle() + " -> " + i, startDate, endDate);
-                if (validarInsercion(event)) {
-                    serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, event.getTitle(), startDate, endDate, false, res));
-                    System.out.println(event.getStartDate());
-                    eventModel.addEvent(event);
-                } else {
-                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "PAILAASSSS KRAKKK", null));
-                    return;
+                    event = new DefaultScheduleEvent(event.getTitle() + " -> " + i, startDate, endDate);
+                    if (validarInsercion(event)) {
+                        serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, event.getTitle(), startDate, endDate, false, res));
+                        System.out.println(event.getStartDate());
+                        eventModel.addEvent(event);
+                    } else {
+                        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "PAILAASSSS KRAKKK", null));
+                        return;
+                    }
                 }
             }
         }
@@ -143,7 +144,7 @@ public class ReservaBean extends BasePageBean implements Serializable {
         return reservas.stream().map((res) -> {
             System.err.println("vOY A ENTRAR SUUUUUU");
             return res;
-        }).noneMatch((res) -> (evento.getStartDate().compareTo(res.getDataInicio())==0 && evento.getEndDate().compareTo(res.getDataFim())==0));
+        }).noneMatch((res) -> (evento.getStartDate().compareTo(res.getDataInicio()) == 0 && evento.getEndDate().compareTo(res.getDataFim()) == 0));
     }
 
     private Date sumaFecha(Date fecha, TipoReserva res) {
