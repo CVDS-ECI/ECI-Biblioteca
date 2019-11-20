@@ -38,7 +38,7 @@ public class TransaccionIT {
         
         //System.setProperty("webdriver.gecko.driver", "./libs/geckodriver.exe");
         //WebDriver driver = new FirefoxDriver();
-        System.setProperty("webdriver.chrome.driver", "C:/Users/2150244/Downloads/ECI-Biblioteca/geckodriver/geckodriver.exe");
+        System.setProperty("webdriver.gecko.driver", "C:\\Users\\2150244\\Downloads\\ECI-Biblioteca\\geckodriver\\geckodriver.exe");
         WebDriver driver = new ChromeDriver();
         //driver = new FirefoxDriver();
     }
