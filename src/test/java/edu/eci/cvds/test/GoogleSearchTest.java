@@ -21,6 +21,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 //import org.openqa.selenium.JavascriptExecutor;
 
 public class GoogleSearchTest {
@@ -42,9 +43,16 @@ public class GoogleSearchTest {
 	}
 
 	@Test
-	public void testGooglePage() {
+	public void testGooglePage() throws InterruptedException {
+            
+            Actions action=new Actions(driver);
+            action.moveToElement(driver.findElement(By.className("actions"))).build().perform();
+            Thread.sleep(3000);
+            driver.findElement(By.xpath("//div[@class='actions']//a[text()='Consultar recursos']")).click();
+            //WebElement cmdRegistar = driver.findElement(By.className("btn-services"));
+            //cmdRegistar.click();
 	    /*	
-	    WebElement searchBox = driver.findElement(By.name("q"));
+	    WebElement searchBox = driver.findElement(By.className("btn-services"));
 	    searchBox.clear();
 	    searchBox.sendKeys("quality-stream Introducción a la Automatización de Pruebas de Software");
 	    searchBox.submit();
