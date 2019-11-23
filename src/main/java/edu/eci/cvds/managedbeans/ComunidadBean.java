@@ -43,6 +43,7 @@ public class ComunidadBean extends BasePageBean {
     private ScheduleModel eventModel = new DefaultScheduleModel();
     private ScheduleEvent event = new DefaultScheduleEvent();
     private static final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+    private Date date13;
 
     /**
      * Consulta todos los recursos. (Hecho para el administador)
