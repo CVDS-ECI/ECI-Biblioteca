@@ -22,6 +22,7 @@ public class Reserva {
     private TipoReserva tipoReserva;
     private String usuario;
     private int recurso;
+    
 // PILAS QUE FALTA USUARIO Y RECURSO PARA ESTO Y EL MAPPER
 
     public Reserva() {
