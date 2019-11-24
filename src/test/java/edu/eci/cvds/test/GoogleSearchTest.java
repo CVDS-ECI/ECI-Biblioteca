@@ -14,6 +14,7 @@ import static org.junit.Assert.*;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -43,12 +44,14 @@ public class GoogleSearchTest {
 	}
 
 	@Test
-	public void testGooglePage() throws InterruptedException {
+	public void deberiaConsultarRecursosDisponibles() throws InterruptedException {
             
             Actions action=new Actions(driver);
             action.moveToElement(driver.findElement(By.className("actions"))).build().perform();
             Thread.sleep(3000);
             driver.findElement(By.xpath("//div[@class='actions']//a[text()='Consultar recursos']")).click();
+            String URL = driver.getCurrentUrl();
+            Assert.assertEquals(URL, "http://ecibrary.herokuapp.com/faces/recursosDisponibles.xhtml");
             //WebElement cmdRegistar = driver.findElement(By.className("btn-services"));
             //cmdRegistar.click();
 	    /*	
