@@ -27,13 +27,13 @@ CREATE TABLE if not exists Recurso (
  primary KEY(id) 
  );
  
- create table if not exists Reserva (
+ create table if not exists reserva (
  id SERIAL,
- recurso int references Recurso(id),
+ titulo varchar(50),
+ recurso integer references recurso(id),
  usuario varchar(50) references Usuario(correo),
- fechainicio date not null,
- estado char(3) not null,
- franja_ini int references Horario(id),
- duracion int not null
+ inicio timestamp,
+ fin timestamp,
+ diaEntero boolean,
+ tipoReserva varchar(50)
  );
-

@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      >
+
+    <ui:composition template="/WEB-INF/include/templateComunidad.xhtml">
+        <ui:define name="head">
+            <h:outputStylesheet name="css/bootstrap-tagsinput.css"/>
+            <h:outputStylesheet name="css/initiative.css"/>
+            <h:outputStylesheet name="dataTable/css/dataTables.bootstrap.min.css"/>
+            <script type="text/javascript">
+                function conf()
+                {
+                    var con = confirm("Do you want to submit for sure?");
+                    var url = "faces/adminInicio.xhtml";
+                    window.location(url);
+                }
+            </script>
+            <meta http-equiv="Cache-control" content="no-cache"></meta>
+            <meta http-equiv="Expires" content="-1"></meta>
+        </ui:define>
+        <ui:define name="content">
+            <h:form>
+                #{reservaBean.loadEvents()}
+                <p:growl id="messages" showDetail="true" />
+
+                <h:panelGrid columnClasses="value" class="panelHorario">
+                    <p:schedule id="schedule" value="#{reservaBean.eventModel}" widgetVar="myschedule" >
+
+                        <p:ajax event="dateSelect" listener="#{reservaBean.onDateSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
+                        <p:ajax event="eventSelect" listener="#{reservaBean.onEventSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
+                        <p:ajax event="eventMove" listener="#{reservaBean.onEventMove}" update="messages" />
+                        <p:ajax event="eventResize" listener="#{reservaBean.onEventResize}" update="messages" />
+
+                    </p:schedule>
+                </h:panelGrid>
+
+                <p:dialog widgetVar="eventDialog" header="Horario de reserva" showEffect="clip" hideEffect="clip" modal="true">
+                    <h:panelGrid id="eventDetails" columns="2">
+                        <p:outputLabel for="title" value="Recurso:" />
+                        <p:inputText id="title" value="#{reservaBean.event.title}" required="true" />
+
+                        <p:outputLabel for="from" value="Fecha Inicio:" />
+                        <p:calendar id="from" value="#{reservaBean.event.startDate}" pattern="dd/MM/yyyy HH:mm" />
+
+                        <p:outputLabel for="to" value="Fecha Fin:" />
+                        <p:calendar id="to" value="#{reservaBean.event.endDate}" pattern="dd/MM/yyyy HH:mm" />
+
+                        <p:outputLabel for="allDay" value="All Day:" />
+                        <h:selectBooleanCheckbox id="allDay" value="#{reservaBean.event.allDay}" />
+
+                        <p:commandButton type="reset" value="Reset" />
+                        <p:commandButton id="addButton" value="Save" action="#{reservaBean.addEvent()}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
+                        <p:commandButton id="deleteButton" value="Delete" action="#{reservaBean.deleteEvent()}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
+                    </h:panelGrid>
+                </p:dialog>    
+            </h:form>
+
+            <!-- Footer -->
+            <div class="footerlogin" id="footerloginid"></div>
+            <!-- Footer -->
+        </ui:define>
+    </ui:composition>
+</html>

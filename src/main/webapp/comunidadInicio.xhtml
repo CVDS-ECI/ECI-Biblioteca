@@ -2,259 +2,179 @@
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf">
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf">
 
-<ui:composition template="/WEB-INF/include/templateComunidad.xhtml">
-    <ui:define name="head">
-        <h:outputStylesheet name="css/bootstrap-tagsinput.css" />
-        <h:outputStylesheet name="css/initiative.css" />
-        <h:outputStylesheet name="dataTable/css/dataTables.bootstrap.min.css" />
-    </ui:define>
-    <ui:define name="content">
+    <ui:composition template="/WEB-INF/include/templateComunidad.xhtml">
+        <ui:define name="head">
+            <h:outputStylesheet name="css/bootstrap-tagsinput.css" />
+            <h:outputStylesheet name="css/initiative.css" />
+            <h:outputStylesheet name="dataTable/css/dataTables.bootstrap.min.css" />
+        </ui:define>
+        <ui:define name="content">
 
-        <div class="col-xs-12">
-            <h1>Recursos disponibles:</h1>
+            <div class="col-xs-12">
+                <h1>Recursos disponibles:</h1>
 
-            <table id="initiativeTable" class="display table table-bordered table-striped">
+                <table id="comunidadTable" class="display table table-bordered table-striped">
 
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Ubicación</th>
-                        <th>Tipo de recurso</th>
-                        <th>Capacidad</th>
-                        <th>Disponibilidad</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <ui:repeat var="recurso" value="#{comunidadBean.consultarRecursosDisponibles()}">
-
+                    <thead>
                         <tr>
-
-                            <td>#{recurso.id}</td>
-                            <td>#{recurso.nombre}</td>
-                            <td>#{recurso.ubicacion}</td>
-                            <td>#{recurso.tipo}</td>
-                            <td>#{recurso.capacidad}</td>
-                            <td>
-                                #{recurso.horaInicio}
-                                <br />
-                                #{recurso.horaFin}
-                            </td>
-                            <td class="details">
-                                <center><i class="far fa-folder-open fa-2x "></i></center>
-                                <span style="display:none;">
-                                    <center>
-                                        <p style="margin-left: 25%;margin-right: 25%">
-                                            Recurso #: #{recurso.id}
-                                        </p>
-
-                                        <button type="button" data-id="#{recurso.id}"
-                                            class="modify-Initiative btn btn-primary" data-toggle="modal"
-                                            data-target="#reservarRecurso">Reservar recurso</button>
-                                        <br></br>
-
-                                    </center>
-                                </span>
-                            </td>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Ubicación</th>
+                            <th>Tipo de recurso</th>
+                            <th>Capacidad</th>
+                            <th>Disponibilidad</th>
+                            <th></th>
                         </tr>
-                    </ui:repeat>
-                </tbody>
+                    </thead>
+                    <tbody>
+                        <ui:repeat var="recurso" value="#{comunidadBean.consultarRecursosDisponibles()}">
 
-            </table>
+                            <tr>
+
+                                <td>#{recurso.id}</td>
+                                <td>#{recurso.nombre}</td>
+                                <td>#{recurso.ubicacion}</td>
+                                <td>#{recurso.tipo}</td>
+                                <td>#{recurso.capacidad}</td>
+                                <td>
+                                    #{recurso.horaInicio}
+                                    <br />
+                                    #{recurso.horaFin}
+                                </td>
+                                <td class="details">
+                                    <center><i class="fas fa-edit fa-2x "></i></center>
+                                    <span style="display:none;">
+                                        <center>
+                                            <p style="margin-left: 25%;margin-right: 25%">
+                                                Recurso #: #{recurso.id}
+                                            </p>
+
+                                            <button type="button" data-id="#{recurso.id}"
+                                                    class="modify-Initiative btn btn-success" data-toggle="modal"
+                                                    data-target="#modifyInitiative">Reservar recurso</button>
+                                            <br></br>
+
+                                        </center>
+                                    </span>
+                                </td>
+                            </tr>
+                        </ui:repeat>
+                    </tbody>
+
+                </table>
 
 
 
-            <br /><br />
-            <h:panelGroup id="initiative_table">
+                <br /><br />
+                <h:panelGroup id="initiative_table">
 
-                <h:outputScript name="dataTable/js/jquery.dataTables.min.js" />
-                <h:outputScript name="dataTable/js/dataTables.bootstrap.min.js" />
-                <h:outputScript name="js/refresh.js" />
-            </h:panelGroup>
-            <br /><br />
+                    <h:outputScript name="dataTable/js/jquery.dataTables.min.js" />
+                    <h:outputScript name="dataTable/js/dataTables.bootstrap.min.js" />
+                    <h:outputScript name="js/refresh.js" />
+                </h:panelGroup>
+                <br /><br />
 
-            <div class="modal fade" id="reservarRecurso" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <h:form>
+                <div id="modifyInitiative" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" >
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class= "modal-header">
 
-                            <div class="modal-header">
-                                <br />
-                                <br />
-                                <br />
-                                <h1 class="modal-title" id="exampleModalLongTitle">Realiza una reserva:</h1>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4>Realiza una reserva:</h4>
+
                             </div>
+                            <div class= "modal-body">
+                                <p:messages autoUpdate="true" />
+                                <h:form id= "InitiativeStatus">
 
-                            <div class="modal-body">
+                                    <div class="form-group">
+                                        <input type="number" name="inStatus" id="inStatus" value="" style="display:none"/>	  
+                                        <p:inputText id="inStatus" binding="#{inStatus}" type="hidden"/>
 
-                                <label class="bmd-label-floating">Fecha inicio</label>
-                                <div class="input-group date">
-                                    <p:inputText class="form-control" id="FechaInicio" type="String"
-                                        binding="#{fechaInicio}" placeholder="DD/MM/AAAA" />
-                                </div>
 
-                                <br />
-                                <div class="form-group">
-                                    <label class="bmd-label-floating">Duración</label>
-                                    <h:selectOneMenu value="#{comunidadBean.duracionSeleccionada}" class="form-control">
-                                        <f:selectItem itemLabel="Seleccione la duración:" itemValue="" />
-                                        <f:selectItem itemLabel="1 hora" itemValue="1 hora" />
-                                        <f:selectItem itemLabel="2 horas" itemValue="2 horas" />
-                                    </h:selectOneMenu>
-                                </div>
 
-                                <br />
-                                <div class="form-group">
-                                    <label class="bmd-label-floating">Recurrencia</label>
-                                    <div>
-                                        <div class="col-xs-6">
-                                            <select class="form-control" name="select1" id="select1">
-                                                <option value="">N/A </option>
-                                                <option value="1">Diaria</option>
-                                                <option value="2">Semanal</option>
-                                                <option value="3">Mensual</option>
-                                            </select>
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Fecha y Hora de Inicio</label>
+                                            <div class="input-group date">
+                                                <p:outputLabel for="time" value="Time"/>
+                                                <p:datePicker id="time" value="#{fechahora}" showTime="true">
+                                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm" />
+                                                </p:datePicker>
+                                            </div>
+
+                                            <br />
+
+                                            <label class="bmd-label-floating">Duración</label>
+                                            <h:selectOneMenu value="#{duracion}" class="form-control">
+                                                <f:selectItem itemLabel="Seleccione la duración:" itemValue="" />
+                                                <f:selectItem itemLabel="1 hora" itemValue="1 hora" />
+                                                <f:selectItem itemLabel="2 horas" itemValue="2 horas" /> 
+                                            </h:selectOneMenu>
+
+                                            <br />
+
+                                            <label class="bmd-label-floating">Recurrencia</label>
+                                            <div>
+                                                <div class="col-xs-6">
+                                                    <h:selectOneMenu value="#{reservaBean.frecuencia}" class="form-control">
+                                                        <f:selectItems value="#{reservaBean.getTipos()}" />
+                                                    </h:selectOneMenu>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <h:selectOneMenu id="console" value="#{fretiempo}" style="width:125px">
+                                                        <f:selectItem itemLabel="Select One" itemValue="" />
+                                                        <f:selectItem itemLabel="1" itemValue="1" />
+                                                        <f:selectItem itemLabel="2" itemValue="2" />
+                                                        <f:selectItem itemLabel="3" itemValue="3" />
+                                                        <f:selectItem itemLabel="4" itemValue="4" />
+                                                        <f:selectItem itemLabel="5" itemValue="5" />
+                                                        <f:selectItem itemLabel="6" itemValue="6" />
+                                                        <f:facet name="footer">
+                                                            <p:separator />
+                                                            <h:outputText value="3 consoles" style="font-weight:bold;"/>
+                                                        </f:facet>
+                                                    </h:selectOneMenu>
+                                                </div>
+                                            </div>
+
                                         </div>
-                                        <div class="col-xs-6">
-                                            <select class="form-control" name="select2" id="select2">
-
-                                                <option value="1">1 día</option>
-                                                <option value="1">2 días</option>
-                                                <option value="1">3 días</option>
-                                                <option value="1">4 días</option>
-                                                <option value="1">5 días</option>
-                                                <option value="1">6 días</option>
 
 
 
-                                                <option value="2">1 semana</option>
-                                                <option value="2">2 semanas</option>
-                                                <option value="2">3 semanas</option>
 
 
-                                                <option value="3">1 mes</option>
-                                                <option value="3">2 meses</option>
-                                                <option value="3">3 meses</option>
-                                                <option value="3">4 meses</option>
 
-                                            </select>
-                                        </div>
                                     </div>
+                                    <p:commandButton value="Reservar" id="boton1" styleClass="btn btn-success" actionListener="#{reservaBean.crearEvento(fechahora,fechahora,shiroBean.username,inStatus.value,fretiempo,duracion)}" update="InitiativeStatus">
+                                    </p:commandButton>
 
-                                    <!--
-                                    <h:selectOneMenu value="#{comunidadBean.recurrenciaSeleccionada}" class="form-control">
-                                        <f:selectItem itemLabel="Seleccione la recurrencia:" itemValue="" />
-                                        <f:selectItem itemLabel="Diaria" itemValue="Diaria" />
-                                        <f:selectItem itemLabel="Semanal" itemValue="Semanal" />
-                                        <f:selectItem itemLabel="Mensual" itemValue="Mensual" />
-                                    </h:selectOneMenu>-->
-                                </div>
-                                <br/>
-                                <br/>
-
+                                    <p:commandButton value = "Modificar"  
+                                                     actionListener="#{reservaBean.setDatee(inStatus.value)}" id="boton2" styleClass="btn btn-success"> 
+                                    </p:commandButton>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                </h:form>
                             </div>
-
-                            <div class="modal-footer">
-                                <p:commandButton value="Reservar" id="boton" styleClass="btn btn-success">
-                                </p:commandButton>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            </div>
-
-                        </h:form>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal fade" id="cambiarEstadoo" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <h:form>
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-
-                                <input type="number" name="inStatus" id="inStatus" value="" style="display:none" />
-                                <p:inputText id="inStatus" binding="#{inStatus}" type="hidden" />
-                                <div class="form-group">
-                                    <label for="new_status">Nuevo estado</label>
-                                    <select class="form-control" id="select">
-                                        <label for="new_status">Nuevo estado</label>
-                                        <ui:repeat var="newStatus" value="#{AdminBean.getEstados()}">
-                                            <option value="#{newStatus}">#{newStatus}</option>
-                                        </ui:repeat>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <p:commandButton value="Modificar"
-                                    actionListener="#{AdminBean.cambiarEstadoRecurso(inStatus.value,newStatus1.value)}"
-                                    id="boton" styleClass="btn btn-success">
-                                </p:commandButton>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            </div>
-                        </h:form>
-                    </div>
-                </div>
-            </div>
-
-            <div id="cambiarEstado" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
-                aria-labelledby="mySmallModalLabel">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                    aria-hidden="true">&times;</span></button>
-                            <h3>Modificando estado del recurso</h3>
-                        </div>
-                        <div class="modal-body">
-                            <p:messages autoUpdate="true" />
-                            <h:form id="InitiativeStatus">
-                                <input type="number" name="inStatus" id="inStatus" value="" style="display:none" />
-                                <p:inputText id="inStatus" binding="#{inStatus}" type="hidden" />
-                                <div class="form-group">
-                                    <label for="new_status">Nuevo estado</label>
-                                    <select class="form-control" id="select">
-                                        <label for="new_status">Nuevo estado</label>
-                                        <ui:repeat var="newStatus" value="#{AdminBean.getEstados()}">
-                                            <option value="#{newStatus}">#{newStatus}</option>
-                                        </ui:repeat>
-                                    </select>
-                                    <p:inputText styleClass="status" binding="#{newStatus1}" type="hidden" />
-                                </div>
-
-                                <p:commandButton value="Modificar"
-                                    actionListener="#{AdminBean.cambiarEstadoRecurso(inStatus.value,newStatus1.value)}"
-                                    id="boton" styleClass="btn btn-success">
-                                </p:commandButton>
-                                <button type="button" class="btn btn-sm btn-default"
-                                    data-dismiss="modal">Cerrar</button>
-                            </h:form>
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+
             </div>
-        </div>
 
-        <h:outputScript name="js/bootstrap-tagsinput.js" />
-        <h:outputScript name="js/initiative.js" />
-        <h:outputScript name="dataTable/js/jquery.dataTables.min.js" />
-        <h:outputScript name="dataTable/js/dataTables.bootstrap.min.js" />
+            <h:outputScript name="js/bootstrap-tagsinput.js" />
+            <h:outputScript name="js/initiative.js" />
+            <h:outputScript name="dataTable/js/jquery.dataTables.min.js" />
+            <h:outputScript name="dataTable/js/dataTables.bootstrap.min.js" />
 
 
-    </ui:define>
-</ui:composition>
+        </ui:define>
+    </ui:composition>
 
 </html>
