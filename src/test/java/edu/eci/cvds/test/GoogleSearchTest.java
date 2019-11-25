@@ -28,70 +28,58 @@ import org.openqa.selenium.interactions.Actions;
 public class GoogleSearchTest {
 	
 	private WebDriver driver;
-	
+	private WebDriver driver2;
+        
 	@Before
 	public void setUp() throws Exception {
 		System.setProperty("webdriver.chrome.driver", "./src/test/resources/chromedriver/chromedriver.exe");
-		ChromeOptions options = new ChromeOptions();
-                options.addArguments("test-type");
-                options.addArguments("start-maximized");
-                options.addArguments("--enable-automation");
-                options.addArguments("test-type=browser");
-                options.addArguments("disable-infobars");
-                driver = new ChromeDriver(options);
+
 		//driver.manage().window().maximize();
-		driver.get("http://ecibrary.herokuapp.com/");
+		
+               
 	}
 
 	@Test
 	public void deberiaConsultarRecursosDisponibles() throws InterruptedException {
-            
+            ChromeOptions options = new ChromeOptions();   
+            options.addArguments("test-type");
+            options.addArguments("start-maximized");
+            options.addArguments("--enable-automation");
+            options.addArguments("test-type=browser");
+            options.addArguments("disable-infobars");
+            driver = new ChromeDriver(options);
+            driver.get("http://ecibrary.herokuapp.com/");
             Actions action=new Actions(driver);
             action.moveToElement(driver.findElement(By.className("actions"))).build().perform();
             Thread.sleep(3000);
             driver.findElement(By.xpath("//div[@class='actions']//a[text()='Consultar recursos']")).click();
             String URL = driver.getCurrentUrl();
             Assert.assertEquals(URL, "http://ecibrary.herokuapp.com/faces/recursosDisponibles.xhtml");
-            //WebElement cmdRegistar = driver.findElement(By.className("btn-services"));
-            //cmdRegistar.click();
-	    /*	
-	    WebElement searchBox = driver.findElement(By.className("btn-services"));
-	    searchBox.clear();
-	    searchBox.sendKeys("quality-stream Introducción a la Automatización de Pruebas de Software");
-	    searchBox.submit();
-            driver.manage().timeouts().implicitlyWait(1000, TimeUnit.SECONDS);
-	    assertEquals("quality-stream Introducción a la Automatización de Pruebas de Software - Google Search",driver.getTitle());
-            */
+            Thread.sleep(3000);
+            driver.quit();
+            
 	}
-	
-	/*@Test void localizadores() {
-		 
-		By locator = By.id("id_del_elemento");
-		
-		By locator_name = By.name("name_elemnt");
-		
-		By locator_className = By.className("clase_elemento");
-		
-		By locator_tagName = By.tagName("tag");
-		
-		By locator_linktext = By.linkText("texto_link");
-		
-		By locator_partialLinkText = By.partialLinkText("parte_texto");
-		
-		By locator_cssSelector = By.cssSelector("input[name='q']");
-		
-		By locator_Xpath = By.xpath("//input[@name='q']");
-		
-		// JavaScript
-		
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		 WebElement searchBox = (WebElement)js.executeScript("return document.getElementsByName('q')[0]");
-		
-	}*/
-	
-	//@After
-	//public void tearDown() {
-	//	driver.quit();
-	//}
+        
+        @Test
+	public void deberiaDevolverseVistainicioDeVistaRecurDisponibles() throws InterruptedException {
+            ChromeOptions options2 = new ChromeOptions();       
+            options2.addArguments("test-type");
+            options2.addArguments("start-maximized");
+            options2.addArguments("--enable-automation");
+            options2.addArguments("test-type=browser");
+            options2.addArguments("disable-infobars");
+            driver2 = new ChromeDriver(options2);
+            driver2.get("http://ecibrary.herokuapp.com/faces/recursosDisponibles.xhtml");
+            Actions action=new Actions(driver2);
+            action.moveToElement(driver2.findElement(By.className("aw-item-link"))).build().perform();
+            Thread.sleep(3000);
+            driver2.findElement(By.xpath("//li//a//i[@class='fa fa-fw  fa-angle-left pull-right']")).click();
+            Thread.sleep(3000);
+            driver2.findElement(By.xpath("//li//ul//li//a[@value='login yas']")).click();
+            Thread.sleep(3000);
+            String URL = driver2.getCurrentUrl();
+            Assert.assertEquals(URL, "http://ecibrary.herokuapp.com/faces/index.html");
+            driver2.quit();
+        }
 
 }
