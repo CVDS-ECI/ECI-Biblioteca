@@ -63,4 +63,15 @@ Este sprint se completaron casi todos los objetivos por realizar. Cada integrant
 
 ![Burndown chart and backlog sprint 1](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/BURNDOWN%20CHART%20AND%20BACKLOG%20SPRINT%201.png)
 
+## Descripción sprint 2
+
+Burndown chart and backlog
+
++ Backlog: 
++ Burndown chart: https://tree.taiga.io/project/sebastianfrasic-gestion-de-recursos-biblioteca/taskboard/sprint-2-8608
+
+![Burndown chart and backlog sprint 2](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/BURNDOWN%20CHART%20AND%20BACKLOG%20SPRINT%202.png)
+
+
+
 
