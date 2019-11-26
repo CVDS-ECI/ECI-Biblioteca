@@ -29,7 +29,7 @@
             <h:form>
                 #{reservaBean.loadEvents()}
                 <p:growl id="messages" showDetail="true" />
-
+                #{reservaBean.getRecursoID()}
                 <h:panelGrid columnClasses="value" class="panelHorario">
                     <p:schedule id="schedule" value="#{reservaBean.eventModel}" widgetVar="myschedule" >
 

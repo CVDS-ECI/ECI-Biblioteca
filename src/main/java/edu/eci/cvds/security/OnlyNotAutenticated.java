@@ -1,10 +1,12 @@
 package edu.eci.cvds.security;
 
 import javax.servlet.ServletRequest;
+
 import javax.servlet.ServletResponse;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.AccessControlFilter;
 import org.apache.shiro.web.util.WebUtils;
+import org.apache.shiro.SecurityUtils;
 
 public class OnlyNotAutenticated extends AccessControlFilter {
 
@@ -19,6 +21,11 @@ public class OnlyNotAutenticated extends AccessControlFilter {
 
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
+        if (SecurityUtils.getSubject().hasRole("Administrador")) {
+            welcomeurl="/faces/adminInicio.xhtml";
+        } else if(SecurityUtils.getSubject().hasRole("Usuario")){
+            welcomeurl="/faces/comunidadInicio.xhtml";
+        }
         WebUtils.issueRedirect(request, response, welcomeurl);
         return false;//What to do if try to go to login -> go welcome page of auth ursers
     }

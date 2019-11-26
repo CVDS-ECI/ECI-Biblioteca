@@ -55,6 +55,12 @@
                                             <button type="button" data-id="#{recurso.id}"
                                                     class="modify-Initiative btn btn-success" data-toggle="modal"
                                                     data-target="#modifyInitiative">Reservar recurso</button>
+<!--                                            <p:button outcome="reservaRecursos" value="Ver Reservas" style="margin-right:20px;" class="modify-Initiative btn btn-success">
+                                                <f:param name="reservaID" value="{recurso.id}" />
+                                            </p:button>-->
+                                            
+                                            <p:button outcome="reservaRecursos?recursoID=#{2928}" value="View Computers" />
+
                                             <br></br>
 
                                         </center>
@@ -81,7 +87,11 @@
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class= "modal-header">
-
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4>Realiza una reserva:</h4>
 
@@ -151,9 +161,7 @@
                                     <p:commandButton value="Reservar" id="boton1" styleClass="btn btn-success" actionListener="#{reservaBean.crearEvento(fechahora,fechahora,shiroBean.username,inStatus.value,fretiempo,duracion)}" update="InitiativeStatus">
                                     </p:commandButton>
 
-                                    <p:commandButton value = "Modificar"  
-                                                     actionListener="#{reservaBean.setDatee(inStatus.value)}" id="boton2" styleClass="btn btn-success"> 
-                                    </p:commandButton>
+
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                                 </h:form>
                             </div>

@@ -21,6 +21,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import static org.primefaces.behavior.validate.ClientValidator.PropertyKeys.event;
@@ -37,9 +39,16 @@ import org.primefaces.model.ScheduleModel;
  * @author Ing Pipe
  */
 @ManagedBean(name = "reservaBean", eager = true)
-@SessionScoped
+@RequestScoped
 public class ReservaBean extends BasePageBean implements Serializable {
 
+    
+    @ManagedProperty(value = "#{param.recursoID}")
+    private int recursoID;
+    
+    
+    
+    private static final long serialVersionUID = 3594009161252782831L;
     @Inject
     private BibliotecaServices serviciosBiblioteca;
 
@@ -47,6 +56,17 @@ public class ReservaBean extends BasePageBean implements Serializable {
     private ScheduleEvent event = new DefaultScheduleEvent();
     private final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
     private TipoReserva frecuencia;
+    
+
+    public int getRecursoID() {
+        System.err.println(recursoID);
+        return recursoID;
+    }
+
+    public void setRecursoID(int recursoID) {
+        System.err.println(recursoID);
+        this.recursoID = recursoID;
+    }
 
     public TipoReserva getFrecuencia() {
         return frecuencia;
@@ -62,25 +82,25 @@ public class ReservaBean extends BasePageBean implements Serializable {
     }
 
     public int getDatee() {
-        System.err.println(datee + "gggggggg");
+//        System.err.println(datee + "gggggggg");
         return datee;
     }
 
     public void setDatee(int datee) {
-        System.err.println(datee + "sssssss");
+//        System.err.println(datee + "sssssss");
         this.datee = datee;
     }
 
     public void crearEvento(Date start, Date end, String usuario, int idRecurso, String recurrencia, String duracion) throws BibliotecaException {
 
-        System.err.println(start);
-        System.err.println(end);
-        System.err.println(usuario);
-        System.err.println(idRecurso);
-        System.err.println(this.frecuencia);
-        System.err.println(this.frecuencia.getClass());
-        System.err.println(recurrencia);
-        System.err.println(duracion);
+//        System.err.println(start);
+//        System.err.println(end);
+//        System.err.println(usuario);
+//        System.err.println(idRecurso);
+//        System.err.println(this.frecuencia);
+//        System.err.println(this.frecuencia.getClass());
+//        System.err.println(recurrencia);
+//        System.err.println(duracion);
         duracion = duracion.replaceAll("\\D+", "");
         int numero = Integer.parseInt(duracion);
 
@@ -90,33 +110,30 @@ public class ReservaBean extends BasePageBean implements Serializable {
             end = sumaFecha(end, TipoReserva.Ninguno);
             end = sumaFecha(end, TipoReserva.Ninguno);
         }
-        System.err.println(start);
-        System.err.println(end);
+//        System.err.println(start);
+//        System.err.println(end);
+//
+//        System.err.println(numero);
 
-        System.err.println(numero);
-        
-        if (validarInsercionFechas(start,end, idRecurso)) {
-            serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, "HOLI", start, end, false, this.frecuencia));
+        if (validarInsercionFechas(start, end, idRecurso)) {
+            serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, frecuencia.toString(), start, end, false, this.frecuencia));
         } else {
-            System.err.println("AYAYAYAYAYAYAYAYYAYAYAYYAYA%");
+//            System.err.println("AYAYAYAYAYAYAYAYYAYAYAYYAYA%");
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "PAILAASSSS KRAKKK", null));
         }
-        
-        
-        
 
-        for (int i = 1; i < numero+1; i++) {
+        for (int i = 1; i < numero; i++) {
             start = sumaFecha(start, this.frecuencia);
             end = sumaFecha(end, this.frecuencia);
             if (validarInsercionFechas(start, end, idRecurso)) {
-                System.err.println("Entrando en IFFFFFFFFFFFFFFFF");
-                System.err.println(usuario);
-                System.err.println(idRecurso);
-                System.err.println(start);
-                System.err.println(end);
-                System.err.println(this.frecuencia);
+//                System.err.println("Entrando en IFFFFFFFFFFFFFFFF");
+//                System.err.println(usuario);
+//                System.err.println(idRecurso);
+//                System.err.println(start);
+//                System.err.println(end);
+//                System.err.println(this.frecuencia);
 
-                serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, "HOLI", start, end, false, this.frecuencia));
+                serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, frecuencia.toString(), start, end, false, this.frecuencia));
             } else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "PAILAASSSS KRAKKK", null));
                 return;
@@ -134,7 +151,7 @@ public class ReservaBean extends BasePageBean implements Serializable {
         //Falta pensar si la horafin es menor
         List<Reserva> reservas = serviciosBiblioteca.listarReservasRecurso(idrecurso);
         return reservas.stream().map((res) -> {
-            System.err.println("vOY A ENTRAR SUUUUUU@@@@@@@");
+//            System.err.println("vOY A ENTRAR SUUUUUU@@@@@@@");
             return res;
         }).noneMatch((res) -> (start.compareTo(res.getDataInicio()) == 0 && end.compareTo(res.getDataFim()) == 0));
     }
@@ -215,7 +232,6 @@ public class ReservaBean extends BasePageBean implements Serializable {
              */
 
 //            recursion("marcelo", 3111, TipoReserva.Diario, 3);
-
         } else {
             eventModel.updateEvent(event);
         }
@@ -246,7 +262,7 @@ public class ReservaBean extends BasePageBean implements Serializable {
                     event = new DefaultScheduleEvent(event.getTitle() + " -> " + i, startDate, endDate);
                     if (validarInsercion(event, idRecurso)) {
                         serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, event.getTitle(), startDate, endDate, false, res));
-                        System.out.println(event.getStartDate());
+//                        System.out.println(event.getStartDate());
                         eventModel.addEvent(event);
                     } else {
                         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "PAILAASSSS KRAKKK", null));
@@ -261,15 +277,16 @@ public class ReservaBean extends BasePageBean implements Serializable {
         //Falta pensar si la horafin es menor
         List<Reserva> reservas = serviciosBiblioteca.listarReservasRecurso(idrecurso);
         return reservas.stream().map((res) -> {
-            System.err.println("vOY A ENTRAR SUUUUUU");
+//            System.err.println("vOY A ENTRAR SUUUUUU");
             return res;
         }).noneMatch((res) -> (evento.getStartDate().compareTo(res.getDataInicio()) == 0 && evento.getEndDate().compareTo(res.getDataFim()) == 0));
     }
 
     public void loadEvents() throws BibliotecaException {
         eventModel = new DefaultScheduleModel();
-        List<Reserva> reservas = serviciosBiblioteca.listarReservasRecurso(3111);
-        
+        System.err.println(recursoID+"load");
+        List<Reserva> reservas = serviciosBiblioteca.listarReservasRecurso(recursoID);
+        System.err.println(reservas.size());
         //Mouseky herramienta misteriosa 
         reservas.stream().map((reserva) -> {
             event = new DefaultScheduleEvent(reserva.getTitulo(), reserva.getDataInicio(), reserva.getDataFim());
@@ -277,6 +294,7 @@ public class ReservaBean extends BasePageBean implements Serializable {
         }).forEachOrdered((_item) -> {
             eventModel.addEvent(event);
         });
+        System.err.println(eventModel.getEventCount()+"largoooooo");
 
     }
 }
