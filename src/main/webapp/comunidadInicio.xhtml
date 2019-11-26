@@ -15,6 +15,7 @@
                     location.href = "/faces/reservaRecursos.xhtml";
                 }
 
+
         </script>
     </ui:define>
     <ui:define name="content">
@@ -107,9 +108,11 @@
                             <h4>Realiza una reserva:</h4>
 
                         </div>
-                        <div class="modal-body">
-                            <p:messages autoUpdate="true"/>
-                            <h:form id="InitiativeStatus">
+
+                        <p:messages autoUpdate="true"/>
+                        <h:form id="InitiativeStatus">
+                            <div class="modal-body">
+
 
                                 <div class="form-group">
                                     <input type="number" name="inStatus" id="inStatus" value="" style="display:none"/>
@@ -157,8 +160,10 @@
                                                         <h:outputText value="3 consoles" style="font-weight:bold;"/>
                                                     </f:facet>
                                                 </h:selectOneMenu>
+
                                             </div>
                                         </div>
+
 
                                     </div>
 
@@ -167,17 +172,20 @@
                                 <!--                                    <p:commandButton value="Reservar" id="boton1" styleClass="btn btn-success" actionListener="{reservaBean.crearEvento(fechahora,fechahora,shiroBean.username,inStatus.value,fretiempo,duracion)}" update="InitiativeStatus">
                                                                     </p:commandButton>-->
 
-                                <div class="modal-footer">
-                                    <p:commandButton value="Reservar" id="boton1" styleClass="btn btn-success"
-                                                     actionListener="#{reservaBean.crearEvento(fechahora,fechahora,shiroBean.username,inStatus.value,fretiempo,duracion)}"
-                                                     update="InitiativeStatus">
-                                    </p:commandButton>
+                                <br/>
+                                <br/>
+                            </div>
+                            <div class="modal-footer">
+                                <p:commandButton value="Reservar" id="boton1" styleClass="btn btn-success"
+                                                 actionListener="#{reservaBean.crearEvento(fechahora,fechahora,shiroBean.username,inStatus.value,fretiempo,duracion)}"
+                                                 update="InitiativeStatus">
+                                </p:commandButton>
 
 
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                </div>
-                            </h:form>
-                        </div>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </h:form>
+
                     </div>
                 </div>
             </div>
