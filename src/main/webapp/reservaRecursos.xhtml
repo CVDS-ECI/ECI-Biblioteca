@@ -29,7 +29,8 @@
             <p:growl id="messages" showDetail="true"/>
 
             <h:panelGrid columnClasses="value" class="panelHorario">
-                <p:schedule id="schedule" value="#{reservaBean.eventModel}" widgetVar="myschedule">
+                <p:schedule id="schedule" value="#{reservaBean.eventModel}" widgetVar="myschedule"
+                            rightHeaderTemplate="dayGridMonth,timeGridWeek,timeGridDay,listYear">
 
                     <p:ajax event="dateSelect" listener="#{reservaBean.onDateSelect}" update="eventDetails"
                             oncomplete="PF('eventDialog').show();"/>
