@@ -11,6 +11,7 @@ import edu.eci.cvds.entities.Reserva;
 import edu.eci.cvds.entities.TipoReserva;
 import edu.eci.cvds.services.BibliotecaException;
 import edu.eci.cvds.services.BibliotecaServices;
+
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -25,7 +26,9 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+
 import static org.primefaces.behavior.validate.ClientValidator.PropertyKeys.event;
+
 import org.primefaces.event.ScheduleEntryMoveEvent;
 import org.primefaces.event.ScheduleEntryResizeEvent;
 import org.primefaces.event.SelectEvent;
@@ -35,20 +38,17 @@ import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
 
 /**
- *
  * @author Ing Pipe
  */
 @ManagedBean(name = "reservaBean", eager = true)
 @SessionScoped
 public class ReservaBean extends BasePageBean implements Serializable {
 
-    
-//    @ManagedProperty(value = "#{param.recursoID}")
+
+    //    @ManagedProperty(value = "#{param.recursoID}")
     private int recursoID = 0;
-    
-    
-    
     private static final long serialVersionUID = 3594009161252782831L;
+
     @Inject
     private BibliotecaServices serviciosBiblioteca;
 
@@ -56,7 +56,9 @@ public class ReservaBean extends BasePageBean implements Serializable {
     private ScheduleEvent event = new DefaultScheduleEvent();
     private final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
     private TipoReserva frecuencia;
-    
+    private String duracion;
+    private String fretiempo;
+
 
     public int getRecursoID() {
 //        System.err.println(recursoID);
@@ -75,6 +77,7 @@ public class ReservaBean extends BasePageBean implements Serializable {
     public void setFrecuencia(TipoReserva frecuencia) {
         this.frecuencia = frecuencia;
     }
+
     private int datee;
 
     public TipoReserva[] getTipos() {
@@ -93,9 +96,9 @@ public class ReservaBean extends BasePageBean implements Serializable {
 
     public void crearEvento(Date start, Date end, String usuario, int idRecurso, String recurrencia, String duracion) throws BibliotecaException {
 
-        
-        start.setYear(start.getYear()+2000);
-        
+
+        start.setYear(start.getYear() + 2000);
+
         System.err.println(start);
         System.err.println(end);
         System.err.println(usuario);
@@ -227,15 +230,15 @@ public class ReservaBean extends BasePageBean implements Serializable {
         this.event = event;
     }
 
-    public void addEvent() throws BibliotecaException {
+    public void addEvent(String usuario) throws BibliotecaException {
         if (event.getId() == null) {
             //addEvent(String Usuario, int idRecurso,TipoReserva res, int Duracion)
             /* En esta linea se deben llamar al metodo recursion,con los parametros especificados
             es decir addEvent tambien deberia tener tipoReserva y Duracion todo depende de los campos 
             que los de vista deben hacer :V
              */
-
-//            recursion("marcelo", 3111, TipoReserva.Diario, 3);
+            int numero = Integer.parseInt(fretiempo);
+            recursion(usuario, recursoID, frecuencia, numero);
         } else {
             eventModel.updateEvent(event);
         }
@@ -248,35 +251,35 @@ public class ReservaBean extends BasePageBean implements Serializable {
 //        System.out.println(res);
         //Primera Reserva Sin Importar la Recursion
         // for 
-        
-            if (validarInsercion(event, idRecurso)) {
-                eventModel.addEvent(event);
-                serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, event.getTitle(), event.getStartDate(), event.getEndDate(), false, res));
-            } else {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "PAILAASSSS KRAKKK", null));
-                return;
 
-            }
-            if (res != TipoReserva.Ninguno) {
-                Date startDate;
-                Date endDate;
-                // Reserva Recursiva que es la Anterios + todas las reservas que faltan acorde a la duracion
-                for (int i = 1; i < duracion; i++) {
-                    startDate = sumaFecha(event.getStartDate(), res);
-                    endDate = sumaFecha(event.getEndDate(), res);
+        if (validarInsercion(event, idRecurso)) {
+            eventModel.addEvent(event);
+            serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, event.getTitle(), event.getStartDate(), event.getEndDate(), false, res));
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "PAILAASSSS KRAKKK", null));
+            return;
 
-                    event = new DefaultScheduleEvent(event.getTitle() + " -> " + i, startDate, endDate);
-                    if (validarInsercion(event, idRecurso)) {
-                        serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, event.getTitle(), startDate, endDate, false, res));
+        }
+        if (res != TipoReserva.Ninguno) {
+            Date startDate;
+            Date endDate;
+            // Reserva Recursiva que es la Anterios + todas las reservas que faltan acorde a la duracion
+            for (int i = 1; i < duracion; i++) {
+                startDate = sumaFecha(event.getStartDate(), res);
+                endDate = sumaFecha(event.getEndDate(), res);
+
+                event = new DefaultScheduleEvent(event.getTitle() + " -> " + i, startDate, endDate);
+                if (validarInsercion(event, idRecurso)) {
+                    serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, event.getTitle(), startDate, endDate, false, res));
 //                        System.out.println(event.getStartDate());
-                        eventModel.addEvent(event);
-                    } else {
-                        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "PAILAASSSS KRAKKK", null));
-                        return;
-                    }
+                    eventModel.addEvent(event);
+                } else {
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "PAILAASSSS KRAKKK", null));
+                    return;
                 }
             }
-        
+        }
+
     }
 
     private boolean validarInsercion(ScheduleEvent evento, int idrecurso) throws BibliotecaException {
@@ -302,5 +305,21 @@ public class ReservaBean extends BasePageBean implements Serializable {
         });
 //        System.err.printcln(eventModel.getEventCount()+"largoooooo");
 
+    }
+
+    public String getDuracion() {
+        return duracion;
+    }
+
+    public void setDuracion(String duracion) {
+        this.duracion = duracion;
+    }
+
+    public String getFretiempo() {
+        return fretiempo;
+    }
+
+    public void setFretiempo(String fretiempo) {
+        this.fretiempo = fretiempo;
     }
 }
