@@ -14,16 +14,7 @@
             <h:outputStylesheet name="css/bootstrap-tagsinput.css"/>
             <h:outputStylesheet name="css/initiative.css"/>
             <h:outputStylesheet name="dataTable/css/dataTables.bootstrap.min.css"/>
-            <script type="text/javascript">
-                function refresh() {
-                    if (new Date().getTime() - time >= 6000)
-                        window.location.reload(true);
-                    else
-                        setTimeout(refresh, 10);
-                }
-
-                refresh();
-            </script>            
+            <meta http-equiv="refresh" content="2" />            
             <meta http-equiv="Cache-control" content="no-cache"></meta>
             <meta http-equiv="Expires" content="-1"></meta>
         </ui:define>
