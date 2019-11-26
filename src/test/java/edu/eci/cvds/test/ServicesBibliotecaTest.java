@@ -20,6 +20,7 @@ import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import edu.eci.cvds.managedbeans.*;
 import static org.junit.Assert.assertTrue;
 
 
@@ -523,15 +524,19 @@ public class ServicesBibliotecaTest {
     Cuando se quiere registrar un recurso se debe tener en cuenta que
     que el inicio reserva < fin reserva. Se coloca Inicioreserva=’12:00:00’, finreserva=’13:00:00’ que es correcto:
     */
-    @Test
-    public void deberiaRegistrarReservayEliminarla() throws BibliotecaException, ParseException {
-        
-        
-        /*Date date1=new SimpleDateFormat("yyyy/MM/dd").parse("1998/12/10");  
-            bibliotecaServices.registrarReserva(new Reserva("rubiano",2024,"SUPUTAMADRE",date1, date1,true,TipoReserva.Ninguno));
-            //FALTA HACER EL DE ELIMINAR
-            */
-    }
+//    @Test
+//    public void deberiaRegistrarReservayEliminarla() throws BibliotecaException, ParseException {
+//        
+//        
+//        Date date1=new SimpleDateFormat("yyyy/MM/dd").parse("2019/12/10");  
+//        Date date2=new SimpleDateFormat("yyyy/MM/dd").parse("2019/12/11");  
+//            bibliotecaServices.registrarReserva(new Reserva("rubiano",2929,"SUPUTAMADRE",date1, date1,true,TipoReserva.Diario));
+//        ReservaBean r = new ReservaBean();
+//        r.crearEvento(date1, date1, "invitado", 2029, "4", "1 hora");
+//        
+//  //          FALTA HACER EL DE ELIMINAR
+//            
+//    }
       
 //    /*
 //    Cuando se quiere registrar un recurso se debe tener en cuenta que

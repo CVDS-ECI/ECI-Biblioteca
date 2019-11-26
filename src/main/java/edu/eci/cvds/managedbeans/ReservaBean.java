@@ -59,12 +59,12 @@ public class ReservaBean extends BasePageBean implements Serializable {
     
 
     public int getRecursoID() {
-        System.err.println(recursoID);
+//        System.err.println(recursoID);
         return recursoID;
     }
 
     public void setRecursoID(int recursoID) {
-        System.err.println(recursoID);
+//        System.err.println(recursoID);
         this.recursoID = recursoID;
     }
 
@@ -93,17 +93,21 @@ public class ReservaBean extends BasePageBean implements Serializable {
 
     public void crearEvento(Date start, Date end, String usuario, int idRecurso, String recurrencia, String duracion) throws BibliotecaException {
 
-//        System.err.println(start);
-//        System.err.println(end);
-//        System.err.println(usuario);
-//        System.err.println(idRecurso);
-//        System.err.println(this.frecuencia);
-//        System.err.println(this.frecuencia.getClass());
-//        System.err.println(recurrencia);
-//        System.err.println(duracion);
+        
+        start.setYear(start.getYear()+2000);
+        
+        System.err.println(start);
+        System.err.println(end);
+        System.err.println(usuario);
+        System.err.println(idRecurso);
+        System.err.println(this.frecuencia);
+        System.err.println(this.frecuencia.getClass());
+        System.err.println(recurrencia);
+        System.err.println(duracion);
+
         duracion = duracion.replaceAll("\\D+", "");
         int numero = Integer.parseInt(duracion);
-
+        int a = Integer.parseInt(recurrencia);
         if (numero == 1) {
             end = sumaFecha(end, TipoReserva.Ninguno);
         } else if (numero == 2) {
@@ -122,7 +126,7 @@ public class ReservaBean extends BasePageBean implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "PAILAASSSS KRAKKK", null));
         }
 
-        for (int i = 1; i < numero; i++) {
+        for (int i = 1; i < a; i++) {
             start = sumaFecha(start, this.frecuencia);
             end = sumaFecha(end, this.frecuencia);
             if (validarInsercionFechas(start, end, idRecurso)) {
@@ -240,9 +244,11 @@ public class ReservaBean extends BasePageBean implements Serializable {
     }
 
     public void recursion(String usuario, int idRecurso, TipoReserva res, int duracion) throws BibliotecaException {
+//        System.out.println(usuario+idRecurso+duracion);
+//        System.out.println(res);
         //Primera Reserva Sin Importar la Recursion
         // for 
-        if (event.isAllDay()) {
+        
             if (validarInsercion(event, idRecurso)) {
                 eventModel.addEvent(event);
                 serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, event.getTitle(), event.getStartDate(), event.getEndDate(), false, res));
@@ -270,7 +276,7 @@ public class ReservaBean extends BasePageBean implements Serializable {
                     }
                 }
             }
-        }
+        
     }
 
     private boolean validarInsercion(ScheduleEvent evento, int idrecurso) throws BibliotecaException {
@@ -284,9 +290,9 @@ public class ReservaBean extends BasePageBean implements Serializable {
 
     public void loadEvents() throws BibliotecaException {
         eventModel = new DefaultScheduleModel();
-        System.err.println(recursoID+"load");
+//        System.err.println(recursoID+"load");
         List<Reserva> reservas = serviciosBiblioteca.listarReservasRecurso(recursoID);
-        System.err.println(reservas.size()+"AAAAAAAAA");
+//        System.cerr.println(reservas.size()+"AAAAAAAAA");
         //Mouseky herramienta misteriosa 
         reservas.stream().map((reserva) -> {
             event = new DefaultScheduleEvent(reserva.getTitulo(), reserva.getDataInicio(), reserva.getDataFim());
@@ -294,7 +300,7 @@ public class ReservaBean extends BasePageBean implements Serializable {
         }).forEachOrdered((_item) -> {
             eventModel.addEvent(event);
         });
-        System.err.println(eventModel.getEventCount()+"largoooooo");
+//        System.err.printcln(eventModel.getEventCount()+"largoooooo");
 
     }
 }
