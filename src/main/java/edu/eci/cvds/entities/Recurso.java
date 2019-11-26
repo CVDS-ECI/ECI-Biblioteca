@@ -18,7 +18,6 @@ public class Recurso {
     
     
     
-    
 
 
     public Recurso(int id,String nombre, String ubicacion, String tipo, int capacidad, String estado, java.sql.Time horaInicio, java.sql.Time horaFin) {

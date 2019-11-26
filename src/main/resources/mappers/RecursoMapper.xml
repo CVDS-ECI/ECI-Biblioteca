@@ -56,7 +56,6 @@
         Recurso.id = #{recursoId}
     </insert>
     
-    
     <select id="consultarRecursosDisponibles" resultMap="RecursoResult">
         SELECT
         r.id,

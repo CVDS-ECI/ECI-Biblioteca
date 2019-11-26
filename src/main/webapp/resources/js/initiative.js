@@ -17,10 +17,6 @@ $('#select').on('change', function() {
 $("#modifyInitiative").draggable({
       handle: ".modal-header"
   });
-  $("#reservarRecurso").draggable({
-      handle: ".modal-header"
-  });
-  
 $(document).ready(function() {
     $("#initiativeTable").DataTable();
 	$("#keyinitiative").DataTable();
@@ -62,27 +58,6 @@ $(document).ready(function() {
 	        row.child(sp.html()).show();
 	        tr.addClass('shown');
 			$(this).children().children().first().removeClass("fa fa-cog fa-spin fa-2x fa-fw").addClass("fa fa-arrow-up fa-2x");
-	    }
-	} );
-} );
-
-
-$(document).ready(function() {
-    var table = $('#comunidadTable').DataTable();
-     
-	$('#comunidadTable tbody').on('click', 'td.details', function () {
-	    var tr = $(this).closest('tr');
-	    var sp = $(this).children().eq(1);
-	    var row = table.row(tr);
-	    if ( row.child.isShown() ) {
-			$(this).children().children().first().removeClass("fas fa-chevron-up fa-2x").addClass("fas fa-edit fa-2x");
-	        row.child.hide();
-	        tr.removeClass('shown');
-	    }
-	    else {
-	        row.child(sp.html()).show();
-	        tr.addClass('shown');
-			$(this).children().children().first().removeClass("fas fa-edit fa-2x").addClass("fas fa-chevron-up fa-2x");
 	    }
 	} );
 } );

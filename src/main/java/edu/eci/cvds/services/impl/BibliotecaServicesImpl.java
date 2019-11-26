@@ -83,16 +83,16 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
     }
 
     @Override
-    public List<Reserva> listarReservasRecurso(int ru) throws BibliotecaException {
+    public List<Reserva> consultarReservas() throws BibliotecaException {
         try {
-            return reservaDAO.listarReservasRecurso(ru);
+            return reservaDAO.listarTodos();
         } catch (PersistenceException ex) {
             throw new BibliotecaException("Error al consultar las reservas Disponibles:" + ex.getLocalizedMessage(), ex);
         }
     }
 
     @Override
-    public void eliminarReserva(int re) throws BibliotecaException {
+    public void eliminarReserva(Reserva re) throws BibliotecaException {
          try {
             reservaDAO.remover(re);
         } catch (PersistenceException ex) {

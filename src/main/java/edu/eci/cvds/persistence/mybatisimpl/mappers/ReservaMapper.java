@@ -15,10 +15,10 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface ReservaMapper {
 
-    public List<Reserva> listarReservasRecurso(@Param ("recursoId") int ru);
+    public List<Reserva> consultarReservas();
 
     public void salvar(@Param("reserva") Reserva rev);
 
-    public void remover(@Param("reservaId") int rev);
+    public void remover(@Param("reserva") Reserva rev);
 
 }

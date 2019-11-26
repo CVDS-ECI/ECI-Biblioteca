@@ -13,7 +13,7 @@
         <result property='tipoReserva' column='tipoReserva' />
     </resultMap>
 
-    <select id="listarReservasRecurso" resultMap="ReservaResult">
+    <select id="consultarReservas" resultMap="ReservaResult">
         SELECT
         r.id,
         r.titulo,
@@ -23,7 +23,6 @@
         r.tipoReserva
         FROM
         Reserva as r
-        WHERE r.recurso = #{recursoId}
     </select>
 
 
@@ -35,7 +34,7 @@
     <delete id="remover" parameterType="edu.eci.cvds.entities.Reserva">
         DELETE FROM  reserva
         WHERE
-        reserva.id = #{reservaId}
+        reserva.id = #{reserva.id}
     </delete>
     
    
