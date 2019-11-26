@@ -39,12 +39,12 @@ import org.primefaces.model.ScheduleModel;
  * @author Ing Pipe
  */
 @ManagedBean(name = "reservaBean", eager = true)
-@RequestScoped
+@SessionScoped
 public class ReservaBean extends BasePageBean implements Serializable {
 
     
-    @ManagedProperty(value = "#{param.recursoID}")
-    private int recursoID;
+//    @ManagedProperty(value = "#{param.recursoID}")
+    private int recursoID = 0;
     
     
     
@@ -286,7 +286,7 @@ public class ReservaBean extends BasePageBean implements Serializable {
         eventModel = new DefaultScheduleModel();
         System.err.println(recursoID+"load");
         List<Reserva> reservas = serviciosBiblioteca.listarReservasRecurso(recursoID);
-        System.err.println(reservas.size());
+        System.err.println(reservas.size()+"AAAAAAAAA");
         //Mouseky herramienta misteriosa 
         reservas.stream().map((reserva) -> {
             event = new DefaultScheduleEvent(reserva.getTitulo(), reserva.getDataInicio(), reserva.getDataFim());

@@ -15,13 +15,15 @@
             <h:outputStylesheet name="css/initiative.css"/>
             <h:outputStylesheet name="dataTable/css/dataTables.bootstrap.min.css"/>
             <script type="text/javascript">
-                function conf()
-                {
-                    var con = confirm("Do you want to submit for sure?");
-                    var url = "faces/adminInicio.xhtml";
-                    window.location(url);
+                function refresh() {
+                    if (new Date().getTime() - time >= 6000)
+                        window.location.reload(true);
+                    else
+                        setTimeout(refresh, 10);
                 }
-            </script>
+
+                refresh();
+            </script>            
             <meta http-equiv="Cache-control" content="no-cache"></meta>
             <meta http-equiv="Expires" content="-1"></meta>
         </ui:define>
@@ -29,7 +31,7 @@
             <h:form>
                 #{reservaBean.loadEvents()}
                 <p:growl id="messages" showDetail="true" />
-                #{reservaBean.getRecursoID()}
+
                 <h:panelGrid columnClasses="value" class="panelHorario">
                     <p:schedule id="schedule" value="#{reservaBean.eventModel}" widgetVar="myschedule" >
 

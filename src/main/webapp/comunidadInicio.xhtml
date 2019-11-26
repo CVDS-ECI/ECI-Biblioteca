@@ -10,6 +10,11 @@
             <h:outputStylesheet name="css/bootstrap-tagsinput.css" />
             <h:outputStylesheet name="css/initiative.css" />
             <h:outputStylesheet name="dataTable/css/dataTables.bootstrap.min.css" />
+            <script>
+                function myFunction() {
+                    location.href = "/faces/reservaRecursos.xhtml";
+                }
+            </script>
         </ui:define>
         <ui:define name="content">
 
@@ -55,11 +60,16 @@
                                             <button type="button" data-id="#{recurso.id}"
                                                     class="modify-Initiative btn btn-success" data-toggle="modal"
                                                     data-target="#modifyInitiative">Reservar recurso</button>
-<!--                                            <p:button outcome="reservaRecursos" value="Ver Reservas" style="margin-right:20px;" class="modify-Initiative btn btn-success">
-                                                <f:param name="reservaID" value="{recurso.id}" />
-                                            </p:button>-->
-                                            
-                                            <p:button outcome="reservaRecursos?recursoID=#{2928}" value="View Computers" />
+                                            <!--                                            <p:button outcome="reservaRecursos" value="Ver Reservas" style="margin-right:20px;" class="modify-Initiative btn btn-success">
+                                                                                            <f:param name="reservaID" value="{recurso.id}" />
+                                                                                        </p:button>-->
+
+                                            <!--<p:button outcome="reservaRecursos?recursoID=#{2928}" value="View Computers" />-->
+                                            <h:form>
+                                                <p:commandButton value="Reservar" id="boton1" styleClass="btn btn-success" actionListener="#{reservaBean.setRecursoID(recurso.id)}" onclick="myFunction()" >
+                                                    <a href="faces/reservaRecursos.xhtml"/>
+                                                </p:commandButton>
+                                            </h:form>
 
                                             <br></br>
 
