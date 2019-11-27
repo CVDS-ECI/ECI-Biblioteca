@@ -15,3 +15,12 @@ where  inicio::time >= '16:00:00' AND fin::time <= '18:35:00'
 GROUP BY titulo
 ORDER BY cantidad_de_reservas desc;
 
+// Los recursos más usados y programa
+
+SELECT titulo, COUNT(titulo) AS cantidad_de_reservas 
+FROM   reserva 
+where  carrera= 'Ingenieria de sistemas'
+GROUP BY titulo
+ORDER BY cantidad_de_reservas desc;
+
+
