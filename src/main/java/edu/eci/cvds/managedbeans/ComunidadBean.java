@@ -20,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.ScheduleEntryMoveEvent;
@@ -31,7 +32,7 @@ import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
 
 @ManagedBean(name = "comunidadBean", eager = true)
-@SessionScoped
+@RequestScoped
 
 public class ComunidadBean extends BasePageBean {
 
