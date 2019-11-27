@@ -71,7 +71,7 @@ SELECT inicio,fin, COUNT(inicio) AS horarioInicio , COUNT(fin) AS horarioFin
 FROM   reserva 
 where  inicio >= '1998/12/10' AND fin <= '1999/01/10'
 GROUP BY inicio,fin
-ORDER BY horarioInicio,horarioFin desc;
+ORDER BY horarioInicio,horarioFin asc;
 
 //Horarios de mayor ocupación de recursos y Franja horaria
 
@@ -79,7 +79,7 @@ SELECT inicio,fin, COUNT(inicio) AS horarioInicio , COUNT(fin) AS horarioFin
 FROM   reserva 
 where  inicio::time >= '16:00:00' AND fin::time <= '18:35:00'
 GROUP BY inicio,fin
-ORDER BY horarioInicio,horarioFin desc;
+ORDER BY horarioInicio,horarioFin asc;
 
 //Horarios de mayor ocupación de recursos y programa
 
@@ -87,7 +87,7 @@ SELECT inicio,fin, COUNT(inicio) AS horarioInicio , COUNT(fin) AS horarioFin
 FROM   reserva 
 where  carrera= 'Ingenieria de sistemas'
 GROUP BY inicio,fin
-ORDER BY horarioInicio,horarioFin desc;
+ORDER BY horarioInicio,horarioFin asc;
 
 //Horarios de mayor ocupación de recursos y tipo de recurso
 
@@ -96,8 +96,40 @@ FROM   reserva join recurso
 on reserva.recurso = recurso.id
 where  recurso.tipo='Libro'
 GROUP BY inicio,fin
+ORDER BY horarioInicio,horarioFin asc;
+
+//Horarios de menor ocupación de recursos y Rango de fechas
+
+SELECT inicio,fin, COUNT(inicio) AS horarioInicio , COUNT(fin) AS horarioFin
+FROM   reserva 
+where  inicio >= '1998/12/10' AND fin <= '1999/01/10'
+GROUP BY inicio,fin
 ORDER BY horarioInicio,horarioFin desc;
 
+//Horarios de menor ocupación de recursos y Franja horaria
+
+SELECT inicio,fin, COUNT(inicio) AS horarioInicio , COUNT(fin) AS horarioFin
+FROM   reserva 
+where  inicio::time >= '16:00:00' AND fin::time <= '18:35:00'
+GROUP BY inicio,fin
+ORDER BY horarioInicio,horarioFin desc;
+
+//Horarios de menor ocupación de recursos y programa
+
+SELECT inicio,fin, COUNT(inicio) AS horarioInicio , COUNT(fin) AS horarioFin
+FROM   reserva 
+where  carrera= 'Ingenieria de sistemas'
+GROUP BY inicio,fin
+ORDER BY horarioInicio,horarioFin desc;
+
+//Horarios de menor ocupación de recursos y tipo de recurso
+
+SELECT inicio,fin, COUNT(inicio) AS horarioInicio , COUNT(fin) AS horarioFin
+FROM   reserva join recurso
+on reserva.recurso = recurso.id
+where  recurso.tipo='Libro'
+GROUP BY inicio,fin
+ORDER BY horarioInicio,horarioFin desc;
 
 
 
