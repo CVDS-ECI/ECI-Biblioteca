@@ -23,4 +23,48 @@ where  carrera= 'Ingenieria de sistemas'
 GROUP BY titulo
 ORDER BY cantidad_de_reservas desc;
 
+// Los recursos más usados y tipo de recurso
+
+SELECT titulo, COUNT(titulo) AS cantidad_de_reservas 
+FROM   reserva join recurso
+on reserva.recurso = recurso.id
+where  recurso.tipo='Libro'
+GROUP BY titulo
+ORDER BY cantidad_de_reservas desc;
+
+// Los recursos menos usados y Rango de fechas
+
+SELECT titulo, COUNT(titulo) AS cantidad_de_reservas 
+FROM   reserva 
+where  inicio >= '1998/12/10' AND fin <= '1999/01/10'
+GROUP BY titulo
+ORDER BY cantidad_de_reservas asc;
+
+// Los recursos menos usados y Franja horaria
+
+SELECT titulo, COUNT(titulo) AS cantidad_de_reservas 
+FROM   reserva 
+where  inicio::time >= '16:00:00' AND fin::time <= '18:35:00'
+GROUP BY titulo
+ORDER BY cantidad_de_reservas asc;
+
+// Los recursos menos usados y programa
+
+SELECT titulo, COUNT(titulo) AS cantidad_de_reservas 
+FROM   reserva 
+where  carrera= 'Ingenieria de sistemas'
+GROUP BY titulo
+ORDER BY cantidad_de_reservas asc;
+
+// Los recursos menos usados y tipo de recurso
+
+SELECT titulo, COUNT(titulo) AS cantidad_de_reservas 
+FROM   reserva join recurso
+on reserva.recurso = recurso.id
+where  recurso.tipo='Libro'
+GROUP BY titulo
+ORDER BY cantidad_de_reservas asc;
+
+
+
 
