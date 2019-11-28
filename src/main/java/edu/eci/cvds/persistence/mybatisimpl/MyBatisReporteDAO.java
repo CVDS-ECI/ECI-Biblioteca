@@ -5,10 +5,12 @@
  */
 package edu.eci.cvds.persistence.mybatisimpl;
 
+import edu.eci.cvds.persistence.ReporteDAO;
+
 /**
  *
  * @author davidleon
  */
-public class MyBatisReporteDAO {
+public class MyBatisReporteDAO implements ReporteDAO{
     
 }

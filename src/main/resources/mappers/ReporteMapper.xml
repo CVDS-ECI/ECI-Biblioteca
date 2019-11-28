@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.ReservaMapper">
+<mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.ReporteMapper">
     <resultMap type='Reserva' id='ReservaResult'>
         <id property='id' column='id' />
         <result property='titulo' column='titulo' />
@@ -11,6 +11,8 @@
         <result property='dataFim' column='fin' />
         <result property='diaInteiro' column='diaEntero' />
         <result property='tipoReserva' column='tipoReserva' />
+        <result property='usuario' column='usuario' />
+        <result property='recurso' column='recurso' />
     </resultMap>
 
     <select id="listarReservasRecurso" resultMap="ReservaResult">
