@@ -10,6 +10,7 @@ import edu.eci.cvds.entities.Recurso;
 import edu.eci.cvds.entities.Reserva;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.RecursoDAO;
+import edu.eci.cvds.persistence.ReporteDAO;
 import edu.eci.cvds.persistence.ReservaDAO;
 import edu.eci.cvds.persistence.UsuarioDAO;
 import edu.eci.cvds.services.BibliotecaServices;
@@ -27,6 +28,9 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
     
     @Inject
     ReservaDAO reservaDAO;
+    
+    @Inject
+    ReporteDAO reporteDAO;
 
     @Override
     public void registrarRecurso(Recurso rec)throws BibliotecaException {
@@ -97,6 +101,15 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
             reservaDAO.remover(re);
         } catch (PersistenceException ex) {
             throw new BibliotecaException("Error al consultar las reservas Disponibles:" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarRecursosMasUsados() throws BibliotecaException {
+        try {
+            return reporteDAO.recursosMasUsados();
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
         }
     }
 

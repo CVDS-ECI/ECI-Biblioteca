@@ -23,6 +23,8 @@ public interface BibliotecaServices {
         
         public List<Reserva> listarReservasRecurso(int ru) throws BibliotecaException;
         
+        public List<Reserva> consultarRecursosMasUsados() throws BibliotecaException;
+        
 
         
         

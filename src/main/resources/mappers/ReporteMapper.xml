@@ -14,31 +14,15 @@
         <result property='usuario' column='usuario' />
         <result property='recurso' column='recurso' />
     </resultMap>
-
-    <select id="listarReservasRecurso" resultMap="ReservaResult">
+    
+    <select id="recursosMasUsados" resultMap="ReservaResult">
         SELECT
-        r.id,
         r.titulo,
-        r.inicio,
-        r.fin,
-        r.diaEntero,
-        r.tipoReserva
+        COUNT(r.titulo) AS cantidad_de_reservas
         FROM
         Reserva as r
-        WHERE r.recurso = #{recursoId}
+        GROUP BY r.titulo
+        ORDER BY cantidad_de_reservas desc
     </select>
-
-
-    <insert id="salvar" parameterType="edu.eci.cvds.entities.Reserva">
-        insert into Reserva (titulo,recurso,usuario,inicio,fin,diaEntero,tipoReserva)
-        values (#{reserva.titulo},#{reserva.recurso},#{reserva.usuario},#{reserva.dataInicio},#{reserva.dataFim},#{reserva.diaInteiro},#{reserva.tipoReserva})
-    </insert>
-    
-    <delete id="remover" parameterType="edu.eci.cvds.entities.Reserva">
-        DELETE FROM  reserva
-        WHERE
-        reserva.id = #{reservaId}
-    </delete>
-    
-   
+       
 </mapper>
