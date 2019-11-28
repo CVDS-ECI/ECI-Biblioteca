@@ -100,5 +100,15 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         }
     }
 
+
+    @Override
+    public Reserva consultarReserva(int id) throws BibliotecaException {
+        try {
+            return reservaDAO.loadReserva(id);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar esta reserva:" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
     
 }

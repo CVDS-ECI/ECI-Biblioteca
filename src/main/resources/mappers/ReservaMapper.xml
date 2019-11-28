@@ -37,6 +37,14 @@
         WHERE
         reserva.id = #{reservaId}
     </delete>
+
+
+    <select id="consultarReserva" parameterType="map" resultMap="ReservaResult">
+        SELECT *
+        FROM
+        Reserva as r
+        where r.id = #{id}
+    </select>
     
    
 </mapper>
