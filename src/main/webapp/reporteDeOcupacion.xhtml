@@ -34,16 +34,16 @@
                 <div class="col-md-5">
                     <div class="form-group">
                         <label class="bmd-label-floating">Reportes:</label>
-                        <h:selectOneMenu value="#{AdminBean.tipoDeUbicacionSeleccionada}" class="form-control">
-                            <f:selectItems value="#{AdminBean.getTiposDeUbicacion()}" />
+                        <h:selectOneMenu value="#{reporteBean.tipoDeReporteSeleccionado}" class="form-control">
+                            <f:selectItems value="#{reporteBean.getTiposDeReportes()}" />
                         </h:selectOneMenu>
                     </div>
                 </div>
                 <div class="col-md-7">
                     <div class="form-group">
                         <label class="bmd-label-floating">Filtrar por:</label>
-                        <h:selectOneMenu value="#{AdminBean.tipoDeUbicacionSeleccionada}" class="form-control">
-                            <f:selectItems value="#{AdminBean.getTiposDeUbicacion()}" />
+                        <h:selectOneMenu value="#{reporteBean.tipoDeFiltroSeleccionado}" class="form-control">
+                            <f:selectItems value="#{reporteBean.getTiposDeFiltros()}" />
                         </h:selectOneMenu>
                         <br/>
                         <br/>
