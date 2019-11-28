@@ -192,6 +192,7 @@ public class ReservaBean extends BasePageBean implements Serializable {
 
     public void onDateSelect(SelectEvent selectEvent) {
         event = new DefaultScheduleEvent("", sumaFecha((Date) selectEvent.getObject(), TipoReserva.Diario), sumaFecha((Date) selectEvent.getObject(), TipoReserva.Diario));
+        
     }
 
     public void onEventMove(ScheduleEntryMoveEvent event) {
