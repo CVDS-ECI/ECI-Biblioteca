@@ -3,6 +3,7 @@ package edu.eci.cvds.managedbeans;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -22,7 +23,7 @@ public class DropdownView implements Serializable {
 
     @PostConstruct
     public void init() {
-        tipoDeFiltros  = new HashMap<String, String>();
+        tipoDeFiltros  = new TreeMap<String, String>();
 
 //        tipoDeFiltros.put("Diaria", "Diaria");
 //        tipoDeFiltros.put("Semanal", "Semanal");
@@ -35,7 +36,7 @@ public class DropdownView implements Serializable {
 
         //Falta la fecha
 
-        Map<String,String> map = new HashMap<String, String>();
+        Map<String,String> map = new TreeMap<String, String>();
         map.put("7:00 am - 8:00 am", "7");
         map.put("8:01 am - 9:00 am", "8");
         map.put("9:01 am - 10:00 am", "9");
@@ -53,7 +54,7 @@ public class DropdownView implements Serializable {
         map.put("9:01 pm - 10:00 pm", "21");
         data.put("Franja horaria", map);
 
-        map = new HashMap<String, String>();
+        map = new TreeMap<String, String>();
         map.put("Ingeniería de Sistemas", "sistemas");
         map.put("Ingeniería Electrónica", "electronica");
         map.put("Ingeniería Eléctrica", "electrica");
@@ -67,7 +68,7 @@ public class DropdownView implements Serializable {
         map.put("Matemáticas", "matematicas");
         data.put("Carrera", map);
 
-        map = new HashMap<String, String>();
+        map = new TreeMap<String, String>();
         map.put("Equipo de cómputo", "equipo");
         map.put("Sala de estudio", "sala");
         map.put("Libro", "libro");
