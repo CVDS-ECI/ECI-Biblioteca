@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.ReservaMapper">
+    <resultMap type='Reserva' id='ReservaResult'>
+        <id property='id' column='id' />
+        <result property='titulo' column='titulo' />
+        <result property='dataInicio' column='inicio' />
+        <result property='dataFim' column='fin' />
+        <result property='diaInteiro' column='diaEntero' />
+        <result property='tipoReserva' column='tipoReserva' />
+    </resultMap>
+
+    <select id="listarReservasRecurso" resultMap="ReservaResult">
+        SELECT
+        r.id,
+        r.titulo,
+        r.inicio,
+        r.fin,
+        r.diaEntero,
+        r.tipoReserva
+        FROM
+        Reserva as r
+        WHERE r.recurso = #{recursoId}
+    </select>
+
+
+    <insert id="salvar" parameterType="edu.eci.cvds.entities.Reserva">
+        insert into Reserva (titulo,recurso,usuario,inicio,fin,diaEntero,tipoReserva)
+        values (#{reserva.titulo},#{reserva.recurso},#{reserva.usuario},#{reserva.dataInicio},#{reserva.dataFim},#{reserva.diaInteiro},#{reserva.tipoReserva})
+    </insert>
+    
+    <delete id="remover" parameterType="edu.eci.cvds.entities.Reserva">
+        DELETE FROM  reserva
+        WHERE
+        reserva.id = #{reservaId}
+    </delete>
+    
+   
+</mapper>
