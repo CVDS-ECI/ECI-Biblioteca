@@ -10,6 +10,7 @@ import edu.eci.cvds.entities.Reserva;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.ReservaDAO;
 import edu.eci.cvds.persistence.mybatisimpl.mappers.ReservaMapper;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -48,6 +49,18 @@ public class MyBatisReservaDAO implements ReservaDAO{
     public void remover(int rv) throws PersistenceException {
         try{
              reservaMapper.remover(rv);
+         }
+         catch(org.apache.ibatis.exceptions.PersistenceException e){
+             
+             throw new PersistenceException("Error al consultar reserva:",e);
+             
+         }
+    }
+
+    @Override
+    public Reserva getInfoReserva(int recursoId, Date inicio, Date fin) throws PersistenceException {
+        try{
+             return reservaMapper.getInfoReserva(recursoId,inicio,fin);
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              

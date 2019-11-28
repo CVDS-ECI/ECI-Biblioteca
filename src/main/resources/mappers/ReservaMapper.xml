@@ -7,6 +7,8 @@
     <resultMap type='Reserva' id='ReservaResult'>
         <id property='id' column='id' />
         <result property='titulo' column='titulo' />
+        <result property='recurso' column='recurso' />
+        <result property='usuario' column='usuario' />
         <result property='dataInicio' column='inicio' />
         <result property='dataFim' column='fin' />
         <result property='diaInteiro' column='diaEntero' />
@@ -25,8 +27,23 @@
         Reserva as r
         WHERE r.recurso = #{recursoId}
     </select>
+    
+    <select id="getInfoReserva" resultMap="ReservaResult">
+        SELECT
+        r.id,
+        r.titulo,
+        r.recurso,
+        r.usuario,
+        r.inicio,
+        r.fin,
+        r.diaEntero,
+        r.tipoReserva
+        FROM
+        Reserva as r
+        WHERE r.recurso=#{rId} and r.inicio=#{ini} and r.fin=#{fin}
+    </select>
 
-
+    
     <insert id="salvar" parameterType="edu.eci.cvds.entities.Reserva">
         insert into Reserva (titulo,recurso,usuario,inicio,fin,diaEntero,tipoReserva)
         values (#{reserva.titulo},#{reserva.recurso},#{reserva.usuario},#{reserva.dataInicio},#{reserva.dataFim},#{reserva.diaInteiro},#{reserva.tipoReserva})

@@ -126,9 +126,26 @@ public class Reserva {
         return true;
     }
 
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public int getRecurso() {
+        return recurso;
+    }
+
+    public void setRecurso(int recurso) {
+        this.recurso = recurso;
+    }
+
+    
     @Override
     public String toString() {
-        return "RESERVA { id: " + id + ", titula: " + titulo + ", inicio: " + dataInicio
+        return "RESERVA { id: " + id + "Usuario:" + usuario + "Recurso" + recurso +", titula: " + titulo + ", inicio: " + dataInicio
                 + ", tipo: " + tipoReserva + ", fin: " + dataFim + ", diainteiro: " + diaInteiro + "}";
     }
 

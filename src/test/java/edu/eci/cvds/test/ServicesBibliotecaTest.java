@@ -742,4 +742,19 @@ public class ServicesBibliotecaTest {
 //        }
 //        assertTrue(recursos.size()>=0);
 //    }
+//     @Test
+//    public void prueba() throws BibliotecaException, ParseException {
+//        try {
+//            System.err.println("HOLAAAAAAAAAAAAAAA");
+//            Date date1=new SimpleDateFormat("yyyy/MM/dd hh:mm:ss").parse("2019/11/28 22:00:00");
+//            Date date2=new SimpleDateFormat("yyyy/MM/dd hh:mm:ss").parse("2019/11/28 23:00:00");
+//            Reserva res =bibliotecaServices.getInfoReserva(2955,date1,date2);
+//            System.out.println(res);
+//            
+//        }
+//        catch(BibliotecaException e){
+//            e.printStackTrace();
+//            System.out.println(BibliotecaException.RECURSO_NO_EXISTE);
+//        }
+//    }
 }

@@ -2,6 +2,7 @@ package edu.eci.cvds.services;
 
 import edu.eci.cvds.entities.Recurso;
 import edu.eci.cvds.entities.Reserva;
+import java.util.Date;
 import java.util.List;
 
 
@@ -22,6 +23,8 @@ public interface BibliotecaServices {
         public void eliminarReserva(int re) throws BibliotecaException;
         
         public List<Reserva> listarReservasRecurso(int ru) throws BibliotecaException;
+        
+        public Reserva getInfoReserva(int recursoId, Date inicio, Date fin) throws BibliotecaException;
         
 
         
