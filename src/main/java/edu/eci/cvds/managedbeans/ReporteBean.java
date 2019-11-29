@@ -2,6 +2,7 @@ package edu.eci.cvds.managedbeans;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Recurso;
+import edu.eci.cvds.entities.Reserva;
 import edu.eci.cvds.services.BibliotecaServices;
 
 import javax.faces.bean.ManagedBean;
@@ -20,14 +21,15 @@ public class ReporteBean extends BasePageBean {
     private String tipoDeReporteSeleccionado;
     private String tipoDeFiltroSeleccionado;
 
-    public List<Recurso> consultarRecursosMasUsados() {
-        List<Recurso> recursos = new ArrayList<>();
+    public List<Reserva> consultarRecursosMasUsados() {
+        List<Reserva> recurso = new ArrayList<>();
         try {
-            //recursos = serviciosBiblioteca.consultarRecursos();
+            recurso = serviciosBiblioteca.consultarRecursosMasUsados();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return recursos;
+        return recurso;
+
     }
 
     public List<Recurso> consultarRecursosMenosUsados() {
