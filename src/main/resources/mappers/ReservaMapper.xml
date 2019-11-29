@@ -9,6 +9,7 @@
         <result property='titulo' column='titulo' />
         <result property='recurso' column='recurso' />
         <result property='usuario' column='usuario' />
+        <result property='dataActual' column='dataActual' />
         <result property='dataInicio' column='inicio' />
         <result property='dataFim' column='fin' />
         <result property='diaInteiro' column='diaEntero' />
@@ -34,6 +35,7 @@
         r.titulo,
         r.recurso,
         r.usuario,
+        r.dataActual,
         r.inicio,
         r.fin,
         r.diaEntero,
@@ -45,8 +47,8 @@
 
     
     <insert id="salvar" parameterType="edu.eci.cvds.entities.Reserva">
-        insert into Reserva (titulo,recurso,usuario,inicio,fin,diaEntero,tipoReserva)
-        values (#{reserva.titulo},#{reserva.recurso},#{reserva.usuario},#{reserva.dataInicio},#{reserva.dataFim},#{reserva.diaInteiro},#{reserva.tipoReserva})
+        insert into Reserva (titulo,recurso,usuario,inicio,fin,diaEntero,tipoReserva,dataActual)
+        values (#{reserva.titulo},#{reserva.recurso},#{reserva.usuario},#{reserva.dataInicio},#{reserva.dataFim},#{reserva.diaInteiro},#{reserva.tipoReserva},#{reserva.dataActual})
     </insert>
     
     <delete id="remover" parameterType="edu.eci.cvds.entities.Reserva">

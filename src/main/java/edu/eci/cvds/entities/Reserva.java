@@ -16,6 +16,7 @@ public class Reserva {
 
     private Long id;
     private String titulo;
+    private Date dataActual;
     private Date dataInicio;
     private Date dataFim;
     private boolean diaInteiro;
@@ -32,21 +33,23 @@ public class Reserva {
 
     }
 
-    public Reserva(String usuario, int recurso, String titulo, Date dataInicio, Date dataFim, boolean diaInteiro, TipoReserva tipoReserva) {
+    public Reserva(String usuario, int recurso, String titulo, Date dataActual ,Date dataInicio, Date dataFim, boolean diaInteiro, TipoReserva tipoReserva) {
         this.usuario = usuario;
         this.recurso = recurso;
         this.titulo = titulo;
+        this.dataActual = dataActual;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
         this.diaInteiro = diaInteiro;
         this.tipoReserva = tipoReserva;
     }
 
-    public Reserva(String usuario, int recurso, Long id, String titulo, Date dataInicio, Date dataFim, boolean diaInteiro, TipoReserva tipoReserva) {
+    public Reserva(String usuario, int recurso, Long id, String titulo,Date dataActual ,Date dataInicio, Date dataFim, boolean diaInteiro, TipoReserva tipoReserva) {
         this.usuario = usuario;
         this.recurso = recurso;
         this.id = id;
         this.titulo = titulo;
+        this.dataActual = dataActual;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
         this.diaInteiro = diaInteiro;
@@ -67,6 +70,14 @@ public class Reserva {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
+    }
+
+    public Date getDataActual() {
+        return dataActual;
+    }
+
+    public void setDataActual(Date dataActual) {
+        this.dataActual = dataActual;
     }
 
     public Date getDataInicio() {
