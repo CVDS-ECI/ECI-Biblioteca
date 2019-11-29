@@ -23,7 +23,7 @@
         FROM
         Reserva as r
         GROUP BY r.titulo
-        ORDER BY cantidadDeReservas
+        ORDER BY cantidadDeReservas desc
     </select>
        
 </mapper>
