@@ -118,7 +118,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         try {
             return reporteDAO.recursosMasUsadosPorFecha(date1, date2);
         } catch (PersistenceException ex) {
-            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Error al consultar Recursos Mas Usados Por Fecha" + ex.getLocalizedMessage(), ex);
         }
     }
 
@@ -127,7 +127,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         try {
             return reporteDAO.recursosMasUsadosPorHora(hora1, hora2);
         } catch (PersistenceException ex) {
-            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Error al consultar Recursos Mas Usados Por Hora" + ex.getLocalizedMessage(), ex);
         }
     }
 
@@ -136,7 +136,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         try {
             return reporteDAO.recursosMasUsadosPorPrograma(programa);
         } catch (PersistenceException ex) {
-            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Error al consultar Recursos Mas Usados Por Programa" + ex.getLocalizedMessage(), ex);
         }
     }
 
@@ -145,7 +145,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         try {
             return reporteDAO.recursosMasUsadosPorTipoRecurso(tipoRecurso);
         } catch (PersistenceException ex) {
-            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Error al consultar Recursos Mas Usados Por TipoRecurso" + ex.getLocalizedMessage(), ex);
         }
     }
 
@@ -154,7 +154,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         try {
             return reporteDAO.recursosMenosUsadosPorFecha(date1, date2);
         } catch (PersistenceException ex) {
-            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Error al consultar Recursos Menos Usados Por Fecha" + ex.getLocalizedMessage(), ex);
         }
     }
 
@@ -163,7 +163,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         try {
             return reporteDAO.recursosMenosUsadosPorHora(hora1, hora2);
         } catch (PersistenceException ex) {
-            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Error al consultar Recursos Menos Usados Por Hora" + ex.getLocalizedMessage(), ex);
         }
     }
 
@@ -172,7 +172,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         try {
             return reporteDAO.recursosMenosUsadosPorPrograma(programa);
         } catch (PersistenceException ex) {
-            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Error al consultar Recursos Menos Usados Por Programa" + ex.getLocalizedMessage(), ex);
         }
     }
 
@@ -181,7 +181,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         try {
             return reporteDAO.recursosMenosUsadosPorTipoRecurso(tipoRecurso);
         } catch (PersistenceException ex) {
-            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Error al consultar recursos Menos Usados Por Tipo Recurso" + ex.getLocalizedMessage(), ex);
         }
     }
 
@@ -190,7 +190,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         try {
             return reporteDAO.recursosMenosUsados();
         } catch (PersistenceException ex) {
-            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Error al consultar recursos Menos Usados" + ex.getLocalizedMessage(), ex);
         }
     }
 
@@ -199,7 +199,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         try {
             return reporteDAO.horariosMayorOcupacionPorFecha(date1, date2);
         } catch (PersistenceException ex) {
-            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Error al consultar Horarios Mayor Ocupacion Por Fecha" + ex.getLocalizedMessage(), ex);
         }
     }
 
@@ -208,7 +208,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         try {
             return reporteDAO.horariosMayorOcupacionPorHora(hora1, hora2);
         } catch (PersistenceException ex) {
-            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Error al consultar Horarios Mayor Ocupacion PorHora" + ex.getLocalizedMessage(), ex);
         }
     }
 
@@ -217,7 +217,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         try {
             return reporteDAO.horariosMayorOcupacionPorPrograma(programa);
         } catch (PersistenceException ex) {
-            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Error al consultar Horarios Mayor Ocupacion PorPrograma" + ex.getLocalizedMessage(), ex);
         }
     }
 
@@ -226,7 +226,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         try {
             return reporteDAO.horariosMayorOcupacionPorTipoRecurso(tipoRecurso);
         } catch (PersistenceException ex) {
-            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Error al consultar Horarios Mayor Ocupacion Por Tipo Recursos" + ex.getLocalizedMessage(), ex);
         }
     }
 
@@ -235,7 +235,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         try {
             return reporteDAO.horariosMayorOcupacion();
         } catch (PersistenceException ex) {
-            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Error al consultar Horarios Mayor Ocupacion" + ex.getLocalizedMessage(), ex);
         }
     }
 
@@ -244,7 +244,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         try {
             return reporteDAO.horariosMenorOcupacionPorFecha(date1, date2);
         } catch (PersistenceException ex) {
-            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Error al consultar Horarios Menor Ocupacion Por Fecha" + ex.getLocalizedMessage(), ex);
         }
     }
 
@@ -253,7 +253,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         try {
             return reporteDAO.horariosMenorOcupacionPorHora(hora1, hora2);
         } catch (PersistenceException ex) {
-            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Error al consultar Horarios Menor Ocupacion PorHora" + ex.getLocalizedMessage(), ex);
         }
     }
 
@@ -262,7 +262,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         try {
             return reporteDAO.horariosMenorOcupacionPorPrograma(programa);
         } catch (PersistenceException ex) {
-            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Error al consultar Horarios Menor Ocupacion Por Programa" + ex.getLocalizedMessage(), ex);
         }
     }
 
@@ -271,7 +271,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         try {
             return reporteDAO.horariosMenorOcupacionPorTipoRecurso(tipoRecurso);
         } catch (PersistenceException ex) {
-            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Error al consultar Horarios Menor Ocupacion Por TipoRecurso" + ex.getLocalizedMessage(), ex);
         }
     }
 
@@ -280,7 +280,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         try {
             return reporteDAO.horariosMenorOcupacion();
         } catch (PersistenceException ex) {
-            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Error al consultar Horarios Menor Ocupacion" + ex.getLocalizedMessage(), ex);
         }
     }
 
@@ -289,7 +289,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         try {
             return reporteDAO.reservasRecurrentesPorFecha(date1, date2);
         } catch (PersistenceException ex) {
-            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Error al consultar Reservas Recurrentes PorFecha" + ex.getLocalizedMessage(), ex);
         }
     }
 
@@ -298,7 +298,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         try {
             return reporteDAO.reservasRecurrentesPorHora(hora1, hora2);
         } catch (PersistenceException ex) {
-            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Error al consultar Reservas Recurrentes PorHora" + ex.getLocalizedMessage(), ex);
         }
     }
 
@@ -307,7 +307,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         try {
             return reporteDAO.reservasRecurrentesPorPrograma(programa);
         } catch (PersistenceException ex) {
-            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Error al consultar Reservas Recurrentes PorPrograma" + ex.getLocalizedMessage(), ex);
         }
     }
 
@@ -316,7 +316,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         try {
             return reporteDAO.reservasRecurrentesPorTipoRecurso(tipoRecurso);
         } catch (PersistenceException ex) {
-            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Error al consultar Reservas Recurrentes Por TipoRecurso" + ex.getLocalizedMessage(), ex);
         }
     }
 
@@ -325,7 +325,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         try {
             return reporteDAO.reservasRecurrentes();
         } catch (PersistenceException ex) {
-            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Error al consultar Reservas Recurrentes" + ex.getLocalizedMessage(), ex);
         }
     }
 
@@ -334,7 +334,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         try {
             return reporteDAO.reservasCanceladasPorFecha(date1, date2);
         } catch (PersistenceException ex) {
-            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Error al consultar Reservas Canceladas PorFecha" + ex.getLocalizedMessage(), ex);
         }
     }
 
@@ -343,7 +343,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         try {
             return reporteDAO.reservasCanceladasPorHora(hora1, hora2);
         } catch (PersistenceException ex) {
-            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Error al consultar Reservas Canceladas PorHora" + ex.getLocalizedMessage(), ex);
         }
     }
 
@@ -352,7 +352,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         try {
             return reporteDAO.reservasCanceladasPorPrograma(programa);
         } catch (PersistenceException ex) {
-            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Error al consultar Reservas Canceladas Por Programa" + ex.getLocalizedMessage(), ex);
         }
     }
 
@@ -361,7 +361,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         try {
             return reporteDAO.reservasCanceladasPorTipoRecurso(tipoRecurso);
         } catch (PersistenceException ex) {
-            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Error al consultar Reservas Canceladas Por TipoRecurso" + ex.getLocalizedMessage(), ex);
         }
     }
 
@@ -370,7 +370,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         try {
             return reporteDAO.reservasCanceladas();
         } catch (PersistenceException ex) {
-            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+            throw new BibliotecaException("Error al consultar Reservas Canceladas" + ex.getLocalizedMessage(), ex);
         }
     }
 

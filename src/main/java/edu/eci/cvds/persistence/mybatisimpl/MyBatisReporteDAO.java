@@ -28,7 +28,7 @@ public class MyBatisReporteDAO implements ReporteDAO{
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              
-             throw new PersistenceException("Error al consultar los recursos mas usados",e);
+             throw new PersistenceException("Error al consultar recursos Mas Usados PorFecha",e);
              
          }	
     }
@@ -40,7 +40,7 @@ public class MyBatisReporteDAO implements ReporteDAO{
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              
-             throw new PersistenceException("Error al consultar los recursos mas usados",e);
+             throw new PersistenceException("Error al consultar recursos Mas Usados PorHora",e);
              
          }	
     }
@@ -52,7 +52,7 @@ public class MyBatisReporteDAO implements ReporteDAO{
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              
-             throw new PersistenceException("Error al consultar los recursos mas usados",e);
+             throw new PersistenceException("Error al consultar recursos MasUsados PorPrograma",e);
              
          }	
     }
@@ -64,7 +64,7 @@ public class MyBatisReporteDAO implements ReporteDAO{
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              
-             throw new PersistenceException("Error al consultar los recursos mas usados",e);
+             throw new PersistenceException("Error al consultar recursos Mas Usados PorTipoRecurso",e);
              
          }	
     }
@@ -76,7 +76,7 @@ public class MyBatisReporteDAO implements ReporteDAO{
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              
-             throw new PersistenceException("Error al consultar los recursos mas usados",e);
+             throw new PersistenceException("Error al consultar recursos MasUsados",e);
              
          }	
     }
@@ -88,7 +88,7 @@ public class MyBatisReporteDAO implements ReporteDAO{
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              
-             throw new PersistenceException("Error al consultar los recursos mas usados",e);
+             throw new PersistenceException("Error al consultar recursos Menos Usados PorFecha",e);
              
          }	
     }
@@ -100,7 +100,7 @@ public class MyBatisReporteDAO implements ReporteDAO{
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              
-             throw new PersistenceException("Error al consultar los recursos mas usados",e);
+             throw new PersistenceException("Error al consultar recursos Menos Usados PorHora",e);
              
          }	
     }
@@ -112,7 +112,7 @@ public class MyBatisReporteDAO implements ReporteDAO{
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              
-             throw new PersistenceException("Error al consultar los recursos mas usados",e);
+             throw new PersistenceException("Error al consultar recursos Menos Usados PorPrograma",e);
              
          }	
     }
@@ -124,7 +124,7 @@ public class MyBatisReporteDAO implements ReporteDAO{
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              
-             throw new PersistenceException("Error al consultar los recursos mas usados",e);
+             throw new PersistenceException("Error al consultar recursos Menos Usados Por TipoRecurso",e);
              
          }	
     }
@@ -136,7 +136,7 @@ public class MyBatisReporteDAO implements ReporteDAO{
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              
-             throw new PersistenceException("Error al consultar los recursos mas usados",e);
+             throw new PersistenceException("Error al consultar recursos MenosUsados",e);
              
          }	
     }
@@ -148,7 +148,7 @@ public class MyBatisReporteDAO implements ReporteDAO{
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              
-             throw new PersistenceException("Error al consultar los recursos mas usados",e);
+             throw new PersistenceException("Error al consultar horarios Mayor Ocupacion PorFecha",e);
              
          }	
     }
@@ -160,7 +160,7 @@ public class MyBatisReporteDAO implements ReporteDAO{
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              
-             throw new PersistenceException("Error al consultar los recursos mas usados",e);
+             throw new PersistenceException("Error al consultar horarios Mayor Ocupacion PorHora",e);
              
          }	
     }
@@ -172,7 +172,7 @@ public class MyBatisReporteDAO implements ReporteDAO{
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              
-             throw new PersistenceException("Error al consultar los recursos mas usados",e);
+             throw new PersistenceException("Error al consultar horarios Mayor Ocupacion Por Programa",e);
              
          }	
     }
@@ -184,7 +184,7 @@ public class MyBatisReporteDAO implements ReporteDAO{
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              
-             throw new PersistenceException("Error al consultar los recursos mas usados",e);
+             throw new PersistenceException("Error al consultar horarios Mayor Ocupacion Por TipoRecurso",e);
              
          }	
     }
@@ -196,7 +196,7 @@ public class MyBatisReporteDAO implements ReporteDAO{
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              
-             throw new PersistenceException("Error al consultar los recursos mas usados",e);
+             throw new PersistenceException("Error al consultar horarios Mayor Ocupacion",e);
              
          }	
     }
@@ -208,7 +208,7 @@ public class MyBatisReporteDAO implements ReporteDAO{
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              
-             throw new PersistenceException("Error al consultar los recursos mas usados",e);
+             throw new PersistenceException("Error al consultar horarios Menor Ocupacion PorFecha",e);
              
          }	
     }
@@ -220,7 +220,7 @@ public class MyBatisReporteDAO implements ReporteDAO{
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              
-             throw new PersistenceException("Error al consultar los recursos mas usados",e);
+             throw new PersistenceException("Error al consultar horarios Menor Ocupacion Por Hora",e);
              
          }	
     }
@@ -232,7 +232,7 @@ public class MyBatisReporteDAO implements ReporteDAO{
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              
-             throw new PersistenceException("Error al consultar los recursos mas usados",e);
+             throw new PersistenceException("Error al consultar horarios Menor Ocupacion Por Programa",e);
              
          }	
     }
@@ -244,7 +244,7 @@ public class MyBatisReporteDAO implements ReporteDAO{
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              
-             throw new PersistenceException("Error al consultar los recursos mas usados",e);
+             throw new PersistenceException("Error al consultar horarios Menor Ocupacion Por TipoRecurso",e);
              
          }	
     }
@@ -256,7 +256,7 @@ public class MyBatisReporteDAO implements ReporteDAO{
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              
-             throw new PersistenceException("Error al consultar los recursos mas usados",e);
+             throw new PersistenceException("Error al consultar horarios Menor Ocupacion()",e);
              
          }	
     }
@@ -268,7 +268,7 @@ public class MyBatisReporteDAO implements ReporteDAO{
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              
-             throw new PersistenceException("Error al consultar los recursos mas usados",e);
+             throw new PersistenceException("Error al consultar reservas Recurrentes PorFecha",e);
              
          }	
     }
@@ -280,7 +280,7 @@ public class MyBatisReporteDAO implements ReporteDAO{
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              
-             throw new PersistenceException("Error al consultar los recursos mas usados",e);
+             throw new PersistenceException("Error al consultar reservas Recurrentes PorHora",e);
              
          }	
     }
@@ -292,7 +292,7 @@ public class MyBatisReporteDAO implements ReporteDAO{
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              
-             throw new PersistenceException("Error al consultar los recursos mas usados",e);
+             throw new PersistenceException("Error al consultar reservas Recurrentes Por Programa",e);
              
          }	
     }
@@ -304,7 +304,7 @@ public class MyBatisReporteDAO implements ReporteDAO{
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              
-             throw new PersistenceException("Error al consultar los recursos mas usados",e);
+             throw new PersistenceException("Error al consultar reservas Recurrentes Por TipoRecurso",e);
              
          }	
     }
@@ -316,7 +316,7 @@ public class MyBatisReporteDAO implements ReporteDAO{
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              
-             throw new PersistenceException("Error al consultar los recursos mas usados",e);
+             throw new PersistenceException("Error al consultar reservas Recurrentes",e);
              
          }	
     }
@@ -328,7 +328,7 @@ public class MyBatisReporteDAO implements ReporteDAO{
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              
-             throw new PersistenceException("Error al consultar los recursos mas usados",e);
+             throw new PersistenceException("Error al consultar reservas Canceladas PorFecha",e);
              
          }	
     }
@@ -340,7 +340,7 @@ public class MyBatisReporteDAO implements ReporteDAO{
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              
-             throw new PersistenceException("Error al consultar los recursos mas usados",e);
+             throw new PersistenceException("Error al consultar reservas Canceladas PorHora",e);
              
          }	
     }
@@ -352,7 +352,7 @@ public class MyBatisReporteDAO implements ReporteDAO{
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              
-             throw new PersistenceException("Error al consultar los recursos mas usados",e);
+             throw new PersistenceException("Error al consultar reservas Canceladas PorPrograma",e);
              
          }	
     }
@@ -364,7 +364,7 @@ public class MyBatisReporteDAO implements ReporteDAO{
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              
-             throw new PersistenceException("Error al consultar los recursos mas usados",e);
+             throw new PersistenceException("Error al consultar reservas Canceladas Por TipoRecurso",e);
              
          }	
     }
@@ -376,7 +376,7 @@ public class MyBatisReporteDAO implements ReporteDAO{
          }
          catch(org.apache.ibatis.exceptions.PersistenceException e){
              
-             throw new PersistenceException("Error al consultar los recursos mas usados",e);
+             throw new PersistenceException("Error al consultar reservas Canceladas()",e);
              
          }	
     }
