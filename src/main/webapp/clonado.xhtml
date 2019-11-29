@@ -32,12 +32,54 @@
                     </thead>
                     <tbody>
 
-                        <ui:repeat var="recurso" value="#{comunidadBean.consultarRecursosDisponibles()}">
-                            <tr>
-                                <td>#{recurso.id}</td>
-                                <td>#{recurso.nombre}</td>
-                            </tr>
-                        </ui:repeat>
+                        <tr>
+                            <th>
+                                Recurso solicitado
+                            </th>
+                            <th>#{reservaBean.recursoID}</th>
+                        </tr>
+                        <tr>
+                            <th>
+                                Información del recurso
+                            </th>
+                            <th>JIJIJIJI</th>
+                        </tr>
+                        <tr>
+                            <th>
+                                Fecha de solicitud
+                            </th>
+                            <th>#{reservaBean.obtenerR().dataActual}</th>
+                        </tr>
+                        <tr>
+                            <th>
+                                Fecha inicial de la reserva
+                            </th>
+                            <th>JIJIJIJI</th>
+                        </tr>
+                        <tr>
+                            <th>
+                                Fecha final de la reserva
+                            </th>
+                            <th>JIJIJIJI</th>
+                        </tr>
+                        <tr>
+                            <th>
+                                Usuario que la solicita
+                            </th>
+                            <th>JIJIJIJI</th>
+                        </tr>
+                        <tr>
+                            <th>
+                                Programa del usuario
+                            </th>
+                            <th>JIJIJIJI</th>
+                        </tr>
+                        <tr>
+                            <th>
+                                Tipo de Reserva
+                            </th>
+                            <th>JIJIJIJI</th>
+                        </tr>
                     </tbody>
 
                 </table>

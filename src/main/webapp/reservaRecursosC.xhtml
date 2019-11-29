@@ -39,13 +39,36 @@
 
                         <p:ajax event="dateSelect" listener="#{reservaBean.onDateSelect}" update="eventDetails"
                                 oncomplete="PF('eventDialog').show();"/>
-                        <p:ajax event="eventSelect" listener="#{reservaBean.onEventSelect}" update="eventDetails"
-                                oncomplete="PF('eventDialog').show();"/>
+                        <p:ajax event="eventSelect" listener="#{reservaBean.onEventSelect}" update="eventDetails1"
+                                oncomplete="PF('eventDialog1').show();" />
                         <p:ajax event="eventMove" listener="#{reservaBean.onEventMove}" update="messages"/>
                         <p:ajax event="eventResize" listener="#{reservaBean.onEventResize}" update="messages"/>
 
                     </p:schedule>
                 </h:panelGrid>
+                
+                <p:dialog widgetVar="eventDialog1" header="Horario de reserva" showEffect="clip" hideEffect="clip"
+                          modal="true">
+                    <h:panelGrid id="eventDetails1" columns="2">
+                        <p:outputLabel value="Recurso solicitado: "/>
+                        <p:outputLabel value="#{reservaBean.recursoID}"/>
+                        
+                        <p:outputLabel value="Información del recurso: "/>
+                        <p:outputLabel value="#{AdminBean.consultarRecurso(reservaBean.recursoID).nombre}"/>
+                        
+                        <p:outputLabel value="Fecha inicial de la reserva:  "/>
+                        <p:outputLabel value="#{reservaBean.obtenerR().dataInicio}"/>
+                        
+                        <p:outputLabel value="Fecha final de la reserva:  "/>
+                        <p:outputLabel value="#{reservaBean.obtenerR().dataFim}"/>
+                        
+                        <p:outputLabel value="Tipo de Reserva: "/>
+                        <p:outputLabel value="#{reservaBean.obtenerR().tipoReserva}"/>
+                        
+                        
+                    </h:panelGrid>
+                </p:dialog>
+
 
                 <p:dialog widgetVar="eventDialog" header="Horario de reserva" showEffect="clip" hideEffect="clip"
                           modal="true">
@@ -55,8 +78,6 @@
 
                         <p:outputLabel for="from" value="Fecha Inicio:"/>
                         <p:calendar id="from" value="#{reservaBean.event.startDate}" pattern="dd/MM/yyyy HH:mm"/>
-
-
                         <br/>
 
                         <label class="bmd-label-floating">Duración</label>
@@ -95,7 +116,13 @@
                                          oncomplete="PF('myschedule').update();PF('eventDialog').hide();"/>
 
                     </h:panelGrid>
+
+
+
                 </p:dialog>
+
+
+                
             </h:form>
 
             <!-- Footer -->
