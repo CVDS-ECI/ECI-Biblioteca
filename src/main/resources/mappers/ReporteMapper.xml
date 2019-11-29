@@ -13,16 +13,17 @@
         <result property='tipoReserva' column='tipoReserva' />
         <result property='usuario' column='usuario' />
         <result property='recurso' column='recurso' />
+        <result property='cantidadDeReservas' column='cantidadDeReservas' />
     </resultMap>
     
     <select id="recursosMasUsados" resultMap="ReservaResult">
         SELECT
         r.titulo,
-        COUNT(r.titulo) AS cantidad_de_reservas
+        COUNT(r.titulo) AS cantidadDeReservas
         FROM
         Reserva as r
         GROUP BY r.titulo
-        ORDER BY cantidad_de_reservas desc
+        ORDER BY cantidadDeReservas
     </select>
        
 </mapper>
