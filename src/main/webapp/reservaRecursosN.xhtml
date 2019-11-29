@@ -37,12 +37,9 @@
                     <p:schedule id="schedule" value="#{reservaBean.eventModel}" widgetVar="myschedule"
                                 rightHeaderTemplate="agendaDay,agendaWeek,month,listYear" >
 
-                        <p:ajax event="dateSelect" listener="#{reservaBean.onDateSelect}" update="eventDetails"
-                                oncomplete="PF('eventDialog').show();"/>
+                        
                         <p:ajax event="eventSelect" listener="#{reservaBean.onEventSelect}" update="eventDetails1"
                                 oncomplete="PF('eventDialog1').show();" />
-                        <p:ajax event="eventMove" listener="#{reservaBean.onEventMove}" update="messages"/>
-                        <p:ajax event="eventResize" listener="#{reservaBean.onEventResize}" update="messages"/>
 
                     </p:schedule>
                 </h:panelGrid>
