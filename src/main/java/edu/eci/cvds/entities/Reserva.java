@@ -102,6 +102,22 @@ public class Reserva {
         this.tipoReserva = tipoReserva;
     }
 
+    public int getRecurso() {
+        return recurso;
+    }
+
+    public void setRecurso(int recurso) {
+        this.recurso = recurso;
+    }
+
+    public int getCantidadDeReservas() {
+        return cantidadDeReservas;
+    }
+
+    public void setCantidadDeReservas(int cantidadDeReservas) {
+        this.cantidadDeReservas = cantidadDeReservas;
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
