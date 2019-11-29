@@ -23,6 +23,7 @@ public class Reserva {
     private TipoReserva tipoReserva;
     private String usuario;
     private int recurso;
+    private EstadoReserva estado;
     
 // PILAS QUE FALTA USUARIO Y RECURSO PARA ESTO Y EL MAPPER
 
@@ -30,10 +31,10 @@ public class Reserva {
         this.tipoReserva = TipoReserva.Ninguno;
         this.titulo = "";
         this.diaInteiro = false;
-
+        
     }
 
-    public Reserva(String usuario, int recurso, String titulo, Date dataActual ,Date dataInicio, Date dataFim, boolean diaInteiro, TipoReserva tipoReserva) {
+    public Reserva(String usuario, int recurso, String titulo, Date dataActual ,Date dataInicio, Date dataFim, boolean diaInteiro, TipoReserva tipoReserva, EstadoReserva estado) {
         this.usuario = usuario;
         this.recurso = recurso;
         this.titulo = titulo;
@@ -42,9 +43,10 @@ public class Reserva {
         this.dataFim = dataFim;
         this.diaInteiro = diaInteiro;
         this.tipoReserva = tipoReserva;
+        this.estado = estado;
     }
 
-    public Reserva(String usuario, int recurso, Long id, String titulo,Date dataActual ,Date dataInicio, Date dataFim, boolean diaInteiro, TipoReserva tipoReserva) {
+    public Reserva(String usuario, int recurso, Long id, String titulo,Date dataActual ,Date dataInicio, Date dataFim, boolean diaInteiro, TipoReserva tipoReserva, EstadoReserva estado) {
         this.usuario = usuario;
         this.recurso = recurso;
         this.id = id;
@@ -54,8 +56,17 @@ public class Reserva {
         this.dataFim = dataFim;
         this.diaInteiro = diaInteiro;
         this.tipoReserva = tipoReserva;
+        this.estado=estado;
     }
 
+    public EstadoReserva getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoReserva estado) {
+        this.estado = estado;
+    }
+    
     public Long getId() {
         return id;
     }

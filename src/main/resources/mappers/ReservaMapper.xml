@@ -14,6 +14,8 @@
         <result property='dataFim' column='fin' />
         <result property='diaInteiro' column='diaEntero' />
         <result property='tipoReserva' column='tipoReserva' />
+        <result property='estado' column='estado' />
+        
     </resultMap>
 
     <select id="listarReservasRecurso" resultMap="ReservaResult">
@@ -39,7 +41,8 @@
         r.inicio,
         r.fin,
         r.diaEntero,
-        r.tipoReserva
+        r.tipoReserva,
+        r.estado
         FROM
         Reserva as r
         WHERE r.recurso=#{rId} and r.inicio=#{ini} and r.fin=#{fin}
@@ -47,8 +50,8 @@
 
     
     <insert id="salvar" parameterType="edu.eci.cvds.entities.Reserva">
-        insert into Reserva (titulo,recurso,usuario,inicio,fin,diaEntero,tipoReserva,dataActual)
-        values (#{reserva.titulo},#{reserva.recurso},#{reserva.usuario},#{reserva.dataInicio},#{reserva.dataFim},#{reserva.diaInteiro},#{reserva.tipoReserva},#{reserva.dataActual})
+        insert into Reserva (titulo,recurso,usuario,inicio,fin,diaEntero,tipoReserva,dataActual,estado)
+        values (#{reserva.titulo},#{reserva.recurso},#{reserva.usuario},#{reserva.dataInicio},#{reserva.dataFim},#{reserva.diaInteiro},#{reserva.tipoReserva},#{reserva.dataActual},#{reserva.estado})
     </insert>
     
     <delete id="remover" parameterType="edu.eci.cvds.entities.Reserva">

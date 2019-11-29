@@ -7,6 +7,7 @@ package edu.eci.cvds.managedbeans;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.CustomScheduleEvent;
+import edu.eci.cvds.entities.EstadoReserva;
 import edu.eci.cvds.entities.Recurso;
 import edu.eci.cvds.entities.Reserva;
 import edu.eci.cvds.entities.TipoReserva;
@@ -122,7 +123,7 @@ public class ReservaBean extends BasePageBean implements Serializable {
 //        System.err.println(numero);
 
         if (validarInsercionFechas(start, end, idRecurso)) {
-            serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, frecuencia.toString(), dateActual, start, end, false, this.frecuencia));
+            serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, frecuencia.toString(), dateActual, start, end, false, this.frecuencia,EstadoReserva.EnCurso));
         } else {
 //            System.err.println("AYAYAYAYAYAYAYAYYAYAYAYYAYA%");
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "PAILAASSSS KRAKKK", null));
@@ -139,7 +140,7 @@ public class ReservaBean extends BasePageBean implements Serializable {
 //                System.err.println(end);
 //                System.err.println(this.frecuencia);
 
-                serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, frecuencia.toString(), dateActual, start, end, false, this.frecuencia));
+                serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, frecuencia.toString(), dateActual, start, end, false, this.frecuencia,EstadoReserva.EnCurso));
             } else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "PAILAASSSS KRAKKK", null));
                 return;
@@ -268,7 +269,7 @@ public class ReservaBean extends BasePageBean implements Serializable {
                 f = sumaFecha(f, TipoReserva.Ninguno);
             }
             // Hecho por Santiago Rubiano :D
-            serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, event.getTitle(), dateActual, event.getStartDate(), f, false, res));
+            serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, event.getTitle(), dateActual, event.getStartDate(), f, false, res,EstadoReserva.EnCurso));
         } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "PAILAASSSS KRAKKK", null));
             return;
@@ -290,7 +291,7 @@ public class ReservaBean extends BasePageBean implements Serializable {
                 }
                 event = new DefaultScheduleEvent(event.getTitle() + " -> " + i, startDate, endDate);
                 if (validarInsercion(event, idRecurso)) {
-                    serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, event.getTitle(), dateActual, startDate, endDate, false, res));
+                    serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, event.getTitle(), dateActual, startDate, endDate, false, res,EstadoReserva.EnCurso));
                     eventModel.addEvent(event);
                 } else {
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "PAILAASSSS KRAKKK", null));
