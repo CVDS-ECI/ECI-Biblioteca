@@ -22,7 +22,7 @@ public class Reserva {
     private TipoReserva tipoReserva;
     private String usuario;
     private int recurso;
-    private int cantidadDeReservas;
+    private int cantidad;
     
 // PILAS QUE FALTA USUARIO Y RECURSO PARA ESTO Y EL MAPPER
 
@@ -111,11 +111,11 @@ public class Reserva {
     }
 
     public int getCantidadDeReservas() {
-        return cantidadDeReservas;
+        return cantidad;
     }
 
     public void setCantidadDeReservas(int cantidadDeReservas) {
-        this.cantidadDeReservas = cantidadDeReservas;
+        this.cantidad = cantidadDeReservas;
     }
 
     @Override
