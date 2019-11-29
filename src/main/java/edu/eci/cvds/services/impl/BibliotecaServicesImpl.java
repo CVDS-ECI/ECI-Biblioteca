@@ -113,5 +113,266 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         }
     }
 
+    @Override
+    public List<Reserva> consultarRecursosMasUsadosPorFecha(String date1, String date2) throws BibliotecaException {
+        try {
+            return reporteDAO.recursosMasUsadosPorFecha(date1, date2);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarRecursosMasUsadosPorHora(String hora1, String hora2) throws BibliotecaException {
+        try {
+            return reporteDAO.recursosMasUsadosPorHora(hora1, hora2);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarRecursosMasUsadosPorPrograma(String programa) throws BibliotecaException {
+        try {
+            return reporteDAO.recursosMasUsadosPorPrograma(programa);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarRecursosMasUsadosPorTipoRecurso(String tipoRecurso) throws BibliotecaException {
+        try {
+            return reporteDAO.recursosMasUsadosPorTipoRecurso(tipoRecurso);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarRecursosMenosUsadosPorFecha(String date1, String date2) throws BibliotecaException {
+        try {
+            return reporteDAO.recursosMenosUsadosPorFecha(date1, date2);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarRecursosMenosUsadosPorHora(String hora1, String hora2) throws BibliotecaException {
+        try {
+            return reporteDAO.recursosMenosUsadosPorHora(hora1, hora2);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarRecursosMenosUsadosPorPrograma(String programa) throws BibliotecaException {
+        try {
+            return reporteDAO.recursosMenosUsadosPorPrograma(programa);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarRecursosMenosUsadosPorTipoRecurso(String tipoRecurso) throws BibliotecaException {
+        try {
+            return reporteDAO.recursosMenosUsadosPorTipoRecurso(tipoRecurso);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarRecursosMenosUsados() throws BibliotecaException {
+        try {
+            return reporteDAO.recursosMenosUsados();
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarHorariosMayorOcupacionPorFecha(String date1, String date2) throws BibliotecaException {
+        try {
+            return reporteDAO.horariosMayorOcupacionPorFecha(date1, date2);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarHorariosMayorOcupacionPorHora(String hora1, String hora2) throws BibliotecaException {
+        try {
+            return reporteDAO.horariosMayorOcupacionPorHora(hora1, hora2);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarHorariosMayorOcupacionPorPrograma(String programa) throws BibliotecaException {
+        try {
+            return reporteDAO.horariosMayorOcupacionPorPrograma(programa);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarHorariosMayorOcupacionPorTipoRecurso(String tipoRecurso) throws BibliotecaException {
+        try {
+            return reporteDAO.horariosMayorOcupacionPorTipoRecurso(tipoRecurso);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarHorariosMayorOcupacion() throws BibliotecaException {
+        try {
+            return reporteDAO.horariosMayorOcupacion();
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarHorariosMenorOcupacionPorFecha(String date1, String date2) throws BibliotecaException {
+        try {
+            return reporteDAO.horariosMenorOcupacionPorFecha(date1, date2);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarHorariosMenorOcupacionPorHora(String hora1, String hora2) throws BibliotecaException {
+        try {
+            return reporteDAO.horariosMenorOcupacionPorHora(hora1, hora2);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarHorariosMenorOcupacionPorPrograma(String programa) throws BibliotecaException {
+        try {
+            return reporteDAO.horariosMenorOcupacionPorPrograma(programa);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarHorariosMenorOcupacionPorTipoRecurso(String tipoRecurso) throws BibliotecaException {
+        try {
+            return reporteDAO.horariosMenorOcupacionPorTipoRecurso(tipoRecurso);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarHorariosMenorOcupacion() throws BibliotecaException {
+        try {
+            return reporteDAO.horariosMenorOcupacion();
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarReservasRecurrentesPorFecha(String date1, String date2) throws BibliotecaException {
+        try {
+            return reporteDAO.reservasRecurrentesPorFecha(date1, date2);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarReservasRecurrentesPorHora(String hora1, String hora2) throws BibliotecaException {
+        try {
+            return reporteDAO.reservasRecurrentesPorHora(hora1, hora2);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarReservasRecurrentesPorPrograma(String programa) throws BibliotecaException {
+        try {
+            return reporteDAO.reservasRecurrentesPorPrograma(programa);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarReservasRecurrentesPorTipoRecurso(String tipoRecurso) throws BibliotecaException {
+        try {
+            return reporteDAO.reservasRecurrentesPorTipoRecurso(tipoRecurso);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarReservasRecurrentes() throws BibliotecaException {
+        try {
+            return reporteDAO.reservasRecurrentes();
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarReservasCanceladasPorFecha(String date1, String date2) throws BibliotecaException {
+        try {
+            return reporteDAO.reservasCanceladasPorFecha(date1, date2);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarReservasCanceladasPorHora(String hora1, String hora2) throws BibliotecaException {
+        try {
+            return reporteDAO.reservasCanceladasPorHora(hora1, hora2);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarReservasCanceladasPorPrograma(String programa) throws BibliotecaException {
+        try {
+            return reporteDAO.reservasCanceladasPorPrograma(programa);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarReservasCanceladasPorTipoRecurso(String tipoRecurso) throws BibliotecaException {
+        try {
+            return reporteDAO.reservasCanceladasPorTipoRecurso(tipoRecurso);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarReservasCanceladas() throws BibliotecaException {
+        try {
+            return reporteDAO.reservasCanceladas();
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
     
 }

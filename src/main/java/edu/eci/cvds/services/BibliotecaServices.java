@@ -25,10 +25,62 @@ public interface BibliotecaServices {
         
         public List<Reserva> consultarRecursosMasUsados() throws BibliotecaException;
         
-
+        public List<Reserva> consultarRecursosMasUsadosPorFecha(String date1, String date2) throws BibliotecaException;
+    
+        public List<Reserva> consultarRecursosMasUsadosPorHora(String hora1, String hora2) throws BibliotecaException;
+    
+        public List<Reserva> consultarRecursosMasUsadosPorPrograma(String programa) throws BibliotecaException;
+    
+        public List<Reserva> consultarRecursosMasUsadosPorTipoRecurso(String tipoRecurso) throws BibliotecaException;
         
-        
-        
-        
-
+        public List<Reserva> consultarRecursosMenosUsadosPorFecha(String date1, String date2) throws BibliotecaException;
+    
+        public List<Reserva> consultarRecursosMenosUsadosPorHora(String hora1, String hora2) throws BibliotecaException;
+    
+        public List<Reserva> consultarRecursosMenosUsadosPorPrograma(String programa) throws BibliotecaException;
+    
+        public List<Reserva> consultarRecursosMenosUsadosPorTipoRecurso(String tipoRecurso) throws BibliotecaException;
+    
+        public List<Reserva> consultarRecursosMenosUsados() throws BibliotecaException;
+    
+        public List<Reserva> consultarHorariosMayorOcupacionPorFecha(String date1, String date2) throws BibliotecaException;
+    
+        public List<Reserva> consultarHorariosMayorOcupacionPorHora(String hora1, String hora2) throws BibliotecaException;
+    
+        public List<Reserva> consultarHorariosMayorOcupacionPorPrograma(String programa) throws BibliotecaException;
+    
+        public List<Reserva> consultarHorariosMayorOcupacionPorTipoRecurso(String tipoRecurso) throws BibliotecaException;
+    
+        public List<Reserva> consultarHorariosMayorOcupacion() throws BibliotecaException;
+    
+        public List<Reserva> consultarHorariosMenorOcupacionPorFecha(String date1, String date2) throws BibliotecaException;
+    
+        public List<Reserva> consultarHorariosMenorOcupacionPorHora(String hora1, String hora2) throws BibliotecaException;
+    
+        public List<Reserva> consultarHorariosMenorOcupacionPorPrograma(String programa) throws BibliotecaException;
+    
+        public List<Reserva> consultarHorariosMenorOcupacionPorTipoRecurso(String tipoRecurso) throws BibliotecaException;
+    
+        public List<Reserva> consultarHorariosMenorOcupacion() throws BibliotecaException;
+    
+        public List<Reserva> consultarReservasRecurrentesPorFecha(String date1, String date2) throws BibliotecaException;
+    
+        public List<Reserva> consultarReservasRecurrentesPorHora(String hora1, String hora2) throws BibliotecaException;
+    
+        public List<Reserva> consultarReservasRecurrentesPorPrograma(String programa) throws BibliotecaException;
+    
+        public List<Reserva> consultarReservasRecurrentesPorTipoRecurso(String tipoRecurso) throws BibliotecaException;
+    
+        public List<Reserva> consultarReservasRecurrentes() throws BibliotecaException;
+    
+        public List<Reserva> consultarReservasCanceladasPorFecha(String date1, String date2) throws BibliotecaException;
+    
+        public List<Reserva> consultarReservasCanceladasPorHora(String hora1, String hora2) throws BibliotecaException;
+    
+        public List<Reserva> consultarReservasCanceladasPorPrograma(String programa) throws BibliotecaException;
+    
+        public List<Reserva> consultarReservasCanceladasPorTipoRecurso(String tipoRecurso) throws BibliotecaException;
+    
+        public List<Reserva> consultarReservasCanceladas() throws BibliotecaException;
+     
 }
