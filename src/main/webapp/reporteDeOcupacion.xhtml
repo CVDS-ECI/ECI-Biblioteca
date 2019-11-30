@@ -1,68 +1,62 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html
-		PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
-	  xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
-	  xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf">
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <ui:composition template="/WEB-INF/include/templateAdmin.xhtml">
-	<ui:define name="head">
-		<h:outputStylesheet name="css/bootstrap-tagsinput.css" />
-		<h:outputStylesheet name="css/initiative.css" />
-		<h:outputStylesheet name="dataTable/css/dataTables.bootstrap.min.css" />
-		<script type="text/javascript">
-			function conf2()
-			{
-				var con = confirm("Do you want to submit for sure?");
-				var url = "faces/adminInicio.xhtml";
-				window.location(url);
-			}
-		</script>
-	</ui:define>
-	<ui:define name="content">
-		<h:form id="recurso_form">
-			<br/>
-			<h1>Dashborard:</h1>
-			<br/>
-			<h2> Acá va el resumen</h2>
+    <ui:define name="head">
+        <h:outputStylesheet name="css/bootstrap-tagsinput.css"/>
+        <h:outputStylesheet name="css/initiative.css"/>
+        <h:outputStylesheet name="dataTable/css/dataTables.bootstrap.min.css"/>
+        <script type="text/javascript">
+            function conf2() {
+                var con = confirm("Do you want to submit for sure?");
+                var url = "faces/adminInicio.xhtml";
+                window.location(url);
+            }
+        </script>
+    </ui:define>
+    <ui:define name="content">
+        <h:form id="recurso_form">
+            <br/>
+            <h1>Dashborard:</h1>
 
-			<br/>
-			<br/>
-			<br/>
+            <br/>
 
-			<div class="row">
-				<div class="col-md-5">
-					<div class="form-group">
-						<label class="bmd-label-floating">Reportes:</label>
-						<h:selectOneMenu value="#{reporteBean.tipoDeReporteSeleccionado}" class="form-control">
-							<f:selectItems value="#{reporteBean.getTiposDeReportes()}" />
-						</h:selectOneMenu>
-					</div>
-				</div>
-				<div class="col-md-7">
-					<div class="form-group">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Reportes:</label>
+                        <h:selectOneMenu value="#{reporteBean.tipoDeReporteSeleccionado}" class="form-control">
+                            <f:selectItems value="#{reporteBean.getTiposDeReportes()}"/>
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="form-group">
 
-						<label class="bmd-label-floating">Filtrar por:</label>
-						<br/>
-						<h:selectOneMenu id="tipoDeFiltro" value="#{dropdown.tipoDeFiltroSeleccionado}" style="width:150px">
-							<p:ajax listener="#{dropdown.onTipoCambiado}" update="filtro" />
-							<f:selectItem itemLabel="Tipo de filtro:" itemValue="" noSelectionOption="true" />
-							<f:selectItems value="#{dropdown.tipoDeFiltros}" />
-						</h:selectOneMenu>
-						<br/>
-						<br/>
+                        <label class="bmd-label-floating">Filtrar por:</label>
+                        <br/>
+                        <h:selectOneMenu id="tipoDeFiltro" value="#{dropdown.tipoDeFiltroSeleccionado}"
+                                         style="width:150px">
+                            <p:ajax listener="#{dropdown.onTipoCambiado}" update="filtro"/>
+                            <f:selectItem itemLabel="Tipo de filtro:" itemValue="" noSelectionOption="true"/>
+                            <f:selectItems value="#{dropdown.tipoDeFiltros}"/>
+                        </h:selectOneMenu>
+                        <br/>
+                        <br/>
 
-						<label class="bmd-label-floating">Filtro:</label>
-						<br/>
-						<h:selectOneMenu id="filtro" value="#{dropdown.filtroSeleccionado}" style="width:150px">
-							<f:selectItem itemLabel="Seleccione el filtro: " itemValue="" noSelectionOption="true" />
-							<f:selectItems value="#{dropdown.filtrosSeleccionados}" />
-						</h:selectOneMenu>
+                        <label class="bmd-label-floating">Filtro:</label>
+                        <br/>
+                        <h:selectOneMenu id="filtro" value="#{dropdown.filtroSeleccionado}" style="width:150px">
+                            <f:selectItem itemLabel="Seleccione el filtro: " itemValue="" noSelectionOption="true"/>
+                            <f:selectItems value="#{dropdown.filtrosSeleccionados}"/>
+                        </h:selectOneMenu>
 
 
-
-
-						<!--                        <label class="bmd-label-floating">Filtrar por:</label>
+                        <!--                        <label class="bmd-label-floating">Filtrar por:</label>
                                                 <h:selectOneMenu value="#{reporteBean.tipoDeFiltroSeleccionado}" class="form-control">
                                                     <f:selectItems value="#{reporteBean.getTiposDeFiltros()}" />
                                                 </h:selectOneMenu>
@@ -70,34 +64,28 @@
                                                 <br/>
                                                 <label class="bmd-label-floating">Escriba el filtro:</label>
                                                 <p:inputText type="text" class="form-control" id="Capacidad" binding="#{capacidad}" />-->
-					</div>
-				</div>
-			</div>
+                    </div>
+                </div>
+            </div>
 
 
-			<p:commandButton class="btn pull-left" value="Buscar" onclick="conf2()">
-				<f:actionListener
-						binding="#{AdminBean.registrarRecurso(nombre.value, capacidad.value, fechaInicio.value, fechaFin.value)}"
-						update="recurso_form" />
-			</p:commandButton>
+            <p:commandButton class="btn pull-left" value="Buscar" onclick="conf2()">
+            </p:commandButton>
 
-			<div class="clearfix"></div>
+            <div class="clearfix"></div>
 
 
-
-
-
-			<div class="col-xs-12">
-				<h1>Recursos más usados:</h1>
-				<br></br><br></br>
-				<div class="col-xs-6"> <p:chart type="bar" model="#{chartBean.barStatus}"/></div>
-				<div class="col-xs-1"></div>
+            <div class="col-xs-12">
+                <h1>Recursos más usados:</h1>
+                <br/>
+                <div class="col-xs-6"><p:chart type="bar" model="#{chartBean.barStatus}"/></div>
+                <div class="col-xs-1"></div>
                 <div class="col-xs-5">
-                    <table id="initiativeTable" class="display table table-bordered table-striped">
+                    <table id="recursosMasUsados" class="display table table-bordered table-striped">
 
                         <thead>
                         <tr>
-                            <th>Titulo</th>
+                            <th>Recurso</th>
                             <th>Cantidad de reservas</th>
 
 
@@ -118,14 +106,197 @@
                     </table>
                 </div>
 
-
-			</div>
-
+            </div>
 
 
-		</h:form>
 
-	</ui:define>
+
+
+            <div class="col-xs-12">
+                <h1>Recursos menos usados:</h1>
+                <br/>
+                <div class="col-xs-6">
+                    <!--					<p:chart type="bar" model="{chartBean.barStatus}"/>-->
+                </div>
+                <div class="col-xs-1"></div>
+                <div class="col-xs-5">
+                    <table id="recursosMenosUsados" class="display table table-bordered table-striped">
+
+                        <thead>
+                        <tr>
+                            <th>Recurso</th>
+                            <th>Cantidad de reservas</th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <ui:repeat var="reserva" value="#{reporteBean.consultarRecursosMenosUsados()}">
+
+                            <tr>
+
+                                <td>#{reserva.titulo}</td>
+                                <td>#{reserva.cantidad}</td>
+
+                            </tr>
+                        </ui:repeat>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
+
+            <div class="col-xs-12">
+                <h1>Horarios con mayor ocupación:</h1>
+                <br></br>
+<!--                <div class="col-xs-6">-->
+<!--                    &lt;!&ndash;					<p:chart type="bar" model="{chartBean.barStatus}"/>&ndash;&gt;-->
+<!--                </div>-->
+<!--                <div class="col-xs-1"></div>-->
+                <div class="col-xs-11">
+                    <table id="horariosMayorOcupacion" class="display table table-bordered table-striped">
+
+                        <thead>
+                        <tr>
+                            <th>Horario inicio</th>
+                            <th>Horario fin</th>
+                            <th>Cantidad de reservas</th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <ui:repeat var="reserva" value="#{reporteBean.consultarHorariosMayorOcupacion()}">
+
+                            <tr>
+
+                                <td>#{reserva.dataInicio}</td>
+                                <td>#{reserva.dataFim}</td>
+                                <td>#{reserva.cantidad}</td>
+
+                            </tr>
+                        </ui:repeat>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
+
+
+            <div class="col-xs-12">
+                <h1>Horarios con menor ocupación:</h1>
+                <br></br>
+                <!--                <div class="col-xs-6">-->
+                <!--                    &lt;!&ndash;					<p:chart type="bar" model="{chartBean.barStatus}"/>&ndash;&gt;-->
+                <!--                </div>-->
+                <!--                <div class="col-xs-1"></div>-->
+                <div class="col-xs-11">
+                    <table id="horariosMenorOcupacion" class="display table table-bordered table-striped">
+
+                        <thead>
+                        <tr>
+                            <th>Horario inicio</th>
+                            <th>Horario fin</th>
+                            <th>Cantidad de reservas</th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <ui:repeat var="reserva" value="#{reporteBean.consultarHorariosMenorOcupacion()}">
+
+                            <tr>
+
+                                <td>#{reserva.dataInicio}</td>
+                                <td>#{reserva.dataFim}</td>
+                                <td>#{reserva.cantidad}</td>
+
+                            </tr>
+                        </ui:repeat>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
+
+
+            <div class="col-xs-12">
+                <h1>Reservas recurrentes:</h1>
+                <br/>
+                <div class="col-xs-6">
+                    <!--					<p:chart type="bar" model="{chartBean.barStatus}"/>-->
+                </div>
+                <div class="col-xs-1"></div>
+                <div class="col-xs-5">
+                    <table id="reservasRecurrentes" class="display table table-bordered table-striped">
+
+                        <thead>
+                        <tr>
+                            <th>Recurso</th>
+                            <th>N° de reservas recurrentes</th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <ui:repeat var="reserva" value="#{reporteBean.consultarReservasRecurrentes()}">
+
+                            <tr>
+
+                                <td>#{reserva.titulo}</td>
+                                <td>#{reserva.cantidad}</td>
+
+                            </tr>
+                        </ui:repeat>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
+
+
+            <div class="col-xs-12">
+                <h1>Reservas canceladas:</h1>
+                <br/>
+                <div class="col-xs-6">
+                    <!--					<p:chart type="bar" model="{chartBean.barStatus}"/>-->
+                </div>
+                <div class="col-xs-1"></div>
+                <div class="col-xs-5">
+                    <table id="reservasCanceladas" class="display table table-bordered table-striped">
+
+                        <thead>
+                        <tr>
+                            <th>Recurso</th>
+                            <th>N° de reservas canceladas</th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <ui:repeat var="reserva" value="#{reporteBean.consultarReservasCanceladas()}">
+
+                            <tr>
+
+                                <td>#{reserva.titulo}</td>
+                                <td>#{reserva.cantidad}</td>
+
+                            </tr>
+                        </ui:repeat>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
+
+        </h:form>
+
+    </ui:define>
 </ui:composition>
 
 </html>

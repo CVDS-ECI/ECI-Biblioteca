@@ -63,6 +63,12 @@ public class ReporteBean extends BasePageBean {
         return recurso;
 
     }
+
+    public static void main(String[] args) {
+        ReporteBean reporteBean = new ReporteBean();
+        List<Reserva> x = reporteBean.consultarRecursosMasUsadosPorPrograma("ISIS");
+        System.out.println(x);
+    }
    
     public List<Reserva> consultarRecursosMasUsadosPorPrograma(String programa)  {
         List<Reserva> recurso = new ArrayList<>();
