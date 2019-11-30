@@ -110,12 +110,21 @@ public class Reserva {
         this.recurso = recurso;
     }
 
-    public int getCantidadDeReservas() {
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public int getCantidad() {
         return cantidad;
     }
 
-    public void setCantidadDeReservas(int cantidadDeReservas) {
-        this.cantidad = cantidadDeReservas;
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
     @Override
