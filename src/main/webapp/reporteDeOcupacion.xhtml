@@ -84,29 +84,7 @@
 			<div class="clearfix"></div>
 
 
-			<table id="initiativeTable" class="display table table-bordered table-striped">
 
-				<thead>
-				<tr>
-					<th>Titulo</th>
-					<th>Cantidad de reservas</th>
-
-
-				</tr>
-				</thead>
-				<tbody>
-				<ui:repeat var="reserva" value="#{reporteBean.consultarRecursosMasUsados()}">
-
-					<tr>
-
-						<td>#{reserva.titulo}</td>
-						<td>#{reserva.cantidad}</td>
-
-					</tr>
-				</ui:repeat>
-				</tbody>
-
-			</table>
 
 
 			<div class="col-xs-12">
@@ -114,9 +92,35 @@
 				<br></br><br></br>
 				<div class="col-xs-6"> <p:chart type="bar" model="#{chartBean.barStatus}"/></div>
 				<div class="col-xs-1"></div>
+                <div class="col-xs-5">
+                    <table id="initiativeTable" class="display table table-bordered table-striped">
+
+                        <thead>
+                        <tr>
+                            <th>Titulo</th>
+                            <th>Cantidad de reservas</th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <ui:repeat var="reserva" value="#{reporteBean.consultarRecursosMasUsados()}">
+
+                            <tr>
+
+                                <td>#{reserva.titulo}</td>
+                                <td>#{reserva.cantidad}</td>
+
+                            </tr>
+                        </ui:repeat>
+                        </tbody>
+
+                    </table>
+                </div>
 
 
 			</div>
+
 
 
 		</h:form>
