@@ -19,6 +19,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -60,6 +61,15 @@ public class ReservaBean extends BasePageBean implements Serializable {
     private String duracion;
     private String fretiempo;
     private Reserva reserva;
+    private Date nextDate;
+
+    public Date getNextDate() {
+        return nextDate;
+    }
+
+    public void setNextDate(Date nextDate) {
+        this.nextDate = nextDate;
+    }
 
     public int getRecursoID() {
         return recursoID;
@@ -105,7 +115,7 @@ public class ReservaBean extends BasePageBean implements Serializable {
             end = sumaFecha(end, TipoReserva.Ninguno);
         }
         if (validarInsercionFechas(start, end, idRecurso)) {
-            serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, frecuencia.toString()+ " -> " + 0, dateActual, start, end, false, this.frecuencia,EstadoReserva.EnCurso,a));
+            serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, frecuencia.toString() + " -> " + 0, dateActual, start, end, false, this.frecuencia, EstadoReserva.EnCurso, a));
         } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "PAILAASSSS KRAKKK", null));
         }
@@ -114,30 +124,40 @@ public class ReservaBean extends BasePageBean implements Serializable {
             start = sumaFecha(start, this.frecuencia);
             end = sumaFecha(end, this.frecuencia);
             if (validarInsercionFechas(start, end, idRecurso)) {
-                  int ii=i-1;
-                  int iii = a-ii;
-                serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, frecuencia.toString()+ " -> " +iii, dateActual, start, end, false, this.frecuencia,EstadoReserva.EnCurso,ii));
+                int ii = i - 1;
+                int iii = a - ii;
+                serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, frecuencia.toString() + " -> " + iii, dateActual, start, end, false, this.frecuencia, EstadoReserva.EnCurso, ii));
             } else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "PAILAASSSS KRAKKK", null));
                 return;
             }
         }
     }
-    
-    public void calcularSiguienteAparicion(TipoReserva tipo, Date fecha, int frecuencia){
-        Date siguienteFecha = sumaFecha(fecha, tipo);
+
+    public Date calcularSiguienteAparicion(TipoReserva tipo, Date fecha, int frecuencia) {
+        System.err.println(obtenerR().getTipoReserva());
+        System.err.println(obtenerR().getDataInicio());
+        System.err.println(tipo);
+        System.err.println(fecha);
+        System.err.println(frecuencia);
+
+        if (frecuencia != 1) {
+            return sumaFecha(fecha, tipo);
+        } else {
+            return obtenerR().getDataInicio();
+        }
     }
 
     private boolean validarInsercionFechas(Date start, Date end, int idrecurso) throws BibliotecaException {
         //Falta pensar si la horafin es menor
         List<Reserva> reservas = serviciosBiblioteca.listarReservasRecurso(idrecurso);
-        for (Reserva res: reservas){
-            System.out.println(start + " -> " + end + "Recurso -> " + res.getDataInicio() + "Recurso F -> "+ res.getDataFim());
+        for (Reserva res : reservas) {
+            System.out.println(start + " -> " + end + "Recurso -> " + res.getDataInicio() + "Recurso F -> " + res.getDataFim());
             System.out.println(start.equals(res.getDataInicio()));
             System.out.println(end.equals(res.getDataFim()));
-            
-            if ((start.equals(res.getDataInicio())&& end.equals(res.getDataFim()))
-                    || (start.after(res.getDataInicio())&& end.before(res.getDataFim())) ){
+
+            if ((start.equals(res.getDataInicio()) && end.equals(res.getDataFim()))
+                    || (start.after(res.getDataInicio()) && end.before(res.getDataFim()))) {
                 System.out.println("FOKIU");
                 return false;
             }
@@ -251,7 +271,7 @@ public class ReservaBean extends BasePageBean implements Serializable {
                 f = sumaFecha(f, TipoReserva.Ninguno);
             }
             // Hecho por Santiago Rubiano :D
-            serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, event.getTitle(), dateActual, event.getStartDate(), f, false, res,EstadoReserva.EnCurso,numero));
+            serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, event.getTitle(), dateActual, event.getStartDate(), f, false, res, EstadoReserva.EnCurso, numero));
         } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "PAILAASSSS KRAKKK", null));
             return;
@@ -260,7 +280,7 @@ public class ReservaBean extends BasePageBean implements Serializable {
             Date startDate;
             Date endDate;
             // Reserva Recursiva que es la Anterios + todas las reservas que faltan acorde a la duracion
-            for (int i = duracion; i >1; i--) {
+            for (int i = duracion; i > 1; i--) {
                 startDate = sumaFecha(event.getStartDate(), res);
                 endDate = sumaFecha(event.getEndDate(), res);
                 String duraacion = this.duracion.replaceAll("\\D+", "");
@@ -273,7 +293,7 @@ public class ReservaBean extends BasePageBean implements Serializable {
                 }
                 event = new DefaultScheduleEvent(event.getTitle() + " -> " + i, startDate, endDate);
                 if (validarInsercion(event, idRecurso)) {
-                    serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, event.getTitle(), dateActual, startDate, endDate, false, res,EstadoReserva.EnCurso,i));
+                    serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, event.getTitle(), dateActual, startDate, endDate, false, res, EstadoReserva.EnCurso, i));
                     eventModel.addEvent(event);
                 } else {
                     System.out.println("No se le inserta PERROOOOOOOOOOOOOOOO");
@@ -288,9 +308,9 @@ public class ReservaBean extends BasePageBean implements Serializable {
     private boolean validarInsercion(ScheduleEvent evento, int idrecurso) throws BibliotecaException {
         //Falta pensar si la horafin es menor
         List<Reserva> reservas = serviciosBiblioteca.listarReservasRecurso(idrecurso);
-        for (Reserva res: reservas){
-            if ((evento.getStartDate().equals(res.getDataInicio())&&evento.getEndDate().equals(res.getDataFim()))
-                    || (evento.getStartDate().after(res.getDataInicio())&&evento.getEndDate().before(res.getDataFim())) ){
+        for (Reserva res : reservas) {
+            if ((evento.getStartDate().equals(res.getDataInicio()) && evento.getEndDate().equals(res.getDataFim()))
+                    || (evento.getStartDate().after(res.getDataInicio()) && evento.getEndDate().before(res.getDataFim()))) {
                 return false;
             }
         }
@@ -307,6 +327,8 @@ public class ReservaBean extends BasePageBean implements Serializable {
         }).forEachOrdered((_item) -> {
             eventModel.addEvent(event);
         });
+        
+        
 
     }
 
@@ -318,7 +340,7 @@ public class ReservaBean extends BasePageBean implements Serializable {
         }
         return null;
     }
-    
+
     public String getDuracion() {
         return duracion;
     }

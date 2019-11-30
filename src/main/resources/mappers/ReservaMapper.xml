@@ -43,7 +43,8 @@
         r.fin,
         r.diaEntero,
         r.tipoReserva,
-        r.estado
+        r.estado,
+        r.numero
         FROM
         Reserva as r
         WHERE r.recurso=#{rId} and r.inicio=#{ini} and r.fin=#{fin}
