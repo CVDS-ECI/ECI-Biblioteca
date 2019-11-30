@@ -16,115 +16,127 @@
         <result property='cantidad' column='cantidad' />
     </resultMap>
     
+    
+    
     <select id="recursosMasUsados" resultMap="ReservaResult">
         SELECT
-        r.titulo,
-        COUNT(r.titulo) AS cantidad
+        recurso.nombre AS titulo,
+        COUNT(recurso.id) AS cantidad
         FROM
-        Reserva as r
-        GROUP BY r.titulo
+        Reserva as r join recurso
+        on r.recurso = recurso.id 
+        GROUP BY recurso.nombre
         ORDER BY cantidad desc
     </select>
 
     <select id="recursosMasUsadosPorFecha" resultMap="ReservaResult">
         SELECT
-        r.titulo,
+        recurso.nombre AS titulo,
         COUNT(r.titulo) AS cantidad
         FROM
-        Reserva as r
+        Reserva as r join recurso
+        on r.recurso = recurso.id 
         where  r.inicio &gt;= #{fechaInicio} and r.fin &lt;= #{fechaFin}
-        GROUP BY r.titulo
+        GROUP BY recurso.nombre
         ORDER BY cantidad desc    
     </select>
     
     <select id="recursosMasUsadosPorHora" resultMap="ReservaResult">
         SELECT
-        r.titulo,
+        recurso.nombre AS titulo,
         COUNT(r.titulo) AS cantidad
         FROM
-        Reserva as r
+        Reserva as r join recurso
+        on r.recurso = recurso.id 
         where  r.inicio::time &gt;= #{horaInicio} AND r.fin::time &lt;= #{horaFin}
-        GROUP BY r.titulo
+        GROUP BY recurso.nombre
         ORDER BY cantidad desc    
     </select>
     
     <select id="recursosMasUsadosPorPrograma" resultMap="ReservaResult">
         SELECT
-        r.titulo,
+        recurso.nombre AS titulo,
         COUNT(r.titulo) AS cantidad
         FROM 
-        Reserva as r join usuario
+        Reserva as r join usuario 
         on r.usuario = usuario.nombre 
+        join recurso
+        on recurso.usuario = usuario.nombre 
         where carrera = #{program}
-        GROUP BY r.titulo
+        GROUP BY recurso.nombre
         ORDER BY cantidad desc    
     </select>
     
     <select id="recursosMasUsadosPorTipoRecurso" resultMap="ReservaResult">
         SELECT
-        r.titulo,
+        recurso.nombre AS titulo,
         COUNT(r.titulo) AS cantidad
         FROM 
         Reserva as r join recurso
         on r.recurso = recurso.id
         where recurso.tipo = #{tipoRecurso}
-        GROUP BY r.titulo
+        GROUP BY recurso.nombre
         ORDER BY cantidad desc    
     </select>  
     
     <select id="recursosMenosUsados" resultMap="ReservaResult">
         SELECT
-        r.titulo,
+        recurso.nombre AS titulo,
         COUNT(r.titulo) AS cantidad
         FROM
-        Reserva as r
-        GROUP BY r.titulo
+        Reserva as r join recurso
+        on r.recurso = recurso.id
+        GROUP BY recurso.nombre
         ORDER BY cantidad asc
     </select>
 
     <select id="recursosMenosUsadosPorFecha" resultMap="ReservaResult">
         SELECT
-        r.titulo,
+        recurso.nombre AS titulo,
         COUNT(r.titulo) AS cantidad
         FROM
-        Reserva as r
+        Reserva as r join recurso
+        on r.recurso = recurso.id
         where  r.inicio &gt;= #{fechaInicio} AND r.fin &lt;= #{fechaFin}
-        GROUP BY r.titulo
+        GROUP BY recurso.nombre
         ORDER BY cantidad asc    
     </select>
     
     <select id="recursosMenosUsadosPorHora" resultMap="ReservaResult">
         SELECT
-        r.titulo,
+        recurso.nombre AS titulo,
         COUNT(r.titulo) AS cantidad
         FROM
-        Reserva as r
+        Reserva as r join recurso
+        on r.recurso = recurso.id
         where  r.inicio::time &gt;= #{horaInicio} AND r.fin::time &lt;= #{horaFin}
-        GROUP BY r.titulo
+        GROUP BY recurso.nombre
         ORDER BY cantidad asc    
     </select>
     
     <select id="recursosMenosUsadosPorPrograma" resultMap="ReservaResult">
         SELECT
-        r.titulo,
+        recurso.nombre AS titulo,
         COUNT(r.titulo) AS cantidad
         FROM 
         Reserva as r join usuario
-        on r.usuario = usuario.nombre 
+        on r.usuario = usuario.nombre
+        join recurso
+        on recurso.usuario = usuario.nombre 
         where carrera= #{program}
-        GROUP BY r.titulo
+        GROUP BY recurso.nombre
         ORDER BY cantidad asc    
     </select>
     
     <select id="recursosMenosUsadosPorTipoRecurso" resultMap="ReservaResult">
         SELECT
-        r.titulo,
+        recurso.nombre AS titulo,
         COUNT(r.titulo) AS cantidad
         FROM 
         Reserva as r join recurso
         on r.recurso = recurso.id
         where recurso.tipo = #{tipoRecurso}
-        GROUP BY r.titulo
+        GROUP BY recurso.nombre
         ORDER BY cantidad asc    
     </select>
     
@@ -134,7 +146,7 @@
         r.fin,      
         COUNT(r.inicio) AS cantidad
         FROM 
-        Reserva as r
+        Reserva as r 
         GROUP BY r.inicio,r.fin
         ORDER BY cantidad desc    
     </select>
@@ -253,7 +265,7 @@
     <select id="reservasRecurrentes" resultMap="ReservaResult">
         SELECT
         r.id,
-        r.titulo,
+        recurso.nombre AS titulo,
         r.inicio,
         r.fin,
         r.diaEntero,
@@ -261,14 +273,15 @@
         r.usuario,
         r.recurso
         FROM 
-        Reserva as r
+        Reserva as r join recurso
+        on r.recurso = recurso.id 
         where r.tiporeserva != 'Ninguno'      
     </select>
     
     <select id="reservasRecurrentesPorFecha" resultMap="ReservaResult">
         SELECT
         r.id,
-        r.titulo,
+        recurso.nombre AS titulo,
         r.inicio,
         r.fin,
         r.diaEntero,
@@ -276,14 +289,15 @@
         r.usuario,
         r.recurso
         FROM
-        Reserva as r
+        Reserva as r join recurso
+        on r.recurso = recurso.id 
         where r.tiporeserva != 'Ninguno' and r.inicio &gt;= #{fechaInicio} AND r.fin &lt;= #{fechaFin}
     </select>
     
     <select id="reservasRecurrentesPorHora" resultMap="ReservaResult">
         SELECT
         r.id,
-        r.titulo,
+        recurso.nombre AS titulo,
         r.inicio,
         r.fin,
         r.diaEntero,
@@ -291,14 +305,15 @@
         r.usuario,
         r.recurso
         FROM
-        Reserva as r
+        Reserva as r join recurso
+        on r.recurso = recurso.id 
         where  r.tiporeserva != 'Ninguno' and r.inicio::time &gt;= #{horaInicio} AND r.fin::time &lt;= #{horaFin}  
     </select>
     
     <select id="reservasRecurrentesPorPrograma" resultMap="ReservaResult">
         SELECT
         r.id,
-        r.titulo,
+        recurso.nombre AS titulo,
         r.inicio,
         r.fin,
         r.diaEntero,
@@ -307,14 +322,16 @@
         r.recurso
         FROM 
         Reserva as r join usuario
-        on r.usuario = usuario.nombre 
+        on r.usuario = usuario.nombre
+        join recurso
+        on recurso.usuario = usuario.nombre  
         where r.tiporeserva != 'Ninguno' and  carrera= #{program}  
     </select>
     
     <select id="reservasRecurrentesPorTipoRecurso" resultMap="ReservaResult">
         SELECT
         r.id,
-        r.titulo,
+        recurso.nombre AS titulo,
         r.inicio,
         r.fin,
         r.diaEntero,
@@ -330,7 +347,7 @@
     <select id="reservasCanceladas" resultMap="ReservaResult">
         SELECT
         r.id,
-        r.titulo,
+        recurso.nombre AS titulo,
         r.inicio,
         r.fin,
         r.diaEntero,
@@ -338,14 +355,15 @@
         r.usuario,
         r.recurso
         FROM 
-        Reserva as r
+        Reserva as r join recurso
+        on r.recurso = recurso.id 
         where r.estado = 'Cancelada'      
     </select>
     
     <select id="reservasCanceladasPorFecha" resultMap="ReservaResult">
         SELECT
         r.id,
-        r.titulo,
+        recurso.nombre AS titulo,
         r.inicio,
         r.fin,
         r.diaEntero,
@@ -353,14 +371,15 @@
         r.usuario,
         r.recurso
         FROM
-        Reserva as r
+        Reserva as r join recurso
+        on r.recurso = recurso.id 
         where r.estado = 'Cancelada' and r.inicio &gt;= #{fechaInicio} AND r.fin &lt;= #{fechaFin}
     </select>
     
     <select id="reservasCanceladasPorHora" resultMap="ReservaResult">
         SELECT
         r.id,
-        r.titulo,
+        recurso.nombre AS titulo,
         r.inicio,
         r.fin,
         r.diaEntero,
@@ -368,14 +387,15 @@
         r.usuario,
         r.recurso
         FROM
-        Reserva as r
+        Reserva as r join recurso
+        on r.recurso = recurso.id 
         where  r.estado = 'Cancelada' and r.inicio::time &gt;= #{horaInicio} AND r.fin::time &lt;= #{horaFin}  
     </select>
     
     <select id="reservasCanceladasPorPrograma" resultMap="ReservaResult">
         SELECT
         r.id,
-        r.titulo,
+        recurso.nombre AS titulo,
         r.inicio,
         r.fin,
         r.diaEntero,
@@ -384,14 +404,16 @@
         r.recurso
         FROM 
         Reserva as r join usuario
-        on r.usuario = usuario.nombre 
+        on r.usuario = usuario.nombre
+        join recurso
+        on recurso.usuario = usuario.nombre 
         where r.estado = 'Cancelada' and  carrera= #{program}  
     </select>
     
     <select id="reservasCanceladasPorTipoRecurso" resultMap="ReservaResult">
         SELECT
         r.id,
-        r.titulo,
+        recurso.nombre AS titulo,
         r.inicio,
         r.fin,
         r.diaEntero,
