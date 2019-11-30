@@ -1,6 +1,4 @@
-package edu.eci.cvds.managedbeans;
-
-
+package edu.eci.cvds.managedbeans.graphics;
 
 import java.util.List;
 
@@ -13,6 +11,7 @@ import javax.faces.context.FacesContext;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Reserva;
+import edu.eci.cvds.managedbeans.BasePageBean;
 import edu.eci.cvds.services.BibliotecaException;
 import edu.eci.cvds.services.BibliotecaServices;
 import org.primefaces.event.ItemSelectEvent;
@@ -21,16 +20,15 @@ import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.ChartSeries;
 
-
-@ManagedBean(name = "chartBean")
+@ManagedBean(name = "recursosMenosUsados")
 @SessionScoped
-public class ChartBean extends BasePageBean {
+public class RecursosMenosUsados extends BasePageBean {
 
     @Inject
     private BibliotecaServices serviciosBiblioteca;
 
 
-    private BarChartModel barStatus;
+    private BarChartModel grafico;
 
     public void itemSelect(ItemSelectEvent event) {
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Item selected",
@@ -39,31 +37,26 @@ public class ChartBean extends BasePageBean {
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
-    public List<Reserva> status() throws BibliotecaException {
-        return serviciosBiblioteca.consultarRecursosMasUsados();
+
+    public BarChartModel getGrafico() {
+        createBarModel();
+        return grafico;
     }
 
 
-
-    public BarChartModel getBarStatus() {
-        createBarModelStatus();
-        return barStatus;
-    }
-
-
-    private BarChartModel initBarModelStatus() {
+    private BarChartModel initBarModel() {
         BarChartModel model = new BarChartModel();
-        ChartSeries status = new ChartSeries();
-        status.setLabel("Cantidad de reservas");
-        List<Reserva> c;
+        ChartSeries graph = new ChartSeries();
+        graph.setLabel("Cantidad de reservas");
+        List<Reserva> reservas;
         try {
-            c = serviciosBiblioteca.consultarRecursosMasUsados();
-            for (Reserva ci : c) {
-                status.set(ci.getTitulo(), ci.getCantidad());
+            reservas = serviciosBiblioteca.consultarRecursosMenosUsados();
+            for (Reserva r : reservas) {
+                graph.set(r.getTitulo(), r.getCantidad());
             }
 
 
-            model.addSeries(status);
+            model.addSeries(graph);
 
         } catch (BibliotecaException e) {
             e.printStackTrace();
@@ -72,17 +65,17 @@ public class ChartBean extends BasePageBean {
         return model;
     }
 
-    private void createBarModelStatus() {
-        barStatus = initBarModelStatus();
-        barStatus.setTitle("Recursos más usados");
-        barStatus.setLegendPosition("ne");
+    private void createBarModel() {
+        grafico = initBarModel();
+        grafico.setTitle("Recursos menos usados");
+        grafico.setLegendPosition("ne");
 
-        Axis xAxis = barStatus.getAxis(AxisType.X);
+        Axis xAxis = grafico.getAxis(AxisType.X);
 
-        Axis yAxis = barStatus.getAxis(AxisType.Y);
+        Axis yAxis = grafico.getAxis(AxisType.Y);
         yAxis.setLabel("Cantidad de reservas");
         yAxis.setMin(0);
         yAxis.setMax(15);
-        barStatus.setSeriesColors("B00000");
+        grafico.setSeriesColors("B00000");
     }
 }
