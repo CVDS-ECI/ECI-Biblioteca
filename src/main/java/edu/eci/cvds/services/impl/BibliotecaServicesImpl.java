@@ -14,6 +14,7 @@ import edu.eci.cvds.persistence.ReservaDAO;
 import edu.eci.cvds.persistence.UsuarioDAO;
 import edu.eci.cvds.services.BibliotecaServices;
 import edu.eci.cvds.services.BibliotecaException;
+import java.util.Date;
 
 import java.util.List;
 
@@ -95,6 +96,15 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
     public void eliminarReserva(int re) throws BibliotecaException {
          try {
             reservaDAO.remover(re);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar las reservas Disponibles:" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public Reserva getInfoReserva(int recursoId, Date inicio, Date fin) throws BibliotecaException {
+        try {
+            return reservaDAO.getInfoReserva(recursoId,inicio,fin);
         } catch (PersistenceException ex) {
             throw new BibliotecaException("Error al consultar las reservas Disponibles:" + ex.getLocalizedMessage(), ex);
         }
