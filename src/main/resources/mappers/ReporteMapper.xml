@@ -32,7 +32,7 @@
         COUNT(r.titulo) AS cantidad
         FROM
         Reserva as r
-        where  r.inicio >= #{fechaInicio} AND r.fin <= #{fechaFin}
+        where  r.inicio &gt;= #{fechaInicio} and r.fin &lt;= #{fechaFin}
         GROUP BY r.titulo
         ORDER BY cantidad desc    
     </select>
@@ -43,7 +43,7 @@
         COUNT(r.titulo) AS cantidad
         FROM
         Reserva as r
-        where  r.inicio::time >= #{horaInicio} AND r.fin::time <= #{horaFin}
+        where  r.inicio::time &gt;= #{horaInicio} AND r.fin::time &lt;= #{horaFin}
         GROUP BY r.titulo
         ORDER BY cantidad desc    
     </select>
@@ -55,7 +55,7 @@
         FROM 
         Reserva as r join usuario
         on r.usuario = usuario.nombre 
-        where carrera= #{program}
+        where carrera = #{program}
         GROUP BY r.titulo
         ORDER BY cantidad desc    
     </select>
@@ -67,7 +67,7 @@
         FROM 
         Reserva as r join recurso
         on r.recurso = recurso.id
-        where recurso.tipo== #{tipoRecurso}
+        where recurso.tipo = #{tipoRecurso}
         GROUP BY r.titulo
         ORDER BY cantidad desc    
     </select>  
@@ -88,7 +88,7 @@
         COUNT(r.titulo) AS cantidad
         FROM
         Reserva as r
-        where  r.inicio >= #{fechaInicio} AND r.fin <= #{fechaFin}
+        where  r.inicio &gt;= #{fechaInicio} AND r.fin &lt;= #{fechaFin}
         GROUP BY r.titulo
         ORDER BY cantidad asc    
     </select>
@@ -99,7 +99,7 @@
         COUNT(r.titulo) AS cantidad
         FROM
         Reserva as r
-        where  r.inicio::time >= #{horaInicio} AND r.fin::time <= #{horaFin}
+        where  r.inicio::time &gt;= #{horaInicio} AND r.fin::time &lt;= #{horaFin}
         GROUP BY r.titulo
         ORDER BY cantidad asc    
     </select>
@@ -123,7 +123,7 @@
         FROM 
         Reserva as r join recurso
         on r.recurso = recurso.id
-        where recurso.tipo== #{tipoRecurso}
+        where recurso.tipo = #{tipoRecurso}
         GROUP BY r.titulo
         ORDER BY cantidad asc    
     </select>
@@ -146,7 +146,7 @@
         COUNT(r.inicio) AS cantidad
         FROM
         Reserva as r
-        where  r.inicio >= #{fechaInicio} AND r.fin <= #{fechaFin}
+        where  r.inicio &gt;= #{fechaInicio} AND r.fin &lt;= #{fechaFin}
         GROUP BY r.inicio,r.fin
         ORDER BY cantidad desc    
     </select>
@@ -158,7 +158,7 @@
         COUNT(r.inicio) AS cantidad
         FROM
         Reserva as r
-        where  r.inicio::time >= #{horaInicio} AND r.fin::time <= #{horaFin}
+        where  r.inicio::time &gt;= #{horaInicio} AND r.fin::time &lt;= #{horaFin}
         GROUP BY r.inicio,r.fin
         ORDER BY cantidad desc    
     </select>
@@ -184,7 +184,7 @@
         FROM 
         Reserva as r join recurso
         on r.recurso = recurso.id
-        where recurso.tipo== #{tipoRecurso}
+        where recurso.tipo = #{tipoRecurso}
         GROUP BY r.inicio,r.fin
         ORDER BY cantidad desc    
     </select>
@@ -207,7 +207,7 @@
         COUNT(r.inicio) AS cantidad
         FROM
         Reserva as r
-        where  r.inicio >= #{fechaInicio} AND r.fin <= #{fechaFin}
+        where  r.inicio &gt;= #{fechaInicio} AND r.fin &lt;= #{fechaFin}
         GROUP BY r.inicio,r.fin
         ORDER BY cantidad asc    
     </select>
@@ -219,7 +219,7 @@
         COUNT(r.inicio) AS cantidad
         FROM
         Reserva as r
-        where  r.inicio::time >= #{horaInicio} AND r.fin::time <= #{horaFin}
+        where  r.inicio::time &gt;= #{horaInicio} AND r.fin::time &lt;= #{horaFin}
         GROUP BY r.inicio,r.fin
         ORDER BY cantidad asc    
     </select>
@@ -245,7 +245,7 @@
         FROM 
         Reserva as r join recurso
         on r.recurso = recurso.id
-        where recurso.tipo== #{tipoRecurso}
+        where recurso.tipo = #{tipoRecurso}
         GROUP BY r.inicio,r.fin
         ORDER BY cantidad asc    
     </select>
@@ -277,7 +277,7 @@
         r.recurso
         FROM
         Reserva as r
-        where r.tiporeserva != 'Ninguno' and r.inicio >= #{fechaInicio} AND r.fin <= #{fechaFin}
+        where r.tiporeserva != 'Ninguno' and r.inicio &gt;= #{fechaInicio} AND r.fin &lt;= #{fechaFin}
     </select>
     
     <select id="reservasRecurrentesPorHora" resultMap="ReservaResult">
@@ -292,7 +292,7 @@
         r.recurso
         FROM
         Reserva as r
-        where  r.tiporeserva != 'Ninguno' and r.inicio::time >= #{horaInicio} AND r.fin::time <= #{horaFin}  
+        where  r.tiporeserva != 'Ninguno' and r.inicio::time &gt;= #{horaInicio} AND r.fin::time &lt;= #{horaFin}  
     </select>
     
     <select id="reservasRecurrentesPorPrograma" resultMap="ReservaResult">
@@ -324,7 +324,7 @@
         FROM 
         Reserva as r join recurso
         on r.recurso = recurso.id
-        where  r.tiporeserva != 'Ninguno' and recurso.tipo== #{tipoRecurso} 
+        where  r.tiporeserva != 'Ninguno' and recurso.tipo = #{tipoRecurso} 
     </select>
      
     <select id="reservasCanceladas" resultMap="ReservaResult">
@@ -354,7 +354,7 @@
         r.recurso
         FROM
         Reserva as r
-        where r.estado = 'Cancelada' and r.inicio >= #{fechaInicio} AND r.fin <= #{fechaFin}
+        where r.estado = 'Cancelada' and r.inicio &gt;= #{fechaInicio} AND r.fin &lt;= #{fechaFin}
     </select>
     
     <select id="reservasCanceladasPorHora" resultMap="ReservaResult">
@@ -369,7 +369,7 @@
         r.recurso
         FROM
         Reserva as r
-        where  r.estado = 'Cancelada' and r.inicio::time >= #{horaInicio} AND r.fin::time <= #{horaFin}  
+        where  r.estado = 'Cancelada' and r.inicio::time &gt;= #{horaInicio} AND r.fin::time &lt;= #{horaFin}  
     </select>
     
     <select id="reservasCanceladasPorPrograma" resultMap="ReservaResult">
@@ -401,7 +401,7 @@
         FROM 
         Reserva as r join recurso
         on r.recurso = recurso.id
-        where  r.estado = 'Cancelada' and recurso.tipo== #{tipoRecurso} 
+        where  r.estado = 'Cancelada' and recurso.tipo = #{tipoRecurso} 
     </select>
        
 </mapper>
