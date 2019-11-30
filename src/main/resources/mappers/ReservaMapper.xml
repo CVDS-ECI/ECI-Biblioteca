@@ -15,6 +15,7 @@
         <result property='diaInteiro' column='diaEntero' />
         <result property='tipoReserva' column='tipoReserva' />
         <result property='estado' column='estado' />
+        <result property='numero' column='numero' />
         
     </resultMap>
 
@@ -50,8 +51,8 @@
 
     
     <insert id="salvar" parameterType="edu.eci.cvds.entities.Reserva">
-        insert into Reserva (titulo,recurso,usuario,inicio,fin,diaEntero,tipoReserva,dataActual,estado)
-        values (#{reserva.titulo},#{reserva.recurso},#{reserva.usuario},#{reserva.dataInicio},#{reserva.dataFim},#{reserva.diaInteiro},#{reserva.tipoReserva},#{reserva.dataActual},#{reserva.estado})
+        insert into Reserva (titulo,recurso,usuario,inicio,fin,diaEntero,tipoReserva,dataActual,estado,numero)
+        values (#{reserva.titulo},#{reserva.recurso},#{reserva.usuario},#{reserva.dataInicio},#{reserva.dataFim},#{reserva.diaInteiro},#{reserva.tipoReserva},#{reserva.dataActual},#{reserva.estado},#{reserva.numero})
     </insert>
     
     <delete id="remover" parameterType="edu.eci.cvds.entities.Reserva">
