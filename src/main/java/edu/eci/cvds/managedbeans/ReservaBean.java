@@ -264,6 +264,7 @@ public class ReservaBean extends BasePageBean implements Serializable {
             end = sumaFecha(end, TipoReserva.Ninguno);
         }
         if (validarInsercionFechas(event.getStartDate(), end, idRecurso)) {
+            
             serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, frecuencia.toString() + " -> " + 0, dateActual, event.getStartDate(), end, false, this.frecuencia, EstadoReserva.EnCurso,event.getStartDate()));
         } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "PAILAASSSS KRAKKK", null));
@@ -283,23 +284,15 @@ public class ReservaBean extends BasePageBean implements Serializable {
 
     }
 
-    private int calcularSolapamientos(ScheduleEvent event, int idRecurso, int duracion, TipoReserva res) throws BibliotecaException {
+    private void calcularSolapamientos(int idRecurso, int duracion, TipoReserva ress) throws BibliotecaException {
 
         int solapamientos = 0;
-        if (!validarInsercionFechas(event.getStartDate(), event.getEndDate(), idRecurso)) {
-            solapamientos += 1;
-        }
-        if (res != TipoReserva.Ninguno) {
-            for (int i = 0; i < duracion; i++) {
-                Date startDate = sumaFecha(event.getStartDate(), res);
-                Date endDate = sumaFecha(event.getEndDate(), res);
-                event = new DefaultScheduleEvent(event.getTitle() + " -> " + i, startDate, endDate);
-                if (!validarInsercionFechas(event.getStartDate(), event.getEndDate(), idRecurso)) {
-                    solapamientos += 1;
-                }
+        List<Reserva> reservas = serviciosBiblioteca.listarReservasRecurso(idRecurso);
+        for (Reserva res : reservas) {
+            if ((event.getStartDate().equals(res.getDataInicio()) && event.getEndDate().equals(res.getDataFim()))
+                    || (event.getStartDate().after(res.getDataInicio()) && event.getEndDate().before(res.getDataFim()))) {
             }
         }
-        return solapamientos;
     }
 
     private boolean validarInsercion(ScheduleEvent evento, int idrecurso) throws BibliotecaException {
