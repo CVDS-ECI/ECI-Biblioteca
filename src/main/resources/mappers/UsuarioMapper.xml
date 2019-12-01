@@ -10,5 +10,20 @@
         <result property='nombre' column='nombre' />
         <result property='rol' column='passwd' />
         <result property='programaU' column='programa' />
+        <result property='carrera' column='carrera' />
     </resultMap>
+    
+    
+    <select id="consultarUsuario" resultMap="UsuarioResult">
+        SELECT
+        u.correo,
+        u.passwd,
+        u.rol,
+        u.nombre,
+        u.programa,
+        u.carrera
+        FROM
+        Usuario as u
+        WHERE u.correo = #{correoU}
+    </select>
 </mapper>

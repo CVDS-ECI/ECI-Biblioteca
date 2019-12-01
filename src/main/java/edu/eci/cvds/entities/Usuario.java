@@ -10,18 +10,29 @@ public class Usuario implements Serializable {
     private String password;
     private int rol;
     private String programaU;
+    private String carrera;
 
     public Usuario() {
     }
 
-    public Usuario(String nombre, String correo, String password, int rol, String programaU) {
+    public Usuario(String nombre, String correo, String password, int rol, String programaU,String carrera) {
         this.nombre = nombre;
         this.password = password;
         this.rol = rol;
         this.programaU = programaU;
         this.correo = correo;
+        this.carrera = carrera;
     }
 
+    public String getCarrera() {
+        return carrera;
+    }
+
+    public void setCarrera(String carrera) {
+        this.carrera = carrera;
+    }
+
+    
     public String getNombre() {
         return nombre;
     }
