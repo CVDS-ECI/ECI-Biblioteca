@@ -302,6 +302,21 @@ public class ReservaBean extends BasePageBean implements Serializable {
         }
 
     }
+    
+    public String getCarreraU(){
+        try {
+            Reserva r = obtenerR();
+            String j = r.getUsuario();
+            String c = serviciosBiblioteca.consultarUsuario(j).getCarrera();
+            return c;
+        } catch (Exception ex) {
+//            System.out.println(ex.toString());
+//            System.err.println("jijij");
+            ex.printStackTrace();
+        }
+        return null;
+    }
+    
 
     public void loadEvents() throws BibliotecaException {
         eventModel = new DefaultScheduleModel();

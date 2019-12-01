@@ -9,17 +9,17 @@ public class Usuario implements Serializable {
     private String correo;
     private String password;
     private int rol;
-    private String programaU;
+    private String programa;
     private String carrera;
 
     public Usuario() {
     }
 
-    public Usuario(String nombre, String correo, String password, int rol, String programaU,String carrera) {
+    public Usuario(String nombre, String correo, String password, int rol, String programa,String carrera) {
         this.nombre = nombre;
         this.password = password;
         this.rol = rol;
-        this.programaU = programaU;
+        this.programa = programa;
         this.correo = correo;
         this.carrera = carrera;
     }
@@ -58,11 +58,11 @@ public class Usuario implements Serializable {
     }
 
     public String getProgramaU() {
-        return programaU;
+        return programa;
     }
 
-    public void setProgramaU(String programaU) {
-        this.programaU = programaU;
+    public void setProgramaU(String programa) {
+        this.programa = programa;
     }
 
     public String getCorreo() {
@@ -76,7 +76,7 @@ public class Usuario implements Serializable {
     @Override
     public String toString() {
         return "Usuario { correo : " + correo + ", nombre: " + nombre + ", rol: " + rol
-                + ", programa : " + programaU + "}";
+                + ", programa : " + programa + "}";
     }
 
 }

@@ -69,10 +69,16 @@
                         <p:outputLabel value="#{reservaBean.obtenerR().usuario}"/>
                         
                         <p:outputLabel value="Programa del usuario: "/>
-                        <p:outputLabel value=""/>
+                        <p:outputLabel value="#{reservaBean.getCarreraU()}"/>
                         
                         <p:outputLabel value="Tipo de Reserva: "/>
                         <p:outputLabel value="#{reservaBean.obtenerR().tipoReserva}"/>
+                        
+                        
+                        <p:outputLabel value="Proxima Aparicion: "/>
+                        <p:outputLabel value="#{reservaBean.obtenerR().proximaOcurrencia}"/>
+                        
+                        
                         
                         
                     </h:panelGrid>

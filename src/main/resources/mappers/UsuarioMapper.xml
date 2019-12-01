@@ -9,7 +9,7 @@
         <result property='password' column='passwd' />
         <result property='nombre' column='nombre' />
         <result property='rol' column='passwd' />
-        <result property='programaU' column='programa' />
+        <result property='programa' column='programa' />
         <result property='carrera' column='carrera' />
     </resultMap>
     
@@ -17,9 +17,8 @@
     <select id="consultarUsuario" resultMap="UsuarioResult">
         SELECT
         u.correo,
-        u.passwd,
-        u.rol,
         u.nombre,
+        u.rol,
         u.programa,
         u.carrera
         FROM
