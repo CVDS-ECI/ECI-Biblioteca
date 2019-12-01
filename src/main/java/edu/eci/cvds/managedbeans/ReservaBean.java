@@ -262,14 +262,15 @@ public class ReservaBean extends BasePageBean implements Serializable {
             end = sumaFecha(event.getEndDate(), TipoReserva.Ninguno);
         } else if (duracion.equals("2 horas")) {
             end = sumaFecha(end, TipoReserva.Ninguno);
+            end = sumaFecha(end, TipoReserva.Ninguno);
         }
         if (validarInsercionFechas(event.getStartDate(), end, idRecurso)) {
-            
+            int pruebita = calcularTiempoDisponible(event.getStartDate(), end, idRecurso, veces, res, 0);
+            System.out.println("Pruebitaaa :3 " + pruebita);
             serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, frecuencia.toString() + " -> " + 0, dateActual, event.getStartDate(), end, false, this.frecuencia, EstadoReserva.EnCurso,event.getStartDate()));
         } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "PAILAASSSS KRAKKK", null));
         }
-
         for (int i = 1; i < veces; i++) {
             start = sumaFecha(start, this.frecuencia);
             end = sumaFecha(end, this.frecuencia);
@@ -284,15 +285,21 @@ public class ReservaBean extends BasePageBean implements Serializable {
 
     }
 
-    private void calcularSolapamientos(int idRecurso, int duracion, TipoReserva ress) throws BibliotecaException {
-
-        int solapamientos = 0;
-        List<Reserva> reservas = serviciosBiblioteca.listarReservasRecurso(idRecurso);
-        for (Reserva res : reservas) {
-            if ((event.getStartDate().equals(res.getDataInicio()) && event.getEndDate().equals(res.getDataFim()))
-                    || (event.getStartDate().after(res.getDataInicio()) && event.getEndDate().before(res.getDataFim()))) {
-            }
+    private int calcularTiempoDisponible(Date ini, Date fin,int idRecurso, int duracion, TipoReserva ress,int tiempoAEsperar) throws BibliotecaException {
+        System.out.println(duracion);
+        if (duracion == 0){
+            return tiempoAEsperar;
         }
+        Date nextDateI = sumaFecha(ini,ress);
+        Date nextDateF = sumaFecha(fin,ress);
+        System.out.println(nextDateI);
+        System.out.println(nextDateF);
+        if ((ini.equals(nextDateI) && fin.equals(nextDateF))
+                    || (ini.after(nextDateI) && fin.before(nextDateF))) {
+            calcularTiempoDisponible(nextDateI,nextDateF,idRecurso,duracion-1,ress,tiempoAEsperar+1);
+        }
+       return tiempoAEsperar;
+        
     }
 
     private boolean validarInsercion(ScheduleEvent evento, int idrecurso) throws BibliotecaException {
