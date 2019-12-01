@@ -24,7 +24,7 @@ public class Reserva {
     private String usuario;
     private int recurso;
     private EstadoReserva estado;
-    private int numero;
+    private Date proximaOcurrencia;
 
 // PILAS QUE FALTA USUARIO Y RECURSO PARA ESTO Y EL MAPPER
     public Reserva() {
@@ -34,7 +34,7 @@ public class Reserva {
 
     }
 
-    public Reserva(String usuario, int recurso, String titulo, Date dataActual, Date dataInicio, Date dataFim, boolean diaInteiro, TipoReserva tipoReserva, EstadoReserva estado, int numero) {
+    public Reserva(String usuario, int recurso, String titulo, Date dataActual, Date dataInicio, Date dataFim, boolean diaInteiro, TipoReserva tipoReserva, EstadoReserva estado, Date proximaOcurrencia) {
         this.usuario = usuario;
         this.recurso = recurso;
         this.titulo = titulo;
@@ -44,10 +44,10 @@ public class Reserva {
         this.diaInteiro = diaInteiro;
         this.tipoReserva = tipoReserva;
         this.estado = estado;
-        this.numero = numero;
+        this.proximaOcurrencia = proximaOcurrencia;
     }
 
-    public Reserva(String usuario, int recurso, Long id, String titulo, Date dataActual, Date dataInicio, Date dataFim, boolean diaInteiro, TipoReserva tipoReserva, EstadoReserva estado, int numero) {
+    public Reserva(String usuario, int recurso, Long id, String titulo, Date dataActual, Date dataInicio, Date dataFim, boolean diaInteiro, TipoReserva tipoReserva, EstadoReserva estado, Date proximaOcurrencia) {
         this.usuario = usuario;
         this.recurso = recurso;
         this.id = id;
@@ -58,16 +58,18 @@ public class Reserva {
         this.diaInteiro = diaInteiro;
         this.tipoReserva = tipoReserva;
         this.estado = estado;
-        this.numero = numero;
+        this.proximaOcurrencia = proximaOcurrencia;
     }
 
-    public int getNumero() {
-        return numero;
+    public Date getProximaOcurrencia() {
+        return proximaOcurrencia;
     }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
+    public void setProximaOcurrencia(Date proximaOcurrencia) {
+        this.proximaOcurrencia = proximaOcurrencia;
     }
+
+
 
     public EstadoReserva getEstado() {
         return estado;
