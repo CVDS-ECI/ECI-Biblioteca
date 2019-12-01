@@ -69,8 +69,6 @@ public class Reserva {
         this.proximaOcurrencia = proximaOcurrencia;
     }
 
-
-
     public EstadoReserva getEstado() {
         return estado;
     }

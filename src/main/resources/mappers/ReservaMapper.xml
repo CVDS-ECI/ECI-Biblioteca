@@ -15,7 +15,7 @@
         <result property='diaInteiro' column='diaEntero' />
         <result property='tipoReserva' column='tipoReserva' />
         <result property='estado' column='estado' />
-        <result property='proximaOcuurencia' column='proximaOcurrencia' />
+        <result property='proximaOcurrencia' column='proximaOcurrencia' />
         
     </resultMap>
 
