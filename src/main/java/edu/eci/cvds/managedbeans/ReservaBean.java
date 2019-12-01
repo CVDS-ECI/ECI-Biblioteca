@@ -29,6 +29,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import org.primefaces.PrimeFaces;
 
 import static org.primefaces.behavior.validate.ClientValidator.PropertyKeys.event;
 
@@ -118,7 +119,8 @@ public class ReservaBean extends BasePageBean implements Serializable {
         if (validarInsercionFechas(start, end, idRecurso)) {
             //serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, frecuencia.toString() + " -> " + 0, dateActual, start, end, false, this.frecuencia, EstadoReserva.EnCurso, a));
         } else {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "PAILAASSSS KRAKKK", null));
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "No se puede hacer la reserva para la fecha " + event.getStartDate() + event.getEndDate(), null);
+            PrimeFaces.current().dialog().showMessageDynamic(message);
         }
 
         for (int i = a; i > 1; i--) {
@@ -129,7 +131,8 @@ public class ReservaBean extends BasePageBean implements Serializable {
                 int iii = a - ii;
                 //serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, frecuencia.toString() + " -> " + iii, dateActual, start, end, false, this.frecuencia, EstadoReserva.EnCurso, ii));
             } else {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "PAILAASSSS KRAKKK", null));
+                FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "No se puede hacer la reserva para la fecha " + event.getStartDate() + event.getEndDate(), null);
+                PrimeFaces.current().dialog().showMessageDynamic(message);
                 return;
             }
         }
@@ -198,18 +201,17 @@ public class ReservaBean extends BasePageBean implements Serializable {
 
     public void onEventMove(ScheduleEntryMoveEvent event) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Event moved", "Day delta:" + event.getDayDelta() + ", Minute delta:" + event.getMinuteDelta());
-
+        PrimeFaces.current().dialog().showMessageDynamic(message);
         addMessage(message);
     }
 
     public void onEventResize(ScheduleEntryResizeEvent event) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Event resized", "Day delta:" + event.getDayDelta() + ", Minute delta:" + event.getMinuteDelta());
-
-        addMessage(message);
+        PrimeFaces.current().dialog().showMessageDynamic(message);
     }
 
     private void addMessage(FacesMessage message) {
-        FacesContext.getCurrentInstance().addMessage(null, message);
+        PrimeFaces.current().dialog().showMessageDynamic(message);
     }
 
     public void deleteEvent() {
@@ -242,6 +244,8 @@ public class ReservaBean extends BasePageBean implements Serializable {
             es decir addEvent tambien deberia tener tipoReserva y Duracion todo depende de los campos 
             que los de vista deben hacer :V
              */
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "jijijijiji", null);
+            PrimeFaces.current().dialog().showMessageDynamic(message);
             System.out.println(usuario + "JIJIJ");
             int numero = Integer.parseInt(fretiempo);
             recursion(usuario, recursoID, frecuencia, numero);
@@ -255,7 +259,7 @@ public class ReservaBean extends BasePageBean implements Serializable {
     public void recursion(String usuario, int idRecurso, TipoReserva res, int veces) throws BibliotecaException {
         Date dateActual = new Date();
         Date nextDate;
-        
+
         Date start = event.getStartDate();
         Date end = event.getStartDate();
         if (duracion.equals("1 hora")) {
@@ -265,11 +269,10 @@ public class ReservaBean extends BasePageBean implements Serializable {
             end = sumaFecha(end, TipoReserva.Ninguno);
         }
         if (validarInsercionFechas(event.getStartDate(), end, idRecurso)) {
-            int pruebita = calcularTiempoDisponible(event.getStartDate(), end, idRecurso, veces, res, 0);
-            System.out.println("Pruebitaaa :3 " + pruebita);
-            serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, frecuencia.toString() + " -> " + 0, dateActual, event.getStartDate(), end, false, this.frecuencia, EstadoReserva.EnCurso,event.getStartDate()));
+            serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, frecuencia.toString() + " -> " + 0, dateActual, event.getStartDate(), end, false, this.frecuencia, EstadoReserva.EnCurso, event.getStartDate()));
         } else {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "PAILAASSSS KRAKKK", null));
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "No se puede hacer la reserva para la fecha " + event.getStartDate() + event.getEndDate(), null);
+            PrimeFaces.current().dialog().showMessageDynamic(message);
         }
         for (int i = 1; i < veces; i++) {
             start = sumaFecha(start, this.frecuencia);
@@ -278,28 +281,12 @@ public class ReservaBean extends BasePageBean implements Serializable {
                 nextDate = (i == (veces - 1)) ? start : sumaFecha(start, res);
                 serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, frecuencia.toString() + " -> " + i, dateActual, start, end, false, this.frecuencia, EstadoReserva.EnCurso, nextDate));
             } else {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "PAILAASSSS KRAKKK", null));
+                FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "No se puede hacer la reserva para la fecha " + event.getStartDate() + event.getEndDate(), null);
+                PrimeFaces.current().dialog().showMessageDynamic(message);
                 return;
             }
         }
 
-    }
-
-    private int calcularTiempoDisponible(Date ini, Date fin,int idRecurso, int duracion, TipoReserva ress,int tiempoAEsperar) throws BibliotecaException {
-        System.out.println(duracion);
-        if (duracion == 0){
-            return tiempoAEsperar;
-        }
-        Date nextDateI = sumaFecha(ini,ress);
-        Date nextDateF = sumaFecha(fin,ress);
-        System.out.println(nextDateI);
-        System.out.println(nextDateF);
-        if ((ini.equals(nextDateI) && fin.equals(nextDateF))
-                    || (ini.after(nextDateI) && fin.before(nextDateF))) {
-            calcularTiempoDisponible(nextDateI,nextDateF,idRecurso,duracion-1,ress,tiempoAEsperar+1);
-        }
-       return tiempoAEsperar;
-        
     }
 
     private boolean validarInsercion(ScheduleEvent evento, int idrecurso) throws BibliotecaException {
