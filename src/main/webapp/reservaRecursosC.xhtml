@@ -22,6 +22,23 @@
             <meta http-equiv="Last-Modified" content="0"/>
             <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate"/>
             <meta http-equiv="Pragma" content="no-cache"/>
+            <script type='text/javascript'>
+
+                (function()
+                {
+                if( window.localStorage )
+                {
+                if( !localStorage.getItem('firstLoad') )
+                {
+                localStorage['firstLoad'] = true;
+                window.location.reload();
+                }  
+                else
+                localStorage.removeItem('firstLoad');
+                }
+                })();
+
+            </script>
         </ui:define>
         <ui:define name="content">
             <style type="text/css">
@@ -46,26 +63,26 @@
 
                     </p:schedule>
                 </h:panelGrid>
-                
+
                 <p:dialog widgetVar="eventDialog1" header="Horario de reserva" showEffect="clip" hideEffect="clip"
                           modal="true">
                     <h:panelGrid id="eventDetails1" columns="2">
                         <p:outputLabel value="Recurso solicitado: "/>
                         <p:outputLabel value="#{reservaBean.recursoID}"/>
-                        
+
                         <p:outputLabel value="Información del recurso: "/>
                         <p:outputLabel value="#{AdminBean.consultarRecurso(reservaBean.recursoID).nombre}"/>
-                        
+
                         <p:outputLabel value="Fecha inicial de la reserva:  "/>
                         <p:outputLabel value="#{reservaBean.obtenerR().dataInicio}"/>
-                        
+
                         <p:outputLabel value="Fecha final de la reserva:  "/>
                         <p:outputLabel value="#{reservaBean.obtenerR().dataFim}"/>
-                        
+
                         <p:outputLabel value="Tipo de Reserva: "/>
                         <p:outputLabel value="#{reservaBean.obtenerR().tipoReserva}"/>
-                        
-                        
+
+
                     </h:panelGrid>
                 </p:dialog>
 
@@ -122,7 +139,7 @@
                 </p:dialog>
 
 
-                
+
             </h:form>
 
             <!-- Footer -->
