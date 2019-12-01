@@ -17,6 +17,7 @@ import edu.eci.cvds.services.BibliotecaServices;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
@@ -40,6 +41,7 @@ import org.primefaces.model.DefaultScheduleEvent;
 import org.primefaces.model.DefaultScheduleModel;
 import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
+
 
 /**
  * @author Ing Pipe
@@ -150,8 +152,9 @@ public class ReservaBean extends BasePageBean implements Serializable {
         //Falta pensar si la horafin es menor
         List<Reserva> reservas = serviciosBiblioteca.listarReservasRecurso(idrecurso);
         for (Reserva res : reservas) {
-            if ((start.equals(res.getDataInicio()) && end.equals(res.getDataFim()))
-                    || (start.after(res.getDataInicio()) && end.before(res.getDataFim()))) {
+            if ((start.equals(res.getDataInicio()) && end.equals(res.getDataFim())) //Caso 
+                    || (start.after(res.getDataInicio()) && end.before(res.getDataFim()))
+                    || (true)) {
                 return false;
             }
         }
@@ -244,9 +247,7 @@ public class ReservaBean extends BasePageBean implements Serializable {
             es decir addEvent tambien deberia tener tipoReserva y Duracion todo depende de los campos 
             que los de vista deben hacer :V
              */
-            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "jijijijiji", null);
-            PrimeFaces.current().dialog().showMessageDynamic(message);
-            System.out.println(usuario + "JIJIJ");
+            
             int numero = Integer.parseInt(fretiempo);
             recursion(usuario, recursoID, frecuencia, numero);
         } else {
@@ -259,9 +260,9 @@ public class ReservaBean extends BasePageBean implements Serializable {
     public void recursion(String usuario, int idRecurso, TipoReserva res, int veces) throws BibliotecaException {
         Date dateActual = new Date();
         Date nextDate;
-
         Date start = event.getStartDate();
         Date end = event.getStartDate();
+        ArrayList<Date> reservasSolapadas = new ArrayList();
         if (duracion.equals("1 hora")) {
             end = sumaFecha(event.getEndDate(), TipoReserva.Ninguno);
         } else if (duracion.equals("2 horas")) {
@@ -269,10 +270,9 @@ public class ReservaBean extends BasePageBean implements Serializable {
             end = sumaFecha(end, TipoReserva.Ninguno);
         }
         if (validarInsercionFechas(event.getStartDate(), end, idRecurso)) {
-            serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, frecuencia.toString() + " -> " + 0, dateActual, event.getStartDate(), end, false, this.frecuencia, EstadoReserva.EnCurso, event.getStartDate()));
+            serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, frecuencia.toString() + " -> " + 0, dateActual, start, end, false, this.frecuencia, EstadoReserva.EnCurso, event.getStartDate()));
         } else {
-            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "No se puede hacer la reserva para la fecha " + event.getStartDate() + event.getEndDate(), null);
-            PrimeFaces.current().dialog().showMessageDynamic(message);
+            reservasSolapadas.add(event.getStartDate());
         }
         for (int i = 1; i < veces; i++) {
             start = sumaFecha(start, this.frecuencia);
@@ -281,25 +281,27 @@ public class ReservaBean extends BasePageBean implements Serializable {
                 nextDate = (i == (veces - 1)) ? start : sumaFecha(start, res);
                 serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, frecuencia.toString() + " -> " + i, dateActual, start, end, false, this.frecuencia, EstadoReserva.EnCurso, nextDate));
             } else {
-                FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "No se puede hacer la reserva para la fecha " + event.getStartDate() + event.getEndDate(), null);
-                PrimeFaces.current().dialog().showMessageDynamic(message);
-                return;
+                reservasSolapadas.add(start);
             }
+        }
+        
+        if (reservasSolapadas.size() > 0 ){
+            String fechas = "";
+            for (Date fecha : reservasSolapadas){
+                fechas +=  fecha + " \n";
+            }
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Tu(s) reserva(s) Se solaparon en las siguientes Fechas:  \n " , fechas);
+            
+            PrimeFaces.current().dialog().showMessageDynamic(message);
+        }
+        else{
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Su reserva se ha registrado satisfactoriamente " , null);
+            PrimeFaces.current().dialog().showMessageDynamic(message);
+            
         }
 
     }
 
-    private boolean validarInsercion(ScheduleEvent evento, int idrecurso) throws BibliotecaException {
-        //Falta pensar si la horafin es menor
-        List<Reserva> reservas = serviciosBiblioteca.listarReservasRecurso(idrecurso);
-        for (Reserva res : reservas) {
-            if ((evento.getStartDate().equals(res.getDataInicio()) && evento.getEndDate().equals(res.getDataFim()))
-                    || (evento.getStartDate().after(res.getDataInicio()) && evento.getEndDate().before(res.getDataFim()))) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     public void loadEvents() throws BibliotecaException {
         eventModel = new DefaultScheduleModel();
