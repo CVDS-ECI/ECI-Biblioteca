@@ -15,8 +15,14 @@
         <result property='recurso' column='recurso' />
         <result property='cantidad' column='cantidad' />
     </resultMap>
-    
-    
+
+    <select id="reservasPorCarrera" resultMap="ReservaResult">
+<!--        ACA VA LA CONSULTA-->
+    </select>
+
+    <select id="reservasPorUsuario" resultMap="ReservaResult">
+        <!--        ACA VA LA CONSULTA-->
+    </select>
     
     <select id="recursosMasUsados" resultMap="ReservaResult">
         SELECT
@@ -289,7 +295,7 @@
         FROM
         Reserva as r join recurso
         on r.recurso = recurso.id
-        where r.titulo != 'Diario' or r.titulo != 'Mensual' or r.titulo != 'Semanal'
+        where r.tiporeserva != 'Ninguno'
         group by recurso.nombre
     </select>
 

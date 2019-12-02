@@ -380,5 +380,29 @@ public class MyBatisReporteDAO implements ReporteDAO{
              
          }	
     }
-    
+
+    @Override
+    public List<Reserva> reservasPorCarrera() throws PersistenceException {
+        try{
+            return reporteMapper.reservasPorCarrera();
+        }
+        catch(org.apache.ibatis.exceptions.PersistenceException e){
+
+            throw new PersistenceException("Error al consultar reservas por carrera()",e);
+
+        }
+    }
+
+    @Override
+    public List<Reserva> reservasPorUsuario() throws PersistenceException {
+        try{
+            return reporteMapper.reservasPorUsuario();
+        }
+        catch(org.apache.ibatis.exceptions.PersistenceException e){
+
+            throw new PersistenceException("Error al consultar reservas por carrera()",e);
+
+        }
+    }
+
 }

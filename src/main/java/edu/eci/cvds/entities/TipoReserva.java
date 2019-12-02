@@ -10,6 +10,6 @@ package edu.eci.cvds.entities;
  * @author Ing Pipe
  */
 public enum TipoReserva {
-    Ninguno,Diario,Semanal,Mensual;
+    Ninguno,Diario,Semanal,Mensual
 
 }

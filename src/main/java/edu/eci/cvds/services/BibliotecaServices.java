@@ -82,5 +82,8 @@ public interface BibliotecaServices {
         public List<Reserva> consultarReservasCanceladasPorTipoRecurso(String tipoRecurso) throws BibliotecaException;
     
         public List<Reserva> consultarReservasCanceladas() throws BibliotecaException;
-     
+
+        public List<Reserva> consultarReservasPorCarrera() throws  BibliotecaException;
+
+        public List<Reserva> consultarReservasPorUsuario() throws  BibliotecaException;
 }

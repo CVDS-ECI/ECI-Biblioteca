@@ -22,18 +22,21 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
 
     @Inject
     UsuarioDAO usuarioDAO;
-    
+
     @Inject
+    private
     RecursoDAO recursoDAO;
-    
+
     @Inject
+    private
     ReservaDAO reservaDAO;
-    
+
     @Inject
+    private
     ReporteDAO reporteDAO;
 
     @Override
-    public void registrarRecurso(Recurso rec)throws BibliotecaException {
+    public void registrarRecurso(Recurso rec) throws BibliotecaException {
         try {
             recursoDAO.addRecurso(rec);
         } catch (PersistenceException ex) {
@@ -42,7 +45,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
     }
 
     @Override
-    public List<Recurso> consultarRecursos() throws BibliotecaException{
+    public List<Recurso> consultarRecursos() throws BibliotecaException {
         try {
             return recursoDAO.loadRecursos();
         } catch (PersistenceException ex) {
@@ -52,7 +55,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
 
     @Override
     public Recurso consultarRecurso(int id) throws BibliotecaException {
-         try {
+        try {
             return recursoDAO.loadRecurso(id);
         } catch (PersistenceException ex) {
             throw new BibliotecaException("Error al consultar Este Recurso:" + ex.getLocalizedMessage(), ex);
@@ -62,7 +65,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
     @Override
     public void updateRecurso(int id, String nuevoEstado) throws BibliotecaException {
         try {
-            recursoDAO.updateRecurso(id,nuevoEstado);
+            recursoDAO.updateRecurso(id, nuevoEstado);
         } catch (PersistenceException ex) {
             throw new BibliotecaException("Error al Actualizar el estado de Este Recurso :" + ex.getLocalizedMessage(), ex);
         }
@@ -97,7 +100,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
 
     @Override
     public void eliminarReserva(int re) throws BibliotecaException {
-         try {
+        try {
             reservaDAO.remover(re);
         } catch (PersistenceException ex) {
             throw new BibliotecaException("Error al consultar las reservas Disponibles:" + ex.getLocalizedMessage(), ex);
@@ -374,5 +377,23 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         }
     }
 
-    
+    @Override
+    public List<Reserva> consultarReservasPorCarrera() throws BibliotecaException {
+        try {
+            return reporteDAO.reservasPorCarrera();
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar Reservas por carrera" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarReservasPorUsuario() throws BibliotecaException {
+        try {
+            return reporteDAO.reservasPorUsuario();
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar Reservas por carrera" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+
 }

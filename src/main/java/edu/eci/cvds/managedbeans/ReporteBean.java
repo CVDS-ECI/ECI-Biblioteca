@@ -1,7 +1,6 @@
 package edu.eci.cvds.managedbeans;
 
 import com.google.inject.Inject;
-import edu.eci.cvds.entities.Recurso;
 import edu.eci.cvds.entities.Reserva;
 import edu.eci.cvds.services.BibliotecaServices;
 
@@ -20,6 +19,31 @@ public class ReporteBean extends BasePageBean {
     private String[] TiposDeFiltros = {"Fecha", "Franja horaria", "Carrera", "Tipo de recurso"};
     private String tipoDeReporteSeleccionado;
     private String tipoDeFiltroSeleccionado;
+
+
+    public List<Reserva> consultarReservasPorCarrera() {
+        List<Reserva> recurso = new ArrayList<>();
+        try {
+            recurso = serviciosBiblioteca.consultarReservasPorCarrera();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return recurso;
+
+    }
+
+    public List<Reserva> consultarReservasPorUsuario() {
+        List<Reserva> recurso = new ArrayList<>();
+        try {
+            recurso = serviciosBiblioteca.consultarReservasPorUsuario();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return recurso;
+
+    }
+
+
 
     public List<Reserva> consultarRecursosMasUsados() {
         List<Reserva> recurso = new ArrayList<>();
@@ -70,7 +94,7 @@ public class ReporteBean extends BasePageBean {
         System.out.println(x);
     }
    
-    public List<Reserva> consultarRecursosMasUsadosPorPrograma(String programa)  {
+    private List<Reserva> consultarRecursosMasUsadosPorPrograma(String programa)  {
         List<Reserva> recurso = new ArrayList<>();
         try {
             recurso = serviciosBiblioteca.consultarRecursosMasUsadosPorPrograma(programa);
