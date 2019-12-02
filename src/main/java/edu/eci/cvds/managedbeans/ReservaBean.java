@@ -118,7 +118,9 @@ public class ReservaBean extends BasePageBean implements Serializable {
         List<Reserva> reservas = serviciosBiblioteca.listarReservasRecurso(idrecurso);
         for (Reserva res : reservas) {
             if ((start.equals(res.getDataInicio()) && end.equals(res.getDataFim())) //Caso 
-                    || (start.after(res.getDataInicio()) && end.before(res.getDataFim()))) {
+                    || (start.after(res.getDataInicio()) && end.before(res.getDataFim()))
+                    || (start.after(res.getDataInicio()) && start.before(res.getDataFim()))
+                    || (end.after(res.getDataInicio()) && end.before(res.getDataFim()))) {
                 return false;
             }
         }
