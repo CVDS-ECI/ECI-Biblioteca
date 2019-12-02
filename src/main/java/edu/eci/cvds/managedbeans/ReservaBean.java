@@ -104,41 +104,6 @@ public class ReservaBean extends BasePageBean implements Serializable {
         this.datee = datee;
     }
 
-    public void crearEvento(Date start, Date end, String usuario, int idRecurso, String recurrencia, String duracion) throws BibliotecaException {
-
-        start.setYear(start.getYear() + 2000);
-        Date dateActual = new Date();
-        duracion = duracion.replaceAll("\\D+", "");
-        int numero = Integer.parseInt(duracion);
-        int a = Integer.parseInt(recurrencia);
-        if (numero == 1) {
-            end = sumaFecha(end, TipoReserva.Ninguno);
-        } else if (numero == 2) {
-            end = sumaFecha(end, TipoReserva.Ninguno);
-            end = sumaFecha(end, TipoReserva.Ninguno);
-        }
-        if (validarInsercionFechas(start, end, idRecurso)) {
-            //serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, frecuencia.toString() + " -> " + 0, dateActual, start, end, false, this.frecuencia, EstadoReserva.EnCurso, a));
-        } else {
-            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "No se puede hacer la reserva para la fecha " + event.getStartDate() + event.getEndDate(), null);
-            PrimeFaces.current().dialog().showMessageDynamic(message);
-        }
-
-        for (int i = a; i > 1; i--) {
-            start = sumaFecha(start, this.frecuencia);
-            end = sumaFecha(end, this.frecuencia);
-            if (validarInsercionFechas(start, end, idRecurso)) {
-                int ii = i - 1;
-                int iii = a - ii;
-                //serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, frecuencia.toString() + " -> " + iii, dateActual, start, end, false, this.frecuencia, EstadoReserva.EnCurso, ii));
-            } else {
-                FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "No se puede hacer la reserva para la fecha " + event.getStartDate() + event.getEndDate(), null);
-                PrimeFaces.current().dialog().showMessageDynamic(message);
-                return;
-            }
-        }
-    }
-
     public Date calcularSiguienteAparicion(TipoReserva tipo, Date fecha, int frecuencia) {
         if (frecuencia != 1) {
             return sumaFecha(fecha, tipo);
