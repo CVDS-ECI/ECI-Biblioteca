@@ -20,6 +20,7 @@ import java.util.List;
 public class MyBatisReservaDAO implements ReservaDAO{
     @Inject
     private ReservaMapper reservaMapper;
+    
 
     @Override
     public List<Reserva> listarReservasRecurso(int ru) throws PersistenceException {

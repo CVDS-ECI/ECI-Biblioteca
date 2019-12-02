@@ -15,6 +15,7 @@
         <result property='diaInteiro' column='diaEntero' />
         <result property='tipoReserva' column='tipoReserva' />
         <result property='estado' column='estado' />
+        <result property='proximaOcurrencia' column='proximaOcurrencia' />
         
     </resultMap>
 
@@ -42,7 +43,8 @@
         r.fin,
         r.diaEntero,
         r.tipoReserva,
-        r.estado
+        r.estado,
+        r.proximaOcurrencia
         FROM
         Reserva as r
         WHERE r.recurso=#{rId} and r.inicio=#{ini} and r.fin=#{fin}
@@ -50,8 +52,8 @@
 
     
     <insert id="salvar" parameterType="edu.eci.cvds.entities.Reserva">
-        insert into Reserva (titulo,recurso,usuario,inicio,fin,diaEntero,tipoReserva,dataActual,estado)
-        values (#{reserva.titulo},#{reserva.recurso},#{reserva.usuario},#{reserva.dataInicio},#{reserva.dataFim},#{reserva.diaInteiro},#{reserva.tipoReserva},#{reserva.dataActual},#{reserva.estado})
+        insert into Reserva (titulo,recurso,usuario,inicio,fin,diaEntero,tipoReserva,dataActual,estado,proximaOcurrencia)
+        values (#{reserva.titulo},#{reserva.recurso},#{reserva.usuario},#{reserva.dataInicio},#{reserva.dataFim},#{reserva.diaInteiro},#{reserva.tipoReserva},#{reserva.dataActual},#{reserva.estado},#{reserva.proximaOcurrencia})
     </insert>
     
     <delete id="remover" parameterType="edu.eci.cvds.entities.Reserva">

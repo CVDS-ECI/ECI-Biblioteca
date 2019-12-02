@@ -8,6 +8,7 @@ package edu.eci.cvds.services.impl;
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Recurso;
 import edu.eci.cvds.entities.Reserva;
+import edu.eci.cvds.entities.Usuario;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.RecursoDAO;
 import edu.eci.cvds.persistence.ReservaDAO;
@@ -28,6 +29,7 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
     
     @Inject
     ReservaDAO reservaDAO;
+    
 
     @Override
     public void registrarRecurso(Recurso rec)throws BibliotecaException {
@@ -107,6 +109,15 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
             return reservaDAO.getInfoReserva(recursoId,inicio,fin);
         } catch (PersistenceException ex) {
             throw new BibliotecaException("Error al consultar las reservas Disponibles:" + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public Usuario consultarUsuario(String correo) throws BibliotecaException {
+        try {
+            return usuarioDAO.consultarUsuario(correo);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar el usuario" + ex.getLocalizedMessage(), ex);
         }
     }
 

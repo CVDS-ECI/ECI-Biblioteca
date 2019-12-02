@@ -532,10 +532,10 @@ public class ServicesBibliotecaTest {
 //        Date date2=new SimpleDateFormat("yyyy/MM/dd").parse("2019/12/11");  
 //            bibliotecaServices.registrarReserva(new Reserva("rubiano",2929,"SUPUTAMADRE",date1, date1,true,TipoReserva.Diario));
 //        ReservaBean r = new ReservaBean();
-//        r.crearEvento(date1, date1, "invitado", 2029, "4", "1 hora");
-//        
-//  //          FALTA HACER EL DE ELIMINAR
-//            
+//        r.crearEvento(date1, date1, "invitado", 2929, "6", "1 hora");
+        
+  //          FALTA HACER EL DE ELIMINAR
+            
 //    }
       
 //    /*
