@@ -24,20 +24,26 @@
             <meta http-equiv="Pragma" content="no-cache"/>
             <script type='text/javascript'>
 
-                (function()
+                (function ()
                 {
-                if( window.localStorage )
-                {
-                if( !localStorage.getItem('firstLoad') )
-                {
-                localStorage['firstLoad'] = true;
-                window.location.reload();
-                }  
-                else
-                localStorage.removeItem('firstLoad');
-                }
+                    if (window.localStorage)
+                    {
+                        if (!localStorage.getItem('firstLoad'))
+                        {
+                            localStorage['firstLoad'] = true;
+                            window.location.reload();
+                        } else
+                            localStorage.removeItem('firstLoad');
+                    }
                 })();
 
+            </script>
+            <script type="text/javascript">
+                function conf2()
+                {
+                    var con = confirm("Do you want to submit for sure?");
+                    location.href = "/faces/reservaRecursosC.xhtml";
+                }
             </script>
         </ui:define>
         <ui:define name="content">
@@ -80,6 +86,11 @@
 
                         <p:outputLabel value="Tipo de Reserva: "/>
                         <p:outputLabel value="#{reservaBean.obtenerR().tipoReserva}"/>
+
+                        <p:commandButton id="addButton1" value="Cancelar Todas las Reservas" actionListener="#{reservaBean.modificarReserva('t')}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" onclick="conf2()"></p:commandButton>
+                        <p:commandButton id="addButton2" value="Carcelar Esta Reserva" action="#{reservaBean.modificarReserva('u')}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" onclick="conf2()"></p:commandButton>
+                        <p:commandButton id="addButton3" value="Cancelar Desde Esta Reserva" action="#{reservaBean.modificarReserva('d')}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" onclick="conf2()"></p:commandButton>
+
 
 
                     </h:panelGrid>

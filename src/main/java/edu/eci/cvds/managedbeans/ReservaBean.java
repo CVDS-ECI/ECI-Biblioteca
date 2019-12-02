@@ -225,6 +225,7 @@ public class ReservaBean extends BasePageBean implements Serializable {
 
     public void recursion(String usuario, int idRecurso, TipoReserva res, int veces) throws BibliotecaException {
         Date dateActual = new Date();
+        Date dateActual2 = new Date();
         Date nextDate;
         Date start = event.getStartDate();
         Date end = event.getStartDate();
@@ -238,17 +239,24 @@ public class ReservaBean extends BasePageBean implements Serializable {
             end = sumaFecha(end, TipoReserva.Ninguno);
 
         }
-        if (validarInsercionFechas(event.getStartDate(), end, idRecurso)) {
-            serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso,usuario+event.getTitle(), dateActual, start, end, false, this.frecuencia, EstadoReserva.EnCurso, event.getStartDate()));
+        if (event.getStartDate().after(dateActual2)) {
+            if (validarInsercionFechas(event.getStartDate(), end, idRecurso)) {
+                serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, usuario + event.getTitle(), dateActual, start, end, false, this.frecuencia, EstadoReserva.EnCurso, event.getStartDate()));
+            } else {
+                reservasSolapadas.add(event.getStartDate());
+            }
         } else {
-            reservasSolapadas.add(event.getStartDate());
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Tu(s) reserva(s) estan siendo creadas antes de hoy", null);
+            PrimeFaces.current().dialog().showMessageDynamic(message);
+            return;
         }
+
         for (int i = 1; i < veces; i++) {
             start = sumaFecha(start, this.frecuencia);
             end = sumaFecha(end, this.frecuencia);
             if (validarInsercionFechas(start, end, idRecurso)) {
                 nextDate = (i == (veces - 1)) ? start : sumaFecha(start, res);
-                serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso,usuario+event.getTitle(), dateActual, start, end, false, this.frecuencia, EstadoReserva.EnCurso, nextDate));
+                serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, usuario + event.getTitle(), dateActual, start, end, false, this.frecuencia, EstadoReserva.EnCurso, nextDate));
             } else {
                 reservasSolapadas.add(start);
             }
@@ -256,9 +264,8 @@ public class ReservaBean extends BasePageBean implements Serializable {
 
         if (reservasSolapadas.size() > 0) {
             String fechas = "";
-            for (Date fecha : reservasSolapadas) {
-                fechas += fecha + " \n";
-            }
+            //Mouseky herramienta misteriosa 3
+            fechas = reservasSolapadas.stream().map((fecha) -> fecha + " \n").reduce(fechas, String::concat);
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Tu(s) reserva(s) Se solaparon en las siguientes Fechas:  \n  ¡Recarga tu pagina, ¡Por favor!", fechas);
 
             PrimeFaces.current().dialog().showMessageDynamic(message);
@@ -305,30 +312,50 @@ public class ReservaBean extends BasePageBean implements Serializable {
         return null;
     }
 
-    public void modificarReserva(String a) throws BibliotecaException {
+    public void modificarReserva(String a, String usuario) throws BibliotecaException {
         EstadoReserva estado = EstadoReserva.Cancelado;
-        System.out.println(estado);
-        System.out.println(a);
-        System.out.println();
-        System.out.println(resssss);
         List<Reserva> reservas = serviciosBiblioteca.listarReservasRecurso(recursoID);
         switch (a) {
             case "u":
-                serviciosBiblioteca.modificarReserva(resssss, estado);
+                if (resssss.getUsuario().equals(usuario)) {
+                    serviciosBiblioteca.modificarReserva(resssss, estado);
+                    break;
+                } else {
+                    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Solo el Usuario que hizo la reserva puede cancelarla", null);
+                    PrimeFaces.current().dialog().showMessageDynamic(message);
+                }
+
                 break;
             case "t":
-                for (Reserva r: reservas){
-                    if (r.getTitulo().equals(resssss.getTitulo())){
-                        serviciosBiblioteca.modificarReserva(r, estado);
+                for (Reserva r : reservas) {
+                    if (resssss.getUsuario().equals(usuario)) {
+                        System.err.println("jijijijijij");
+                        if (r.getTitulo().equals(resssss.getTitulo())) {
+                            serviciosBiblioteca.modificarReserva(r, estado);
+                            break;
+                        }
+                    } else {
+                        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Solo el Usuario que hizo la reserva puede cancelarla", null);
+                        PrimeFaces.current().dialog().showMessageDynamic(message);
                     }
-                }   break;
+
+                }
+                break;
             default:
                 serviciosBiblioteca.modificarReserva(resssss, estado);
-                for (Reserva r: reservas){
-                    if (r.getTitulo().equals(resssss.getTitulo()) && r.getDataInicio().after(resssss.getDataInicio())){
-                        serviciosBiblioteca.modificarReserva(r, estado);
+                for (Reserva r : reservas) {
+                    if (r.getUsuario().equals(usuario)) {
+                        if (r.getTitulo().equals(resssss.getTitulo()) && r.getDataInicio().after(resssss.getDataInicio())) {
+                            serviciosBiblioteca.modificarReserva(r, estado);
+                            break;
+                        }
+                    } else {
+                        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Solo el Usuario que hizo la reserva puede cancelarla", null);
+                        PrimeFaces.current().dialog().showMessageDynamic(message);
                     }
-                }   break;
+
+                }
+                break;
         }
 
     }
