@@ -26,10 +26,10 @@
         r.inicio,
         r.fin,
         r.diaEntero,
-        r.tipoReserva
+        r.tipoReserva,
         FROM
         Reserva as r
-        WHERE r.recurso = #{recursoId}
+        WHERE r.recurso = #{recursoId} and r.estado != 'Cancelado'
     </select>
     
     <select id="getInfoReserva" resultMap="ReservaResult">
@@ -44,7 +44,7 @@
         r.diaEntero,
         r.tipoReserva,
         r.estado,
-        r.proximaOcurrencia
+        r.proximaOcurrencia,
         FROM
         Reserva as r
         WHERE r.recurso=#{rId} and r.inicio=#{ini} and r.fin=#{fin}
@@ -61,6 +61,13 @@
         WHERE
         reserva.id = #{reservaId}
     </delete>
+    
+    <update id="modificarReserva" parameterType="map">
+        UPDATE reserva
+        SET estado = #{estado}
+        WHERE
+        reserva.id = #{res.id};
+    </update>
     
    
 </mapper>

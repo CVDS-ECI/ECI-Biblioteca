@@ -238,7 +238,7 @@ public class ReservaBean extends BasePageBean implements Serializable {
 
         }
         if (validarInsercionFechas(event.getStartDate(), end, idRecurso)) {
-            serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, frecuencia.toString() + " -> " + 0, dateActual, start, end, false, this.frecuencia, EstadoReserva.EnCurso, event.getStartDate()));
+            serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso,usuario+event.getTitle(), dateActual, start, end, false, this.frecuencia, EstadoReserva.EnCurso, event.getStartDate()));
         } else {
             reservasSolapadas.add(event.getStartDate());
         }
@@ -247,7 +247,7 @@ public class ReservaBean extends BasePageBean implements Serializable {
             end = sumaFecha(end, this.frecuencia);
             if (validarInsercionFechas(start, end, idRecurso)) {
                 nextDate = (i == (veces - 1)) ? start : sumaFecha(start, res);
-                serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso, frecuencia.toString() + " -> " + i, dateActual, start, end, false, this.frecuencia, EstadoReserva.EnCurso, nextDate));
+                serviciosBiblioteca.registrarReserva(new Reserva(usuario, idRecurso,usuario+event.getTitle(), dateActual, start, end, false, this.frecuencia, EstadoReserva.EnCurso, nextDate));
             } else {
                 reservasSolapadas.add(start);
             }
@@ -258,18 +258,18 @@ public class ReservaBean extends BasePageBean implements Serializable {
             for (Date fecha : reservasSolapadas) {
                 fechas += fecha + " \n";
             }
-            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Tu(s) reserva(s) Se solaparon en las siguientes Fechas:  \n ", fechas);
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Tu(s) reserva(s) Se solaparon en las siguientes Fechas:  \n  ¡Recarga tu pagina, ¡Por favor!", fechas);
 
             PrimeFaces.current().dialog().showMessageDynamic(message);
         } else {
-            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Su reserva se ha registrado satisfactoriamente ", null);
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Su reserva se ha registrado satisfactoriamente \n ¡Recarga tu pagina, ¡Por favor!", null);
             PrimeFaces.current().dialog().showMessageDynamic(message);
 
         }
 
     }
-    
-    public String getCarreraU() throws BibliotecaException{
+
+    public String getCarreraU() throws BibliotecaException {
         try {
             Reserva r = obtenerR();
             String j = r.getUsuario();
@@ -280,7 +280,6 @@ public class ReservaBean extends BasePageBean implements Serializable {
         }
         return null;
     }
-    
 
     public void loadEvents() throws BibliotecaException {
         eventModel = new DefaultScheduleModel();
@@ -302,6 +301,29 @@ public class ReservaBean extends BasePageBean implements Serializable {
             ex.printStackTrace();
         }
         return null;
+    }
+
+    public void modificarReserva(EstadoReserva estado, String a) throws BibliotecaException {
+        Reserva res = obtenerR();
+        List<Reserva> reservas = serviciosBiblioteca.listarReservasRecurso(recursoID);
+        switch (a) {
+            case "u":
+                serviciosBiblioteca.modificarReserva(res, estado);
+                break;
+            case "t":
+                for (Reserva r: reservas){
+                    if (r.getTitulo().equals(res.getTitulo())){
+                        serviciosBiblioteca.modificarReserva(r, estado);
+                    }
+                }   break;
+            default:
+                for (Reserva r: reservas){
+                    if (r.getTitulo().equals(res.getTitulo()) && r.getDataInicio().after(res.getDataInicio())){
+                        serviciosBiblioteca.modificarReserva(r, estado);
+                    }
+                }   break;
+        }
+
     }
 
     public String getDuracion() {

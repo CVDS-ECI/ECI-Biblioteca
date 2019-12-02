@@ -26,6 +26,7 @@ public class Reserva {
     private EstadoReserva estado;
     private Date proximaOcurrencia;
 
+
 // PILAS QUE FALTA USUARIO Y RECURSO PARA ESTO Y EL MAPPER
     public Reserva() {
         this.tipoReserva = TipoReserva.Ninguno;
@@ -59,8 +60,12 @@ public class Reserva {
         this.tipoReserva = tipoReserva;
         this.estado = estado;
         this.proximaOcurrencia = proximaOcurrencia;
+    
     }
 
+
+    
+    
     public Date getProximaOcurrencia() {
         return proximaOcurrencia;
     }
