@@ -66,6 +66,7 @@ public class ReservaBean extends BasePageBean implements Serializable {
     private Reserva reserva;
     private Date nextDate;
     private Reserva resssss;
+    private String usuario;
 
     public Date getNextDate() {
         return nextDate;
@@ -115,7 +116,6 @@ public class ReservaBean extends BasePageBean implements Serializable {
 
     private boolean validarInsercionFechas(Date start, Date end, int idrecurso) throws BibliotecaException {
         //Falta pensar si la horafin es menor
-        System.out.println("CONDICIONALALALALALALLA");
         List<Reserva> reservas = serviciosBiblioteca.listarReservasRecurso(idrecurso);
         //Mouseky herramienta misteriosa x2
         if (!reservas.stream().noneMatch((res) -> ((start.equals(res.getDataInicio()) && end.equals(res.getDataFim())) //Caso 
@@ -327,37 +327,32 @@ public class ReservaBean extends BasePageBean implements Serializable {
 
                 break;
             case "t":
-                for (Reserva r : reservas) {
-                    if (resssss.getUsuario().equals(usuario)) {
-                        System.err.println("jijijijijij");
+                if (resssss.getUsuario().equals(usuario)) {
+                    for (Reserva r : reservas) {
                         if (r.getTitulo().equals(resssss.getTitulo())) {
                             serviciosBiblioteca.modificarReserva(r, estado);
-                            break;
                         }
-                    } else {
-                        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Solo el Usuario que hizo la reserva puede cancelarla", null);
-                        PrimeFaces.current().dialog().showMessageDynamic(message);
                     }
-
+                } else {
+                    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Solo el Usuario que hizo la reserva puede cancelarla", null);
+                    PrimeFaces.current().dialog().showMessageDynamic(message);
                 }
                 break;
             default:
-                serviciosBiblioteca.modificarReserva(resssss, estado);
-                for (Reserva r : reservas) {
-                    if (r.getUsuario().equals(usuario)) {
+
+                if (resssss.getUsuario().equals(usuario)) {
+                    serviciosBiblioteca.modificarReserva(resssss, estado);
+                    for (Reserva r : reservas) {
                         if (r.getTitulo().equals(resssss.getTitulo()) && r.getDataInicio().after(resssss.getDataInicio())) {
                             serviciosBiblioteca.modificarReserva(r, estado);
-                            break;
                         }
-                    } else {
-                        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Solo el Usuario que hizo la reserva puede cancelarla", null);
-                        PrimeFaces.current().dialog().showMessageDynamic(message);
                     }
-
+                } else {
+                    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Solo el Usuario que hizo la reserva puede cancelarla", null);
+                    PrimeFaces.current().dialog().showMessageDynamic(message);
                 }
                 break;
         }
-
     }
 
     public String getDuracion() {
