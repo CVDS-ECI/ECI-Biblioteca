@@ -17,10 +17,39 @@ public class ReporteBean extends BasePageBean {
     private BibliotecaServices serviciosBiblioteca;
     private String[] TiposDeReportes = {"Recursos más usados", "Recursos menos usados", "Horarios de mayor ocupación de recursos", "Horarios de menor ocupación de recursos", "Reservas recurrentes", "Reservas canceladas"};
     private String[] TiposDeFiltros = {"Fecha", "Franja horaria", "Carrera", "Tipo de recurso"};
+    private String[] carreras = {"ICIV", "ISIS", "IAMB", "IIND"};
+    private String tipoDecarreraSeleccionado;
     private String tipoDeReporteSeleccionado;
     private String tipoDeFiltroSeleccionado;
+    
+    public String[] getCarreras() {
+        return carreras;
+    }
 
+    public void setCarreras(String[] carreras) {
+        this.carreras = carreras;
+    }
 
+    public String getTipoDecarreraSeleccionado() {
+        return tipoDecarreraSeleccionado;
+    }
+
+    public void setTipoDecarreraSeleccionado(String tipoDecarreraSeleccionado) {
+        this.tipoDecarreraSeleccionado = tipoDecarreraSeleccionado;
+    }
+    
+
+    public List<Reserva> consultarRecursosMasUsadosPorCarrera() {
+        List<Reserva> recurso = new ArrayList<>();
+        try {
+            recurso = serviciosBiblioteca.consultarRecursosMasUsadosPorPrograma(tipoDecarreraSeleccionado);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return recurso;
+
+    }
+    
     public List<Reserva> consultarReservasPorCarrera() {
         List<Reserva> recurso = new ArrayList<>();
         try {
@@ -31,6 +60,8 @@ public class ReporteBean extends BasePageBean {
         return recurso;
 
     }
+    
+    
 
     public List<Reserva> consultarReservasPorUsuario() {
         List<Reserva> recurso = new ArrayList<>();
