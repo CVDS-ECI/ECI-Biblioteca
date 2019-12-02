@@ -158,12 +158,12 @@
     
     <select id="horariosMayorOcupacion" resultMap="ReservaResult">
         SELECT
-        r.inicio,
-        r.fin,      
-        COUNT(r.inicio) AS cantidad
+        r.inicioreserva as inicio ,
+        r.finreserva as fin,      
+        COUNT(r.inicioreserva) AS cantidad
         FROM 
-        Reserva as r 
-        GROUP BY r.inicio,r.fin
+        recurso as r 
+        GROUP BY r.inicioreserva,r.finreserva
         ORDER BY cantidad desc
         FETCH FIRST 3 ROWS ONLY
     </select>
@@ -224,13 +224,13 @@
      
     <select id="horariosMenorOcupacion" resultMap="ReservaResult">
         SELECT
-        r.inicio,
-        r.fin,      
-        COUNT(r.inicio) AS cantidad
+        r.inicioreserva as inicio ,
+        r.finreserva as fin,      
+        COUNT(r.inicioreserva) AS cantidad
         FROM 
-        Reserva as r
-        GROUP BY r.inicio,r.fin
-        ORDER BY cantidad asc
+        recurso as r 
+        GROUP BY r.inicioreserva,r.finreserva
+        ORDER BY cantidad  asc
         FETCH FIRST 3 ROWS ONLY
     </select>
     
