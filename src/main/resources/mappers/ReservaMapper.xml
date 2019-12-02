@@ -26,7 +26,7 @@
         r.inicio,
         r.fin,
         r.diaEntero,
-        r.tipoReserva,
+        r.tipoReserva
         FROM
         Reserva as r
         WHERE r.recurso = #{recursoId} and r.estado != 'Cancelado'
@@ -44,7 +44,7 @@
         r.diaEntero,
         r.tipoReserva,
         r.estado,
-        r.proximaOcurrencia,
+        r.proximaOcurrencia
         FROM
         Reserva as r
         WHERE r.recurso=#{rId} and r.inicio=#{ini} and r.fin=#{fin}

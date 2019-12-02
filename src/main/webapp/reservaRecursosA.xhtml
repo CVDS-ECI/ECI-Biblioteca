@@ -99,12 +99,16 @@
 
                         <p:outputLabel value="Tipo de Reserva: "/>
                         <p:outputLabel value="#{reservaBean.obtenerR().tipoReserva}"/>
+                        #{reservaBean.obtenerR().id}
 
 
                         <p:outputLabel value="Proxima Aparicion: "/>
                         <p:outputLabel value="#{reservaBean.obtenerR().proximaOcurrencia}"/>
-
-
+                        
+                        <p:commandButton id="addButton1" value="Cancelar Todas las Reservas" actionListener="#{reservaBean.modificarReserva('t')}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();"></p:commandButton>
+                        <p:commandButton id="addButton2" value="Carcelar Esta Reserva" action="#{reservaBean.modificarReserva('u')}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();"></p:commandButton>
+                        <p:commandButton id="addButton3" value="Cancelar Desde Esta Reserva" action="#{reservaBean.modificarReserva('d')}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();"></p:commandButton>
+                        
 
 
                     </h:panelGrid>
@@ -153,8 +157,7 @@
                                 </h:selectOneMenu>
                             </div>
                         </div>
-                        <p:commandButton id="addButton" value="Reservar" action="#{reservaBean.addEvent(shiroBean.username)}"
-                                         oncomplete="PF('myschedule').update();PF('eventDialog').hide();"/>
+                        <p:commandButton id="addButton" value="Reservar" action="#{reservaBean.addEvent(shiroBean.username)}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();"></p:commandButton>
 
                     </h:panelGrid>
 

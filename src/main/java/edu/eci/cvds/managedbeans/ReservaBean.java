@@ -65,6 +65,7 @@ public class ReservaBean extends BasePageBean implements Serializable {
     private String fretiempo;
     private Reserva reserva;
     private Date nextDate;
+    private Reserva resssss;
 
     public Date getNextDate() {
         return nextDate;
@@ -296,6 +297,7 @@ public class ReservaBean extends BasePageBean implements Serializable {
 
     public Reserva obtenerR() {
         try {
+            resssss = serviciosBiblioteca.getInfoReserva(recursoID, event.getStartDate(), event.getEndDate());
             return serviciosBiblioteca.getInfoReserva(recursoID, event.getStartDate(), event.getEndDate());
         } catch (BibliotecaException ex) {
             ex.printStackTrace();
@@ -303,22 +305,27 @@ public class ReservaBean extends BasePageBean implements Serializable {
         return null;
     }
 
-    public void modificarReserva(EstadoReserva estado, String a) throws BibliotecaException {
-        Reserva res = obtenerR();
+    public void modificarReserva(String a) throws BibliotecaException {
+        EstadoReserva estado = EstadoReserva.Cancelado;
+        System.out.println(estado);
+        System.out.println(a);
+        System.out.println();
+        System.out.println(resssss);
         List<Reserva> reservas = serviciosBiblioteca.listarReservasRecurso(recursoID);
         switch (a) {
             case "u":
-                serviciosBiblioteca.modificarReserva(res, estado);
+                serviciosBiblioteca.modificarReserva(resssss, estado);
                 break;
             case "t":
                 for (Reserva r: reservas){
-                    if (r.getTitulo().equals(res.getTitulo())){
+                    if (r.getTitulo().equals(resssss.getTitulo())){
                         serviciosBiblioteca.modificarReserva(r, estado);
                     }
                 }   break;
             default:
+                serviciosBiblioteca.modificarReserva(resssss, estado);
                 for (Reserva r: reservas){
-                    if (r.getTitulo().equals(res.getTitulo()) && r.getDataInicio().after(res.getDataInicio())){
+                    if (r.getTitulo().equals(resssss.getTitulo()) && r.getDataInicio().after(resssss.getDataInicio())){
                         serviciosBiblioteca.modificarReserva(r, estado);
                     }
                 }   break;
