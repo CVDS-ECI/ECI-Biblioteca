@@ -46,8 +46,13 @@
                     width: 1000px;
                 }
             </style>
+            <h:panelGroup id="panel">
+                <ui:fragment rendered="#{reservaBean.loadEvents()}">
+                </ui:fragment>
+
+
+            </h:panelGroup>
             <h:form>
-                #{reservaBean.loadEvents()}
                 <p:growl id="messages" showDetail="true"/>
 
                 <h:panelGrid columnClasses="value">
