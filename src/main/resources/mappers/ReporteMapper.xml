@@ -127,10 +127,10 @@
         recurso.nombre AS titulo,
         COUNT(r.titulo) AS cantidad
         FROM 
-        Reserva as r join usuario
-        on r.usuario = usuario.nombre
+        Reserva as r join usuario 
+        on r.usuario = usuario.correo 
         join recurso
-        on recurso.usuario = usuario.nombre 
+        on recurso.id = r.recurso
         where carrera= #{program}
         GROUP BY recurso.nombre
         ORDER BY cantidad asc
@@ -195,7 +195,7 @@
         COUNT(r.inicio) AS cantidad
         FROM 
         Reserva as r join usuario
-        on r.usuario = usuario.nombre 
+        on r.usuario = usuario.correo 
         where carrera= #{program}
         GROUP BY r.inicio,r.fin
         ORDER BY cantidad desc
@@ -261,7 +261,7 @@
         COUNT(r.inicio) AS cantidad
         FROM 
         Reserva as r join usuario
-        on r.usuario = usuario.nombre 
+        on r.usuario = usuario.correo
         where carrera= #{program}
         GROUP BY r.inicio,r.fin
         ORDER BY cantidad asc
@@ -352,10 +352,10 @@
         r.usuario,
         r.recurso
         FROM 
-        Reserva as r join usuario
-        on r.usuario = usuario.nombre
+        Reserva as r join usuario 
+        on r.usuario = usuario.correo 
         join recurso
-        on recurso.usuario = usuario.nombre  
+        on recurso.id = r.recurso  
         where r.tiporeserva != 'Ninguno' and  carrera= #{program}  
     </select>
     
@@ -445,10 +445,10 @@
         r.usuario,
         r.recurso
         FROM 
-        Reserva as r join usuario
-        on r.usuario = usuario.nombre
+        Reserva as r join usuario 
+        on r.usuario = usuario.correo 
         join recurso
-        on recurso.usuario = usuario.nombre 
+        on recurso.id = r.recurso 
         where r.estado = 'Cancelada' and  carrera= #{program}  
     </select>
     
