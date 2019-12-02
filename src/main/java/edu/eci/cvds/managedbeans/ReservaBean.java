@@ -43,7 +43,7 @@ import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
 
 /**
- * @author Ing Pipe
+ * @author Ing Marcelo
  */
 @ManagedBean(name = "reservaBean", eager = true)
 @SessionScoped
@@ -116,11 +116,12 @@ public class ReservaBean extends BasePageBean implements Serializable {
         //Falta pensar si la horafin es menor
         System.out.println("CONDICIONALALALALALALLA");
         List<Reserva> reservas = serviciosBiblioteca.listarReservasRecurso(idrecurso);
-        for (Reserva res : reservas) {
-            if ((start.equals(res.getDataInicio()) && end.equals(res.getDataFim())) //Caso 
-                    || (start.after(res.getDataInicio()) && end.before(res.getDataFim()))) {
-                return false;
-            }
+        //Mouseky herramienta misteriosa x2
+        if (!reservas.stream().noneMatch((res) -> ((start.equals(res.getDataInicio()) && end.equals(res.getDataFim())) //Caso 
+                || (start.after(res.getDataInicio()) && end.before(res.getDataFim()))
+                || (start.after(res.getDataInicio()) && start.before(res.getDataFim()))
+                || (end.after(res.getDataInicio()) && end.before(res.getDataFim()))))) {
+            return false;
         }
         return true;
     }
