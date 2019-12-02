@@ -62,9 +62,9 @@
         COUNT(r.titulo) AS cantidad
         FROM 
         Reserva as r join usuario 
-        on r.usuario = usuario.nombre 
+        on r.usuario = usuario.correo 
         join recurso
-        on recurso.usuario = usuario.nombre 
+        on recurso.id = r.recurso
         where carrera = #{program}
         GROUP BY recurso.nombre
         ORDER BY cantidad desc
