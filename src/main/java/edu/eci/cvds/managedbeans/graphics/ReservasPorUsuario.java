@@ -1,16 +1,5 @@
 package edu.eci.cvds.managedbeans.graphics;
 
-
-
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-
-
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Reserva;
 import edu.eci.cvds.managedbeans.BasePageBean;
@@ -22,15 +11,20 @@ import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.ChartSeries;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import java.util.List;
 
-@ManagedBean(name = "recursosMasUsados")
+@ManagedBean(name = "reservasPorUsuario")
 @SessionScoped
-public class RecursosMasUsadosPorPrograma extends BasePageBean {
+public class ReservasPorUsuario extends BasePageBean {
 
     @Inject
     private BibliotecaServices serviciosBiblioteca;
 
-    private String carrera="isis";
+
     private BarChartModel grafico;
 
     public void itemSelect(ItemSelectEvent event) {
@@ -39,14 +33,7 @@ public class RecursosMasUsadosPorPrograma extends BasePageBean {
 
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-    
-    public String getCarrera() {
-        return carrera;
-    }
 
-    public void setCarrera(String car) {
-        carrera = car;
-    }
 
     public BarChartModel getGrafico() {
         createBarModel();
@@ -57,10 +44,10 @@ public class RecursosMasUsadosPorPrograma extends BasePageBean {
     private BarChartModel initBarModel() {
         BarChartModel model = new BarChartModel();
         ChartSeries graph = new ChartSeries();
-        graph.setLabel("Cantidad de reservas");
+        graph.setLabel("Cantidad de reservas por usuario:");
         List<Reserva> reservas;
         try {
-            reservas = serviciosBiblioteca.consultarRecursosMasUsadosPorPrograma(carrera);
+            reservas = serviciosBiblioteca.consultarReservasPorUsuario();
             for (Reserva r : reservas) {
                 graph.set(r.getTitulo(), r.getCantidad());
             }
@@ -77,7 +64,7 @@ public class RecursosMasUsadosPorPrograma extends BasePageBean {
 
     private void createBarModel() {
         grafico = initBarModel();
-        grafico.setTitle("Recursos más usados");
+        grafico.setTitle("Nombre del usuario");
         grafico.setLegendPosition("ne");
 
         Axis xAxis = grafico.getAxis(AxisType.X);
@@ -85,7 +72,7 @@ public class RecursosMasUsadosPorPrograma extends BasePageBean {
         Axis yAxis = grafico.getAxis(AxisType.Y);
         yAxis.setLabel("Cantidad de reservas");
         yAxis.setMin(0);
-        yAxis.setMax(15);
+        yAxis.setMax(100);
         grafico.setSeriesColors("B00000");
     }
 }
