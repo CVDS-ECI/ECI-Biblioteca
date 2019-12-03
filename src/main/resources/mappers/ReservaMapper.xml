@@ -49,6 +49,61 @@
         Reserva as r
         WHERE r.recurso=#{rId} and r.inicio=#{ini} and r.fin=#{fin}
     </select>
+    
+    
+    <select id="colsultarReservasCanceladasPorUsuario" resultMap="ReservaResult">
+        SELECT
+        r.id,
+        r.titulo,
+        r.recurso,
+        r.usuario,
+        r.dataActual,
+        r.inicio,
+        r.fin,
+        r.diaEntero,
+        r.tipoReserva,
+        r.estado,
+        r.proximaOcurrencia
+        FROM
+        Reserva as r
+        WHERE r.usuario = #{correo} and r.estado = 'Cancelado'
+    </select>
+    
+    <select id="consultarReservasPasadasPorUsuario" resultMap="ReservaResult">
+        SELECT
+        r.id,
+        r.titulo,
+        r.recurso,
+        r.usuario,
+        r.dataActual,
+        r.inicio,
+        r.fin,
+        r.diaEntero,
+        r.tipoReserva,
+        r.estado,
+        r.proximaOcurrencia
+        FROM
+        Reserva as r
+        WHERE r.usuario = #{correo} and r.fin < localtimestamp 
+    </select>
+    
+    <select id="consultarReservasEnCursoPorUsuario" resultMap="ReservaResult">
+        SELECT
+        r.id,
+        r.titulo,
+        r.recurso,
+        r.usuario,
+        r.dataActual,
+        r.inicio,
+        r.fin,
+        r.diaEntero,
+        r.tipoReserva,
+        r.estado,
+        r.proximaOcurrencia
+        FROM
+        Reserva as r
+        WHERE r.usuario = #{correo} and r.ini > localtimestamp and r.estado != 'Cancelado'
+    </select>
 
     
     <insert id="salvar" parameterType="edu.eci.cvds.entities.Reserva">

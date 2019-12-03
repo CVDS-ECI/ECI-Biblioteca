@@ -24,5 +24,11 @@ public interface ReservaDAO {
     public Reserva getInfoReserva(int recursoId, Date inicio, Date fin) throws PersistenceException;
 
     public void modificarReserva(Reserva res, EstadoReserva estado) throws PersistenceException;
+
+    public List<Reserva> consultarReservasCanceladasPorUsuario(String correo) throws PersistenceException;
+
+    public List<Reserva> consultarReservasPasadasPorUsuario(String correo) throws PersistenceException;
+
+    public List<Reserva> consultarReservasEnCursoPorUsuario(String correo) throws PersistenceException;
     
 }

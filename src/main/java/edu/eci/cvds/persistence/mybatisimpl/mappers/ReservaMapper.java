@@ -27,4 +27,10 @@ public interface ReservaMapper {
 
     public void modificarReserva(@Param("res") Reserva res,  @Param("estado") EstadoReserva estado);
 
+    public List<Reserva> colsultarReservasCanceladasPorUsuario(@Param("correo") String correo);
+
+    public List<Reserva> consultarReservasPasadasPorUsuario( @Param("correo") String correo);
+
+    public List<Reserva> consultarReservasEnCursoPorUsuario(@Param("correo") String correo);
+
 }

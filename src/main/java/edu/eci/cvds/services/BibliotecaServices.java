@@ -95,4 +95,13 @@ public interface BibliotecaServices {
         public List<Reserva> consultarReservasPorCarrera() throws  BibliotecaException;
 
         public List<Reserva> consultarReservasPorUsuario() throws  BibliotecaException;
+        
+        public List<Reserva> consultarReservasCanceladasPorUsuario(String correo) throws BibliotecaException;
+        
+        public List<Reserva> consultarReservasPasadasPorUsuario(String correo) throws BibliotecaException;
+        
+        public List<Reserva> consultarReservasEnCursoPorUsuario(String correo) throws BibliotecaException;
+        
+        
+        
 }

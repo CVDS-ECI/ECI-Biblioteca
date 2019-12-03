@@ -424,4 +424,31 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
             throw new BibliotecaException("Error al modificar la reserva" + ex.getLocalizedMessage(), ex);
         }
     }
+
+    @Override
+    public List<Reserva> consultarReservasCanceladasPorUsuario(String correo) throws BibliotecaException {
+        try {
+            return reservaDAO.consultarReservasCanceladasPorUsuario(correo);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar las reservas canceladas  del usuario :" + correo + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarReservasPasadasPorUsuario(String correo) throws BibliotecaException {
+        try {
+            return reservaDAO.consultarReservasPasadasPorUsuario(correo);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar las reservas Pasadas del usuario:"+correo + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarReservasEnCursoPorUsuario(String correo) throws BibliotecaException {
+        try {
+            return reservaDAO.consultarReservasEnCursoPorUsuario(correo);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar las reservas Disponibles del usuario:"+ correo + ex.getLocalizedMessage(), ex);
+        }
+    }
 }

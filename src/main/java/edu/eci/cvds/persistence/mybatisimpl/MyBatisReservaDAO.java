@@ -78,4 +78,37 @@ public class MyBatisReservaDAO implements ReservaDAO {
         }
     }
 
+    @Override
+    public List<Reserva> consultarReservasCanceladasPorUsuario(String correo) throws PersistenceException {
+        try {
+            return reservaMapper.colsultarReservasCanceladasPorUsuario(correo);
+        } catch (org.apache.ibatis.exceptions.PersistenceException e) {
+
+            throw new PersistenceException("Error al modificar reserva:", e);
+
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarReservasPasadasPorUsuario(String correo) throws PersistenceException {
+        try {
+            return reservaMapper.consultarReservasPasadasPorUsuario(correo);
+        } catch (org.apache.ibatis.exceptions.PersistenceException e) {
+
+            throw new PersistenceException("Error al modificar reserva:", e);
+
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarReservasEnCursoPorUsuario(String correo) throws PersistenceException {
+        try {
+            return reservaMapper.consultarReservasEnCursoPorUsuario(correo);
+        } catch (org.apache.ibatis.exceptions.PersistenceException e) {
+
+            throw new PersistenceException("Error al modificar reserva:", e);
+
+        }
+    }
+
 }
