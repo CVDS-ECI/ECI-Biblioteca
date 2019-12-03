@@ -189,22 +189,6 @@ public class Reserva {
         return Objects.equals(this.id, other.id);
     }
 
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public int getRecurso() {
-        return recurso;
-    }
-
-    public void setRecurso(int recurso) {
-        this.recurso = recurso;
-    }
-
     @Override
     public String toString() {
         return "RESERVA { id: " + id + "Usuario:" + usuario + "Recurso" + recurso + ", titula: " + titulo + ", inicio: " + dataInicio
