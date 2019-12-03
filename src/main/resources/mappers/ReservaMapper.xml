@@ -84,7 +84,7 @@
         r.proximaOcurrencia
         FROM
         Reserva as r
-        WHERE r.usuario = #{correo} and r.fin < localtimestamp 
+        WHERE r.usuario = #{correo} and r.fin &lt; localtimestamp
     </select>
     
     <select id="consultarReservasEnCursoPorUsuario" resultMap="ReservaResult">
@@ -102,7 +102,7 @@
         r.proximaOcurrencia
         FROM
         Reserva as r
-        WHERE r.usuario = #{correo} and r.ini > localtimestamp and r.estado != 'Cancelado'
+        WHERE r.usuario = #{correo} and localtimestamp &lt; r.inicio and r.estado != 'Cancelado'
     </select>
 
     

@@ -301,6 +301,42 @@ public class ReservaBean extends BasePageBean implements Serializable {
         });
 
     }
+    public void loadEventsC(String usuario) throws BibliotecaException {
+        eventModel = new DefaultScheduleModel();
+        List<Reserva> reservas = serviciosBiblioteca.consultarReservasCanceladasPorUsuario(usuario);
+        //Mouseky herramienta misteriosa 
+        reservas.stream().map((reserva) -> {
+            event = new DefaultScheduleEvent(reserva.getTitulo(), reserva.getDataInicio(), reserva.getDataFim());
+            return reserva;
+        }).forEachOrdered((_item) -> {
+            eventModel.addEvent(event);
+        });
+
+    }
+    public void loadEventsEC(String usuario) throws BibliotecaException {
+        eventModel = new DefaultScheduleModel();
+        List<Reserva> reservas = serviciosBiblioteca.consultarReservasEnCursoPorUsuario(usuario);
+        //Mouseky herramienta misteriosa 
+        reservas.stream().map((reserva) -> {
+            event = new DefaultScheduleEvent(reserva.getTitulo(), reserva.getDataInicio(), reserva.getDataFim());
+            return reserva;
+        }).forEachOrdered((_item) -> {
+            eventModel.addEvent(event);
+        });
+
+    }
+    public void loadEventsP(String usuario) throws BibliotecaException {
+        eventModel = new DefaultScheduleModel();
+        List<Reserva> reservas = serviciosBiblioteca.consultarReservasPasadasPorUsuario(usuario);
+        //Mouseky herramienta misteriosa 
+        reservas.stream().map((reserva) -> {
+            event = new DefaultScheduleEvent(reserva.getTitulo(), reserva.getDataInicio(), reserva.getDataFim());
+            return reserva;
+        }).forEachOrdered((_item) -> {
+            eventModel.addEvent(event);
+        });
+
+    }
 
     public Reserva obtenerR() {
         try {

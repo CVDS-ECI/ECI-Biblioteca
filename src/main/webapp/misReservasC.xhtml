@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      >
+
+    <ui:composition template="/WEB-INF/include/templateComunidad.xhtml">
+        <ui:define name="head">
+            <h:outputStylesheet name="css/bootstrap-tagsinput.css"/>
+            <h:outputStylesheet name="css/initiative.css"/>
+            <h:outputStylesheet name="dataTable/css/dataTables.bootstrap.min.css"/>
+            <!--<meta http-equiv="refresh" content="2" />
+            <meta http-equiv="Cache-control" content="no-cache"></meta>
+            <meta http-equiv="Expires" content="-1"></meta> -->
+
+            <meta http-equiv="Expires" content="0"/>
+            <meta http-equiv="Last-Modified" content="0"/>
+            <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate"/>
+            <meta http-equiv="Pragma" content="no-cache"/>
+            <script type='text/javascript'>
+
+                (function ()
+                {
+                    if (window.localStorage)
+                    {
+                        if (!localStorage.getItem('firstLoad'))
+                        {
+                            localStorage['firstLoad'] = true;
+                            window.location.reload();
+                        } else
+                            localStorage.removeItem('firstLoad');
+                    }
+                })();
+
+            </script>
+            <script type="text/javascript">
+                function conf2()
+                {
+                    var con = confirm("Do you want to submit for sure?");
+                    location.href = "/faces/reservaRecursosC.xhtml";
+                }
+            </script>
+        </ui:define>
+        <ui:define name="content">
+            <style type="text/css">
+                .value {
+                    width: 1000px;
+                }
+            </style>
+            <h:form>
+                <p:growl id="messages" showDetail="true"/>
+                #{reservaBean.loadEventsC(shiroBean.username)}
+                <h:panelGrid columnClasses="value">
+                    <p:schedule id="schedule" value="#{reservaBean.eventModel}" widgetVar="myschedule" 
+                                timeZone="ZoneId.systemDefault()" clientTimeZone="local" draggable="false" view="listYear" resizable="false">
+
+                        <p:ajax event="dateSelect" listener="#{reservaBean.onDateSelect}" update="eventDetails"
+                                oncomplete="PF('eventDialog').show();"/>
+                        <p:ajax event="eventSelect" listener="#{reservaBean.onEventSelect}" update="eventDetails1"
+                                oncomplete="PF('eventDialog1').show();" />
+                        <p:ajax event="eventMove" listener="#{reservaBean.onEventMove}" update="messages"/>
+                        <p:ajax event="eventResize" listener="#{reservaBean.onEventResize}" update="messages"/>
+
+                    </p:schedule>
+                </h:panelGrid>
+
+                <p:dialog widgetVar="eventDialog1" header="Horario de reserva" showEffect="clip" hideEffect="clip"
+                          modal="true">
+                    <h:panelGrid id="eventDetails1" columns="2">
+                        <p:outputLabel value="Recurso solicitado: "/>
+                        <p:outputLabel value="#{reservaBean.recursoID}"/>
+
+                        <p:outputLabel value="Información del recurso: "/>
+                        <p:outputLabel value="#{AdminBean.consultarRecurso(reservaBean.recursoID).nombre}"/>
+
+                        <p:outputLabel value="Fecha inicial de la reserva:  "/>
+                        <p:outputLabel value="#{reservaBean.obtenerR().dataInicio}"/>
+
+                        <p:outputLabel value="Fecha final de la reserva:  "/>
+                        <p:outputLabel value="#{reservaBean.obtenerR().dataFim}"/>
+
+                        <p:outputLabel value="Tipo de Reserva: "/>
+                        <p:outputLabel value="#{reservaBean.obtenerR().tipoReserva}"/>
+                    </h:panelGrid>
+                </p:dialog>
+
+
+                <p:dialog widgetVar="eventDialog" header="Horario de reserva" showEffect="clip" hideEffect="clip"
+                          modal="true">
+                    <h:panelGrid id="eventDetails" columns="2">
+                        <p:outputLabel for="title" value="Título:"/>
+                        <p:inputText id="title" value="#{reservaBean.event.title}" required="true"/>
+
+                        <p:outputLabel for="from" value="Fecha Inicio:"/>
+                        <p:calendar id="from" value="#{reservaBean.event.startDate}" pattern="dd/MM/yyyy HH:mm"/>
+                        <br/>
+
+                        <label class="bmd-label-floating">Duración</label>
+                        <h:selectOneMenu value="#{reservaBean.duracion}" class="form-control">
+                            <f:selectItem itemLabel="Seleccione la duración:" itemValue=""/>
+                            <f:selectItem itemLabel="1 hora" itemValue="1 hora"/>
+                            <f:selectItem itemLabel="2 horas" itemValue="2 horas"/>
+                        </h:selectOneMenu>
+
+                        <br/>
+
+                        <label class="bmd-label-floating">Recurrencia</label>
+                        <div>
+                            <div class="col-xs-6">
+                                <h:selectOneMenu value="#{reservaBean.frecuencia}" class="form-control">
+                                    <f:selectItems value="#{reservaBean.getTipos()}"/>
+                                </h:selectOneMenu>
+                            </div>
+                            <div class="col-xs-6">
+                                <h:selectOneMenu id="console" value="#{reservaBean.fretiempo}" style="width:125px">
+                                    <f:selectItem itemLabel="Select One" itemValue=""/>
+                                    <f:selectItem itemLabel="1" itemValue="1"/>
+                                    <f:selectItem itemLabel="2" itemValue="2"/>
+                                    <f:selectItem itemLabel="3" itemValue="3"/>
+                                    <f:selectItem itemLabel="4" itemValue="4"/>
+                                    <f:selectItem itemLabel="5" itemValue="5"/>
+                                    <f:selectItem itemLabel="6" itemValue="6"/>
+                                    <f:facet name="footer">
+                                        <p:separator/>
+                                        <h:outputText value="3 consoles" style="font-weight:bold;"/>
+                                    </f:facet>
+                                </h:selectOneMenu>
+                            </div>
+                        </div>
+                        <p:commandButton id="addButton" value="Reservar" action="#{reservaBean.addEvent(shiroBean.username)}"
+                                         oncomplete="PF('myschedule').update();PF('eventDialog').hide();"/>
+
+                    </h:panelGrid>
+
+
+
+                </p:dialog>
+
+
+
+            </h:form>
+
+            <!-- Footer -->
+            <div class="footerlogin" id="footerloginid"></div>
+            <!-- Footer -->
+        </ui:define>
+    </ui:composition>
+</html>
