@@ -22,7 +22,7 @@
         where reserva.usuario = u.correo
         group by u.carrera
         order by count(id) desc
-        limit 3;
+--         limit 3;
     </select>
 
     <select id="reservasPorUsuario" resultMap="ReservaResult">
