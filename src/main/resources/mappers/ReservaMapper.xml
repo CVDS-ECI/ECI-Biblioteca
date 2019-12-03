@@ -7,10 +7,16 @@
     <resultMap type='Reserva' id='ReservaResult'>
         <id property='id' column='id' />
         <result property='titulo' column='titulo' />
+        <result property='recurso' column='recurso' />
+        <result property='usuario' column='usuario' />
+        <result property='dataActual' column='dataActual' />
         <result property='dataInicio' column='inicio' />
         <result property='dataFim' column='fin' />
         <result property='diaInteiro' column='diaEntero' />
         <result property='tipoReserva' column='tipoReserva' />
+        <result property='estado' column='estado' />
+        <result property='proximaOcurrencia' column='proximaOcurrencia' />
+        
     </resultMap>
 
     <select id="listarReservasRecurso" resultMap="ReservaResult">
@@ -23,13 +29,31 @@
         r.tipoReserva
         FROM
         Reserva as r
-        WHERE r.recurso = #{recursoId}
+        WHERE r.recurso = #{recursoId} and r.estado != 'Cancelado'
+    </select>
+    
+    <select id="getInfoReserva" resultMap="ReservaResult">
+        SELECT
+        r.id,
+        r.titulo,
+        r.recurso,
+        r.usuario,
+        r.dataActual,
+        r.inicio,
+        r.fin,
+        r.diaEntero,
+        r.tipoReserva,
+        r.estado,
+        r.proximaOcurrencia
+        FROM
+        Reserva as r
+        WHERE r.recurso=#{rId} and r.inicio=#{ini} and r.fin=#{fin}
     </select>
 
-
+    
     <insert id="salvar" parameterType="edu.eci.cvds.entities.Reserva">
-        insert into Reserva (titulo,recurso,usuario,inicio,fin,diaEntero,tipoReserva)
-        values (#{reserva.titulo},#{reserva.recurso},#{reserva.usuario},#{reserva.dataInicio},#{reserva.dataFim},#{reserva.diaInteiro},#{reserva.tipoReserva})
+        insert into Reserva (titulo,recurso,usuario,inicio,fin,diaEntero,tipoReserva,dataActual,estado,proximaOcurrencia)
+        values (#{reserva.titulo},#{reserva.recurso},#{reserva.usuario},#{reserva.dataInicio},#{reserva.dataFim},#{reserva.diaInteiro},#{reserva.tipoReserva},#{reserva.dataActual},#{reserva.estado},#{reserva.proximaOcurrencia})
     </insert>
     
     <delete id="remover" parameterType="edu.eci.cvds.entities.Reserva">
@@ -37,6 +61,13 @@
         WHERE
         reserva.id = #{reservaId}
     </delete>
+    
+    <update id="modificarReserva" parameterType="map">
+        UPDATE reserva
+        SET estado = #{estado}
+        WHERE
+        reserva.id = #{res.id};
+    </update>
     
    
 </mapper>

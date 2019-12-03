@@ -5,7 +5,9 @@
  */
 package edu.eci.cvds.persistence.mybatisimpl.mappers;
 
+import edu.eci.cvds.entities.EstadoReserva;
 import edu.eci.cvds.entities.Reserva;
+import java.util.Date;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -20,5 +22,9 @@ public interface ReservaMapper {
     public void salvar(@Param("reserva") Reserva rev);
 
     public void remover(@Param("reservaId") int rev);
+
+    public Reserva getInfoReserva(@Param("rId") int recursoId,@Param("ini") Date inicio,@Param("fin") Date fin);
+
+    public void modificarReserva(@Param("res") Reserva res,  @Param("estado") EstadoReserva estado);
 
 }

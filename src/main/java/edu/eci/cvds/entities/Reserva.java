@@ -16,6 +16,7 @@ public class Reserva {
 
     private Long id;
     private String titulo;
+    private Date dataActual;
     private Date dataInicio;
     private Date dataFim;
     private boolean diaInteiro;
@@ -25,7 +26,12 @@ public class Reserva {
     private int cantidad;
     
 // PILAS QUE FALTA USUARIO Y RECURSO PARA ESTO Y EL MAPPER
+    private EstadoReserva estado;
+    private Date proximaOcurrencia;
 
+
+
+// PILAS QUE FALTA USUARIO Y RECURSO PARA ESTO Y EL MAPPER
     public Reserva() {
         this.tipoReserva = TipoReserva.Ninguno;
         this.titulo = "";
@@ -33,25 +39,51 @@ public class Reserva {
 
     }
 
-    public Reserva(String usuario, int recurso, String titulo, Date dataInicio, Date dataFim, boolean diaInteiro, TipoReserva tipoReserva) {
+    public Reserva(String usuario, int recurso, String titulo, Date dataActual, Date dataInicio, Date dataFim, boolean diaInteiro, TipoReserva tipoReserva, EstadoReserva estado, Date proximaOcurrencia) {
         this.usuario = usuario;
         this.recurso = recurso;
         this.titulo = titulo;
+        this.dataActual = dataActual;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
         this.diaInteiro = diaInteiro;
         this.tipoReserva = tipoReserva;
+        this.estado = estado;
+        this.proximaOcurrencia = proximaOcurrencia;
     }
 
-    public Reserva(String usuario, int recurso, Long id, String titulo, Date dataInicio, Date dataFim, boolean diaInteiro, TipoReserva tipoReserva) {
+    public Reserva(String usuario, int recurso, Long id, String titulo, Date dataActual, Date dataInicio, Date dataFim, boolean diaInteiro, TipoReserva tipoReserva, EstadoReserva estado, Date proximaOcurrencia) {
         this.usuario = usuario;
         this.recurso = recurso;
         this.id = id;
         this.titulo = titulo;
+        this.dataActual = dataActual;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
         this.diaInteiro = diaInteiro;
         this.tipoReserva = tipoReserva;
+        this.estado = estado;
+        this.proximaOcurrencia = proximaOcurrencia;
+    
+    }
+
+
+    
+    
+    public Date getProximaOcurrencia() {
+        return proximaOcurrencia;
+    }
+
+    public void setProximaOcurrencia(Date proximaOcurrencia) {
+        this.proximaOcurrencia = proximaOcurrencia;
+    }
+
+    public EstadoReserva getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoReserva estado) {
+        this.estado = estado;
     }
 
     public Long getId() {
@@ -68,6 +100,14 @@ public class Reserva {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
+    }
+
+    public Date getDataActual() {
+        return dataActual;
+    }
+
+    public void setDataActual(Date dataActual) {
+        this.dataActual = dataActual;
     }
 
     public Date getDataInicio() {
@@ -149,9 +189,25 @@ public class Reserva {
         return Objects.equals(this.id, other.id);
     }
 
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public int getRecurso() {
+        return recurso;
+    }
+
+    public void setRecurso(int recurso) {
+        this.recurso = recurso;
+    }
+
     @Override
     public String toString() {
-        return "RESERVA { id: " + id + ", titula: " + titulo + ", inicio: " + dataInicio
+        return "RESERVA { id: " + id + "Usuario:" + usuario + "Recurso" + recurso + ", titula: " + titulo + ", inicio: " + dataInicio
                 + ", tipo: " + tipoReserva + ", fin: " + dataFim + ", diainteiro: " + diaInteiro + "}";
     }
 

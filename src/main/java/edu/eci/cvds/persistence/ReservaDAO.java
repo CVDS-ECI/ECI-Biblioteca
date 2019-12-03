@@ -5,7 +5,9 @@
  */
 package edu.eci.cvds.persistence;
 
+import edu.eci.cvds.entities.EstadoReserva;
 import edu.eci.cvds.entities.Reserva;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,5 +20,9 @@ public interface ReservaDAO {
     public void salvar(Reserva rv) throws PersistenceException;
     
     public void remover(int rv) throws PersistenceException;
+
+    public Reserva getInfoReserva(int recursoId, Date inicio, Date fin) throws PersistenceException;
+
+    public void modificarReserva(Reserva res, EstadoReserva estado) throws PersistenceException;
     
 }

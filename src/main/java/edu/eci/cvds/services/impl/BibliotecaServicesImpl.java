@@ -6,8 +6,10 @@
 package edu.eci.cvds.services.impl;
 
 import com.google.inject.Inject;
+import edu.eci.cvds.entities.EstadoReserva;
 import edu.eci.cvds.entities.Recurso;
 import edu.eci.cvds.entities.Reserva;
+import edu.eci.cvds.entities.Usuario;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.RecursoDAO;
 import edu.eci.cvds.persistence.ReporteDAO;
@@ -15,8 +17,11 @@ import edu.eci.cvds.persistence.ReservaDAO;
 import edu.eci.cvds.persistence.UsuarioDAO;
 import edu.eci.cvds.services.BibliotecaServices;
 import edu.eci.cvds.services.BibliotecaException;
+import java.util.Date;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class BibliotecaServicesImpl implements BibliotecaServices {
 
@@ -113,6 +118,14 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
             return reporteDAO.recursosMasUsados();
         } catch (PersistenceException ex) {
             throw new BibliotecaException("Error al consultar recursos mas usados" + ex.getLocalizedMessage(), ex);
+          }
+    }
+    @Override
+    public Reserva getInfoReserva(int recursoId, Date inicio, Date fin) throws BibliotecaException {
+        try {
+            return reservaDAO.getInfoReserva(recursoId, inicio, fin);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar las reservas Disponibles:" + ex.getLocalizedMessage(), ex);
         }
     }
 
@@ -122,6 +135,14 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
             return reporteDAO.recursosMasUsadosPorFecha(date1, date2);
         } catch (PersistenceException ex) {
             throw new BibliotecaException("Error al consultar Recursos Mas Usados Por Fecha" + ex.getLocalizedMessage(), ex);
+          }
+    }
+    @Override
+    public Usuario consultarUsuario(String correo) throws BibliotecaException {
+        try {
+            return usuarioDAO.consultarUsuario(correo);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar el usuario" + ex.getLocalizedMessage(), ex);
         }
     }
 
@@ -395,5 +416,12 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
         }
     }
 
-
+    @Override
+    public void modificarReserva(Reserva res, EstadoReserva estado) throws BibliotecaException {
+        try {
+            reservaDAO.modificarReserva(res,estado);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al modificar la reserva" + ex.getLocalizedMessage(), ex);
+        }
+    }
 }

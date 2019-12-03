@@ -53,7 +53,7 @@
     </servlet-mapping>
     <session-config>
         <session-timeout>
-            30
+            100
         </session-timeout>
     </session-config>
     <welcome-file-list>

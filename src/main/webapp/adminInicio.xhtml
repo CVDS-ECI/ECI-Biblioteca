@@ -22,6 +22,14 @@
                     window.location(url);
                 }
             </script>
+            
+            <script>
+                function myFunction() {
+                    location.href = "/faces/reservaRecursosA.xhtml";
+                }
+
+
+        </script>
             <meta http-equiv="Cache-control" content="no-cache"></meta>
             <meta http-equiv="Expires" content="-1"></meta>
         </ui:define>
@@ -72,6 +80,14 @@
                                             <br></br>
                                             <button type="button" data-id="#{recurso.id}" class="modify-Initiative btn btn-success" data-toggle="modal" data-target="#modifyInitiative">Modificar</button>
                                             <br></br>
+                                    <h:form>
+                                                <p:commandButton value="Calendario" id="boton1"
+                                                                 styleClass="btn btn-success"
+                                                                 actionListener="#{reservaBean.setRecursoID(recurso.id)}"
+                                                                 onclick="myFunction()">
+                                                    <a href="faces/reservaRecursosC.xhtml"/>
+                                                </p:commandButton>
+                                            </h:form>
 
 
 
