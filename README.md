@@ -4,10 +4,10 @@
 
 ### Integrantes
 
-+  Juan-sebastián-Frásica-G
-+  Andrés-Felipe-Marcelo
-+  Santiago-Rubiano
-+  David-Vargas
++  Juan Sebastián Frásica Galeano
++  Andrés Felipe Marcelo
++  Santiago Rubiano
++  David Vargas
 
 ### Profesor
 + Julián-Velasco
@@ -56,10 +56,9 @@ Se trabajó mediante la metodología ágil Scrum. Durante todo el proceso se hic
 
 Burndown chart and backlog
 
-+ Backlog: https://tree.taiga.io/project/sebastianfrasic-gestion-de-recursos-biblioteca/backlog
 + Burndown chart: https://tree.taiga.io/project/sebastianfrasic-gestion-de-recursos-biblioteca/taskboard/sprint-1-15837
 
-Este sprint se completaron casi todos los objetivos por realizar. Cada integrante del equipo cumplio con sus deberes en el       tiempo adecuado y con la mejor calidad posible. La pagina de incio de sesión sirve correctamente y se puede hacer ciertas funciones dependiendo si es de la comunidad o administrador tales como: cambiar el estado de un recurso o registrar un    recurso. Falta arreglar detalles como cambiar las vistas cuando se logea la comunidad y consultar un recurso. 
+En este sprint se completaron casi todos los objetivos por realizar. Cada integrante del equipo cumplió con sus deberes en el tiempo adecuado y con una calidad óptima. La página de incio de sesión sirve correctamente y se puede realizar ciertas funciones dependiendo del usuario que inicie sesión. Faltó arreglar detalles como cambiar las vistas cuando se logea la comunidad y consultar un recurso. 
 
 ![Burndown chart and backlog sprint 1](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/BURNDOWN%20CHART%20AND%20BACKLOG%20SPRINT%201.png)
 
@@ -67,9 +66,10 @@ Este sprint se completaron casi todos los objetivos por realizar. Cada integrant
 
 Burndown chart and backlog
 
-+ Backlog: 
 + Burndown chart: https://tree.taiga.io/project/sebastianfrasic-gestion-de-recursos-biblioteca/taskboard/sprint-2-8608
 
+En este sprint quedaron varias tareas abiertas/pendientes por hacer debido a que hubo problemas con el tiempo que cada integrante tuvo para realizar. Las tareas que quedaron incompletas fueron las de reservar un recurso y la de ver el calendario con las reservas.
+Acá también se corrigieron algunos issues del sprint 1.
 ![Burndown chart and backlog sprint 2](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/BURNDOWN%20CHART%20AND%20BACKLOG%20SPRINT%202.png)
 
 
