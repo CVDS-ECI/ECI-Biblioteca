@@ -19,7 +19,7 @@
 ### Modelo E-R (Entidad-Relación)
 ![ER](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/EntidadRelacion.png)
 
-### Diagrama de clases
+### Diagrama de paquetes
 ![Diagrama-de-clases-sprint-1-y-2](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Diagrama_de_clases.png)
 
 ### Descripción de la arquitectura y tecnologías utilizadas
@@ -85,7 +85,7 @@ Lo único que no se pudo hacer como lo pedían en el requisito fue lo de filtrar
 
 Podría decirse que se cumplieron con todas las tareas solcitadas, y que el proyecto está en un excelente estado en cuanto a funcionalidad y calidad.
 
-![Burndown chart and backlog sprint 3](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/BURNDOWN%20CHART%20AND%20BACKLOG%20SPRINT%203.png)
+![Burndown chart and backlog sprint 3](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/BURNDOWN%20CHART%20AND%20BACKLOG%20SPRINT%203.PNG)
 
 
 
