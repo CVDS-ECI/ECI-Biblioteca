@@ -2,6 +2,7 @@ package edu.eci.cvds.managedbeans.graphics;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -29,6 +30,7 @@ public class RecursosMasUsados extends BasePageBean {
 
     @Inject
     private BibliotecaServices serviciosBiblioteca;
+    private int max;
 
 
     private BarChartModel grafico;
@@ -54,11 +56,19 @@ public class RecursosMasUsados extends BasePageBean {
         List<Reserva> reservas;
         try {
             reservas = serviciosBiblioteca.consultarRecursosMasUsados();
+            ArrayList<Integer> cantidades = new ArrayList<>();
+
             for (Reserva r : reservas) {
                 graph.set(r.getTitulo(), r.getCantidad());
+                cantidades.add(r.getCantidad());
             }
 
-
+            max = 0;
+            for (int i = 0; i < cantidades.size(); i++) {
+                if (cantidades.get(i) > max) {
+                    max = cantidades.get(i);
+                }
+            }
             model.addSeries(graph);
 
         } catch (BibliotecaException e) {
@@ -78,7 +88,7 @@ public class RecursosMasUsados extends BasePageBean {
         Axis yAxis = grafico.getAxis(AxisType.Y);
         yAxis.setLabel("Cantidad de reservas");
         yAxis.setMin(0);
-        yAxis.setMax(100);
+        yAxis.setMax(max + 5);
         grafico.setSeriesColors("B00000");
     }
 }

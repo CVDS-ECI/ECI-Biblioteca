@@ -15,6 +15,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import java.util.ArrayList;
 import java.util.List;
 
 @ManagedBean(name = "reservasPorUsuario")
@@ -23,7 +24,7 @@ public class ReservasPorUsuario extends BasePageBean {
 
     @Inject
     private BibliotecaServices serviciosBiblioteca;
-
+    private int max;
 
     private BarChartModel grafico;
 
@@ -48,10 +49,17 @@ public class ReservasPorUsuario extends BasePageBean {
         List<Reserva> reservas;
         try {
             reservas = serviciosBiblioteca.consultarReservasPorUsuario();
+            ArrayList<Integer> cantidades = new ArrayList<>();
             for (Reserva r : reservas) {
                 graph.set(r.getTitulo(), r.getCantidad());
+                cantidades.add(r.getCantidad());
             }
-
+            max = 0;
+            for (int i = 0; i < cantidades.size(); i++) {
+                if (cantidades.get(i) > max) {
+                    max = cantidades.get(i);
+                }
+            }
 
             model.addSeries(graph);
 
@@ -72,7 +80,7 @@ public class ReservasPorUsuario extends BasePageBean {
         Axis yAxis = grafico.getAxis(AxisType.Y);
         yAxis.setLabel("Cantidad de reservas");
         yAxis.setMin(0);
-        yAxis.setMax(100);
+        yAxis.setMax(max + 5);
         grafico.setSeriesColors("B00000");
     }
 }
