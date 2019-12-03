@@ -57,9 +57,9 @@ public class MyBatisReservaDAO implements ReservaDAO {
     }
 
     @Override
-    public Reserva getInfoReserva(int recursoId, Date inicio, Date fin) throws PersistenceException {
+    public Reserva getInfoReserva(int recursoId, Date inicio, Date fin, EstadoReserva estado) throws PersistenceException {
         try {
-            return reservaMapper.getInfoReserva(recursoId, inicio, fin);
+            return reservaMapper.getInfoReserva(recursoId, inicio, fin,estado);
         } catch (org.apache.ibatis.exceptions.PersistenceException e) {
 
             throw new PersistenceException("Error al consultar reserva:", e);
@@ -71,6 +71,50 @@ public class MyBatisReservaDAO implements ReservaDAO {
     public void modificarReserva(Reserva res, EstadoReserva estado) throws PersistenceException {
         try {
             reservaMapper.modificarReserva(res,estado);
+        } catch (org.apache.ibatis.exceptions.PersistenceException e) {
+
+            throw new PersistenceException("Error al modificar reserva:", e);
+
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarReservasCanceladasPorUsuario(String correo) throws PersistenceException {
+        try {
+            return reservaMapper.colsultarReservasCanceladasPorUsuario(correo);
+        } catch (org.apache.ibatis.exceptions.PersistenceException e) {
+
+            throw new PersistenceException("Error al modificar reserva:", e);
+
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarReservasPasadasPorUsuario(String correo) throws PersistenceException {
+        try {
+            return reservaMapper.consultarReservasPasadasPorUsuario(correo);
+        } catch (org.apache.ibatis.exceptions.PersistenceException e) {
+
+            throw new PersistenceException("Error al modificar reserva:", e);
+
+        }
+    }
+
+    @Override
+    public List<Reserva> consultarReservasEnCursoPorUsuario(String correo) throws PersistenceException {
+        try {
+            return reservaMapper.consultarReservasEnCursoPorUsuario(correo);
+        } catch (org.apache.ibatis.exceptions.PersistenceException e) {
+
+            throw new PersistenceException("Error al modificar reserva:", e);
+
+        }
+    }
+
+    @Override
+    public Reserva consultarReservaPorId(int id) throws PersistenceException {
+        try {
+            return reservaMapper.consultarReservaPorId(id);
         } catch (org.apache.ibatis.exceptions.PersistenceException e) {
 
             throw new PersistenceException("Error al modificar reserva:", e);

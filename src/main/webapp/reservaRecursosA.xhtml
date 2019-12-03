@@ -69,7 +69,7 @@
                 <h:panelGrid columnClasses="value">
                     <p:schedule id="schedule" value="#{reservaBean.eventModel}" widgetVar="myschedule"
                                 rightHeaderTemplate="agendaDay,agendaWeek,month,listYear" 
-                                timeZone="ZoneId.systemDefault()" clientTimeZone="local">
+                                timeZone="ZoneId.systemDefault()" clientTimeZone="local" draggable="false">
 
                         <p:ajax event="dateSelect" listener="#{reservaBean.onDateSelect}" update="eventDetails"
                                 oncomplete="PF('eventDialog').show();"/>
@@ -91,26 +91,26 @@
                         <p:outputLabel value="#{AdminBean.consultarRecurso(reservaBean.recursoID).nombre}"/>
 
                         <p:outputLabel value="Fecha de solicitud: "/>
-                        <p:outputLabel value="#{reservaBean.obtenerR().dataActual}"/>
+                        <p:outputLabel value="#{reservaBean.obtenerR(reservaBean.resId).dataActual}"/>
 
                         <p:outputLabel value="Fecha inicial de la reserva:  "/>
-                        <p:outputLabel value="#{reservaBean.obtenerR().dataInicio}"/>
+                        <p:outputLabel value="#{reservaBean.obtenerR(reservaBean.resId).dataInicio}"/>
 
                         <p:outputLabel value="Fecha final de la reserva:  "/>
-                        <p:outputLabel value="#{reservaBean.obtenerR().dataFim}"/>
+                        <p:outputLabel value="#{reservaBean.obtenerR(reservaBean.resId).dataFim}"/>
 
                         <p:outputLabel value="Usuario que la solicita: "/>
-                        <p:outputLabel value="#{reservaBean.obtenerR().usuario}"/>
+                        <p:outputLabel value="#{reservaBean.obtenerR(reservaBean.resId).usuario}"/>
 
                         <p:outputLabel value="Programa del usuario: "/>
-                        <p:outputLabel value="#{reservaBean.getCarreraU()}"/>
+                        <p:outputLabel value="#{reservaBean.getCarreraU(reservaBean.resId)}"/>
 
                         <p:outputLabel value="Tipo de Reserva: "/>
-                        <p:outputLabel value="#{reservaBean.obtenerR().tipoReserva}"/>
+                        <p:outputLabel value="#{reservaBean.obtenerR(reservaBean.resId).tipoReserva}"/>
 
 
                         <p:outputLabel value="Proxima Aparicion: "/>
-                        <p:outputLabel value="#{reservaBean.obtenerR().proximaOcurrencia}"/>
+                        <p:outputLabel value="#{reservaBean.obtenerR(reservaBean.resId).proximaOcurrencia}"/>
                         <p:commandButton id="addButton1" value="Cancelar todas la reservas" actionListener="#{reservaBean.modificarReserva('t',shiroBean.username)}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" onclick="conf2()"></p:commandButton>
                         <p:commandButton id="addButton2" value="Cancelar esta reserva" action="#{reservaBean.modificarReserva('u',shiroBean.username)}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" onclick="conf2()"></p:commandButton>
                         <p:commandButton id="addButton3" value="Cancelar a partir de esta reserva" action="#{reservaBean.modificarReserva('d',shiroBean.username)}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" onclick="conf2()"></p:commandButton>

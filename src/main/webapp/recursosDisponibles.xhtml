@@ -33,6 +33,7 @@
                     <th>Tipo de recurso</th>
                     <th>Capacidad</th>
                     <th>Disponibilidad</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -49,6 +50,27 @@
                             #{recurso.horaInicio}
                             <br/>
                             #{recurso.horaFin}
+                        </td>
+                        <td class="details">
+                            <center><i class="fas fa-edit fa-2x "></i></center>
+                            <span style="display:none;">
+                                        <center>
+                                            <p style="margin-left: 25%;margin-right: 25%">
+                                                Recurso #: #{recurso.id}
+                                            </p>
+                                            <h:form>
+                                                <p:commandButton value="Calendario" id="boton1"
+                                                                 styleClass="btn btn-success"
+                                                                 actionListener="#{reservaBean.setRecursoID(recurso.id)}"
+                                                                 onclick="myFunction()">
+                                                    <a href="faces/reservaRecursosN.xhtml"/>
+                                                </p:commandButton>
+                                            </h:form>
+
+                                            <br></br>
+
+                                        </center>
+                                    </span>
                         </td>
                     </tr>
                 </ui:repeat>

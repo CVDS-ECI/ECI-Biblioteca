@@ -30,7 +30,7 @@ public interface BibliotecaServices {
 
         public List<Reserva> consultarRecursosMasUsados() throws BibliotecaException;
 
-        public Reserva getInfoReserva(int recursoId, Date inicio, Date fin) throws BibliotecaException;
+        public Reserva getInfoReserva(int recursoId, Date inicio, Date fin, EstadoReserva estado) throws BibliotecaException;
         
         public void modificarReserva(Reserva res, EstadoReserva estado) throws BibliotecaException; 
         
@@ -95,4 +95,15 @@ public interface BibliotecaServices {
         public List<Reserva> consultarReservasPorCarrera() throws  BibliotecaException;
 
         public List<Reserva> consultarReservasPorUsuario() throws  BibliotecaException;
+        
+        public List<Reserva> consultarReservasCanceladasPorUsuario(String correo) throws BibliotecaException;
+        
+        public List<Reserva> consultarReservasPasadasPorUsuario(String correo) throws BibliotecaException;
+        
+        public List<Reserva> consultarReservasEnCursoPorUsuario(String correo) throws BibliotecaException;
+        
+        public Reserva consultarReservaPorId ( int id) throws BibliotecaException;
+        
+        
+        
 }

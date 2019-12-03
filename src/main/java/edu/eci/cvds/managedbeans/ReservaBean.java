@@ -66,7 +66,17 @@ public class ReservaBean extends BasePageBean implements Serializable {
     private Reserva reserva;
     private Date nextDate;
     private Reserva resssss;
-    private String usuario;
+    private int resId = 0;
+
+    public int getResId() {
+        return resId;
+    }
+
+    public void setResId(int resId) {
+        this.resId = resId;
+    }
+    
+    
 
     public Date getNextDate() {
         return nextDate;
@@ -106,11 +116,11 @@ public class ReservaBean extends BasePageBean implements Serializable {
         this.datee = datee;
     }
 
-    public Date calcularSiguienteAparicion(TipoReserva tipo, Date fecha, int frecuencia) {
+    public Date calcularSiguienteAparicion(TipoReserva tipo, Date fecha, int frecuencia,int resid) {
         if (frecuencia != 1) {
             return sumaFecha(fecha, tipo);
         } else {
-            return obtenerR().getDataInicio();
+            return obtenerR(resid).getDataInicio();
         }
     }
 
@@ -118,13 +128,17 @@ public class ReservaBean extends BasePageBean implements Serializable {
         //Falta pensar si la horafin es menor
         List<Reserva> reservas = serviciosBiblioteca.listarReservasRecurso(idrecurso);
         //Mouseky herramienta misteriosa x2
-        if (!reservas.stream().noneMatch((res) -> ((start.equals(res.getDataInicio()) && end.equals(res.getDataFim())) //Caso 
-                || (start.after(res.getDataInicio()) && end.before(res.getDataFim()))
-                || (start.after(res.getDataInicio()) && start.before(res.getDataFim()))
-                || (end.after(res.getDataInicio()) && end.before(res.getDataFim()))))) {
-            return false;
+        for (Reserva r: reservas){
+            if ( !(r.getEstado() == EstadoReserva.Cancelado) && (start.equals(r.getDataInicio()) && end.equals(r.getDataFim())) //Caso 
+                || (start.after(r.getDataInicio()) && end.before(r.getDataFim()))
+                || (start.after(r.getDataInicio()) && start.before(r.getDataFim()))
+                || (end.after(r.getDataInicio()) && end.before(r.getDataFim())) ){
+                return false;
+            }
+            
         }
         return true;
+        
     }
 
     private Date sumaFecha(Date fecha, TipoReserva res) {
@@ -150,8 +164,10 @@ public class ReservaBean extends BasePageBean implements Serializable {
         return result;
     }
 
-    public void onEventSelect(SelectEvent selectEvent) {
+    public void onEventSelect(SelectEvent selectEvent) throws BibliotecaException {
         event = (ScheduleEvent) selectEvent.getObject();
+        resId = Integer.parseInt(event.getId());
+        
     }
 
     public void onDateSelect(SelectEvent selectEvent) {
@@ -277,9 +293,9 @@ public class ReservaBean extends BasePageBean implements Serializable {
 
     }
 
-    public String getCarreraU() throws BibliotecaException {
+    public String getCarreraU(int resid) throws BibliotecaException {
         try {
-            Reserva r = obtenerR();
+            Reserva r = obtenerR(resid);
             String j = r.getUsuario();
             String c = serviciosBiblioteca.consultarUsuario(j).getCarrera();
             return c;
@@ -292,25 +308,97 @@ public class ReservaBean extends BasePageBean implements Serializable {
     public void loadEvents() throws BibliotecaException {
         eventModel = new DefaultScheduleModel();
         List<Reserva> reservas = serviciosBiblioteca.listarReservasRecurso(recursoID);
-        //Mouseky herramienta misteriosa 
-        reservas.stream().map((reserva) -> {
-            event = new DefaultScheduleEvent(reserva.getTitulo(), reserva.getDataInicio(), reserva.getDataFim());
-            return reserva;
-        }).forEachOrdered((_item) -> {
+        for (Reserva r : reservas){
+            event = new DefaultScheduleEvent(r.getTitulo(), r.getDataInicio(), r.getDataFim());
             eventModel.addEvent(event);
-        });
+            event.setId(String.valueOf(r.getId()));
+            
+        }
+        //Mouseky herramienta misteriosa 
+//        reservas.stream().map((reserva) -> {
+//            event = new DefaultScheduleEvent(reserva.getTitulo(), reserva.getDataInicio(), reserva.getDataFim());
+//            
+//            return reserva;
+//        }).forEachOrdered((_item) -> {
+//            eventModel.addEvent(event);
+//            
+//        });
+
+    }
+    public void loadEventsC(String usuario) throws BibliotecaException {
+        eventModel = new DefaultScheduleModel();
+        List<Reserva> reservas = serviciosBiblioteca.consultarReservasCanceladasPorUsuario(usuario);
+        for (Reserva r : reservas){
+            event = new DefaultScheduleEvent(r.getTitulo(), r.getDataInicio(), r.getDataFim());
+            eventModel.addEvent(event);
+            event.setId(String.valueOf(r.getId()));
+            
+        }
+        //Mouseky herramienta misteriosa 
+//        reservas.stream().map((reserva) -> {
+//            event = new DefaultScheduleEvent(reserva.getTitulo(), reserva.getDataInicio(), reserva.getDataFim());
+//            
+//            return reserva;
+//        }).forEachOrdered((_item) -> {
+//            eventModel.addEvent(event);
+//            
+//        });
+
+    }
+    public void loadEventsEC(String usuario) throws BibliotecaException {
+        eventModel = new DefaultScheduleModel();
+        List<Reserva> reservas = serviciosBiblioteca.consultarReservasEnCursoPorUsuario(usuario);
+        
+        for (Reserva r : reservas){
+            event = new DefaultScheduleEvent(r.getTitulo(), r.getDataInicio(), r.getDataFim());
+            eventModel.addEvent(event);
+            event.setId(String.valueOf(r.getId()));
+            
+        }
+        //Mouseky herramienta misteriosa 
+//        reservas.stream().map((reserva) -> {
+//            event = new DefaultScheduleEvent(reserva.getTitulo(), reserva.getDataInicio(), reserva.getDataFim());
+//            
+//            return reserva;
+//        }).forEachOrdered((_item) -> {
+//            eventModel.addEvent(event);
+//            event.setId(String.valueOf(reserva.getId()));
+//        });
+
+    }
+    public void loadEventsP(String usuario) throws BibliotecaException {
+        eventModel = new DefaultScheduleModel();
+        List<Reserva> reservas = serviciosBiblioteca.consultarReservasPasadasPorUsuario(usuario);
+        //Mouseky herramienta misteriosa 
+        
+        for (Reserva r : reservas){
+            event = new DefaultScheduleEvent(r.getTitulo(), r.getDataInicio(), r.getDataFim());
+            eventModel.addEvent(event);
+            event.setId(String.valueOf(r.getId()));
+            
+        }
+//        reservas.stream().map((reserva) -> {
+//            event = new DefaultScheduleEvent(reserva.getTitulo(), reserva.getDataInicio(), reserva.getDataFim());            
+//            return reserva;
+//        }).forEachOrdered((_item) -> {
+//            eventModel.addEvent(event);
+//            event.setId(String.valueOf(reserva.getId()));
+//        });
 
     }
 
-    public Reserva obtenerR() {
+    public Reserva obtenerR(int resid) {
         try {
-            resssss = serviciosBiblioteca.getInfoReserva(recursoID, event.getStartDate(), event.getEndDate());
-            return serviciosBiblioteca.getInfoReserva(recursoID, event.getStartDate(), event.getEndDate());
+            resssss = serviciosBiblioteca.consultarReservaPorId(resid);
+            return serviciosBiblioteca.consultarReservaPorId(resid);
         } catch (BibliotecaException ex) {
             ex.printStackTrace();
         }
         return null;
     }
+    
+    
+    
 
     public void modificarReserva(String a, String usuario) throws BibliotecaException {
         EstadoReserva estado = EstadoReserva.Cancelado;
