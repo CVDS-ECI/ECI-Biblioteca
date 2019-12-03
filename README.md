@@ -68,9 +68,24 @@ Burndown chart and backlog
 
 + Burndown chart: https://tree.taiga.io/project/sebastianfrasic-gestion-de-recursos-biblioteca/taskboard/sprint-2-8608
 
-En este sprint quedaron varias tareas abiertas/pendientes por hacer debido a que hubo problemas con el tiempo que cada integrante tuvo para realizar. Las tareas que quedaron incompletas fueron las de reservar un recurso y la de ver el calendario con las reservas.
+En este sprint quedaron varias tareas abiertas/pendientes por hacer debido a que hubo problemas con el tiempo que cada integrante tuvo para realizar. Además de que tocó hacer una refactorización de la parte de UX y la mayoría de Front, en lo cual un integrante estuvo bastante desapegado con el trabajo que se tenía que hacer.
+Las tareas que quedaron incompletas fueron las de reservar un recurso y la de ver el calendario con las reservas.
 Acá también se corrigieron algunos issues del sprint 1.
 ![Burndown chart and backlog sprint 2](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/BURNDOWN%20CHART%20AND%20BACKLOG%20SPRINT%202.png)
+
+
+## Descripción sprint 3
+
+Burndown chart and backlog
+
++ Burndown chart: https://tree.taiga.io/project/sebastianfrasic-gestion-de-recursos-biblioteca/taskboard/sprint-3-5679
+
+Finalmente, en este último sprint se completaron todas las tareas pendientes del segundo sprint, y se realizó correctamente el resto de tareas asignadas para este sprint.
+Lo único que no se pudo hacer como lo pedían en el requisito fue lo de filtrar los reportes de ocupación y generar el archivo Excel.
+
+Podría decirse que se cumplieron con todas las tareas solcitadas, y que el proyecto está en un excelente estado en cuanto a funcionalidad y calidad.
+
+![Burndown chart and backlog sprint 3](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/BURNDOWN%20CHART%20AND%20BACKLOG%20SPRINT%203.png)
 
 
 
