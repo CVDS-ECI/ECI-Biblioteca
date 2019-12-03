@@ -24,6 +24,7 @@ public class Reserva {
     private String usuario;
     private int recurso;
     private int cantidad;
+    private String carrera;
     
 // PILAS QUE FALTA USUARIO Y RECURSO PARA ESTO Y EL MAPPER
     private EstadoReserva estado;
@@ -68,8 +69,14 @@ public class Reserva {
     }
 
 
-    
-    
+    public String getCarrera() {
+        return carrera;
+    }
+
+    public void setCarrera(String carrera) {
+        this.carrera = carrera;
+    }
+
     public Date getProximaOcurrencia() {
         return proximaOcurrencia;
     }

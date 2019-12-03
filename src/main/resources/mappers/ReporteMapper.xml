@@ -1,29 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.ReporteMapper">
     <resultMap type='Reserva' id='ReservaResult'>
-        <id property='id' column='id' />
-        <result property='titulo' column='titulo' />
-        <result property='dataInicio' column='inicio' />
-        <result property='dataFim' column='fin' />
-        <result property='diaInteiro' column='diaEntero' />
-        <result property='tipoReserva' column='tipoReserva' />
-        <result property='usuario' column='usuario' />
-        <result property='recurso' column='recurso' />
-        <result property='cantidad' column='cantidad' />
+        <id property='id' column='id'/>
+        <result property='titulo' column='titulo'/>
+        <result property='dataInicio' column='inicio'/>
+        <result property='dataFim' column='fin'/>
+        <result property='diaInteiro' column='diaEntero'/>
+        <result property='tipoReserva' column='tipoReserva'/>
+        <result property='usuario' column='usuario'/>
+        <result property='recurso' column='recurso'/>
+        <result property='cantidad' column='cantidad'/>
     </resultMap>
 
     <select id="reservasPorCarrera" resultMap="ReservaResult">
-<!--        ACA VA LA CONSULTA-->
+        select u.carrera as carrera, count(id) as cantidad
+        from reserva, usuario as u
+        where reserva.usuario = u.correo
+        group by u.carrera
+        order by count(id) desc
+        limit 3;
     </select>
 
     <select id="reservasPorUsuario" resultMap="ReservaResult">
-        <!--        ACA VA LA CONSULTA-->
+        SELECT
+        usuario.nombre AS titulo,
+        COUNT(r.titulo) AS cantidad
+        FROM
+        Reserva as r join usuario
+        on r.usuario = usuario.correo
+        GROUP BY usuario.nombre
+        ORDER BY cantidad desc
+        limit 3;
     </select>
-    
+
     <select id="recursosMasUsados" resultMap="ReservaResult">
         SELECT
         recurso.nombre AS titulo,
@@ -48,7 +61,7 @@
         ORDER BY cantidad desc
         FETCH FIRST 3 ROWS ONLY
     </select>
-    
+
     <select id="recursosMasUsadosPorHora" resultMap="ReservaResult">
         SELECT
         recurso.nombre AS titulo,
@@ -61,7 +74,7 @@
         ORDER BY cantidad desc
         FETCH FIRST 3 ROWS ONLY
     </select>
-    
+
     <select id="recursosMasUsadosPorPrograma" resultMap="ReservaResult">
         SELECT
         recurso.nombre AS titulo,
@@ -76,7 +89,7 @@
         ORDER BY cantidad desc
         FETCH FIRST 3 ROWS ONLY
     </select>
-    
+
     <select id="recursosMasUsadosPorTipoRecurso" resultMap="ReservaResult">
         SELECT
         recurso.nombre AS titulo,
@@ -88,8 +101,8 @@
         GROUP BY recurso.nombre
         ORDER BY cantidad desc
         FETCH FIRST 3 ROWS ONLY
-    </select>  
-    
+    </select>
+
     <select id="recursosMenosUsados" resultMap="ReservaResult">
         SELECT
         recurso.nombre AS titulo,
@@ -114,7 +127,7 @@
         ORDER BY cantidad asc
         FETCH FIRST 3 ROWS ONLY
     </select>
-    
+
     <select id="recursosMenosUsadosPorHora" resultMap="ReservaResult">
         SELECT
         recurso.nombre AS titulo,
@@ -127,7 +140,7 @@
         ORDER BY cantidad asc
         FETCH FIRST 3 ROWS ONLY
     </select>
-    
+
     <select id="recursosMenosUsadosPorPrograma" resultMap="ReservaResult">
         SELECT
         recurso.nombre AS titulo,
@@ -142,7 +155,7 @@
         ORDER BY cantidad asc
         FETCH FIRST 3 ROWS ONLY
     </select>
-    
+
     <select id="recursosMenosUsadosPorTipoRecurso" resultMap="ReservaResult">
         SELECT
         recurso.nombre AS titulo,
@@ -155,7 +168,7 @@
         ORDER BY cantidad asc
         FETCH FIRST 3 ROWS ONLY
     </select>
-    
+
     <select id="horariosMayorOcupacion" resultMap="ReservaResult">
         SELECT
         r.inicioreserva as inicio ,
@@ -167,7 +180,7 @@
         ORDER BY cantidad desc
         FETCH FIRST 3 ROWS ONLY
     </select>
-    
+
     <select id="horariosMayorOcupacionPorFecha" resultMap="ReservaResult">
         SELECT
         r.inicio,
@@ -180,7 +193,7 @@
         ORDER BY cantidad desc
         FETCH FIRST 3 ROWS ONLY
     </select>
-    
+
     <select id="horariosMayorOcupacionPorHora" resultMap="ReservaResult">
         SELECT
         r.inicio,
@@ -193,7 +206,7 @@
         ORDER BY cantidad desc
         FETCH FIRST 3 ROWS ONLY
     </select>
-    
+
     <select id="horariosMayorOcupacionPorPrograma" resultMap="ReservaResult">
         SELECT
         r.inicio,
@@ -207,7 +220,7 @@
         ORDER BY cantidad desc
         FETCH FIRST 3 ROWS ONLY
     </select>
-    
+
     <select id="horariosMayorOcupacionPorTipoRecurso" resultMap="ReservaResult">
         SELECT
         r.inicio,
@@ -221,7 +234,7 @@
         ORDER BY cantidad desc
         FETCH FIRST 3 ROWS ONLY
     </select>
-     
+
     <select id="horariosMenorOcupacion" resultMap="ReservaResult">
         SELECT
         r.inicioreserva as inicio ,
@@ -233,7 +246,7 @@
         ORDER BY cantidad  asc
         FETCH FIRST 3 ROWS ONLY
     </select>
-    
+
     <select id="horariosMenorOcupacionPorFecha" resultMap="ReservaResult">
         SELECT
         r.inicio,
@@ -246,7 +259,7 @@
         ORDER BY cantidad asc
         FETCH FIRST 3 ROWS ONLY
     </select>
-    
+
     <select id="horariosMenorOcupacionPorHora" resultMap="ReservaResult">
         SELECT
         r.inicio,
@@ -259,7 +272,7 @@
         ORDER BY cantidad asc
         FETCH FIRST 3 ROWS ONLY
     </select>
-    
+
     <select id="horariosMenorOcupacionPorPrograma" resultMap="ReservaResult">
         SELECT
         r.inicio,
@@ -273,7 +286,7 @@
         ORDER BY cantidad asc
         FETCH FIRST 3 ROWS ONLY
     </select>
-    
+
     <select id="horariosMenorOcupacionPorTipoRecurso" resultMap="ReservaResult">
         SELECT
         r.inicio,
@@ -287,7 +300,7 @@
         ORDER BY cantidad asc
         FETCH FIRST 3 ROWS ONLY
     </select>
-    
+
     <select id="reservasRecurrentes" resultMap="ReservaResult">
         SELECT
         recurso.nombre AS titulo,
@@ -315,7 +328,7 @@
         on r.recurso = recurso.id
         where r.tiporeserva != 'Ninguno'
     </select>
-    
+
     <select id="reservasRecurrentesPorFecha" resultMap="ReservaResult">
         SELECT
         r.id,
@@ -331,7 +344,7 @@
         on r.recurso = recurso.id 
         where r.tiporeserva != 'Ninguno' and r.inicio &gt;= #{fechaInicio} AND r.fin &lt;= #{fechaFin}
     </select>
-    
+
     <select id="reservasRecurrentesPorHora" resultMap="ReservaResult">
         SELECT
         r.id,
@@ -347,7 +360,7 @@
         on r.recurso = recurso.id 
         where  r.tiporeserva != 'Ninguno' and r.inicio::time &gt;= #{horaInicio} AND r.fin::time &lt;= #{horaFin}  
     </select>
-    
+
     <select id="reservasRecurrentesPorPrograma" resultMap="ReservaResult">
         SELECT
         r.id,
@@ -365,7 +378,7 @@
         on recurso.id = r.recurso  
         where r.tiporeserva != 'Ninguno' and  carrera= #{program}  
     </select>
-    
+
     <select id="reservasRecurrentesPorTipoRecurso" resultMap="ReservaResult">
         SELECT
         r.id,
@@ -381,7 +394,7 @@
         on r.recurso = recurso.id
         where  r.tiporeserva != 'Ninguno' and recurso.tipo = #{tipoRecurso} 
     </select>
-     
+
     <select id="reservasCanceladas" resultMap="ReservaResult">
         SELECT
         recurso.nombre AS titulo,
@@ -408,7 +421,7 @@
         on r.recurso = recurso.id
         where r.estado = 'Cancelada'
     </select>
-    
+
     <select id="reservasCanceladasPorFecha" resultMap="ReservaResult">
         SELECT
         r.id,
@@ -424,7 +437,7 @@
         on r.recurso = recurso.id 
         where r.estado = 'Cancelada' and r.inicio &gt;= #{fechaInicio} AND r.fin &lt;= #{fechaFin}
     </select>
-    
+
     <select id="reservasCanceladasPorHora" resultMap="ReservaResult">
         SELECT
         r.id,
@@ -440,7 +453,7 @@
         on r.recurso = recurso.id 
         where  r.estado = 'Cancelada' and r.inicio::time &gt;= #{horaInicio} AND r.fin::time &lt;= #{horaFin}  
     </select>
-    
+
     <select id="reservasCanceladasPorPrograma" resultMap="ReservaResult">
         SELECT
         r.id,
@@ -458,7 +471,7 @@
         on recurso.id = r.recurso 
         where r.estado = 'Cancelada' and  carrera= #{program}  
     </select>
-    
+
     <select id="reservasCanceladasPorTipoRecurso" resultMap="ReservaResult">
         SELECT
         r.id,
@@ -474,5 +487,5 @@
         on r.recurso = recurso.id
         where  r.estado = 'Cancelada' and recurso.tipo = #{tipoRecurso} 
     </select>
-       
+
 </mapper>
