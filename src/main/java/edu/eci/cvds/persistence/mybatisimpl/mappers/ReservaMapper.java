@@ -23,7 +23,7 @@ public interface ReservaMapper {
 
     public void remover(@Param("reservaId") int rev);
 
-    public Reserva getInfoReserva(@Param("rId") int recursoId,@Param("ini") Date inicio,@Param("fin") Date fin);
+    public Reserva getInfoReserva(@Param("rId") int recursoId,@Param("ini") Date inicio,@Param("fin") Date fin, @Param("estado") EstadoReserva estado);
 
     public void modificarReserva(@Param("res") Reserva res,  @Param("estado") EstadoReserva estado);
 
@@ -32,5 +32,7 @@ public interface ReservaMapper {
     public List<Reserva> consultarReservasPasadasPorUsuario( @Param("correo") String correo);
 
     public List<Reserva> consultarReservasEnCursoPorUsuario(@Param("correo") String correo);
+
+    public Reserva consultarReservaPorId(@Param("id") int id);
 
 }

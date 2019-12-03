@@ -66,10 +66,10 @@
                         <p:outputLabel value="#{AdminBean.consultarRecurso(reservaBean.recursoID).nombre}"/>
 
                         <p:outputLabel value="Fecha inicial de la reserva:  "/>
-                        <p:outputLabel value="#{reservaBean.obtenerR().dataInicio}"/>
+                        <p:outputLabel value="#{reservaBean.obtenerR(reservaBean.resId).dataInicio}"/>
 
                         <p:outputLabel value="Fecha final de la reserva:  "/>
-                        <p:outputLabel value="#{reservaBean.obtenerR().dataFim}"/>
+                        <p:outputLabel value="#{reservaBean.obtenerR(reservaBean.resId).dataFim}"/>
                     </h:panelGrid>
                 </p:dialog>
 

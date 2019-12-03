@@ -73,19 +73,19 @@
                           modal="true">
                     <h:panelGrid id="eventDetails1" columns="2">
                         <p:outputLabel value="Recurso solicitado: "/>
-                        <p:outputLabel value="#{reservaBean.recursoID}"/>
+                        <p:outputLabel value="#{reservaBean.obtenerR(reservaBean.resId).recurso}"/>
 
                         <p:outputLabel value="Información del recurso: "/>
-                        <p:outputLabel value="#{AdminBean.consultarRecurso(reservaBean.recursoID).nombre}"/>
+                        <p:outputLabel value="#{AdminBean.consultarRecurso(reservaBean.obtenerR(reservaBean.resId).recurso).nombre}"/>
 
                         <p:outputLabel value="Fecha inicial de la reserva:  "/>
-                        <p:outputLabel value="#{reservaBean.obtenerR().dataInicio}"/>
+                        <p:outputLabel value="#{reservaBean.obtenerR(reservaBean.resId).dataInicio}"/>
 
                         <p:outputLabel value="Fecha final de la reserva:  "/>
-                        <p:outputLabel value="#{reservaBean.obtenerR().dataFim}"/>
+                        <p:outputLabel value="#{reservaBean.obtenerR(reservaBean.resId).dataFim}"/>
 
                         <p:outputLabel value="Tipo de Reserva: "/>
-                        <p:outputLabel value="#{reservaBean.obtenerR().tipoReserva}"/>
+                        <p:outputLabel value="#{reservaBean.obtenerR(reservaBean.resId).tipoReserva}"/>
                     </h:panelGrid>
                 </p:dialog>
 

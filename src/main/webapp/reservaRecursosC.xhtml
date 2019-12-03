@@ -22,6 +22,14 @@
             <meta http-equiv="Last-Modified" content="0"/>
             <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate"/>
             <meta http-equiv="Pragma" content="no-cache"/>
+            <script>
+                function myFunction() {
+                    location.href = "/faces/reservaRecursosC.xhtml";
+                }
+
+
+            </script>
+
             <script type='text/javascript'>
 
                 (function ()
@@ -41,8 +49,8 @@
             <script type="text/javascript">
                 function conf2()
                 {
-                    var con = confirm("Do you want to submit for sure?");
-                    location.href = "/faces/reservaRecursosC.xhtml";
+                var con = confirm("Do you want to submit for sure?");
+                location.href = "/faces/reservaRecursosC.xhtml";
                 }
             </script>
         </ui:define>
@@ -53,6 +61,7 @@
                 }
             </style>
             <h:form>
+                
                 <p:growl id="messages" showDetail="true"/>
                 #{reservaBean.loadEvents()}
                 <h:panelGrid columnClasses="value">
@@ -80,13 +89,13 @@
                         <p:outputLabel value="#{AdminBean.consultarRecurso(reservaBean.recursoID).nombre}"/>
 
                         <p:outputLabel value="Fecha inicial de la reserva:  "/>
-                        <p:outputLabel value="#{reservaBean.obtenerR().dataInicio}"/>
+                        <p:outputLabel value="#{reservaBean.obtenerR(reservaBean.resId).dataInicio}"/>
 
                         <p:outputLabel value="Fecha final de la reserva:  "/>
-                        <p:outputLabel value="#{reservaBean.obtenerR().dataFim}"/>
+                        <p:outputLabel value="#{reservaBean.obtenerR(reservaBean.resId).dataFim}"/>
 
                         <p:outputLabel value="Tipo de Reserva: "/>
-                        <p:outputLabel value="#{reservaBean.obtenerR().tipoReserva}"/>
+                        <p:outputLabel value="#{reservaBean.obtenerR(reservaBean.resId).tipoReserva}"/>
 
                         <p:commandButton id="addButton1" value="Cancelar todas la reservas" actionListener="#{reservaBean.modificarReserva('t',shiroBean.username)}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" onclick="conf2()"></p:commandButton>
                         <p:commandButton id="addButton2" value="Cancelar esta reserva" action="#{reservaBean.modificarReserva('u',shiroBean.username)}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" onclick="conf2()"></p:commandButton>

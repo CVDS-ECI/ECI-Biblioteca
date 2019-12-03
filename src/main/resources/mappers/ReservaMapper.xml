@@ -47,7 +47,7 @@
         r.proximaOcurrencia
         FROM
         Reserva as r
-        WHERE r.recurso=#{rId} and r.inicio=#{ini} and r.fin=#{fin}
+        WHERE r.recurso=#{rId} and r.inicio=#{ini} and r.fin=#{fin} and r.estado = #{estado}
     </select>
     
     
@@ -85,6 +85,24 @@
         FROM
         Reserva as r
         WHERE r.usuario = #{correo} and r.fin &lt; localtimestamp
+    </select>
+    
+    <select id="consultarReservaPorId" resultMap="ReservaResult">
+        SELECT
+        r.id,
+        r.titulo,
+        r.recurso,
+        r.usuario,
+        r.dataActual,
+        r.inicio,
+        r.fin,
+        r.diaEntero,
+        r.tipoReserva,
+        r.estado,
+        r.proximaOcurrencia
+        FROM
+        Reserva as r
+        WHERE r.id = #{id}
     </select>
     
     <select id="consultarReservasEnCursoPorUsuario" resultMap="ReservaResult">

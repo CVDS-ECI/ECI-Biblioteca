@@ -121,9 +121,9 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
           }
     }
     @Override
-    public Reserva getInfoReserva(int recursoId, Date inicio, Date fin) throws BibliotecaException {
+    public Reserva getInfoReserva(int recursoId, Date inicio, Date fin, EstadoReserva estado) throws BibliotecaException {
         try {
-            return reservaDAO.getInfoReserva(recursoId, inicio, fin);
+            return reservaDAO.getInfoReserva(recursoId, inicio, fin, estado);
         } catch (PersistenceException ex) {
             throw new BibliotecaException("Error al consultar las reservas Disponibles:" + ex.getLocalizedMessage(), ex);
         }
@@ -449,6 +449,15 @@ public class BibliotecaServicesImpl implements BibliotecaServices {
             return reservaDAO.consultarReservasEnCursoPorUsuario(correo);
         } catch (PersistenceException ex) {
             throw new BibliotecaException("Error al consultar las reservas Disponibles del usuario:"+ correo + ex.getLocalizedMessage(), ex);
+        }
+    }
+
+    @Override
+    public Reserva consultarReservaPorId(int id) throws BibliotecaException {
+        try {
+            return reservaDAO.consultarReservaPorId(id);
+        } catch (PersistenceException ex) {
+            throw new BibliotecaException("Error al consultar las reservas por el id:"+ id + ex.getLocalizedMessage(), ex);
         }
     }
 }
