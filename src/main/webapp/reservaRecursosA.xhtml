@@ -46,6 +46,13 @@
                 })();
 
             </script>
+            <script type="text/javascript">
+                function conf2()
+                {
+                    var con = confirm("Do you want to submit for sure?");
+                    location.href = "/faces/reservaRecursosA.xhtml";
+                }
+            </script>
 
         </ui:define>
         <ui:define name="content">
@@ -61,7 +68,8 @@
                 #{reservaBean.loadEvents()}
                 <h:panelGrid columnClasses="value">
                     <p:schedule id="schedule" value="#{reservaBean.eventModel}" widgetVar="myschedule"
-                                rightHeaderTemplate="agendaDay,agendaWeek,month,listYear" >
+                                rightHeaderTemplate="agendaDay,agendaWeek,month,listYear" 
+                                timeZone="ZoneId.systemDefault()" clientTimeZone="local">
 
                         <p:ajax event="dateSelect" listener="#{reservaBean.onDateSelect}" update="eventDetails"
                                 oncomplete="PF('eventDialog').show();"/>
@@ -103,7 +111,9 @@
 
                         <p:outputLabel value="Proxima Aparicion: "/>
                         <p:outputLabel value="#{reservaBean.obtenerR().proximaOcurrencia}"/>
-
+                        <p:commandButton id="addButton1" value="Cancelar Todas las Reservas" actionListener="#{reservaBean.modificarReserva('t',shiroBean.username)}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" onclick="conf2()"></p:commandButton>
+                        <p:commandButton id="addButton2" value="Carcelar Esta Reserva" action="#{reservaBean.modificarReserva('u',shiroBean.username)}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" onclick="conf2()"></p:commandButton>
+                        <p:commandButton id="addButton3" value="Cancelar Desde Esta Reserva" action="#{reservaBean.modificarReserva('d',shiroBean.username)}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" onclick="conf2()"></p:commandButton>
 
 
 
@@ -153,8 +163,7 @@
                                 </h:selectOneMenu>
                             </div>
                         </div>
-                        <p:commandButton id="addButton" value="Reservar" action="#{reservaBean.addEvent(shiroBean.username)}"
-                                         oncomplete="PF('myschedule').update();PF('eventDialog').hide();"/>
+                        <p:commandButton id="addButton" value="Reservar" action="#{reservaBean.addEvent(shiroBean.username)}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();"></p:commandButton>
 
                     </h:panelGrid>
 

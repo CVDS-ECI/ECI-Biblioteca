@@ -1,5 +1,6 @@
 package edu.eci.cvds.services;
 
+import edu.eci.cvds.entities.EstadoReserva;
 import edu.eci.cvds.entities.Recurso;
 import edu.eci.cvds.entities.Reserva;
 import edu.eci.cvds.entities.Usuario;
@@ -28,6 +29,8 @@ public interface BibliotecaServices {
         public List<Reserva> listarReservasRecurso(int ru) throws BibliotecaException;
         
         public Reserva getInfoReserva(int recursoId, Date inicio, Date fin) throws BibliotecaException;
+        
+        public void modificarReserva(Reserva res, EstadoReserva estado) throws BibliotecaException; 
         
        
         

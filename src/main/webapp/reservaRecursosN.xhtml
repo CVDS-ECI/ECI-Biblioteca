@@ -22,21 +22,20 @@
             <meta http-equiv="Last-Modified" content="0"/>
             <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate"/>
             <meta http-equiv="Pragma" content="no-cache"/>
-            
+
             <script type='text/javascript'>
 
-                (function()
+                (function ()
                 {
-                if( window.localStorage )
-                {
-                if( !localStorage.getItem('firstLoad') )
-                {
-                localStorage['firstLoad'] = true;
-                window.location.reload();
-                }  
-                else
-                localStorage.removeItem('firstLoad');
-                }
+                    if (window.localStorage)
+                    {
+                        if (!localStorage.getItem('firstLoad'))
+                        {
+                            localStorage['firstLoad'] = true;
+                            window.location.reload();
+                        } else
+                            localStorage.removeItem('firstLoad');
+                    }
                 })();
 
             </script>
@@ -47,15 +46,14 @@
                     width: 1000px;
                 }
             </style>
-            
+
             <h:form>
                 <p:growl id="messages" showDetail="true"/>
                 #{reservaBean.loadEvents()}
                 <h:panelGrid columnClasses="value">
                     <p:schedule id="schedule" value="#{reservaBean.eventModel}" widgetVar="myschedule"
-                                rightHeaderTemplate="agendaDay,agendaWeek,month,listYear" >
-
-                        
+                                rightHeaderTemplate="agendaDay,agendaWeek,month,listYear" 
+                                timeZone="ZoneId.systemDefault()" clientTimeZone="local">
                         <p:ajax event="eventSelect" listener="#{reservaBean.onEventSelect}" update="eventDetails1"
                                 oncomplete="PF('eventDialog1').show();" />
 

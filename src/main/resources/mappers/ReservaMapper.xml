@@ -29,7 +29,7 @@
         r.tipoReserva
         FROM
         Reserva as r
-        WHERE r.recurso = #{recursoId}
+        WHERE r.recurso = #{recursoId} and r.estado != 'Cancelado'
     </select>
     
     <select id="getInfoReserva" resultMap="ReservaResult">
@@ -61,6 +61,13 @@
         WHERE
         reserva.id = #{reservaId}
     </delete>
+    
+    <update id="modificarReserva" parameterType="map">
+        UPDATE reserva
+        SET estado = #{estado}
+        WHERE
+        reserva.id = #{res.id};
+    </update>
     
    
 </mapper>
