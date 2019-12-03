@@ -72,7 +72,7 @@ public class ReservasRecurrentes extends BasePageBean {
         Axis yAxis = grafico.getAxis(AxisType.Y);
         yAxis.setLabel("Cantidad de reservas");
         yAxis.setMin(0);
-        yAxis.setMax(15);
+        yAxis.setMax(100);
         grafico.setSeriesColors("B00000");
     }
 }

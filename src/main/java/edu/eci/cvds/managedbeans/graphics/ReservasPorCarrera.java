@@ -17,9 +17,9 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import java.util.List;
 
-@ManagedBean(name = "reservasCanceladas")
+@ManagedBean(name = "reservasPorCarrera")
 @SessionScoped
-public class ReservasCanceladas extends BasePageBean {
+public class ReservasPorCarrera extends BasePageBean {
 
     @Inject
     private BibliotecaServices serviciosBiblioteca;
@@ -44,12 +44,12 @@ public class ReservasCanceladas extends BasePageBean {
     private BarChartModel initBarModel() {
         BarChartModel model = new BarChartModel();
         ChartSeries graph = new ChartSeries();
-        graph.setLabel("Cantidad de reservas canceladas");
+        graph.setLabel("Cantidad de reservas por carrera");
         List<Reserva> reservas;
         try {
-            reservas = serviciosBiblioteca.consultarReservasCanceladas();
+            reservas = serviciosBiblioteca.consultarReservasPorCarrera();
             for (Reserva r : reservas) {
-                graph.set(r.getTitulo(), r.getCantidad());
+                graph.set(r.getCarrera(), r.getCantidad());
             }
 
 
@@ -64,7 +64,7 @@ public class ReservasCanceladas extends BasePageBean {
 
     private void createBarModel() {
         grafico = initBarModel();
-        grafico.setTitle("Reservas canceladas");
+        grafico.setTitle("Carrera");
         grafico.setLegendPosition("ne");
 
         Axis xAxis = grafico.getAxis(AxisType.X);
