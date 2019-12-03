@@ -69,7 +69,7 @@
                 <h:panelGrid columnClasses="value">
                     <p:schedule id="schedule" value="#{reservaBean.eventModel}" widgetVar="myschedule"
                                 rightHeaderTemplate="agendaDay,agendaWeek,month,listYear" 
-                                timeZone="ZoneId.systemDefault()" clientTimeZone="local">
+                                timeZone="ZoneId.systemDefault()" clientTimeZone="local" draggable="false">
 
                         <p:ajax event="dateSelect" listener="#{reservaBean.onDateSelect}" update="eventDetails"
                                 oncomplete="PF('eventDialog').show();"/>

@@ -51,9 +51,8 @@
                 <p:growl id="messages" showDetail="true"/>
                 #{reservaBean.loadEvents()}
                 <h:panelGrid columnClasses="value">
-                    <p:schedule id="schedule" value="#{reservaBean.eventModel}" widgetVar="myschedule"
-                                rightHeaderTemplate="agendaDay,agendaWeek,month,listYear" 
-                                timeZone="ZoneId.systemDefault()" clientTimeZone="local">
+                    <p:schedule id="schedule" value="#{reservaBean.eventModel}" 
+                                timeZone="ZoneId.systemDefault()" clientTimeZone="local" draggable="false" view="listYear">
                         <p:ajax event="eventSelect" listener="#{reservaBean.onEventSelect}" update="eventDetails1"
                                 oncomplete="PF('eventDialog1').show();" />
 
