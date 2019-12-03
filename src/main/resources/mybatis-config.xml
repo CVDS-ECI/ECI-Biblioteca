@@ -28,6 +28,7 @@
                 <mapper resource="mappers/UsuarioMapper.xml"></mapper>
                 <mapper resource="mappers/RecursoMapper.xml"></mapper>
                 <mapper resource="mappers/ReservaMapper.xml"></mapper>
+                <mapper resource="mappers/ReporteMapper.xml"></mapper>
 	</mappers>
 
 </configuration>

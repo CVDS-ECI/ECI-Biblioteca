@@ -23,8 +23,12 @@ public class Reserva {
     private TipoReserva tipoReserva;
     private String usuario;
     private int recurso;
+    private int cantidad;
+    
+// PILAS QUE FALTA USUARIO Y RECURSO PARA ESTO Y EL MAPPER
     private EstadoReserva estado;
     private Date proximaOcurrencia;
+
 
 
 // PILAS QUE FALTA USUARIO Y RECURSO PARA ESTO Y EL MAPPER
@@ -138,6 +142,31 @@ public class Reserva {
         this.tipoReserva = tipoReserva;
     }
 
+    public int getRecurso() {
+        return recurso;
+    }
+
+    public void setRecurso(int recurso) {
+        this.recurso = recurso;
+    }
+
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
@@ -157,10 +186,7 @@ public class Reserva {
             return false;
         }
         final Reserva other = (Reserva) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.id, other.id);
     }
 
     public String getUsuario() {
