@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>edu.eci.cvds</groupId>
@@ -14,7 +12,7 @@
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-guice</artifactId>
             <version>3.10</version>
-            
+
         </dependency>
 
         <dependency>
@@ -24,17 +22,17 @@
             <scope>test</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
-	<dependency>
+        <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
             <version>4.0.1</version>
-	</dependency>
-	<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
-	<dependency>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+        <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>4.0.1</version>
-	</dependency>
+        </dependency>
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
@@ -241,6 +239,36 @@
                 </executions>
             </plugin>
 
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.2</version>
+                <configuration>
+                    <excludes></excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report-t</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
             <!-- Tomcat embedded plugin. -->
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
@@ -251,7 +279,6 @@
                     <path>/</path>
                 </configuration>
             </plugin>
-
 
 
         </plugins>
