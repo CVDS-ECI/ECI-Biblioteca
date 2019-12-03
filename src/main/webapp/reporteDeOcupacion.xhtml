@@ -25,54 +25,6 @@
 
                 <br/>
 
-                <div class="row">
-                    <div class="col-md-5">
-                        <div class="form-group">
-                            <label class="bmd-label-floating">Reportes:</label>
-                            <h:selectOneMenu value="#{reporteBean.tipoDeReporteSeleccionado}" class="form-control">
-                                <f:selectItems value="#{reporteBean.getTiposDeReportes()}"/>
-                            </h:selectOneMenu>
-                        </div>
-                    </div>
-                    <div class="col-md-7">
-                        <div class="form-group">
-
-                            <label class="bmd-label-floating">Filtrar por:</label>
-                            <br/>
-                            <h:selectOneMenu id="tipoDeFiltro" value="#{dropdown.tipoDeFiltroSeleccionado}"
-                                             style="width:150px">
-                                <p:ajax listener="#{dropdown.onTipoCambiado}" update="filtro"/>
-                                <f:selectItem itemLabel="Tipo de filtro:" itemValue="" noSelectionOption="true"/>
-                                <f:selectItems value="#{dropdown.tipoDeFiltros}"/>
-                            </h:selectOneMenu>
-                            <br/>
-                            <br/>
-
-                            <label class="bmd-label-floating">Filtro:</label>
-                            <br/>
-                            <h:selectOneMenu id="filtro" value="#{dropdown.filtroSeleccionado}" style="width:150px">
-                                <f:selectItem itemLabel="Seleccione el filtro: " itemValue="" noSelectionOption="true"/>
-                                <f:selectItems value="#{dropdown.filtrosSeleccionados}"/>
-                            </h:selectOneMenu>
-
-
-                            <!--                        <label class="bmd-label-floating">Filtrar por:</label>
-                                                    <h:selectOneMenu value="#{reporteBean.tipoDeFiltroSeleccionado}" class="form-control">
-                                                        <f:selectItems value="#{reporteBean.getTiposDeFiltros()}" />
-                                                    </h:selectOneMenu>
-                                                    <br/>
-                                                    <br/>
-                                                    <label class="bmd-label-floating">Escriba el filtro:</label>
-                                                    <p:inputText type="text" class="form-control" id="Capacidad" binding="#{capacidad}" />-->
-                        </div>
-                    </div>
-                </div>
-
-
-                <p:commandButton class="btn pull-left" value="Buscar" onclick="conf2()">
-                </p:commandButton>
-
-                <div class="clearfix"></div>
 
 
                 <div class="col-xs-12">
@@ -216,7 +168,7 @@
 
                 <div class="col-xs-12">
                     <br/><br/><br/>
-                    <h2>Horarios con mayor ocupación:</h2>
+                    <h2>Horarios de recursos con mayor ocupación:</h2>
                     <br></br>
                     <div class="col-xs-11">
                         <table id="horariosMayorOcupacion" class="display table table-bordered table-striped">
@@ -251,7 +203,7 @@
 
                 <div class="col-xs-12">
                     <br/><br/><br/>
-                    <h2>Horarios con menor ocupación:</h2>
+                    <h2>Horarios de recursos con menor ocupación:</h2>
                     <br></br>
                     <div class="col-xs-11">
                         <table id="horariosMenorOcupacion" class="display table table-bordered table-striped">
@@ -352,57 +304,57 @@
                     </div>
                 </div>
 
-                <div class="col-xs-12">
-                    <br/><br/><br/>
-                    <h2>Recursos más usados por programa:</h2>
-                    <br/>
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <label class="bmd-label-floating">Carreras:</label>
-                            <h:selectOneMenu value="#{reporteBean.tipoDecarreraSeleccionado}" class="form-control">
-                                <f:selectItems value="#{reporteBean.getCarreras()}"/>
-                            </h:selectOneMenu>
-                        </div>
-                    </div>
-                    <br/>
-                    <p:commandButton class="btn pull-left" value="Buscar" onclick="conf2()">
-                        <f:actionListener
-                            binding="#{recursosMasUsadosPorPrograma.setCarrera(reporteBean.getTipoDecarreraSeleccionado())}"
-                            update="recurso_form" />
-                    </p:commandButton>
+<!--                <div class="col-xs-12">-->
+<!--                    <br/><br/><br/>-->
+<!--                    <h2>Recursos más usados por programa:</h2>-->
+<!--                    <br/>-->
+<!--                    <div class="row">-->
+<!--                        <div class="col-xs-6">-->
+<!--                            <label class="bmd-label-floating">Carreras:</label>-->
+<!--                            <h:selectOneMenu value="{reporteBean.tipoDecarreraSeleccionado}" class="form-control">-->
+<!--                                <f:selectItems value="{reporteBean.getCarreras()}"/>-->
+<!--                            </h:selectOneMenu>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <br/>-->
+<!--                    <p:commandButton class="btn pull-left" value="Buscar" onclick="conf2()">-->
+<!--                        <f:actionListener-->
+<!--                            binding="#{recursosMasUsadosPorPrograma.setCarrera(reporteBean.getTipoDecarreraSeleccionado())}"-->
+<!--                            update="recurso_form" />-->
+<!--                    </p:commandButton>-->
 
-                </div>
-                
-                <div class="col-xs-12">
-                    <br/><br/><br/>
-                    <div class="col-xs-6"><p:chart type="bar" model="#{reservasCanceladas.grafico}"/></div>
-                    <div class="col-xs-1"></div>
-                    <div class="col-xs-5">
-                        <table id="reservasCanceladas" class="display table table-bordered table-striped">
+<!--                </div>-->
+<!--                -->
+<!--                <div class="col-xs-12">-->
+<!--                    <br/><br/><br/>-->
+<!--                    <div class="col-xs-6"><p:chart type="bar" model="{reservasCanceladas.grafico}"/></div>-->
+<!--                    <div class="col-xs-1"></div>-->
+<!--                    <div class="col-xs-5">-->
+<!--                        <table id="reservasCanceladas" class="display table table-bordered table-striped">-->
 
-                            <thead>
-                                <tr>
-                                    <th>Recurso</th>
-                                    <th>N° de reservas por programa</th>
+<!--                            <thead>-->
+<!--                                <tr>-->
+<!--                                    <th>Recurso</th>-->
+<!--                                    <th>N° de reservas por programa</th>-->
 
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <ui:repeat var="reserva" value="#{reporteBean.consultarRecursosMasUsadosPorCarrera()}">
+<!--                                </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody>-->
+<!--                                <ui:repeat var="reserva" value="{reporteBean.consultarRecursosMasUsadosPorCarrera()}">-->
 
-                                    <tr>
+<!--                                    <tr>-->
 
-                                        <td>#{reserva.titulo}</td>
-                                        <td>#{reserva.cantidad}</td>
+<!--                                        <td>#{reserva.titulo}</td>-->
+<!--                                        <td>#{reserva.cantidad}</td>-->
 
-                                    </tr>
-                                </ui:repeat>
-                            </tbody>
+<!--                                    </tr>-->
+<!--                                </ui:repeat>-->
+<!--                            </tbody>-->
 
-                        </table>
-                    </div>
-                </div>
+<!--                        </table>-->
+<!--                    </div>-->
+<!--                </div>-->
 
 
             </h:form>

@@ -297,6 +297,7 @@
         on r.recurso = recurso.id
         where r.tiporeserva != 'Ninguno'
         group by recurso.nombre
+        limit 6;
     </select>
 
     <select id="reservasRecurrentesVargas" resultMap="ReservaResult">

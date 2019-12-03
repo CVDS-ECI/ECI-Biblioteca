@@ -42,6 +42,7 @@ insert into rol(nombre) values ('Usuario');
 insert into usuario values ('cvds@cvds.com','123','cvdsAdmin',1,'Administrador', null);
 insert into usuario values ('julian','75cee5b221098c39dc19feca49b7b7cfe46405057d0361b18726990a5f91bf25','Julian',2,'Usuario', 'ISIS');
 insert into usuario values ('maria','75cee5b221098c39dc19feca49b7b7cfe46405057d0361b18726990a5f91bf25','Julian',2,'Usuario', 'ISIS');
+insert into usuario values ('AngieCeli_','86909ff2e222a943d5626522e212d467b5e2b828583809f242c0c394ccf16a47','Angie',2,'Usuario', 'ISIS');
 insert into Recurso(nombre,ubicacion,tipo,capacidad,estado) values('SALA DE ESTUDIO 1 ','Biblioteca A','SALA',10,'No disponible');
 insert into Recurso(nombre,ubicacion,tipo,capacidad,estado) values('SALA DE ESTUDIO 2 ','Biblioteca A','SALA',7,'No disponible');
 insert into Recurso(nombre,ubicacion,tipo,capacidad,estado) values('SALA DE ESTUDIO 3 ','Biblioteca A','SALA',15,'En mantenimiento');
