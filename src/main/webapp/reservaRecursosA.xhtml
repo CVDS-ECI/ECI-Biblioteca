@@ -111,9 +111,9 @@
 
                         <p:outputLabel value="Proxima Aparicion: "/>
                         <p:outputLabel value="#{reservaBean.obtenerR().proximaOcurrencia}"/>
-                        <p:commandButton id="addButton1" value="Cancelar Todas las Reservas" actionListener="#{reservaBean.modificarReserva('t',shiroBean.username)}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" onclick="conf2()"></p:commandButton>
-                        <p:commandButton id="addButton2" value="Carcelar Esta Reserva" action="#{reservaBean.modificarReserva('u',shiroBean.username)}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" onclick="conf2()"></p:commandButton>
-                        <p:commandButton id="addButton3" value="Cancelar Desde Esta Reserva" action="#{reservaBean.modificarReserva('d',shiroBean.username)}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" onclick="conf2()"></p:commandButton>
+                        <p:commandButton id="addButton1" value="Cancelar todas la reservas" actionListener="#{reservaBean.modificarReserva('t',shiroBean.username)}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" onclick="conf2()"></p:commandButton>
+                        <p:commandButton id="addButton2" value="Cancelar esta reserva" action="#{reservaBean.modificarReserva('u',shiroBean.username)}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" onclick="conf2()"></p:commandButton>
+                        <p:commandButton id="addButton3" value="Cancelar a partir de esta reserva" action="#{reservaBean.modificarReserva('d',shiroBean.username)}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" onclick="conf2()"></p:commandButton>
 
 
 
