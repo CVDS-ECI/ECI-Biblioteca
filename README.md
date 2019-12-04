@@ -122,9 +122,23 @@ Las reservas recurrentes pueden ser diarias, semanales o mensuales.
 
 ![reservaDesdeCalendario](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/11.jpg)  
 
+Cuando se realiza una reserva esta aparecerá en el calendario:
+
+![menuReservas](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/16.JPG)  
+
+Y si se quieren realizar otras reservas a la misma hora solo permitirá cuando no se solapen, en caso contrario mostrará algo así:   
+![menuReservas](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/17.JPG)  
+Sin embargo, los horarios que no se solapen sí se podrán reservar:
+![menuReservas](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/18.JPG)  
+
+
+
+
 
 Al momento de ver mis reservas el usuario puede ver lo siguiente:   
-![menuReservas](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/12.JPG)  
+![reservassss](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/12.JPG)  
+
+
 
 
 #### Reservas canceladas:
@@ -136,7 +150,15 @@ Al momento de ver mis reservas el usuario puede ver lo siguiente:
 ![reservasEnCurso](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/14.JPG)  
 
 #### Reservas pasadas:
-![reservasPasadas](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/15.JPG)  
+![reservasPasadas](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/15.JPG)    
+
+Finalmente, si un usuario accede a una página no autorizada (Por ejemplo, un usuario logeado como comunidad trata de ingresar a la página del administrador) le aparecerá el error HTTP 401 (No autorizado) de manera personalizada:
+
+![noAutorizado](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/19.JPG)   
+
+Y también se tiene control de ello para páginas que no existen, donde aparece el error HTTP 404 (No encontrado):
+
+![404](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/20.JPG)   
 
 
 
@@ -145,6 +167,11 @@ Al momento de ver mis reservas el usuario puede ver lo siguiente:
 
 ### Calidad del código
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/64ad0e4484824d6ab2794f5535063e6f)](https://www.codacy.com/manual/sebastianfrasic/ECI-Biblioteca?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CVDS-ECI/ECI-Biblioteca&amp;utm_campaign=Badge_Grade)
+
+### Cubrimiento de pruebas
+Mediante el plugin de Jacoco se realizó el porcentaje de cubrimiento de pruebas unitarias del proyecto:
+
+![cubrumiento](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/21.JPG)   
 
 ## Descripción del proceso
 Se trabajó mediante la metodología ágil Scrum. Durante todo el proceso se hicieron 3 sprints. Cada uno con una duración de 2 semanas.
