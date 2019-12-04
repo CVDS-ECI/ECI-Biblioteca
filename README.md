@@ -30,7 +30,7 @@ La aplicación está construida en 3 capas:
 
 #### Capa de presentación
 En esta capa se hizo uso de tecnologías como:
-+  JSF-(Java-Server-Faces)
++  JSF (Java Server Faces)
 +  Primefaces
 
 #### Capa de aplicación
@@ -47,25 +47,25 @@ Se usó un motor de bases de datos **PostgreSQL** y la herramienta **myBatis**, 
 
 ### Manual de usuario:
 Primero, cuando se ingrese al link http://ecibrary.herokuapp.com/ aparecerá la siguiente vista:
-![Iniciar sesión](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/BURNDOWN%20CHART%20AND%20BACKLOG%20SPRINT%201.png)
+![Iniciar sesión](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/1.jpg)
 
 
 Allí cualquier persona podrá iniciar sesión o podrá consultar los recursos disponibles.
 Al hacer click en “Consultar recursos” se mostrarán los recursos disponibles. Sin embargo, esta vista es meramente informativa ya que no podrá realizar ninguna otra acción aparte de ver. Se muestra a continuación:
 
 #### Vista consultar recursos (sin iniciar sesión):
-![Iniciar sesión](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/BURNDOWN%20CHART%20AND%20BACKLOG%20SPRINT%201.png)
+![Sin iniciar sesion](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/2.jpg)
 
 Por otra parte, al hacer click en Log In se redirigirá a otra vista, en donde se valida el inicio de sesión. 
-
+![Login](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/3.jpg)
 
 Algunas credenciales para iniciar sesión:
-Como administrador:
-*   Email: cvds@cvds.com
-*   Contraseña: 123
-Como comunidad:
-*   Email: santiago.aponte@mail.escuelaing.edu.co
-*	Contraseña: invitado
+* Como administrador:
+  *   Email: cvds@cvds.com
+  *   Contraseña: 123   
+* Como comunidad:
+  *   Email: santiago.aponte@mail.escuelaing.edu.co
+  *	Contraseña: invitado
 
 
 #### Administrador:
