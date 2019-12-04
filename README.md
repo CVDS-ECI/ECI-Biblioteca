@@ -124,19 +124,19 @@ Las reservas recurrentes pueden ser diarias, semanales o mensuales.
 
 
 Al momento de ver mis reservas el usuario puede ver lo siguiente:   
-![menuReservas](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/12.jpg)  
+![menuReservas](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/12.JPG)  
 
 
 #### Reservas canceladas:
 
-![reservasCanceladas](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/13.jpg)  
+![reservasCanceladas](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/13.JPG)  
 
 #### Reservas en curso:
 
-![reservasCanceladas](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/14.jpg)  
+![reservasEnCurso](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/14.JPG)  
 
 #### Reservas pasadas:
-![reservasCanceladas](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/15.jpg)  
+![reservasPasadas](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/15.JPG)  
 
 
 
