@@ -10,7 +10,7 @@
 +  David Vargas
 
 ### Profesor
-+ Julián Velasco
++ Julián Velasco (Producto Owner)
 
 ## Descripción del producto
 
@@ -67,11 +67,76 @@ Algunas credenciales para iniciar sesión:
   *   Email: santiago.aponte@mail.escuelaing.edu.co
   *	Contraseña: invitado
 
+    
+#### Administrador:   
+Al iniciar sesión como administrador se podrán realizar las siguientes tareas:
+* Consultar todos los recursos.
+* Modificar el estado de un recurso.
+*	Registrar un nuevo recurso.
+*	Ver reporte de ocupación.
 
-#### Administrador:
+![Admin](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/4.jpg)
+
+Aquí se podrán ver todos los recursos en una tabla, donde se muestra información específica de cada uno.    
 
 
+El administrador también puede modificar el estado de un recurso haciendo click en el engranaje que tiene cada recurso
+![Modificar estado](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/5.jpg)   
 
+Los 3 estados posibles del recurso son:
+* Disponible
+*	En mantenimiento
+*	No disponible   
+
+En la vista de registrar un nuevo recurso aparecerá lo siguiente:   
+![Registrar recurso](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/6.jpg)   
+
+
+En la vista de reporte de ocupación se muestran algunos gráficos y estadísticas del estado y uso de la biblioteca:
+![Reporte](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/7.jpg)   
+
+
+#### Comunidad:
+Al iniciar sesión como comunidad se podrán realizar las siguientes tareas:
+*	Consultar recursos disponibles.
+*	Realizar una reserva.
+*	Ver reservas.
+*	Ver mis reservas.
+*	Poder cancelar una reserva.
+
+![Recursoss disponibles](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/8.jpg)     
+
+   
+   
+Aquí solo se podrán ver los recursos disponibles, y se puede proceder a reservar determinado recurso al hacer click en el lápiz para editar
+
+
+![Recursoss disponibles](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/9.jpg)   
+
+
+Las reservas al recurso seleccionado se realizan mediante el calendario.   
+Dichas reservas pueden ser normales o recurrentes.    
+Las reservas recurrentes pueden ser diarias, semanales o mensuales.    
+
+![calendario](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/10.jpg)  
+
+![reservaDesdeCalendario](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/11.jpg)  
+
+
+Al momento de ver mis reservas el usuario puede ver lo siguiente:   
+![menuReservas](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/12.jpg)  
+
+
+#### Reservas canceladas:
+
+![reservasCanceladas](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/13.jpg)  
+
+#### Reservas en curso:
+
+![reservasCanceladas](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/14.jpg)  
+
+#### Reservas pasadas:
+![reservasCanceladas](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/15.jpg)  
 
 
 
