@@ -4,10 +4,10 @@
 
 ### Integrantes
 
-+  Juan Sebastián Frásica Galeano
-+  Andrés Felipe Marcelo
-+  Santiago Rubiano
-+  David Vargas
++  Juan Sebastián Frásica Galeano (Team developer)
++  Andrés Felipe Marcelo (Team developer)
++  Santiago Rubiano (Team developer)
++  David Vargas (Team developer)
 
 ### Profesor
 + Julián Velasco (Producto Owner)
