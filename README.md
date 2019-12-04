@@ -30,7 +30,7 @@ La aplicación está construida en 3 capas:
 
 #### Capa de presentación
 En esta capa se hizo uso de tecnologías como:
-+  JSF-(Java-Server-Faces)
++  JSF (Java Server Faces)
 +  Primefaces
 
 #### Capa de aplicación
@@ -60,12 +60,12 @@ Por otra parte, al hacer click en Log In se redirigirá a otra vista, en donde s
 ![Login](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Manual%20de%20usuario/3.jpg)
 
 Algunas credenciales para iniciar sesión:
-Como administrador:
-*   Email: cvds@cvds.com
-*   Contraseña: 123
-Como comunidad:
-*   Email: santiago.aponte@mail.escuelaing.edu.co
-*	Contraseña: invitado
+* Como administrador:
+  *   Email: cvds@cvds.com
+  *   Contraseña: 123   
+* Como comunidad:
+  *   Email: santiago.aponte@mail.escuelaing.edu.co
+  *	Contraseña: invitado
 
 
 #### Administrador:
