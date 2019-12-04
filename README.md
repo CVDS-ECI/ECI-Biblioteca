@@ -10,7 +10,7 @@
 +  David Vargas
 
 ### Profesor
-+ Julián-Velasco
++ Julián Velasco
 
 ## Descripción del producto
 
@@ -21,6 +21,9 @@
 
 ### Diagrama de paquetes
 ![Diagrama-de-clases-sprint-1-y-2](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/Diagrama_de_clases.png)
+
+### Enlace de la aplicación en Heroku
+http://ecibrary.herokuapp.com/
 
 ### Descripción de la arquitectura y tecnologías utilizadas
 La aplicación está construida en 3 capas:
@@ -40,8 +43,37 @@ Aquí se usaron tecnologías:
 #### Capa de persistencia de datos
 Se usó un motor de bases de datos **PostgreSQL** y la herramienta **myBatis**, la cual se encarga de la persistencia (mappea sentencias SQL y procedimientos almacenados con objetos a partir de ficheros XML o anotaciones).
 
-### Enlace de la aplicación en Heroku
-http://ecibrary.herokuapp.com/
+
+
+### Manual de usuario:
+Primero, cuando se ingrese al link http://ecibrary.herokuapp.com/ aparecerá la siguiente vista:
+![Iniciar sesión](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/BURNDOWN%20CHART%20AND%20BACKLOG%20SPRINT%201.png)
+
+
+Allí cualquier persona podrá iniciar sesión o podrá consultar los recursos disponibles.
+Al hacer click en “Consultar recursos” se mostrarán los recursos disponibles. Sin embargo, esta vista es meramente informativa ya que no podrá realizar ninguna otra acción aparte de ver. Se muestra a continuación:
+
+#### Vista consultar recursos (sin iniciar sesión):
+![Iniciar sesión](https://github.com/CVDS-ECI/ECI-Biblioteca/blob/master/img/BURNDOWN%20CHART%20AND%20BACKLOG%20SPRINT%201.png)
+
+Por otra parte, al hacer click en Log In se redirigirá a otra vista, en donde se valida el inicio de sesión. 
+
+
+Algunas credenciales para iniciar sesión:
+Como administrador:
+*   Email: cvds@cvds.com
+*   Contraseña: 123
+Como comunidad:
+*   Email: santiago.aponte@mail.escuelaing.edu.co
+*	Contraseña: invitado
+
+
+#### Administrador:
+
+
+
+
+
 
 ### Integración continua
 [![CircleCI](https://circleci.com/gh/CVDS-ECI/ECI-Biblioteca.svg?style=svg)](https://circleci.com/gh/CVDS-ECI/ECI-Biblioteca)
